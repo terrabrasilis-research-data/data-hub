@@ -1,0 +1,28 @@
+.text-heading {
+    font-weight: 300;
+    padding-left: 17px;
+}
+
+.greybox {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-top: 95px;
+    background: white-gray;
+    border-style: solid;
+    border-color: blue;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+}
+
+.box {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 35px;
+}
