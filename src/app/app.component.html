@@ -1,9 +1,36 @@
-<app-layout>
-  <div class="jumbotron">
-    <h1> </h1>
-    <router-outlet></router-outlet>
+<!-- Header -->
+<nav class="navbar navbar-dark mb-5" style="background-color: #408194;">
+
+  <a class="navbar-brand" [routerLink]="'/'">
+    TerraBrasilis Research Data
+  </a>
+
+  <div class="navbar-expand mr-auto">
+
+      <div class="navbar-nav">
+          <a class="nav-item nav-link" [routerLink]="'/repositories'">Repositories</a>
+          <a class="nav-item nav-link" [routerLink]="'/datasets'">Datasets</a>
+      </div>
+
   </div>
+  <div class="navbar-expand ml-auto navbar-nav">
+
+      <div class="navbar-nav">
+
+          <a class="nav-item nav-link" [routerLink]="'/login'">Login</a>
+      </div>
+
+  </div>
+
+</nav>
+
+<!-- Body -->
+<app-layout>
+
+  <div class="jumbotron">
+
+      <router-outlet></router-outlet>
+  
+    </div>
+
 </app-layout>
-
-
-
