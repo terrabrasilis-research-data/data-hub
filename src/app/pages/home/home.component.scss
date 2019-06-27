@@ -6,12 +6,12 @@
 .greybox {
     padding-top: 10px;
     padding-right: 10px;
-    padding-bottom: 10px;
     padding-left: 10px;
-    margin-top: 95px;
-    background: white-gray;
-    border-style: solid;
-    border-color: blue;
+    margin-top: 65px;
+    background:#ededed;
+    border-radius: 0.7em;
+    /*border-style: solid;
+    border-color: blue; */
 }
 
 .container {
@@ -19,10 +19,21 @@
     flex-direction: row;
     justify-content: left;
     align-items: left;
+    /*border-style: solid;
+    border-color: red; */
 }
 
 .box {
     padding-right: 10px;
     padding-left: 10px;
     margin-left: 35px;
+    /*border-style: solid;
+    border-color: green; */
+}
+
+.boxRight {
+    padding-bottom: 0px;
+    text-align: right;
+    /*border-style: solid;
+    border-color: purple;*/
 }
