@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RepositoriesComponent } from './pages/repositories/repositories.component';
 import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SidebarModule } from 'ng-sidebar';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes), SidebarModule.forRoot()],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

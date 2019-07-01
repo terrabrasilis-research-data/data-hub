@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RepositoriesComponent } from './pages/repositories/repositories.component';
 import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SidebarModule } from 'ng-sidebar';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,10 @@ import { LoginComponent } from './pages/login/login.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
-    UiModule
+    UiModule, 
+    SidebarModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
