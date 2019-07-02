@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'terrabrasilis-research-data';
+
+  OpenMenu(): number {
+    console.log("a")
+    return 0
+  }
 }
