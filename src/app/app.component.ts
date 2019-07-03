@@ -8,8 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'terrabrasilis-research-data';
 
-  OpenMenu(): number {
-    console.log("a")
-    return 0
+  OpenMenu() {
+    if (document.getElementById("wrapper").className == "d-flex")
+      document.getElementById("wrapper").className = "d-flex toggled";
+    else  
+      document.getElementById("wrapper").className = "d-flex";
   }
 }
