@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +25,9 @@ import { SidebarModule } from 'ng-sidebar';
     FormsModule,
     AppRoutingModule,
     UiModule, 
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    MatInputModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
