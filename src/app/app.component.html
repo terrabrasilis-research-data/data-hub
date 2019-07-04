@@ -3,7 +3,7 @@
     <div class="d-flex toggled" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="borderRight" id="sidebar-wrapper" style="background-color: #0F66A0;">
+        <div class="" id="sidebar-wrapper" style="background-color: #0F66A0;">
             <div class="list-group list-group-flush">
 
                 <!-- Sidebar Header -->
@@ -57,7 +57,7 @@
                 <div class="navbar-expand mr-auto">
 
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link textbar" [routerLink]="'/repositories'" style="color: white;">Repositories</a>
+                        <a class="nav-item nav-link textbar" [routerLink]="'/repositories'" style="color: white; ">Repositories</a>
                         <a class="nav-item nav-link textbar" [routerLink]="'/datasets'"  style="color: white;">Datasets</a>
                     </div>
 
@@ -66,20 +66,40 @@
 
                     <div class="navbar-nav">
 
-                        <a class="nav-item nav-link textbar" [routerLink]="'/login'" style="color: white;">Login</a>
+                        <a class="nav-item nav-link textbar" (mouseenter) ="hover()"  [routerLink]="'/login'" style="color: white;">Login</a>
                     </div>
 
                 </div>
             </nav>
 
-            <app-layout>
-                <router-outlet></router-outlet>
-            </app-layout>
+                <div class="main">
+                    <router-outlet></router-outlet>
+
+                </div>
+
 
         </div>
         <!-- /#page-content-wrapper -->
 
     </div>
+    
     <!-- /#wrapper -->
 
+            <!-- Footer -->
+            <nav class="navbar navbar-dark mt-5 fixed-bottom" style="background-color: #0F66A0;">
+                    <div class="navbar-expand m-auto navbar-text textbar">
+                            © 2019 TerraBrasilis Reserach Data
+                            <div class="navbar-expand ml-auto navbar-nav">
+                        
+                            </div>
+                    </div>
+
+                    <div class="navbar-nav">
+                        
+                            <a class="nav-item nav-link" href="https://github.com/terrabrasilis-research-data"><a class=" textbar" style="color: white;">Github</a></a>
+                
+                        </div>
+                
+                </nav>
 </div>
+

@@ -1,6 +1,16 @@
+.main{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
 .text-heading {
     font-weight: 300;
     padding-left: 17px;
+}
+
+.divteste{
+    border-style: solid;
+    border-color: green;
 }
 
 .greybox {
@@ -17,8 +27,8 @@
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: left;
-    align-items: left;
+    justify-content: center;
+    align-items: center;
     padding-top: 5px;
     /*border-style: solid;
     border-color: red; */
@@ -27,9 +37,8 @@
 .box {
     padding-right: 10px;
     padding-left: 10px;
-    margin-left: 35px;
     /*border-style: solid;
-    border-color: green; */
+    border-color: green;*/
 }
 
 .boxRight {
@@ -37,4 +46,8 @@
     text-align: right;
     /*border-style: solid;
     border-color: purple;*/
+}
+
+a.btnpress:hover{
+    color: #6a737d;
 }

@@ -1,0 +1,29 @@
+.main{
+    margin-top: 35px;
+
+    margin-left: 2%;
+    margin-right: 2%;
+
+    border-style: solid;
+    border-color: green;
+}
+
+.greybox {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background:#ededed;
+    border-radius: 0.7em;
+    border-style: solid;
+    border-color: blue;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    padding-top: 5px;
+    border-style: solid;
+    border-color: red;
+}
