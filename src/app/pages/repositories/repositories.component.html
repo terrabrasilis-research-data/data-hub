@@ -9,17 +9,52 @@
 
                     <p class="text-muted">Categories:</p>
 
+            
+                        
+                    <form [formGroup]="form" (ngSubmit)="categories()" >
+                            <label formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
+                              <input type="checkbox" [formControlName]="i">
+                              {{categories[i].name}}
+                            </label>
+                        
+                    </form>
+                          
+
                 </div>
 
                 <div class='divfilter'>
 
                     <p class="text-muted">Keywords:</p>
 
+                    <form [formGroup]="form" (ngSubmit)="filters()" >
+                            <label formArrayName="filters" *ngFor="let filter of form.controls.filters.controls; let j = index">
+                              <input type="checkbox" [formControlName]="j">
+                              {{filters[j].name}}
+                            </label>
+                    </form>
+
                 </div>
+
                 <div class='divfilter'>
 
                     <p class="text-muted">Maps:</p>
-
+                        <div class="mapbox">
+                            <app-map>
+                            <!-- Add a layer OSM -->
+                            <app-layer 
+                            layer= "OSM"
+                            opacity= .5
+                            visibility= true
+                            ></app-layer>
+                            <!-- Add interaction -->
+                            <app-interaction></app-interaction>
+                            <!-- Add a control insde the map (boolmark) -->
+                            <app-control></app-control>
+                        </app-map>
+                        </div>
+                       
+                        
+                        
                 </div>
             </div>
 
@@ -28,7 +63,7 @@
 
             <div class="greybox-right">
                 <div class="divrepolist">
-                    A
+                   A
                 </div>
             </div>
 
