@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material'  
+import { MatPaginatorModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,9 +30,11 @@ import { MapModule } from './ui/map/map.module';
     AppRoutingModule,
     UiModule, 
     SidebarModule.forRoot(),
-    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
     MapModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

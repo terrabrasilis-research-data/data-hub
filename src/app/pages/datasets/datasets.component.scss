@@ -9,22 +9,15 @@
     margin-left: 5%;
     margin-right: 5%;
     height: 60px;
-    border: solid;
-    color: black;
-}
-.divrepolist{
-    border: solid;
-    color: black;
-
 }
 .divfilter{
-    margin-top: 4%;
+    margin-top: 1%;
     padding-top: 1%;
     padding-right: 3%;
     padding-left: 3%;
 }
 .divfilterb2{
-    margin-top: 50%;
+    margin-top: 30%;
     padding-top: 1%;
     padding-right: 3%;
     padding-left: 3%;
@@ -47,7 +40,6 @@
     margin-top: 3%;
     margin-left: 3%;
     margin-right: 3%;
-    height: 600px;
     background:#ededed;
     border-radius: 0.7em;
 }
@@ -69,3 +61,15 @@
 
     position: relative;
 }
+
+.mat-table {
+    overflow: auto;
+  }
+
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
