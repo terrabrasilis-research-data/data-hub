@@ -8,8 +8,6 @@
                 <div class='divfilter'>
 
                     <p class="text-muted">Categories:</p>
-
-            
                         
                     <form [formGroup]="form" (ngSubmit)="categories()" >
                             <label formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
@@ -52,12 +50,12 @@
                             <app-control></app-control>
                         </app-map>
                         </div>
-                       
-                        
                         
                 </div>
             </div>
-
+            <div class='divfilterb2'>
+                
+                </div>
         </div>
         <div class="right">
 

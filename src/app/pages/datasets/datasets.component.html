@@ -7,22 +7,97 @@
 
             <div class='divfilter'>
 
-                <p class="text-muted">Categories:</p>
+                    <p class="text-muted">Author Name:</p>
+                    
+                    <form [formGroup]="form" (ngSubmit)="authorName()" >
+                            <label formArrayName="authorName" *ngFor="let categorie of form.controls.authorName.controls; let j = index">
+                              <input type="checkbox" [formControlName]="j">
+                              {{authorName[j].name}}
+                            </label>
+                        
+                    </form>
 
             </div>
 
             <div class='divfilter'>
 
-                <p class="text-muted">Keywords:</p>
+                <p class="text-muted">Publication Year:</p>
+
+                <form [formGroup]="form" (ngSubmit)="years()" >
+                        <label formArrayName="years" *ngFor="let categorie of form.controls.years.controls; let k = index">
+                          <input type="checkbox" [formControlName]="k">
+                          {{years[k].name}}
+                        </label>
+                    
+                </form>
 
             </div>
+
             <div class='divfilter'>
 
-                <p class="text-muted">Maps:</p>
+                    <p class="text-muted">Categories:</p>
+                    
+                    <form [formGroup]="form" (ngSubmit)="categories()" >
+                            <label formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
+                              <input type="checkbox" [formControlName]="i">
+                              {{categories[i].name}}
+                            </label>
+                        
+                    </form>
+            </div>
+
+            <div class='divfilter'>
+
+                    <p class="text-muted">Repositories:</p>
+
+                    <form [formGroup]="form" (ngSubmit)="repositries()" >
+                            <label formArrayName="repositries" *ngFor="let categorie of form.controls.repositries.controls; let l = index">
+                              <input type="checkbox" [formControlName]="l">
+                              {{repositries[l].name}}
+                            </label>
+                        
+                    </form>
 
             </div>
+
+            <div class='divfilter'>
+
+                    <p class="text-muted">Filetypes:</p>
+
+                    <form [formGroup]="form" (ngSubmit)="filetypes()" >
+                            <label formArrayName="filetypes" *ngFor="let categorie of form.controls.filetypes.controls; let m = index">
+                              <input type="checkbox" [formControlName]="m">
+                              {{filetypes[m].name}}
+                            </label>
+                        
+                    </form>
+
+            </div>
+
+            <div class='divfilter'>
+
+                    <p class="text-muted">Maps:</p>
+                    <div class="mapbox">
+                            <app-map>
+                            <!-- Add a layer OSM -->
+                            <app-layer 
+                            layer= "OSM"
+                            opacity= .5
+                            visibility= true
+                            ></app-layer>
+                            <!-- Add interaction -->
+                            <app-interaction></app-interaction>
+                            <!-- Add a control insde the map (boolmark) -->
+                            <app-control></app-control>
+                        </app-map>
+                        </div>
+            </div>
+
+
         </div>
-
+        <div class='divfilterb2'>
+                
+            </div>
     </div>
     <div class="right">
 
