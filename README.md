@@ -1,6 +1,5 @@
 # TerraBrasilis Research Data - Data Hub
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+The Data Hub is the interface that gives users the functionality of Data Management. Inspired by digital libraries, the component will enable researchers to take full advantage of Research Data Repository functionality without the need for technical knowledge. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
 ## Development server
 
