@@ -8,34 +8,42 @@
                 <div class='divfilter'>
 
                     <p class="text-muted">Categories:</p>
-                        
+
+                    <div class="border3">
+                      
+                     
                     <form [formGroup]="form" (ngSubmit)="categories()" >
-                            <label formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
+
+                        <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
                               <input type="checkbox" [formControlName]="i">
                               {{categories[i].name}}
-                            </label>
+                        </div>
                         
                     </form>
                           
-
+                </div>
                 </div>
 
                 <div class='divfilter'>
 
                     <p class="text-muted">Keywords:</p>
-
+                    <div class="border3">
+                        
+               
                     <form [formGroup]="form" (ngSubmit)="filters()" >
-                            <label formArrayName="filters" *ngFor="let filter of form.controls.filters.controls; let j = index">
+                            <div formArrayName="filters" *ngFor="let filter of form.controls.filters.controls; let j = index">
                               <input type="checkbox" [formControlName]="j">
                               {{filters[j].name}}
-                            </label>
+                            </div>
                     </form>
-
+                </div>
                 </div>
 
                 <div class='divfilter'>
 
                     <p class="text-muted">Maps:</p>
+                    <div class="border3">
+                        
                         <div class="mapbox">
                             <app-map>
                             <!-- Add a layer OSM -->
@@ -50,7 +58,7 @@
                             <app-control></app-control>
                         </app-map>
                         </div>
-                        
+                    </div>
                 </div>
             </div>
             <div class='divfilterb2'>
@@ -92,8 +100,8 @@
                     </mat-table>
                   
                     <mat-paginator #paginator
-                                   [pageSize]="10"
-                                   [pageSizeOptions]="[5, 10, 20]">
+                                   [pageSize]="12"
+                                   [pageSizeOptions]="[6, 12, 24]">
                     </mat-paginator>
                   </div>
             </div>

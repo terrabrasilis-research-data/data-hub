@@ -43,16 +43,15 @@ export class DatasetsComponent implements OnInit {
   ];
 
   categories = [
-    { id: 1, name: 'Oceans' },
-    { id: 2, name: 'Atmosphere' },
-    { id: 3, name: 'Biosphere' },
-    { id: 4, name: 'Land Surface' },
-    { id: 5, name: 'Geophysics' },
-    { id: 6, name: 'Cryosphere' },
+    { id: 1, name: 'Chemistry' },
+    { id: 2, name: 'Oceans' },
+    { id: 3, name: 'Atmosphere' },
+    { id: 4, name: 'Ecology' },
+    { id: 5, name: 'Land Surface' },
+    { id: 6, name: 'Geophysics' },
     { id: 7, name: 'Lakes & Rivers' },
     { id: 8, name: 'Human Dimensions' },
-    { id: 9, name: 'Fisheries' },
-    { id: 10, name: 'Agriculture' }
+    { id: 9, name: 'Agriculture' }
    ];
    
    repositries = [

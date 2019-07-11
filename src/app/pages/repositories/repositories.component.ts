@@ -25,23 +25,27 @@ export class RepositoriesComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  
+ 
   categories = [
-    { id: 1, name: 'Oceans' },
-    { id: 2, name: 'Atmosphere' },
-    { id: 3, name: 'Land Surface' },
-    { id: 4, name: 'Geophysics' },
-    { id: 5, name: 'Lakes & Rivers' },
-    { id: 6, name: 'Human Dimensions' },
-    { id: 7, name: 'Agriculture' }
-   ];
-
-  filters = [
-    { id: 1, name: 'Land Use and Land Cover' },
-    { id: 2, name: 'Oceans and Geophysics' },
-    { id: 3, name: 'Agriculture' },
+   { id: 1, name: 'Chemistry' },
+   { id: 2, name: 'Oceans' },
+   { id: 3, name: 'Atmosphere' },
+   { id: 4, name: 'Ecology' },
+   { id: 5, name: 'Land Surface' },
+   { id: 6, name: 'Geophysics' },
+   { id: 7, name: 'Lakes & Rivers' },
+   { id: 8, name: 'Human Dimensions' },
+   { id: 9, name: 'Agriculture' }
   ]
 
+  filters = [
+    { id: 1, name: 'Climate' },
+    { id: 2, name: 'Fire ' },
+    { id: 3, name: 'Biodiversity ' },
+    { id: 4, name: 'Monitoring' },
+    { id: 5, name: 'Ecology' }
+  ]
+   
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       categories: new FormArray([]),
