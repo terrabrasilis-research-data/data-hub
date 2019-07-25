@@ -66,7 +66,7 @@
                 </div>
         </div>
         <div class="right">
-
+          
             <div class="greybox-right">
                 <div class="example-container mat-elevation-z8">
                     <mat-table #table [dataSource]="dataSource">
@@ -74,15 +74,15 @@
                       <!-- Name Column -->
                       <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef> Repository </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> <a class="nav-item nav-link" [routerLink]="'/login'" style="color: black;">{{element.name}}</a>  </mat-cell>
                       </ng-container>
                   
                       <!-- Image Column -->
                       <ng-container matColumnDef="image">
                         <mat-header-cell *matHeaderCellDef> Collaborators </mat-header-cell>
-                        <mat-cell *matCellDef="let element">  <img src="assets/images/img_avatar.png" alt="Avatar"> <img src="assets/images/img_avatar2.png" alt="Avatar"> </mat-cell>
+                        <mat-cell *matCellDef="let element">  <img src={{element.image[0]}} alt="Avatar">  <img src="assets/images/img_avatar.png" alt="Avatar" style="margin-left: -4px;">  <div class="divmini">+ {{element.image.length}}</div> </mat-cell>
                       </ng-container>
-
+                      
                       <!-- Abstract Column -->
                       <ng-container matColumnDef="abstract">
                         <mat-header-cell *matHeaderCellDef> Abstract </mat-header-cell>

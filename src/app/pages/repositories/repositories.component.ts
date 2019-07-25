@@ -37,7 +37,7 @@ export class RepositoriesComponent implements OnInit {
    { id: 8, name: 'Human Dimensions' },
    { id: 9, name: 'Agriculture' }
   ]
-
+  
   filters = [
     { id: 1, name: 'Climate' },
     { id: 2, name: 'Fire ' },
@@ -73,29 +73,46 @@ export class RepositoriesComponent implements OnInit {
 
 export interface Element {
   name: string;
-  image: string;
+  image: Array<string>;
   abstract: string;
+  categories: Array<string>;
 }
 
 const ELEMENT_DATA: Element[] = [
-  {name: 'Hydrogen Repository', image: "Kuhn, Gerhard & Johnsen, Sigfus J", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Helium Repository', image: " Hillenbrand, Claus-Dieter", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Lithium Repository', image: "Kuhn, Gerhard & Oerter, Hans", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Beryllium Repository', image: "Kuhn, Gerhard", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Boron Repository', image: "Oerter, Hans", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Carbon Repository', image: "Kuhn, Gerhard & Hillenbrand, Claus-Dieter", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Nitrogen Repository', image: "Oerter, Hans", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Oxygen Repository', image: "Kuhn, Gerhard", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Fluorine Repository', image: "Oerter, Hans", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Neon Repository', image: "Kuhn, Gerhard & Oerter, Hans", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Sodium Repository', image: "Johnsen, Sigfus J", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Magnesium Repository', image: "Hillenbrand, Claus-Dieter", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Aluminum Repository', image: "Johnsen, Sigfus J", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Silicon Repository', image: "Kuhn, Gerhard & Johnsen, Sigfus J", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Phosphorus Repository', image: " Hillenbrand, Claus-Dieter", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Sulfur Repository', image: "Johnsen, Sigfus J", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Chlorine Repository', image: "Kuhn, Gerhard & Hillenbrand, Claus-Dieter", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Argon Repository', image: "Hillenbrand, Claus-Dieter & Oerter, Hans", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Potassium Repository', image: "Oerter, Hans & Johnsen, Sigfus J", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
-  {name: 'Calcium Repository', image: "Kuhn, Gerhard & Hillenbrand, Claus-Dieter", abstract: "Some quick example text to build on the card title and make up the bulk of the card's content."},
+  {name: 'Hydrogen Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Atmosphere','Geophysics']},
+  {name: 'Helium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Lakes & Rivers' ]},
+  {name: 'Lithium Repository', image: ["assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Agriculture']},
+  {name: 'Beryllium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Ecology','Geophysics']},
+  {name: 'Boron Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png",], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Lakes & Rivers','Human Dimensions']},
+  {name: 'Carbon Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Atmosphere' ]},
+  {name: 'Nitrogen Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Agriculture']},
+  {name: 'Oxygen Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Ecology','Land Surface','Geophysics']},
+  {name: 'Fluorine Repository', image: ["assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Ecology','Human Dimensions']},
+  {name: 'Neon Repository', image: ["assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Atmosphere']},
+  {name: 'Sodium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Ecology','Geophysics','Agriculture']},
+  {name: 'Magnesium Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface']},
+  {name: 'Aluminum Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Lakes & Rivers']},
+  {name: 'Silicon Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Ecology','Geophysics']},
+  {name: 'Phosphorus Repository', image: ["assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface']},
+  {name: 'Sulfur Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Atmosphere','Geophysics','Lakes & Rivers','Human Dimensions']},
+  {name: 'Chlorine Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Atmosphere','Geophysics']},
+  {name: 'Argon Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Atmosphere','Geophysics']},
+  {name: 'Potassium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Agriculture']},
+  {name: 'Calcium Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Atmosphere','Geophysics','Lakes & Rivers','Human Dimensions']},
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
