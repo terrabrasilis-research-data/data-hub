@@ -15,7 +15,7 @@
                     <form [formGroup]="form" (ngSubmit)="categories()" >
 
                         <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
-                              <input type="checkbox" [formControlName]="i" (ngModelChange)="filterChange()" [(ngModel)]="filter[categories[i].name]">
+                              <input type="checkbox" [formControlName]="i" (ngModelChange)="filterChange()" [(ngModel)]="filterCategories[categories[i].name]">
                               {{categories[i].name}}
                         </div>
                         
@@ -30,10 +30,10 @@
                     <div class="border3">
                         
                
-                    <form [formGroup]="form" (ngSubmit)="filters()" >
-                            <div formArrayName="filters" *ngFor="let filter of form.controls.filters.controls; let j = index">
-                              <input type="checkbox" [formControlName]="j">
-                              {{filters[j].name}}
+                    <form [formGroup]="form" (ngSubmit)="keywords()" >
+                            <div formArrayName="keywords" *ngFor="let filter of form.controls.keywords.controls; let j = index">
+                              <input type="checkbox" [formControlName]="j" (ngModelChange)="filterChange()" [(ngModel)]="filterKeywords[keywords[j].name]">
+                              {{keywords[j].name}}
                             </div>
                     </form>
                 </div>

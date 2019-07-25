@@ -14,16 +14,17 @@ export class RepositoriesComponent implements OnInit {
   displayedColumns = ['name', 'image', 'abstract'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   
-  filter = {}
+  filterCategories = {}
+  filterKeywords = {}
 
- /*
+ /* 
   filterChange() {
-    this.FILTRADO_ELEMENT_DATA = this.ELEMENT_DATA.filter(x => 
-       (x.category === 'kids' && this.filter.kids)
-       || (x.category === 'mens' && this.filter.mens)
-       || (x.category === 'womens' && this.filter.womens)
-    );
-  }
+      this.filteredProducts = this.products.filter(x => 
+        (x.category === 'kids' && this.filter.kids)
+        || (x.category === 'mens' && this.filter.mens)
+        || (x.category === 'womens' && this.filter.womens)
+      );
+    }
  */
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -50,7 +51,7 @@ export class RepositoriesComponent implements OnInit {
    { id: 9, name: 'Agriculture' }
   ]
   
-  filters = [
+  keywords = [
     { id: 1, name: 'Climate' },
     { id: 2, name: 'Fire ' },
     { id: 3, name: 'Biodiversity ' },
@@ -61,7 +62,7 @@ export class RepositoriesComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       categories: new FormArray([]),
-      filters: new FormArray([])
+      keywords: new FormArray([])
     });
 
     this.addCheckboxes();
@@ -72,15 +73,18 @@ export class RepositoriesComponent implements OnInit {
       const control = new FormControl(i === 0); // if first item set to true, else false
       (this.form.controls.categories as FormArray).push(control);
     });
-    this.filters.map((o, j) => {
+    this.keywords.map((o, j) => {
       const control = new FormControl(j === 0); // if first item set to true, else false
-      (this.form.controls.filters as FormArray).push(control);
+      (this.form.controls.keywords as FormArray).push(control);
     });
   }
 
   ngOnInit() {
     this.categories.forEach( obj => {
-      this.filter[obj.name] = true
+      this.filterCategories[obj.name] = true
+    })
+    this.keywords.forEach( obj => {
+      this.filterKeywords[obj.name] = true
     })
   }
 
