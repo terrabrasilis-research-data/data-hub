@@ -73,14 +73,14 @@
                   
                       <!-- Name Column -->
                       <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Repository </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
                       </ng-container>
                   
                       <!-- Image Column -->
                       <ng-container matColumnDef="image">
-                        <mat-header-cell *matHeaderCellDef> Componets </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.image}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef> Collaborators </mat-header-cell>
+                        <mat-cell *matCellDef="let element">  <img src="assets/images/img_avatar.png" alt="Avatar"> <img src="assets/images/img_avatar2.png" alt="Avatar"> </mat-cell>
                       </ng-container>
 
                       <!-- Abstract Column -->
