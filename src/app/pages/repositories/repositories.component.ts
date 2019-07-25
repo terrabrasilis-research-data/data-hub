@@ -13,6 +13,18 @@ export class RepositoriesComponent implements OnInit {
 
   displayedColumns = ['name', 'image', 'abstract'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  
+  filter = {}
+
+ /*
+  filterChange() {
+    this.FILTRADO_ELEMENT_DATA = this.ELEMENT_DATA.filter(x => 
+       (x.category === 'kids' && this.filter.kids)
+       || (x.category === 'mens' && this.filter.mens)
+       || (x.category === 'womens' && this.filter.womens)
+    );
+  }
+ */
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   
@@ -67,6 +79,9 @@ export class RepositoriesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.categories.forEach( obj => {
+      this.filter[obj.name] = true
+    })
   }
 
 }
