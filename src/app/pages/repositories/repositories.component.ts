@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { Routes, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-repositories',
@@ -12,7 +13,7 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 export class RepositoriesComponent implements OnInit {
 
   displayedColumns = ['name', 'image', 'abstract'];
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Element>(FILTERED_ELEMENT_DATA);
   
   filterCategories = {}
   filterKeywords = {}
@@ -38,76 +39,80 @@ export class RepositoriesComponent implements OnInit {
   ]
 
   ELEMENT_DATA = this.ELEMENT_DATA;
-  FILTERED_ELEMENT_DATA = this.ELEMENT_DATA;
-
-  filterChange(i) {
-  this.FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x => 
-         (x.categories.includes(this.categories[i].name) && this.filterCategories[this.categories[i].name])
-    );
-    
-    console.log(this.FILTERED_ELEMENT_DATA.length)
-  }
-
- /* 
+  
   filterChange() {
-      this.filteredProducts = this.products.filter(x => 
-        (x.category === 'kids' && this.filter.kids)
-        || (x.category === 'mens' && this.filter.mens)
-        || (x.category === 'womens' && this.filter.womens)
-      );
-    }
- */
-
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+      for (let i = 0; i < this.categories.length; i++) {
+          if (this.filterCategories[this.categories[i].name] != false) {
+  
+              //let FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x =>
+              //    (x.categories.includes(this.categories[i].name))
+              //);
+  
+              console.log(this.categories[i].name + " TRUE") // debbug
+              //console.log(FILTERED_ELEMENT_DATA.length) // debbug
+  
+          } else {
+  
+              console.log(this.categories[i].name + " FALSE") // debbug
+  
+          }
+  
+      }
+  }
+  
+  @ViewChild(MatPaginator, {
+      static: false
+  }) paginator: MatPaginator;
   
   form: FormGroup;
-
+  
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
    */
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;
   }
-
+  
   constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      categories: new FormArray([]),
-      keywords: new FormArray([])
-    });
-
-    this.addCheckboxes();
+      this.form = this.formBuilder.group({
+          categories: new FormArray([]),
+          keywords: new FormArray([])
+      });
+  
+      this.addCheckboxes();
   }
-
+  
   private addCheckboxes() {
-    this.categories.map((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
-      (this.form.controls.categories as FormArray).push(control);
-    });
-    this.keywords.map((o, j) => {
-      const control = new FormControl(j === 0); // if first item set to true, else false
-      (this.form.controls.keywords as FormArray).push(control);
-    });
+      this.categories.map((o, i) => {
+          const control = new FormControl(i === 0); // if first item set to true, else false
+          (this.form.controls.categories as FormArray).push(control);
+      });
+      this.keywords.map((o, j) => {
+          const control = new FormControl(j === 0); // if first item set to true, else false
+          (this.form.controls.keywords as FormArray).push(control);
+      });
   }
-
+  
   ngOnInit() {
-    this.categories.forEach( obj => {
-      this.filterCategories[obj.name] = false
-    })
-    this.keywords.forEach( obj => {
-      this.filterKeywords[obj.name] = false
-    })
+  
+      this.categories.forEach(obj => {
+          this.filterCategories[obj.name] = false
+      })
+      this.keywords.forEach(obj => {
+          this.filterKeywords[obj.name] = false
+      })
   }
-
-}
-
-export interface Element {
-  name: string;
-  image: Array<string>;
-  abstract: string;
-  categories: Array<string>;
-  keywords: Array<string>;
-}
+  
+  }
+  
+  export interface Element {
+      name: string;
+      image: Array < string > ;
+      abstract: string;
+      categories: Array < string > ;
+      keywords: Array < string > ;
+  }
 
 const ELEMENT_DATA: Element[] = [
   {name: 'Hydrogen Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: [,'Atmosphere','Geophysics'] , keywords: ['Climate','Ecology']},
@@ -131,3 +136,5 @@ const ELEMENT_DATA: Element[] = [
   {name: 'Potassium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Land Surface','Agriculture'], keywords: ['Climate','Monitoring']},
   {name: 'Calcium Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics','Lakes & Rivers','Human Dimensions'], keywords: ['Biodiversity', 'Fire ']},
 ];
+
+const FILTERED_ELEMENT_DATA = ELEMENT_DATA;
