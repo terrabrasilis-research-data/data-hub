@@ -14,6 +14,11 @@ export class DatasetsComponent implements OnInit {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
+  filterYear = {}
+  filterCategory = {}
+  filterRepository = {}
+  filterFiletypes = {}
+ 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   
   form: FormGroup;
@@ -26,14 +31,6 @@ export class DatasetsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
   
-   authorName = [
-    { id: 1, name: 'Kuhn, Gerhard' },
-    { id: 2, name: 'Hillenbrand, Claus-Dieter' },
-    { id: 3, name: 'Oerter, Hans' },
-    { id: 4, name: 'Johnsen, Sigfus J' },
-    { id: 5, name: 'Larter, Robert D' }
-  ];
-
   years = [
     { id: 1, name: '2019' },
     { id: 2, name: '2018' },
@@ -54,7 +51,7 @@ export class DatasetsComponent implements OnInit {
     { id: 9, name: 'Agriculture' }
    ];
    
-   repositries = [
+   repositories = [
     { id: 1, name: 'ODP' },
     { id: 2, name: 'AWI_Paleo' },
     { id: 3, name: 'MARUM' }
@@ -66,13 +63,94 @@ export class DatasetsComponent implements OnInit {
     { id: 3, name: 'SHP' },
     { id: 4, name: 'TIF' }
    ];
+   
+   ELEMENT_DATA = this.ELEMENT_DATA;
+
+   filterChangeYears() {
+       for (let i = 0; i < this.years.length; i++) {
+           if (this.filterYear[this.years[i].name] != false) {
+   
+               //let FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x =>
+               //    (x.years.includes(this.years[i].name))
+               //);
+   
+               console.log(this.years[i].name + " TRUE") // debbug
+               //console.log(FILTERED_ELEMENT_DATA.length) // debbug
+   
+           } else {
+   
+               console.log(this.years[i].name + " FALSE") // debbug
+   
+           }
+   
+       }
+   }
+   
+   filterChangeCategories() {
+       for (let i = 0; i < this.categories.length; i++) {
+           if (this.filterCategory[this.categories[i].name] != false) {
+   
+               //let FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x =>
+               //    (x.categories.includes(this.categories[i].name))
+               //);
+   
+               console.log(this.categories[i].name + " TRUE") // debbug
+               //console.log(FILTERED_ELEMENT_DATA.length) // debbug
+   
+           } else {
+   
+               console.log(this.categories[i].name + " FALSE") // debbug
+   
+           }
+   
+       }
+   }
+   
+   filterChangeRepositories() {
+       for (let i = 0; i < this.repositories.length; i++) {
+           if (this.filterRepository[this.repositories[i].name] != false) {
+   
+               //let FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x =>
+               //    (x.repositories.includes(this.repositories[i].name))
+               //);
+   
+               console.log(this.repositories[i].name + " TRUE") // debbug
+               //console.log(FILTERED_ELEMENT_DATA.length) // debbug
+   
+           } else {
+   
+               console.log(this.repositories[i].name + " FALSE") // debbug
+   
+           }
+   
+       }
+   }
+   
+   filterChangeFiletypes() {
+       for (let i = 0; i < this.filetypes.length; i++) {
+           if (this.filterFiletypes[this.filetypes[i].name] != false) {
+   
+               //let FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x =>
+               //    (x.filetypes.includes(this.filetypes[i].name))
+               //);
+   
+               console.log(this.filetypes[i].name + " TRUE") // debbug
+               //console.log(FILTERED_ELEMENT_DATA.length) // debbug
+   
+           } else {
+   
+               console.log(this.filetypes[i].name + " FALSE") // debbug
+   
+           }
+   
+       }
+   }
 
    constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      authorName: new FormArray([]),
       years: new FormArray([]),
       categories: new FormArray([]),
-      repositries: new FormArray([]),
+      repositories: new FormArray([]),
       filetypes: new FormArray([]),
     });
 
@@ -86,19 +164,14 @@ export class DatasetsComponent implements OnInit {
       (this.form.controls.categories as FormArray).push(control);
     });
 
-    this.authorName.map((o, j) => {
-      const control = new FormControl(j === 0); // if first item set to true, else false
-      (this.form.controls.authorName as FormArray).push(control);
-    });
-
     this.years.map((o, k) => {
       const control = new FormControl(k === 0); // if first item set to true, else false
       (this.form.controls.years as FormArray).push(control);
     });
 
-    this.repositries.map((o, l) => {
+    this.repositories.map((o, l) => {
       const control = new FormControl(l === 0); // if first item set to true, else false
-      (this.form.controls.repositries as FormArray).push(control);
+      (this.form.controls.repositories as FormArray).push(control);
     });
 
     this.filetypes.map((o, m) => {
@@ -108,8 +181,21 @@ export class DatasetsComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
+      
+    this.years.forEach(obj => {
+      this.filterYear[obj.name] = false
+    })
+    this.categories.forEach(obj => {
+      this.filterCategory[obj.name] = false
+    })
+    this.repositories.forEach(obj => {
+      this.filterRepository[obj.name] = false
+    })
+    this.filetypes.forEach(obj => {
+      this.filterFiletypes[obj.name] = false
+    })
 
+    }
 }
 
 export interface Element {

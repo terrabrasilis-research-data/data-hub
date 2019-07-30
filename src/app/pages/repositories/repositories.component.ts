@@ -40,7 +40,7 @@ export class RepositoriesComponent implements OnInit {
 
   ELEMENT_DATA = this.ELEMENT_DATA;
   
-  filterChange() {
+  filterChangeCategories() {
       for (let i = 0; i < this.categories.length; i++) {
           if (this.filterCategories[this.categories[i].name] != false) {
   
@@ -59,7 +59,26 @@ export class RepositoriesComponent implements OnInit {
   
       }
   }
-  
+
+  filterChangeKeywords() {
+    for (let i = 0; i < this.keywords.length; i++) {
+        if (this.filterKeywords[this.keywords[i].name] != false) {
+
+            //let FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x =>
+            //    (x.keywords.includes(this.keywords[i].name))
+            //);
+
+            console.log(this.keywords[i].name + " TRUE") // debbug
+            //console.log(FILTERED_ELEMENT_DATA.length) // debbug
+
+        } else {
+
+            console.log(this.keywords[i].name + " FALSE") // debbug
+
+        }
+
+    }
+}
   @ViewChild(MatPaginator, {
       static: false
   }) paginator: MatPaginator;
@@ -115,26 +134,26 @@ export class RepositoriesComponent implements OnInit {
   }
 
 const ELEMENT_DATA: Element[] = [
-  {name: 'Hydrogen Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: [,'Atmosphere','Geophysics'] , keywords: ['Climate','Ecology']},
-  {name: 'Helium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Lakes & Rivers' ], keywords: ['Fire','Biodiversity ']},
-  {name: 'Lithium Repository', image: ["assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Agriculture'], keywords: ['Fire','Monitoring']},
-  {name: 'Beryllium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Ecology','Geophysics'], keywords: ['Climate','Fire ']},
+  {name: 'Hydrogen Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: [,'Atmosphere','Geophysics'] , keywords: ['Climate','Ecology']},
+  {name: 'Helium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Lakes & Rivers' ], keywords: ['Fire','Biodiversity ']},
+  {name: 'Lithium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Agriculture'], keywords: ['Fire','Monitoring']},
+  {name: 'Beryllium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Ecology','Geophysics'], keywords: ['Climate','Fire ']},
   {name: 'Boron Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png",], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Lakes & Rivers','Human Dimensions'], keywords: ['Biodiversity','Monitoring']},
-  {name: 'Carbon Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Oceans','Atmosphere' ], keywords: ['Monitoring','Biodiversity ']},
+  {name: 'Carbon Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Oceans','Atmosphere' ], keywords: ['Monitoring','Biodiversity ']},
   {name: 'Nitrogen Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Land Surface','Agriculture'], keywords: ['Climate', 'Fire ']},
   {name: 'Oxygen Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Ecology','Land Surface','Geophysics'], keywords: ['Fire','Monitoring']},
-  {name: 'Fluorine Repository', image: ["assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Ecology','Human Dimensions'], keywords: ['Biodiversity','Ecology']},
-  {name: 'Neon Repository', image: ["assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere'], keywords: ['Climate','Biodiversity ']},
-  {name: 'Sodium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Oceans','Ecology','Geophysics','Agriculture'], keywords: ['Monitoring','Monitoring']},
-  {name: 'Magnesium Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface'], keywords: ['Biodiversity','Fire ']},
-  {name: 'Aluminum Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Land Surface','Lakes & Rivers'], keywords: ['Climate','Ecology']},
+  {name: 'Fluorine Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Ecology','Human Dimensions'], keywords: ['Biodiversity','Ecology']},
+  {name: 'Neon Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere'], keywords: ['Climate','Biodiversity ']},
+  {name: 'Sodium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Oceans','Ecology','Geophysics','Agriculture'], keywords: ['Monitoring','Monitoring']},
+  {name: 'Magnesium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface'], keywords: ['Biodiversity','Fire ']},
+  {name: 'Aluminum Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Land Surface','Lakes & Rivers'], keywords: ['Climate','Ecology']},
   {name: 'Silicon Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Oceans','Ecology','Geophysics'], keywords: ['Fire','Biodiversity ']},
-  {name: 'Phosphorus Repository', image: ["assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface'], keywords: ['Monitoring','Monitoring']},
+  {name: 'Phosphorus Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface'], keywords: ['Monitoring','Monitoring']},
   {name: 'Sulfur Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics','Lakes & Rivers','Human Dimensions'], keywords: ['Biodiversity', 'Fire ']},
-  {name: 'Chlorine Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics'], keywords: ['Fire','Ecology']},
-  {name: 'Argon Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics'], keywords: ['Climate','Biodiversity ']},
+  {name: 'Chlorine Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics'], keywords: ['Fire','Ecology']},
+  {name: 'Argon Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics'], keywords: ['Climate','Biodiversity ']},
   {name: 'Potassium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Land Surface','Agriculture'], keywords: ['Climate','Monitoring']},
-  {name: 'Calcium Repository', image: ["assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics','Lakes & Rivers','Human Dimensions'], keywords: ['Biodiversity', 'Fire ']},
+  {name: 'Calcium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics','Lakes & Rivers','Human Dimensions'], keywords: ['Biodiversity', 'Fire ']},
 ];
 
 const FILTERED_ELEMENT_DATA = ELEMENT_DATA;

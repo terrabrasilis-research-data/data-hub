@@ -8,29 +8,13 @@
 
             <div class='divfilter'>
 
-                    <p class="text-muted">Author Name:</p>
-                    <div class="border3">
-
-                    
-                    <form [formGroup]="form" (ngSubmit)="authorName()" >
-                            <div formArrayName="authorName" *ngFor="let categorie of form.controls.authorName.controls; let j = index">
-                              <input type="checkbox" [formControlName]="j">
-                              {{authorName[j].name}}
-                            </div>
-                        
-                    </form>
-                  </div>
-            </div>
-
-            <div class='divfilter'>
-
                 <p class="text-muted">Publication Year:</p>
                 <div class="border3">
 
                 
                 <form [formGroup]="form" (ngSubmit)="years()" >
-                        <div formArrayName="years" *ngFor="let categorie of form.controls.years.controls; let k = index">
-                          <input type="checkbox" [formControlName]="k">
+                        <div formArrayName="years" *ngFor="let year of form.controls.years.controls; let k = index">
+                          <input type="checkbox" [formControlName]="k" [(ngModel)]="filterYear[years[k].name]"  (change)="filterChangeYears()">
                           {{years[k].name}}
                         </div>
                     
@@ -45,7 +29,7 @@
 
                     <form [formGroup]="form" (ngSubmit)="categories()" >
                             <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
-                              <input type="checkbox" [formControlName]="i">
+                              <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChangeCategories()">
                               {{categories[i].name}}
                             </div>
                         
@@ -59,10 +43,10 @@
                     <p class="text-muted">Repositories:</p>
                     <div class="border3">
 
-                    <form [formGroup]="form" (ngSubmit)="repositries()" >
-                            <div formArrayName="repositries" *ngFor="let categorie of form.controls.repositries.controls; let l = index">
-                              <input type="checkbox" [formControlName]="l">
-                              {{repositries[l].name}}
+                    <form [formGroup]="form" (ngSubmit)="repositories()" >
+                            <div formArrayName="repositories" *ngFor="let repositorie of form.controls.repositories.controls; let l = index">
+                              <input type="checkbox" [formControlName]="l" [(ngModel)]="filterRepository[repositories[l].name]"  (change)="filterChangeRepositories()">
+                              {{repositories[l].name}}
                             </div>
                         
                     </form>
@@ -75,8 +59,8 @@
                     <div class="border3">
 
                     <form [formGroup]="form" (ngSubmit)="filetypes()" >
-                            <div formArrayName="filetypes" *ngFor="let categorie of form.controls.filetypes.controls; let m = index">
-                              <input type="checkbox" [formControlName]="m">
+                            <div formArrayName="filetypes" *ngFor="let filetype of form.controls.filetypes.controls; let m = index">
+                              <input type="checkbox" [formControlName]="m" [(ngModel)]="filterFiletypes[filetypes[m].name]"  (change)="filterChangeFiletypes()">
                               {{filetypes[m].name}}
                             </div>
                         

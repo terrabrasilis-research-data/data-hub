@@ -22,7 +22,7 @@
 
                 <!-- Bar button -->
                 <div class="bar-button">
-
+                    <!-- <i class="fa fa-home textlogo"  style="color: white;  margin: 5px; "> Home </i> -->
                 </div>
     
             </div>
@@ -32,10 +32,11 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-dark" style="background-color: rgb(3, 84, 139)">
+            <nav class="navbar navbar-dark box-shadow" style="background-color: rgb(3, 84, 139)">
 
-                <div class="nav-btn" style="color: white;">
-                    <a class="navbar-toggler-icon" type="button" (click)="OpenMenu()()" ></a>
+                <div class="btn-navbar">
+                    <i class="material-icons"  style="color:white; font-size: 24px; cursor: pointer;" (click)="OpenMenu()">menu
+                    </i>
                 </div>
 
                 <a class="navbar-brand" [routerLink]="'/'">
@@ -71,10 +72,10 @@
                         
                             </div>
                     </div>
-
+                    
                     <div class="navbar-nav">
                         
-                            <a class="nav-item nav-link" href="https://github.com/terrabrasilis-research-data"><a class=" textbar" style="color: white;">Github</a></a>
+                            <a class="nav-item nav-link" href="https://github.com/terrabrasilis-research-data"><a class=" textbar" style="color: white;"><i class="fa fa-github"></i> Github</a></a>
                 
                         </div>
                 
