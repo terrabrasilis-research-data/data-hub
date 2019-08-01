@@ -5,7 +5,7 @@
         <div class="greybox-left">
           
             <p class="text-muted">Filters:</p>
-
+            
             <div class='divfilter'>
 
                 <p class="text-muted">Publication Year:</p>
@@ -14,7 +14,7 @@
                 
                 <form [formGroup]="form" (ngSubmit)="years()" >
                         <div formArrayName="years" *ngFor="let year of form.controls.years.controls; let k = index">
-                          <input type="checkbox" [formControlName]="k" [(ngModel)]="filterYear[years[k].name]"  (change)="filterChangeYears()">
+                          <input type="checkbox" [formControlName]="k" [(ngModel)]="filterYear[years[k].name]"  (change)="filterChange()">
                           {{years[k].name}}
                         </div>
                     
@@ -29,7 +29,7 @@
 
                     <form [formGroup]="form" (ngSubmit)="categories()" >
                             <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
-                              <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChangeCategories()">
+                              <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChange()">
                               {{categories[i].name}}
                             </div>
                         
@@ -45,7 +45,7 @@
 
                     <form [formGroup]="form" (ngSubmit)="repositories()" >
                             <div formArrayName="repositories" *ngFor="let repositorie of form.controls.repositories.controls; let l = index">
-                              <input type="checkbox" [formControlName]="l" [(ngModel)]="filterRepository[repositories[l].name]"  (change)="filterChangeRepositories()">
+                              <input type="checkbox" [formControlName]="l" [(ngModel)]="filterRepository[repositories[l].name]"  (change)="filterChange()">
                               {{repositories[l].name}}
                             </div>
                         
@@ -60,7 +60,7 @@
 
                     <form [formGroup]="form" (ngSubmit)="filetypes()" >
                             <div formArrayName="filetypes" *ngFor="let filetype of form.controls.filetypes.controls; let m = index">
-                              <input type="checkbox" [formControlName]="m" [(ngModel)]="filterFiletypes[filetypes[m].name]"  (change)="filterChangeFiletypes()">
+                              <input type="checkbox" [formControlName]="m" [(ngModel)]="filterFiletypes[filetypes[m].name]"  (change)="filterChange()">
                               {{filetypes[m].name}}
                             </div>
                         
@@ -98,48 +98,44 @@
 
         <div class="greybox-right">
             <div class="divrepolist">
-                
 
                 <div class="example-container mat-elevation-z8">
+    
                     <mat-table #table [dataSource]="dataSource">
-                  
-                      <!-- Position Column -->
-                      <ng-container matColumnDef="position">
-                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                      </ng-container>
-                  
-                      <!-- Name Column -->
-                      <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-                      </ng-container>
-                  
-                      <!-- Weight Column -->
-                      <ng-container matColumnDef="weight">
-                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-                      </ng-container>
-                  
-                      <!-- Symbol Column -->
-                      <ng-container matColumnDef="symbol">
-                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-                      </ng-container>
-                  
-                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+                        <!-- dataset Column -->
+                        <ng-container matColumnDef="dataset">
+                            <mat-header-cell *matHeaderCellDef>
+                                17 publications
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <div class="middlebox" style="height: 60px">
+                                    <a style="font-weight: bold" class="nav-item nav-link bntHover" [routerLink]="'/login'">{{element.title}} ({{element.year}})</a>
+                                    <a style="white-space: pre; padding-left: 15px" >{{element.author}}; {{element.repositorie}};</a>
+                                  </div>
+    
+                                <div class="rightbox">
+                                    <i class="material-icons">info_outline</i>
+    
+                                    <i class="material-icons" style="padding-left: 6px">link</i>
+    
+                                    <i class="material-icons" style="padding-left: 6px" >bookmarks</i>
+                                </div>
+                                
+                            </mat-cell>
+                        </ng-container>
+    
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                     </mat-table>
-                  
-                    <mat-paginator #paginator
-                                   [pageSize]="12"
-                                   [pageSizeOptions]="[6, 12, 24]">
+    
+                    <mat-paginator #paginator [pageSize]="12" [pageSizeOptions]="[6, 12, 24]">
                     </mat-paginator>
-                  </div>
-
+                </div>
+    
             </div>
         </div>
-
+    
         <div class='divbo'></div>
     </div>
 

@@ -13,7 +13,7 @@ import { Routes, RouterModule } from '@angular/router';
 export class RepositoriesComponent implements OnInit {
 
   displayedColumns = ['name', 'image', 'abstract'];
-  dataSource = new MatTableDataSource<Element>(FILTERED_ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   
   filterCategories = {}
   filterKeywords = {}
@@ -38,42 +38,21 @@ export class RepositoriesComponent implements OnInit {
     { id: 5, name: 'Ecology' }
   ]
 
-  ELEMENT_DATA = this.ELEMENT_DATA;
-  
-  filterChangeCategories() {
+  filterChange() {
+      this.dataSource.data = ELEMENT_DATA;
       for (let i = 0; i < this.categories.length; i++) {
           if (this.filterCategories[this.categories[i].name] != false) {
-  
-              //let FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x =>
-              //    (x.categories.includes(this.categories[i].name))
-              //);
-  
-              console.log(this.categories[i].name + " TRUE") // debbug
-              //console.log(FILTERED_ELEMENT_DATA.length) // debbug
-  
+            this.dataSource.data = this.dataSource.data.filter(x => (x.categories.includes(this.categories[i].name)))
           } else {
-  
-              console.log(this.categories[i].name + " FALSE") // debbug
-  
           }
-  
       }
-  }
 
-  filterChangeKeywords() {
     for (let i = 0; i < this.keywords.length; i++) {
         if (this.filterKeywords[this.keywords[i].name] != false) {
 
-            //let FILTERED_ELEMENT_DATA = ELEMENT_DATA.filter(x =>
-            //    (x.keywords.includes(this.keywords[i].name))
-            //);
-
-            console.log(this.keywords[i].name + " TRUE") // debbug
-            //console.log(FILTERED_ELEMENT_DATA.length) // debbug
+            this.dataSource.data = this.dataSource.data.filter(x => (x.keywords.includes(this.keywords[i].name)))
 
         } else {
-
-            console.log(this.keywords[i].name + " FALSE") // debbug
 
         }
 
@@ -155,5 +134,3 @@ const ELEMENT_DATA: Element[] = [
   {name: 'Potassium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Land Surface','Agriculture'], keywords: ['Climate','Monitoring']},
   {name: 'Calcium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Atmosphere','Geophysics','Lakes & Rivers','Human Dimensions'], keywords: ['Biodiversity', 'Fire ']},
 ];
-
-const FILTERED_ELEMENT_DATA = ELEMENT_DATA;

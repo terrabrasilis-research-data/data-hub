@@ -77,4 +77,36 @@ p{
     padding-left: 3%;
     border:solid;
 }
+  
+.bntHover{
+    color: black;
 
+  }
+
+.bntHover:hover {
+    color: #4285f4;
+  }
+
+.divLeft {
+    float:left;
+}
+
+.divRight {
+    float:left;
+    padding:30px;
+}
+
+.middlebox{ 
+    float:left;  
+    width:93%; 
+    height: 35px;
+} 
+.rightbox{ 
+    padding-top: 3px;
+    padding-left: 5px;
+    float:right; 
+    width:7%; 
+    height: 35px;
+    align-items: left;
+    align-content: left;
+} 

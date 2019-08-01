@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material'  
-import { MatPaginatorModule } from '@angular/material';
+import { MatPaginatorModule, MatSelectModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +28,7 @@ import { MapModule } from './ui/map/map.module';
   imports: [
     BrowserModule,
     FormsModule,
+    MatSelectModule,
     AppRoutingModule,
     UiModule, 
     SidebarModule.forRoot(),

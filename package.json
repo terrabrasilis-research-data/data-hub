@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~8.0.1",
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
+    "@material/icon-button": "^3.1.0",
     "@ng-bootstrap/ng-bootstrap": "^5.0.0",
     "@types/jquery": "^3.3.30",
     "angular-openlayers-directive": "^2.1.0",
