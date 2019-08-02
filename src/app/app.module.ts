@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material'  
 import { MatPaginatorModule, MatSelectModule } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { MapModule } from './ui/map/map.module';
     BrowserModule,
     FormsModule,
     MatSelectModule,
+    MatTooltipModule,
     AppRoutingModule,
     UiModule, 
     SidebarModule.forRoot(),

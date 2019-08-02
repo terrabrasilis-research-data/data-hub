@@ -24,7 +24,8 @@ p{
     padding-right: 6%;
     padding-bottom: 6%;
     padding-left: 6%;
-    background:#ededed;
+    background:#f5f5f5;
+    border: 1.5px solid #e3e3e3;
     border-radius: 0.7em;
 }
 
@@ -79,12 +80,28 @@ p{
 }
   
 .bntHover{
-    color: black;
+    color: #3c4043;
 
   }
 
 .bntHover:hover {
     color: #4285f4;
+  }
+
+  .bntHover2{
+    color: #3c4043;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+.material-icons:hover{
+
+    opacity: 0.6;
+}
+
+.bntHover2:hover {
+    color: #4285f4;
+    text-decoration: underline;
   }
 
 .divLeft {
@@ -98,15 +115,16 @@ p{
 
 .middlebox{ 
     float:left;  
-    width:93%; 
-    height: 35px;
+    width:92%; 
+    height: 50px;
+    line-height: 0.9;
 } 
 .rightbox{ 
     padding-top: 3px;
-    padding-left: 5px;
+    padding-left: 1px;
     float:right; 
-    width:7%; 
+    width:8%; 
     height: 35px;
-    align-items: left;
-    align-content: left;
+    align-items: right;
+    align-content: right;
 } 

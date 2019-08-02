@@ -100,7 +100,7 @@
             <div class="divrepolist">
 
                 <div class="example-container mat-elevation-z8">
-    
+
                     <mat-table #table [dataSource]="dataSource">
     
                         <!-- dataset Column -->
@@ -109,19 +109,18 @@
                                 17 publications
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element">
-                                <div class="middlebox" style="height: 60px">
+                                <div class="middlebox">
                                     <a style="font-weight: bold" class="nav-item nav-link bntHover" [routerLink]="'/login'">{{element.title}} ({{element.year}})</a>
-                                    <a style="white-space: pre; padding-left: 15px" >{{element.author}}; {{element.repositorie}};</a>
-                                  </div>
-    
-                                <div class="rightbox">
-                                    <i class="material-icons">info_outline</i>
-    
-                                    <i class="material-icons" style="padding-left: 6px">link</i>
-    
-                                    <i class="material-icons" style="padding-left: 6px" >bookmarks</i>
+                                    <a style="padding-left: 15px" >{{element.author}}; {{element.repositorie}}; Size: {{element.size}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.DOI}}</a></a>
                                 </div>
-                                
+
+                                <div class="rightbox">
+                                    <i class="material-icons" style="cursor: pointer;" (click)="PreviewAbstract(element.abstract)" matTooltip="Preview Abstract">info_outline</i>
+    
+                                    <i class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="CopyBibTex(element.id)" matTooltip="Copy BibTex">link</i>
+    
+                                    <i class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="SaveDataset(element.id)" matTooltip="Save Dataset">bookmarks</i>
+                                </div>
                             </mat-cell>
                         </ng-container>
     

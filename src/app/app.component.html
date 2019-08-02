@@ -19,12 +19,63 @@
 
                     </div>
                 </a>
-
-                <!-- Bar button -->
-                <div class="bar-button">
-                    <!-- <i class="fa fa-home textlogo"  style="color: white;  margin: 5px; "> Home </i> -->
+                
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox"> <i class="material-icons">home</i> </div>
+                    <div class="rightbox">Home</div>
                 </div>
-    
+
+                <div class="bar-button divboxbuton"  [routerLink]="'/login'">
+                    <div class="middlebox"> <i class="material-icons">person</i> </div>
+                    <div class="rightbox">Login</div>
+                </div>
+                
+                <!--
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox2"> <i class="material-icons">dashboard</i> </div>
+                    <div class="rightbox2">Dashboard</div>
+                </div>
+
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox3"> <i class="material-icons">note_add</i> </div>
+                    <div class="rightbox3">Add New Data</div>
+                </div>
+
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox4"> <i class="material-icons">library_add</i> </div>
+                    <div class="rightbox4">Create a Repository</div>
+                </div>
+                
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox"> <i class="material-icons">description</i> </div>
+                    <div class="rightbox">My Data</div>
+                </div>
+                
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox3"> <i class="material-icons">library_books</i> </div>
+                    <div class="rightbox3">My Repositories</div>
+                </div>
+                             
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox"> <i class="material-icons">assessment</i> </div>
+                    <div class="rightbox">Stats</div>
+                </div>
+
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox3"> <i class="material-icons">dns</i> </div>
+                    <div class="rightbox3">My Services</div>
+                </div>
+
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox5"> <i class="material-icons">person</i> </div>
+                    <div class="rightbox5">Account</div>
+                </div>
+
+                <div class="bar-button divboxbuton"  [routerLink]="'/'">
+                    <div class="middlebox5"> <i class="material-icons">exit_to_app</i> </div>
+                    <div class="rightbox5">Logout</div>
+                </div>
+                -->                
             </div>
 
         </div>
@@ -35,7 +86,7 @@
             <nav class="navbar navbar-dark box-shadow" style="background-color: rgb(3, 84, 139)">
 
                 <div class="btn-navbar">
-                    <i class="material-icons"  style="color:white; font-size: 24px; cursor: pointer;" (click)="OpenMenu()">menu
+                    <i class="material-icons iconsbtn" (click)="OpenMenu()">menu
                     </i>
                 </div>
 
@@ -45,8 +96,8 @@
                 <div class="navbar-expand mr-auto">
 
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link textbar" [routerLink]="'/repositories'" style="color: white; ">Repositories</a>
-                        <a class="nav-item nav-link textbar" [routerLink]="'/datasets'" style="color: white;">Datasets</a>
+                        <a class="textbar" [routerLink]="'/repositories'">Repositories</a>
+                        <a class="textbar" [routerLink]="'/datasets'" style="margin-left: 10px">Datasets</a>
                     </div>
 
                 </div>
@@ -54,7 +105,13 @@
 
                     <div class="navbar-nav">
 
-                        <a class="nav-item nav-link textbar"  [routerLink]="'/login'" style="color: white;">Login</a>
+                        <a class="textbar"  [routerLink]="'/login'">Login</a> 
+<!-- 
+                        <div>
+                            <div class="middlebox6"> <a style="color:white">Welcome [[name]]</a></div>
+                            <div class="rightbox6"><img src="assets/images/img_avatar2.png" alt="Avatar"> </div>
+                        </div>
+-->
                     </div>
 
                 </div>
@@ -66,16 +123,16 @@
                 </div>
             <!-- Footer -->
             <nav class="navbar navbar-dark mt-5 fixed-bottom " style="background-color: rgb(3, 84, 139);">
-                    <div class="navbar-expand m-auto navbar-text textbar">
+                    <div class="navbar-expand m-auto navbar-text" style="color: white">
                             © 2019 TerraBrasilis Reserach Data
                             <div class="navbar-expand ml-auto navbar-nav">
                         
                             </div>
                     </div>
                     
-                    <div class="navbar-nav">
+                    <div>
                         
-                            <a class="nav-item nav-link" href="https://github.com/terrabrasilis-research-data"><a class=" textbar" style="color: white;"><i class="fa fa-github"></i> Github</a></a>
+                            <a class="textbar" href="https://github.com/terrabrasilis-research-data"><a><i class="fa fa-github"></i> Github</a></a>
                 
                         </div>
                 
