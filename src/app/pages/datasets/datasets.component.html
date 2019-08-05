@@ -90,9 +90,7 @@
           </div>
 
         </div>
-        <div class='divfilterb2'>
-                
-            </div>
+
     </div>
     <div class="right">
 
@@ -106,7 +104,7 @@
                         <!-- dataset Column -->
                         <ng-container matColumnDef="dataset">
                             <mat-header-cell *matHeaderCellDef>
-                                17 publications
+                                {{size}} publications
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element">
                                 <div class="middlebox">
@@ -121,6 +119,7 @@
     
                                     <i class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="SaveDataset(element.id)" matTooltip="Save Dataset">bookmarks</i>
                                 </div>
+                                
                             </mat-cell>
                         </ng-container>
     
@@ -137,5 +136,3 @@
     
         <div class='divbo'></div>
     </div>
-
-</div>
