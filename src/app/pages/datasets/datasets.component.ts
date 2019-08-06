@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { ViewChild} from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Clipboard } from 'ts-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-datasets',
@@ -67,6 +67,9 @@ export class DatasetsComponent implements OnInit {
     { id: 4, name: 'TIF' }
    ];
    
+   favorites = [
+   ];
+
    ELEMENT_DATA = this.ELEMENT_DATA;
    
    CopyBibTex(id: number){
@@ -79,12 +82,26 @@ export class DatasetsComponent implements OnInit {
    }
    
    SaveDataset(id: number){
-     console.log(id)
+     this.snackBar.open("Saved to Bookmarks", "", {
+      duration: 2000,
+    });
+    this.favorites.push({id: id});
+    console.log(this.favorites)
    }
-
+   /*
+   RemoveDataset(ids: number){
+    this.snackBar.open("Removed from Bookmarks", "", {
+     duration: 2000,
+   });
+   this.favorites = delete this.favorites['id'][ids]
+   console.log(this.favorites)
+  }
+*/
    PreviewAbstract(abstract: string){
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
-    let varText = "aaaa";
+    const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+      data: {abstract: abstract}
+    });
+
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -179,6 +196,9 @@ export class DatasetsComponent implements OnInit {
     }
 }
 
+export interface DialogData {
+  abstract: string;
+}
 export interface Order {
   value: string;
   viewName: string;
@@ -202,7 +222,16 @@ export interface Element {
   templateUrl: 'msgBox.html',
 })
 
-export class DialogContentExampleDialog {}
+export class DialogContentExampleDialog {
+  
+  constructor(
+    public dialogRef: MatDialogRef<DialogContentExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
 
 const ELEMENT_DATA: Element[] = [
   {id: 1, title: 'Current measurements at Langseth/Gakkel Ridge in the central Arctic with Lowered ADCP during POLARSTERN cruise', year: '2015', author: ["Walter, M","Köhler, J"], abstract: "Morphometric measurements of Fragilariopsis kerguelensis valves from a two-year time series covering the period from November 2002 to October 2004 collected by a sediment trap at 800m below the ocean surface which was moored near 54° S 140° E in ca. 2300 m water depth, close to the top of the Australia-Antarctica mid-ocean ridge.", size: 4, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904373", categories: ['Chemistry ','Lakes & Rivers'], repositorie: "ODP", filetypes: ['TIF']},

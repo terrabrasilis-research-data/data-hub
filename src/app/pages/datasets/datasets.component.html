@@ -114,10 +114,12 @@
 
                                 <div class="rightbox">
                                     <i class="material-icons" style="cursor: pointer;" (click)="PreviewAbstract(element.abstract)" matTooltip="Preview Abstract">info_outline</i>
-    
+                               <!--
                                     <i class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="CopyBibTex(element.id)" matTooltip="Copy BibTex">link</i>
-    
-                                    <i class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="SaveDataset(element.id)" matTooltip="Save Dataset">bookmarks</i>
+ -->
+          <i class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="RemoveDataset(element.id)" matTooltip="Remove from Favorites">grade</i>
+                               
+                                    <i class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="SaveDataset(element.id)" matTooltip="Save Dataset">bookmarks</i>  
                                 </div>
                                 
                             </mat-cell>
@@ -134,5 +136,4 @@
             </div>
         </div>
     
-        <div class='divbo'></div>
     </div>
