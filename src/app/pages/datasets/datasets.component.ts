@@ -80,23 +80,25 @@ export class DatasetsComponent implements OnInit {
     let BibTex = '@proceedings{'+ data.id +', \ntitle\t = {'+data.title+'}, \neditor\t = {'+data.author+'},   \nyear\t = {'+data.year+'}, \nDOI\t = {'+data.DOI+'} \n}';
     Clipboard.copy(BibTex);
    }
-   
+
+   isFavorite(id: number){
+    return this.favorites.some(x => x.id === id)
+   } 
+
    SaveDataset(id: number){
      this.snackBar.open("Saved to Bookmarks", "", {
       duration: 2000,
     });
     this.favorites.push({id: id});
-    console.log(this.favorites)
    }
-   /*
+  
    RemoveDataset(ids: number){
     this.snackBar.open("Removed from Bookmarks", "", {
      duration: 2000,
    });
-   this.favorites = delete this.favorites['id'][ids]
-   console.log(this.favorites)
+   this.favorites = this.favorites.filter(x => (x.id != ids));
   }
-*/
+
    PreviewAbstract(abstract: string){
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
       data: {abstract: abstract}
