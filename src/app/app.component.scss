@@ -97,85 +97,26 @@
     padding-top: 10px;
 }
 
-.middlebox{ 
-    float:left;  
-    width: 40%; 
-    color: white;
-    text-align: right;
-} 
-
-.rightbox{ 
-    float:right; 
-    width: 60%;
-    padding-left: 5px; 
-    color: white;
-    text-align: left;
-} 
-
-.middlebox2{ 
-    float:left;  
-    width: 34%; 
-    color: white;
-    text-align: right;
-} 
-
-.rightbox2{ 
-    float:right; 
-    width: 66%;
-    padding-left: 5px; 
-    color: white;
-    text-align: left;
-} 
-
-.middlebox3{ 
-    float:left;  
-    width: 30%; 
-    color: white;
-    text-align: right;
-} 
-
-.rightbox3{ 
-    float:right; 
-    width: 70%;
-    padding-left: 5px; 
-    color: white;
-    text-align: left;
-} 
-
-.middlebox4{ 
-    float:left;  
-    width: 25%; 
-    color: white;
-    text-align: right;
-} 
-
-.rightbox4{ 
-    float:right; 
-    width: 75%;
-    padding-left: 5px; 
-    color: white;
-    text-align: left;
-} 
-
 .iconsbtn{
     color:white; 
     font-size: 24px; 
     cursor: pointer;
 }
 
-.middlebox5{ 
-    float:left;  
-    width: 35%; 
-    color: white;
-    text-align: right;
-} 
-
-.rightbox5{ 
+.rightboxSide{
     float:right; 
-    width: 65%;
+    width: 84%;
     padding-left: 5px; 
     color: white;
     text-align: left;
+
+}
+
+.middleboxSide{ 
+    float:left;  
+    width: 16%; 
+    color: white;
+    text-align: right;
 } 
 
 .iconsbtn:hover{
@@ -188,7 +129,12 @@ img {
     height: 40px;
     
   }
-  .middlebox6{ 
+
+.mat-form-field {
+    margin-right: 12px;
+  }
+  
+.middlebox6{ 
     float:left;  
     width: 75%; 
     color: white;
@@ -203,8 +149,3 @@ img {
     color: white;
     text-align: left;
 } 
-
-.mat-form-field {
-    margin-right: 12px;
-  }
-  

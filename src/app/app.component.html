@@ -19,63 +19,69 @@
 
                     </div>
                 </a>
-                
+                <span *ngIf="!isLogged()">
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox"> <i class="material-icons">home</i> </div>
-                    <div class="rightbox">Home</div>
+                    
+                    <div class="middleboxSide"> <i class="material-icons">home</i> </div>
+                    <div class="rightboxSide">Home</div>
+                    
                 </div>
 
-                <div class="bar-button divboxbuton"  [routerLink]="'/login'">
-                    <div class="middlebox"> <i class="material-icons">person</i> </div>
-                    <div class="rightbox">Login</div>
-                </div>
+                <div class="bar-button divboxbuton" (click)="ChangeLogged(true)">
+                    
+                    <div class="middleboxSide"> <i class="material-icons">person</i> </div>
+                    <div class="rightboxSide">Login</div>
                 
-                <!--
+                </div>
+            </span>
+            
+                <span *ngIf="isLogged()">
+
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox2"> <i class="material-icons">dashboard</i> </div>
-                    <div class="rightbox2">Dashboard</div>
+                    <div class="middleboxSide"> <i class="material-icons">dashboard</i> </div>
+                    <div class="rightboxSide">Dashboard</div>
                 </div>
 
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox3"> <i class="material-icons">note_add</i> </div>
-                    <div class="rightbox3">Add New Data</div>
+                    <div class="middleboxSide"> <i class="material-icons">note_add</i> </div>
+                    <div class="rightboxSide">Add New Data</div>
                 </div>
 
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox4"> <i class="material-icons">library_add</i> </div>
-                    <div class="rightbox4">Create a Repository</div>
+                    <div class="middleboxSide"> <i class="material-icons">library_add</i> </div>
+                    <div class="rightboxSide">Create a Repository</div>
                 </div>
                 
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox"> <i class="material-icons">description</i> </div>
-                    <div class="rightbox">My Data</div>
+                    <div class="middleboxSide"> <i class="material-icons">description</i> </div>
+                    <div class="rightboxSide">My Data</div>
                 </div>
                 
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox3"> <i class="material-icons">library_books</i> </div>
-                    <div class="rightbox3">My Repositories</div>
+                    <div class="middleboxSide"> <i class="material-icons">library_books</i> </div>
+                    <div class="rightboxSide">My Repositories</div>
                 </div>
                              
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox"> <i class="material-icons">assessment</i> </div>
-                    <div class="rightbox">Stats</div>
+                    <div class="middleboxSide"> <i class="material-icons">assessment</i> </div>
+                    <div class="rightboxSide">Stats</div>
                 </div>
 
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox3"> <i class="material-icons">dns</i> </div>
-                    <div class="rightbox3">My Services</div>
+                    <div class="middleboxSide"> <i class="material-icons">dns</i> </div>
+                    <div class="rightboxSide">My Services</div>
                 </div>
 
                 <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox5"> <i class="material-icons">person</i> </div>
-                    <div class="rightbox5">Account</div>
+                    <div class="middleboxSide"> <i class="material-icons">person</i> </div>
+                    <div class="rightboxSide">Account</div>
                 </div>
 
-                <div class="bar-button divboxbuton"  [routerLink]="'/'">
-                    <div class="middlebox5"> <i class="material-icons">exit_to_app</i> </div>
-                    <div class="rightbox5">Logout</div>
+                <div class="bar-button divboxbuton"  (click)="ChangeLogged(false)">
+                    <div class="middleboxSide"> <i class="material-icons">exit_to_app</i> </div>
+                    <div class="rightboxSide">Logout</div>
                 </div>
-                -->                
+            </span>              
             </div>
 
         </div>
@@ -105,13 +111,18 @@
 
                     <div class="navbar-nav">
 
-                        <a class="textbar"  [routerLink]="'/login'">Login</a> 
-<!-- 
-                        <div>
-                            <div class="middlebox6"> <a style="color:white">Welcome [[name]]</a></div>
-                            <div class="rightbox6"><img src="assets/images/img_avatar2.png" alt="Avatar"> </div>
-                        </div>
--->
+                        <span *ngIf="!isLogged()">
+                            <a class="textbar"  [routerLink]="" (click)="ChangeLogged(true)">Login</a> 
+                        </span>
+                        
+                        <span *ngIf="isLogged()">
+                            <div>
+                            <div class="middlebox6"> <a style="color:white">Welcome {{user.name}}</a></div>
+                            <div class="rightbox6"><img src="assets/images/img_avatar.png" alt="Avatar"> </div>
+                            </div>
+                        </span>
+
+                        
                     </div>
 
                 </div>
