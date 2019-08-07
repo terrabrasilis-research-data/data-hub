@@ -23,7 +23,12 @@
 
 .bar-button{
  height: 45px;
- background-color: rgb(27, 121, 183)
+ background-color: rgb(27, 121, 183);
+ cursor: pointer;
+}
+
+.bar-button:hover{
+    background-color:rgb(42, 138, 201)
 }
 
 .textlogo{
@@ -56,12 +61,150 @@
 
 .textbar{
     font-size: 17px;
+    color: white; 
+    opacity: 0.7;
+}
+
+.textbar:hover{
+    text-decoration: none;
+    opacity: 1.0;
+}
+
+.buttonfooter{
+    color: white; 
+}
+
+.btn-navbar{
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 6px;
 }
 
 .textlogo{
     font-size: 20px;
 }
 
-.textbar:hover{ 
-    color: #6a737d;
+
+.sidebarbutton{
+    color: white;
 }
+
+.divboxbuton{
+    align-items: center;
+    align-content: center;
+    padding-top: 10px;
+}
+
+.middlebox{ 
+    float:left;  
+    width: 40%; 
+    color: white;
+    text-align: right;
+} 
+
+.rightbox{ 
+    float:right; 
+    width: 60%;
+    padding-left: 5px; 
+    color: white;
+    text-align: left;
+} 
+
+.middlebox2{ 
+    float:left;  
+    width: 34%; 
+    color: white;
+    text-align: right;
+} 
+
+.rightbox2{ 
+    float:right; 
+    width: 66%;
+    padding-left: 5px; 
+    color: white;
+    text-align: left;
+} 
+
+.middlebox3{ 
+    float:left;  
+    width: 30%; 
+    color: white;
+    text-align: right;
+} 
+
+.rightbox3{ 
+    float:right; 
+    width: 70%;
+    padding-left: 5px; 
+    color: white;
+    text-align: left;
+} 
+
+.middlebox4{ 
+    float:left;  
+    width: 25%; 
+    color: white;
+    text-align: right;
+} 
+
+.rightbox4{ 
+    float:right; 
+    width: 75%;
+    padding-left: 5px; 
+    color: white;
+    text-align: left;
+} 
+
+.iconsbtn{
+    color:white; 
+    font-size: 24px; 
+    cursor: pointer;
+}
+
+.middlebox5{ 
+    float:left;  
+    width: 35%; 
+    color: white;
+    text-align: right;
+} 
+
+.rightbox5{ 
+    float:right; 
+    width: 65%;
+    padding-left: 5px; 
+    color: white;
+    text-align: left;
+} 
+
+.iconsbtn:hover{
+    opacity: 1.0;
+}
+
+img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    
+  }
+  .middlebox6{ 
+    float:left;  
+    width: 75%; 
+    color: white;
+    text-align: right;
+    padding-top: 8px
+} 
+
+.rightbox6{ 
+    float:right; 
+    width: 25%;
+    padding-left: 7px; 
+    color: white;
+    text-align: left;
+} 
+
+.mat-form-field {
+    margin-right: 12px;
+  }
+  
