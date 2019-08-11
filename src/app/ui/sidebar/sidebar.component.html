@@ -1,0 +1,84 @@
+  <!-- Sidebar -->
+  <div class="" id="sidebar-wrapper" style="background-color: rgb(16, 102, 161);">
+        <div class="list-group list-group-flush">
+
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="imageheader">
+                </div>
+
+            </div>
+
+            <!-- Sidebar Desc -->
+            <a class="textlogo">
+                <div class="navbar-header">
+
+                </div>
+            </a>
+            <span *ngIf="!isLogged()">
+            <div class="bar-button divboxbuton" >
+                
+                <div class="middleboxSide"> <i class="material-icons">home</i> </div>
+                <div class="rightboxSide">Home</div>
+                
+            </div>
+
+            <div class="bar-button divboxbuton" (click)="ChangeLogged(true)">
+                
+                <div class="middleboxSide"> <i class="material-icons">person</i> </div>
+                <div class="rightboxSide">Login</div>
+            
+            </div>
+        </span>
+        
+            <span *ngIf="isLogged()">
+
+            <div class="bar-button divboxbuton"  >
+                <div class="middleboxSide"> <i class="material-icons">dashboard</i> </div>
+                <div class="rightboxSide">Dashboard</div>
+            </div>
+
+            <div class="bar-button divboxbuton"  >
+                <div class="middleboxSide"> <i class="material-icons">note_add</i> </div>
+                <div class="rightboxSide">Add New Data</div>
+            </div>
+
+            <div class="bar-button divboxbuton"  >
+                <div class="middleboxSide"> <i class="material-icons">library_add</i> </div>
+                <div class="rightboxSide">Create a Repository</div>
+            </div>
+            
+            <div class="bar-button divboxbuton"  >
+                <div class="middleboxSide"> <i class="material-icons">description</i> </div>
+                <div class="rightboxSide">My Data</div>
+            </div>
+            
+            <div class="bar-button divboxbuton"  >
+                <div class="middleboxSide"> <i class="material-icons">library_books</i> </div>
+                <div class="rightboxSide">My Repositories</div>
+            </div>
+                         
+            <div class="bar-button divboxbuton"  >
+                <div class="middleboxSide"> <i class="material-icons">assessment</i> </div>
+                <div class="rightboxSide">Stats</div>
+            </div>
+
+            <div class="bar-button divboxbuton"  >
+                <div class="middleboxSide"> <i class="material-icons">dns</i> </div>
+                <div class="rightboxSide">My Services</div>
+            </div>
+
+            <div class="bar-button divboxbuton"  >
+                <div class="middleboxSide"> <i class="material-icons">person</i> </div>
+                <div class="rightboxSide">Account</div>
+            </div>
+
+            <div class="bar-button divboxbuton"  (click)="ChangeLogged(false)">
+                <div class="middleboxSide"> <i class="material-icons">exit_to_app</i> </div>
+                <div class="rightboxSide">Logout</div>
+            </div>
+        </span>              
+        </div>
+
+    </div>
+    <!-- /#sidebar-wrapper -->
