@@ -18,6 +18,10 @@
 
 }
 
+.navbar-brand{
+    cursor: pointer;
+
+}
 .azul {
     color: white;
 }
@@ -37,6 +41,7 @@ img {
 }
 
 .textbar:hover{
+    text-decoration: none;
     opacity: 0.6;
     cursor: pointer;
 }
