@@ -1,6 +1,6 @@
 <div class="main">
 
-    <div class="left">
+    <div class="left" >
 
         <div class="greybox-left">
           
@@ -106,14 +106,14 @@
                             <mat-header-cell *matHeaderCellDef>
                                 {{size}} publications
                             </mat-header-cell>
-                            <mat-cell *matCellDef="let element">
+                            <mat-cell *matCellDef="let element" style="display: flex">
                                 <div class="middlebox">
                                     <a style="font-weight: bold" class="nav-item nav-link bntHover" [routerLink]="'/login'">{{element.title}} ({{element.year}})</a>
                                     <a style="padding-left: 15px" >{{element.author}}; {{element.repositorie}}; Size: {{element.size}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.DOI}}</a></a>
                                 </div>
 
                                 <div class="rightbox">
-                                    <i class="material-icons" style="cursor: pointer;" (click)="PreviewAbstract(element.abstract)" matTooltip="Preview Abstract">info_outline</i>
+                                    <i class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="PreviewAbstract(element.abstract)" matTooltip="Preview Abstract">info_outline</i>
 
                                     <i class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="CopyBibTex(element.id)" matTooltip="Copy BibTex">link</i>
  
