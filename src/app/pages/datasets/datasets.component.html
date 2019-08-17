@@ -109,7 +109,7 @@
                             <mat-cell *matCellDef="let element" style="display: flex">
                                 <div class="middlebox">
                                     <a style="font-weight: bold" class="nav-item nav-link bntHover" [routerLink]="'/login'">{{element.title}} ({{element.year}})</a>
-                                    <a style="padding-left: 15px" >{{element.author}}; {{element.repositorie}}; Size: {{element.size}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.DOI}}</a></a>
+                                    <a style="padding-left: 15px; flex-wrap: wrap;" >{{element.author}}; {{element.repositorie}}; Size: {{element.size}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.DOI}}</a></a>
                                 </div>
 
                                 <div class="rightbox">
