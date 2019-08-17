@@ -1,7 +1,11 @@
 .main{
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
 }
+
+.table {
+    width: 100%;
+  }
 
 .divbo{
     margin-top: 2%;
@@ -15,6 +19,7 @@
     padding-right: 3%;
     padding-left: 3%;
 }
+
 p{
     margin-bottom: 3%;
 }
@@ -31,8 +36,8 @@ p{
 
 .greybox-right {
     margin-top: 2%;
-    margin-left: 3%;
-    margin-right: 3%;
+    margin-left: 2%;
+    //margin-right: 3%;
     //background:#ededed;
     //border-radius: 0.7em;
 }
@@ -71,6 +76,7 @@ p{
 
     margin-left: 3%;
   }
+
 .divfilterb2{
     margin-top: 30%;
     padding-top: 1%;
@@ -115,16 +121,12 @@ p{
 
 .middlebox{ 
     float:left;  
-    width:92%; 
-    height: 50px;
-    line-height: 0.9;
+    width: 92%;
+    line-height: 1;
+    padding-bottom: 6px;
 } 
+
 .rightbox{ 
-    padding-top: 3px;
-    padding-left: 1px;
-    float:right; 
-    width:8%; 
-    height: 35px;
-    align-items: right;
-    align-content: right;
+    padding-top: 7px;
+    display: flex;
 } 

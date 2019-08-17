@@ -1,6 +1,6 @@
 <div class="main">
 
-    <div class="left">
+    <div class="left" >
 
         <div class="greybox-left">
           
@@ -106,20 +106,20 @@
                             <mat-header-cell *matHeaderCellDef>
                                 {{size}} publications
                             </mat-header-cell>
-                            <mat-cell *matCellDef="let element">
+                            <mat-cell *matCellDef="let element" style="display: flex">
                                 <div class="middlebox">
                                     <a style="font-weight: bold" class="nav-item nav-link bntHover" [routerLink]="'/login'">{{element.title}} ({{element.year}})</a>
-                                    <a style="padding-left: 15px" >{{element.author}}; {{element.repositorie}}; Size: {{element.size}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.DOI}}</a></a>
+                                    <a style="padding-left: 15px; flex-wrap: wrap;" >{{element.author}}; {{element.repositorie}}; Size: {{element.size}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.DOI}}</a></a>
                                 </div>
 
                                 <div class="rightbox">
-                                    <i class="material-icons" style="cursor: pointer;" (click)="PreviewAbstract(element.abstract)" matTooltip="Preview Abstract">info_outline</i>
+                                    <i class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="PreviewAbstract(element.abstract)" matTooltip="Preview Abstract">info_outline</i>
 
-                                    <i class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="CopyBibTex(element.id)" matTooltip="Copy BibTex">link</i>
+                                    <i class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="CopyBibTex(element.id)" matTooltip="Copy BibTex">link</i>
  
-                                    <span *ngIf="isFavorite(element.id)"> <i  class="material-icons" style="padding-left: 6px;cursor: pointer;" (click)="RemoveDataset(element.id)" matTooltip="Remove from Favorites">grade</i> </span>
+                                    <span *ngIf="isFavorite(element.id)"> <i  class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="RemoveDataset(element.id)" matTooltip="Remove from Favorites">grade</i> </span>
 
-                                    <span *ngIf="!isFavorite(element.id)"> <i  class="material-icons" style="padding-left: 6px;cursor: pointer;"  (click)="SaveDataset(element.id)" matTooltip="Save Dataset">bookmarks</i>  </span>
+                                    <span *ngIf="!isFavorite(element.id)"> <i  class="material-icons" style="padding-left: 4px;cursor: pointer;"  (click)="SaveDataset(element.id)" matTooltip="Save Dataset">bookmarks</i>  </span>
 
                                 </div>
                                 

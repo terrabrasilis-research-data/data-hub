@@ -8,6 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog'; 
 
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
@@ -37,8 +38,9 @@ import { MapModule } from './ui/map/map.module';
     MatSelectModule,
     MatTooltipModule,
     AppRoutingModule,
+    UiModule,
     MatDialogModule,
-    UiModule, 
+    RouterModule,
     SidebarModule.forRoot(),
     MatSnackBarModule,
     MatTableModule,
