@@ -2,6 +2,42 @@
     margin-left: 0.5%;
     margin-right: 0.5%;
 }
+
+.bbox{
+    width: 120px;
+}
+.temp{
+}
+.divtemp {
+    display: inline-block;
+}​
+.side {
+    margin: auto;
+}
+.center {
+    margin-left: 25%
+}
+
+.button{
+    background: #0F66A0; 
+    color: white;
+    vertical-align: middle;
+}
+
+.button:hover{
+    background:rgb(42, 138, 201);
+    cursor: pointer;
+}
+.filterBtn{
+}
+.one {
+    width: 50%;
+    float: left;
+}
+.two {
+    margin-left: 0%;
+}
+
 .divbo{
     margin-top: 2%;
     margin-left: 5%;
