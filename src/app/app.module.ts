@@ -32,7 +32,7 @@ import { MapModule } from './ui/map/map.module';
     DatasetsComponent,
     LoginComponent
   ],
-  entryComponents: [DialogContentExampleDialog],
+  entryComponents: [ DialogContentExampleDialog ],
   imports: [
     BrowserModule,
     FormsModule,

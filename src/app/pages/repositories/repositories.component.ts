@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { ViewChild} from '@angular/core';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-repositories',
@@ -38,14 +39,13 @@ export class RepositoriesComponent implements OnInit {
     { id: 5, name: 'Ecology' }
   ]
 
-  filterChange() {
-      this.dataSource.data = ELEMENT_DATA;
-      for (let i = 0; i < this.categories.length; i++) {
-          if (this.filterCategories[this.categories[i].name] != false) {
+filterChange() {
+    this.dataSource.data = ELEMENT_DATA;
+    for (let i = 0; i < this.categories.length; i++) {
+        if (this.filterCategories[this.categories[i].name] != false) {
             this.dataSource.data = this.dataSource.data.filter(x => (x.categories.includes(this.categories[i].name)))
-          } else {
-          }
-      }
+        } else {}
+    }
 
     for (let i = 0; i < this.keywords.length; i++) {
         if (this.filterKeywords[this.keywords[i].name] != false) {
@@ -58,59 +58,91 @@ export class RepositoriesComponent implements OnInit {
 
     }
 }
-  @ViewChild(MatPaginator, {
-      static: false
-  }) paginator: MatPaginator;
-  
-  form: FormGroup;
-  
-  /**
-   * Set the paginator after the view init since this component will
-   * be able to query its view for the initialized paginator.
-   */
-  ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-  }
-  
-  constructor(private formBuilder: FormBuilder) {
-      this.form = this.formBuilder.group({
-          categories: new FormArray([]),
-          keywords: new FormArray([])
-      });
-  
-      this.addCheckboxes();
-  }
-  
-  private addCheckboxes() {
-      this.categories.map((o, i) => {
-          const control = new FormControl(i === 0); // if first item set to true, else false
-          (this.form.controls.categories as FormArray).push(control);
-      });
-      this.keywords.map((o, j) => {
-          const control = new FormControl(j === 0); // if first item set to true, else false
-          (this.form.controls.keywords as FormArray).push(control);
-      });
-  }
-  
-  ngOnInit() {
-  
-      this.categories.forEach(obj => {
-          this.filterCategories[obj.name] = false
-      })
-      this.keywords.forEach(obj => {
-          this.filterKeywords[obj.name] = false
-      })
-  }
-  
-  }
-  
-  export interface Element {
-      name: string;
-      image: Array < string > ;
-      abstract: string;
-      categories: Array < string > ;
-      keywords: Array < string > ;
-  }
+
+Map() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+        data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+    });
+}
+
+@ViewChild(MatPaginator, {
+    static: false
+}) paginator: MatPaginator;
+
+form: FormGroup;
+
+/**
+ * Set the paginator after the view init since this component will
+ * be able to query its view for the initialized paginator.
+ */
+ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+}
+
+constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
+    this.form = this.formBuilder.group({
+        categories: new FormArray([]),
+        keywords: new FormArray([])
+    });
+
+    this.addCheckboxes();
+}
+
+private addCheckboxes() {
+    this.categories.map((o, i) => {
+        const control = new FormControl(i === 0); // if first item set to true, else false
+        (this.form.controls.categories as FormArray).push(control);
+    });
+    this.keywords.map((o, j) => {
+        const control = new FormControl(j === 0); // if first item set to true, else false
+        (this.form.controls.keywords as FormArray).push(control);
+    });
+}
+
+ngOnInit() {
+
+    this.categories.forEach(obj => {
+        this.filterCategories[obj.name] = false
+    })
+    this.keywords.forEach(obj => {
+        this.filterKeywords[obj.name] = false
+    })
+}
+
+}
+
+export interface DialogData {
+
+}
+
+export interface Element {
+    name: string;
+    image: Array < string > ;
+    abstract: string;
+    categories: Array < string > ;
+    keywords: Array < string > ;
+}
+
+
+@Component({
+    selector: 'dialog-content-example-dialog',
+    templateUrl: 'mapBox.html',
+})
+
+export class DialogContentExampleDialog {
+
+    constructor(
+        public dialogRef: MatDialogRef < DialogContentExampleDialog > ,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+}
 
 const ELEMENT_DATA: Element[] = [
   {name: 'Hydrogen Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: [,'Atmosphere','Geophysics'] , keywords: ['Climate','Ecology']},
