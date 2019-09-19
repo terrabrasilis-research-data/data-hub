@@ -68,13 +68,88 @@
                   </div>
             </div>
 
-           
-           
+            <div class='divfilter'>
+                    <p class="text-muted">Spatial:</p>
 
+                    <div class="center">
+                        <mat-form-field>
+                            <input matInput placeholder="North" class="matInputBBox">
+                        </mat-form-field>
+                    </div>
+        
+                    <div class="side">
+        
+                        <div class="one">
+        
+                            <mat-form-field>
+                                <input matInput placeholder="East" class="matInputBBox">
+                            </mat-form-field>
+                        </div>
+        
+                        <div class="two">
+        
+                            <mat-form-field>
+                                <input matInput placeholder="West" class="matInputBBox">
+                            </mat-form-field>
+        
+        
+                        </div>
+        
+                    </div>
+        
+                    <div class="center">
+                        <mat-form-field>
+                            <input matInput placeholder="South" class="matInputBBox">
+                        </mat-form-field>
+                    </div>
+        
+                    <div class="filterBtn">
+        
+                        <a class="btn btnpress button" style="color:white; margin-right: 10px; margin-bottom: 10px;" (click)="Map()" matTooltip="Select Bounding Box"> <i class="material-icons">crop_free</i> </a>
+        
+                        <a class="btn btnpress button" style="color:white; margin-right: 10px; margin-bottom: 10px">Apply</a>
+        
+                        <a class="btn btnpress button" style="color:white; margin-bottom: 10px">Clear</a>
+        
+                    </div>
+            </div>
+           
+            <div class='divfilter'>
+                
+                    <p class="text-muted">Temporal:</p>
+
+                    <div class="filterBtn">
+        
+                            <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="Start date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+        
+                            <mat-form-field style="margin-left: 15px">
+                                    <input matInput [matDatepicker]="picker2" placeholder="End date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+        
+                    </div>
+        
+                    <div class="filterBtn">
+        
+                        <a class="btn btnpress button" style="color:white; margin-right: 10px; margin-bottom: 10px;" (click)="Time()" matTooltip="Select Time Interval"> <i class="material-icons">query_builder</i> </a>
+        
+                        <a class="btn btnpress button" style="color:white; margin-right: 10pt; margin-bottom: 10px;">Apply</a>
+        
+                        <a class="btn btnpress button" style="color:white; margin-bottom: 10px;">Clear</a>
+        
+                    </div>
+
+            </div>
+           
           </div>
 
+          <div style="margin-bottom: 100px"></div>
         </div>
-
     </div>
     <div class="right">
 

@@ -5,6 +5,8 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Clipboard } from 'ts-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BboxComponent } from 'src/app/ui/bbox/bbox.component';
+import { TintervalComponent } from 'src/app/ui/tinterval/tinterval.component';
 
 @Component({
   selector: 'app-datasets',
@@ -33,6 +35,26 @@ export class DatasetsComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+  
+  Map() {
+    const dialogRef = this.dialog.open(BboxComponent, {
+        data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+    });
+}
+
+Time(){
+    const dialogRef = this.dialog.open(TintervalComponent, {
+        data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+    });
+}
 
   years = [
     { id: 1, name: '2019' },
@@ -97,6 +119,7 @@ export class DatasetsComponent implements OnInit {
    this.favorites = this.favorites.filter(x => (x.id != ids));
   }
 
+  
    PreviewAbstract(abstract: string){
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
       data: {abstract: abstract}
