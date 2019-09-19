@@ -3,9 +3,6 @@
     margin-right: 0.5%;
 }
 
-.bbox{
-    width: 120px;
-}
 .divtemp {
     display: inline-block;
 }​
@@ -13,7 +10,8 @@
     margin: auto;
 }
 .center {
-    margin-left: 25%
+    margin: 0 auto;
+    text-align: center;
 }
 
 .button{
@@ -21,7 +19,10 @@
     color: white;
     vertical-align: middle;
 }
-
+.filterBtn{
+    display: flex;
+    flex-wrap: wrap;
+}
 .button:hover{
     background:rgb(42, 138, 201);
     cursor: pointer;
@@ -120,4 +121,9 @@ img {
 
   .bntHover:hover {
     color: #4285f4;
+  }
+
+
+::ng-deep .mat-form-field{
+    width:120px !important;
   }

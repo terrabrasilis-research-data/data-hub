@@ -39,41 +39,45 @@
 
             <p class="text-muted">Spatial:</p>
 
-            <div class="form-group center">
-                <input type="text" class="form-control bbox" id="n">
+            <div class="center">
+                <mat-form-field>
+                    <input matInput placeholder="North" class="matInputBBox">
+                </mat-form-field>
             </div>
 
             <div class="side">
 
                 <div class="one">
 
-                    <div class="form-group">
-                        <input type="text" class="form-control bbox" id="e">
-                    </div>
-
+                    <mat-form-field>
+                        <input matInput placeholder="East" class="matInputBBox">
+                    </mat-form-field>
                 </div>
 
                 <div class="two">
 
-                    <div class="form-group">
-                        <input type="text" class="form-control bbox" id="w">
-                    </div>
+                    <mat-form-field>
+                        <input matInput placeholder="West" class="matInputBBox">
+                    </mat-form-field>
+
 
                 </div>
 
             </div>
 
-            <div class="form-group center">
-                <input type="text" class="form-control bbox" id="s">
+            <div class="center">
+                <mat-form-field>
+                    <input matInput placeholder="South" class="matInputBBox">
+                </mat-form-field>
             </div>
 
             <div class="filterBtn">
 
-                <a class="btn btnpress button" style="color:white; margin-right: 50pt;" (click)="Map()" matTooltip="Select Bounding Box"> <i class="material-icons">crop_free</i> </a>
+                <a class="btn btnpress button" style="color:white; margin-right: 10px; margin-bottom: 10px;" (click)="Map()" matTooltip="Select Bounding Box"> <i class="material-icons">crop_free</i> </a>
 
-                <a class="btn btnpress button" style="color:white; margin-right: 10pt;">Apply</a>
+                <a class="btn btnpress button" style="color:white; margin-right: 10px; margin-bottom: 10px">Apply</a>
 
-                <a class="btn btnpress button" style="color:white;">Clear</a>
+                <a class="btn btnpress button" style="color:white; margin-bottom: 10px">Clear</a>
 
             </div>
 
@@ -84,35 +88,34 @@
 
             <div class="filterBtn">
 
-                <a style="margin-right: 10px">Start date:</a>
+                    <mat-form-field>
+                            <input matInput [matDatepicker]="picker" placeholder="Start date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
 
-                <div class="form-group divtemp">
-                    <input type="text" class="form-control temp" id="start">
-                </div>
-
-            </div>
-            <div class="filterBtn">
-
-                <a style="margin-right: 10px">End date:</a>
-
-                <div class="form-group divtemp">
-                    <input type="text" class="form-control temp" id="end">
-                </div>
+                    <mat-form-field style="margin-left: 15px">
+                            <input matInput [matDatepicker]="picker2" placeholder="End date">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
 
             </div>
 
             <div class="filterBtn">
 
-                <a class="btn btnpress button" style="color:white; margin-right: 10pt;">Apply</a>
+                <a class="btn btnpress button" style="color:white; margin-right: 10px; margin-bottom: 10px;" (click)="Time()" matTooltip="Select Time Interval"> <i class="material-icons">query_builder</i> </a>
 
-                <a class="btn btnpress button" style="color:white;">Clear</a>
+                <a class="btn btnpress button" style="color:white; margin-right: 10pt; margin-bottom: 10px;">Apply</a>
+
+                <a class="btn btnpress button" style="color:white; margin-bottom: 10px;">Clear</a>
 
             </div>
 
         </div>
 
     </div>
-    <div class="margin-botton: 500px"></div>
+    <div style="margin-bottom: 100px"></div>
 </div>
 <div class="right">
 

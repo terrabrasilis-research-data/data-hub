@@ -4,6 +4,8 @@ import { ViewChild} from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BboxComponent } from 'src/app/ui/bbox/bbox.component';
+import { TintervalComponent } from 'src/app/ui/tinterval/tinterval.component';
 
 @Component({
   selector: 'app-repositories',
@@ -60,7 +62,17 @@ filterChange() {
 }
 
 Map() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+    const dialogRef = this.dialog.open(BboxComponent, {
+        data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+    });
+}
+
+Time(){
+    const dialogRef = this.dialog.open(TintervalComponent, {
         data: {}
     });
 
@@ -125,23 +137,6 @@ export interface Element {
     abstract: string;
     categories: Array < string > ;
     keywords: Array < string > ;
-}
-
-
-@Component({
-    selector: 'dialog-content-example-dialog',
-    templateUrl: 'mapBox.html',
-})
-
-export class DialogContentExampleDialog {
-
-    constructor(
-        public dialogRef: MatDialogRef < DialogContentExampleDialog > ,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
 }
 
 const ELEMENT_DATA: Element[] = [

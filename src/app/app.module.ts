@@ -8,6 +8,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule} from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +24,8 @@ import { DialogContentExampleDialog } from './pages/datasets/datasets.component'
 
 // Import Map module
 import { MapModule } from './ui/map/map.module';
+import { BboxComponent } from './ui/bbox/bbox.component';
+import { TintervalComponent } from './ui/tinterval/tinterval.component';
 
 @NgModule({
   declarations: [
@@ -32,24 +36,26 @@ import { MapModule } from './ui/map/map.module';
     DatasetsComponent,
     LoginComponent
   ],
-  entryComponents: [ DialogContentExampleDialog ],
+  entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent ],
   imports: [
     BrowserModule,
     FormsModule,
     MatSelectModule,
     MatTooltipModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     UiModule,
     MatDialogModule,
     RouterModule,
     SidebarModule.forRoot(),
     MatSnackBarModule,
     MatTableModule,
+    MatInputModule,
     MatPaginatorModule,
     MapModule,
-    ReactiveFormsModule,
-    FormsModule,
+    BrowserAnimationsModule,
     BrowserAnimationsModule
   ],
   providers: [],
