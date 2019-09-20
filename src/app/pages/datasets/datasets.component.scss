@@ -42,7 +42,6 @@ p{
     //border-radius: 0.7em;
 }
 
-
 .left {
     width: 18%;
     float: left;
@@ -64,7 +63,6 @@ p{
 .mat-table {
     overflow: auto;
   }
-
 
 .example-container {
     display: flex;
@@ -94,7 +92,7 @@ p{
     color: #4285f4;
   }
 
-  .bntHover2{
+.bntHover2{
     color: #3c4043;
     cursor: pointer;
     text-decoration: underline;
@@ -130,3 +128,35 @@ p{
     padding-top: 7px;
     display: flex;
 } 
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+.side {
+    margin: auto;
+}
+.one {
+    width: 50%;
+    float: left;
+}
+.two {
+    margin-left: 0%;
+}
+::ng-deep .mat-form-field{
+    width:120px !important;
+  }
+
+.filterBtn{
+    display: flex;
+    flex-wrap: wrap;
+}
+.button{
+    background: #0F66A0; 
+    color: white;
+    vertical-align: middle;
+}
+.button:hover{
+    background:rgb(42, 138, 201);
+    cursor: pointer;
+}

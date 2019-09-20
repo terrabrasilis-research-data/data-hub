@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-let logged = false;
+let logged;
+
+if (localStorage.getItem('Auth')){
+  logged = JSON.parse(localStorage.getItem('Auth')); 
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -15,10 +19,12 @@ export class SidebarComponent implements OnInit {
   }
 
   ChangeLogged(results: boolean){
-    logged = results;
+    var value = results;
+    localStorage.setItem('Auth', JSON.stringify(value));
   }
 
   isLogged(){
+    logged = JSON.parse(localStorage.getItem('Auth')); 
     return logged;
   }
 
