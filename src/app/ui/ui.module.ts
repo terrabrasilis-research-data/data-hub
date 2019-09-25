@@ -7,9 +7,10 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BboxComponent } from './bbox/bbox.component';
 import { TintervalComponent } from './tinterval/tinterval.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent, BboxComponent, TintervalComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent, BboxComponent, TintervalComponent, MapComponent],
   imports: [
     CommonModule,
     RouterModule

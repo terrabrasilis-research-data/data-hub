@@ -28,9 +28,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/leaflet/leaflet.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/leaflet/leaflet.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -76,27 +76,19 @@
                             <input matInput placeholder="North" class="matInputBBox">
                         </mat-form-field>
                     </div>
-        
-                    <div class="side">
-        
-                        <div class="one">
-        
-                            <mat-form-field>
-                                <input matInput placeholder="East" class="matInputBBox">
-                            </mat-form-field>
-                        </div>
-        
-                        <div class="two">
-        
-                            <mat-form-field>
-                                <input matInput placeholder="West" class="matInputBBox">
-                            </mat-form-field>
-        
-        
-                        </div>
-        
+
+                    <div class="center">
+                    
+                        <mat-form-field style="margin-right: 10px;">
+                            <input matInput placeholder="East" class="matInputBBox">
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <input matInput placeholder="West" class="matInputBBox">
+                        </mat-form-field>
+
                     </div>
-        
+
                     <div class="center">
                         <mat-form-field>
                             <input matInput placeholder="South" class="matInputBBox">
@@ -120,18 +112,19 @@
 
                     <div class="filterBtn">
         
-                            <mat-form-field>
-                                    <input matInput [matDatepicker]="picker" placeholder="Start date">
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
-        
-                            <mat-form-field style="margin-left: 15px">
-                                    <input matInput [matDatepicker]="picker2" placeholder="End date">
-                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker2></mat-datepicker>
-                            </mat-form-field>
-        
+                        <mat-form-field style="margin-right: 10px; margin-bottom: 10px;">
+                            <input matInput [matDatepicker]="picker" placeholder="Start date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field  style="margin-right: 10px; margin-bottom: 10px;">
+                                <input matInput [matDatepicker]="picker2" placeholder="End date">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+
+            
                     </div>
         
                     <div class="filterBtn">

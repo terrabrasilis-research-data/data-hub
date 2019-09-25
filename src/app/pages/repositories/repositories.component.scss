@@ -6,12 +6,16 @@
 .divtemp {
     display: inline-block;
 }​
-.side {
-    margin: auto;
+
+.middle {
+    text-align: center;
 }
+
 .center {
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .button{
@@ -26,13 +30,6 @@
 .button:hover{
     background:rgb(42, 138, 201);
     cursor: pointer;
-}
-.one {
-    width: 50%;
-    float: left;
-}
-.two {
-    margin-left: 0%;
 }
 
 .divbo{
@@ -125,5 +122,5 @@ img {
 
 
 ::ng-deep .mat-form-field{
-    width:120px !important;
+    width:100px !important;
   }

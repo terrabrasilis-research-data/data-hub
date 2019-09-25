@@ -132,20 +132,17 @@ p{
 .center {
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
-.side {
-    margin: auto;
+
+.middle {
+    text-align: center;
 }
-.one {
-    width: 50%;
-    float: left;
-}
-.two {
-    margin-left: 0%;
-}
+
 ::ng-deep .mat-form-field{
-    width:120px !important;
-  }
+    width:100px !important;
+}
 
 .filterBtn{
     display: flex;
