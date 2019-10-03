@@ -24,6 +24,7 @@ import { DialogContentExampleDialog } from './pages/datasets/datasets.component'
 
 import { BboxComponent } from './ui/bbox/bbox.component';
 import { TintervalComponent } from './ui/tinterval/tinterval.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TintervalComponent } from './ui/tinterval/tinterval.component';
     RepositoriesComponent,
     DialogContentExampleDialog,
     DatasetsComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent],
   imports: [

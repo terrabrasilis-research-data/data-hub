@@ -11,13 +11,6 @@
     text-align: center;
 }
 
-.center {
-    margin: 0 auto;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-
 .button{
     background: #0F66A0; 
     color: white;
@@ -124,3 +117,21 @@ img {
 ::ng-deep .mat-form-field{
     width:100px !important;
   }
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media screen and (max-width: 767px) {   
+
+}
+
+@media (min-width: 1470px) {    
+    .east{
+        margin-right: 10px;
+   } 
+}

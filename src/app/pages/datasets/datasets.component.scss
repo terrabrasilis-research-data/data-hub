@@ -130,7 +130,6 @@ p{
 } 
 
 .center {
-    margin: 0 auto;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -156,4 +155,22 @@ p{
 .button:hover{
     background:rgb(42, 138, 201);
     cursor: pointer;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media screen and (max-width: 767px) {   
+
+}
+
+@media (min-width: 1470px) {    
+    .east{
+        margin-right: 10px;
+   } 
 }
