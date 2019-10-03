@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-let logged;
-
-if (localStorage.getItem('Auth')){
-  logged = JSON.parse(localStorage.getItem('Auth')); 
-}
+let logged = false;
 
 @Component({
   selector: 'app-header',

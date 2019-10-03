@@ -19,9 +19,9 @@
                 <div class="navbar-expand ml-auto navbar-nav">
 
                     <div class="navbar-nav">
-
+                        
                         <span *ngIf="!isLogged()">
-                            <div class="textbar" (click)="ChangeLogged(true)">Login</div> 
+                            <div class="textbar" routerLink="/login" >Login</div> 
                         </span>
                         
                         <span *ngIf="isLogged()">

@@ -6,11 +6,8 @@
 .divtemp {
     display: inline-block;
 }​
-.side {
-    margin: auto;
-}
-.center {
-    margin: 0 auto;
+
+.middle {
     text-align: center;
 }
 
@@ -26,13 +23,6 @@
 .button:hover{
     background:rgb(42, 138, 201);
     cursor: pointer;
-}
-.one {
-    width: 50%;
-    float: left;
-}
-.two {
-    margin-left: 0%;
 }
 
 .divbo{
@@ -125,5 +115,23 @@ img {
 
 
 ::ng-deep .mat-form-field{
-    width:120px !important;
+    width:100px !important;
   }
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media screen and (max-width: 767px) {   
+
+}
+
+@media (min-width: 1470px) {    
+    .east{
+        margin-right: 10px;
+   } 
+}

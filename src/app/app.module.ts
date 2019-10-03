@@ -22,10 +22,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { SidebarModule } from 'ng-sidebar';
 import { DialogContentExampleDialog } from './pages/datasets/datasets.component';
 
-// Import Map module
-import { MapModule } from './ui/map/map.module';
 import { BboxComponent } from './ui/bbox/bbox.component';
 import { TintervalComponent } from './ui/tinterval/tinterval.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +33,10 @@ import { TintervalComponent } from './ui/tinterval/tinterval.component';
     RepositoriesComponent,
     DialogContentExampleDialog,
     DatasetsComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
-  entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent ],
+  entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -54,7 +54,6 @@ import { TintervalComponent } from './ui/tinterval/tinterval.component';
     MatTableModule,
     MatInputModule,
     MatPaginatorModule,
-    MapModule,
     BrowserAnimationsModule,
     BrowserAnimationsModule
   ],
