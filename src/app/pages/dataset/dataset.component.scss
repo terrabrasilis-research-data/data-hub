@@ -1,0 +1,31 @@
+.main{
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
+
+.left {
+    width: 25%;
+    float: right;
+}
+
+.right {
+    margin-right: 25%;
+}
+
+.greybox-left {
+    padding-top: 6%;
+    padding-right: 6%;
+    padding-bottom: 6%;
+    padding-left: 6%;
+    background:#f5f5f5;
+    border: 1.5px solid #e3e3e3;
+    border-radius: 0.7em;
+}
+
+.greybox-right {
+    margin-top: 2%;
+    margin-left: 2%;
+    //margin-right: 3%;
+    //background:#ededed;
+    //border-radius: 0.7em;
+}

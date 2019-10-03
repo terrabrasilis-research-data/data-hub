@@ -5,6 +5,8 @@ import { RepositoriesComponent } from './pages/repositories/repositories.compone
 import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { RepositorieComponent } from './pages/repositorie/repositorie.component';
+import { DatasetComponent } from './pages/dataset/dataset.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,7 +14,8 @@ const routes: Routes = [
   { path: 'datasets', component: DatasetsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  
+  { path: 'repositories/1', component: RepositorieComponent },
+  { path: 'datasets/1', component: DatasetComponent }
 ];
 
 @NgModule({
