@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'datasets', component: DatasetsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'repositories/1', component: RepositorieComponent },
-  { path: 'datasets/1', component: DatasetComponent }
+  { path: 'repositories/:id', component: RepositorieComponent },
+  { path: 'datasets/:id', component: DatasetComponent }
 ];
 
 @NgModule({
