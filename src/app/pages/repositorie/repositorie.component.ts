@@ -18,11 +18,11 @@ export class RepositorieComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; // (+) converts string 'id' to a number
 
-       let reposorie = this.reposorie;
-       let user = this.user;
-       let service = this.service;
-       let keywords = this.keywords;
-       let categories =  this.categories;
+       //let reposorie = this.reposorie;
+       //let user = this.user;
+       //let service = this.service;
+       //let keywords = this.keywords;
+       //let categories =  this.categories;
 
        // In a real app: dispatch action to load the details here.
     });
@@ -93,4 +93,4 @@ const repositorie: Repositorie[] = [
       "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", 
       "maintainer": "username"
     }
-  ]
+]
