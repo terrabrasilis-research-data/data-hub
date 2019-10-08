@@ -29,3 +29,39 @@
     //background:#ededed;
     //border-radius: 0.7em;
 }
+
+.publishIn{
+    font-size: 10pt;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 25pt;
+    color: #3c4043;
+    margin-bottom: 15px;
+
+}
+
+img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    
+  }
+
+.author{
+    margin-bottom: 15px;
+}
+
+.textlink{
+    color: #0F66A0; 
+
+}
+
+.textlink:hover{
+    text-decoration: underline;
+}
+
+.spacetext{
+    margin-left: 5px;
+}

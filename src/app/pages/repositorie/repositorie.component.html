@@ -10,9 +10,24 @@
         <div class="right">
     
             <div class="greybox-right">
-                
-                {{id}}
 
+                <div class="publishIn">Published: {{repositorie[0].created_on | slice:5:17}}  </div> 
+
+                <div class="title">{{repositorie[0].name}}</div> 
+
+                <div class="author"> 
+                    <a *ngFor="let user of users; let i = index">
+                        
+                        <a class="textlink spacetext" href="#">{{users[i].full_name}},</a>
+
+                    </a>
+                </div>
+                <div class="categorie">
+                    <a *ngFor="let categorie of categories; let i = index">
+                        
+                            <a class="textlink spacetext" href="#">{{categories[0]}}</a>
+                    </a>
+                </div>
                 <div style="margin-bottom: 650px"></div>
                 
             </div>
