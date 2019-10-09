@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -49,6 +50,7 @@ import { DatasetComponent } from './pages/dataset/dataset.component';
     AppRoutingModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    MatExpansionModule,
     MatNativeDateModule,
     UiModule,
     MatDialogModule,

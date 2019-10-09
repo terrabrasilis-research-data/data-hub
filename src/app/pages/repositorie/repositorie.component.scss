@@ -32,25 +32,26 @@
 
 .publishIn{
     font-size: 10pt;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
+    align-items: left;
+    margin-right: 0px;
 }
 
 .title {
     font-size: 25pt;
     color: #3c4043;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    align-items: left;
+    margin-right: 0px;
+    font-family: 'Times New Roman';
 
 }
 
-img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    
-  }
-
 .author{
-    margin-bottom: 15px;
+    font-size: 11pt;
+    margin-bottom: 5px;
+    align-items: left;
+    margin-right: 0px;
 }
 
 .textlink{
@@ -62,6 +63,54 @@ img {
     text-decoration: underline;
 }
 
-.spacetext{
-    margin-left: 5px;
+.header{
+    font-family: 'Times New Roman';
+    margin-top: 8pt;
+    font-size: 18pt;
+    color: #3c4043;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.textAbstract{
+    font-family: 'Times New Roman';
+
+}
+.abstract{
+    width: 80%;
+    margin-bottom: 13pt;
+}
+
+.repoContent{
+    width: 80%;
+}
+
+.marginBottom{
+    margin-bottom: 13pt;
+}
+.textBox{
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+img{
+    border-radius: 5%;
+    width: 60px;
+    height: 60px;
+    margin:3px;
+}
+.postgres{
+    color: #336791
+}
+.geoserver{
+    color: #0099CE
+}
+.geonetwork{
+    color: #CCCC00
 }
