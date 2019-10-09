@@ -23,7 +23,11 @@
 
         <div class="greybox-left textBox">
                 Datasets
-                <div style="height: 300px"></div>
+                
+                <a *ngFor="let dataset of datasets; let i = index">
+                    <div class="space"><a  class="textlink" href="#">{{datasets[i].name | slice:0:35}}... ({{datasets[i].year}})</a> 
+                    </div>
+                </a>
         </div>
 
     </div>
@@ -56,7 +60,7 @@
 
             <div class="repoContent">
                     <mat-accordion>
-                            <mat-expansion-panel>
+                            <mat-expansion-panel [expanded]="true">
                               <mat-expansion-panel-header>
                                 <mat-panel-title>
                                   Services
@@ -72,10 +76,10 @@
                               <mat-form-field>
                                 <input matInput placeholder="Age">
                               </mat-form-field>
+
                             </mat-expansion-panel>
 
-                            <mat-expansion-panel (opened)="panelOpenState = true"
-                                                 (closed)="panelOpenState = false">
+                            <mat-expansion-panel>
                               <mat-expansion-panel-header>
                                 <mat-panel-title>
                                   Metadata
@@ -83,7 +87,44 @@
                                 <mat-panel-description>
                                 </mat-panel-description>
                               </mat-expansion-panel-header>
-                              <p>I'm visible because I am open</p>
+
+                              <div class="ftextMetadata"> <a class="metadataTopic">Repositorie ID:</a> {{repositorie[0].repo_id}}</div> 
+                              
+                              <div class="textMetadata"> <a class="metadataTopic">Publication Date:</a> {{repositorie[0].created_on | slice:5:17}}</div> 
+                              
+                              <div class="textMetadata"> <a class="metadataTopic">Title: </a> {{repositorie[0].name}}</div> 
+
+                              <div class="textMetadata"> <a class="metadataTopic">Author(s): </a> 
+
+                                    <a *ngFor="let user of users; let i = index">
+                                        <a class="spacetext">{{users[i].full_name}}</a> 
+                                        <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
+                                        <a *ngIf="i == users.length-2"> & </a>
+                                    </a>
+                              </div> 
+
+                              <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{users[0].email}}</div> 
+
+                              <div class="textMetadata"> <a class="metadataTopic">Categorie: </a> 
+                                <a *ngFor="let categorie of categories; let i = index">
+                                    <a>{{categories[0]}}</a>
+                                </a>
+                             </div> 
+
+                             <div class="textMetadata"> <a class="metadataTopic">Keywords: </a> 
+                                <a *ngFor="let keyword of keywords; let i = index">
+                                    <a class="spacetext">{{keywords[0]}}</a> 
+                                    <a *ngIf="i != users.length-1">, </a> 
+                                </a>
+                             </div> 
+
+                             <div class="textMetadata"> <a class="metadataTopic">Coverage: </a> South-bound Latitude: 0.0 West-bound Longitude: 0.0 North-bound Latitude: 0.0 East-bound Longitude: 0.0 </div> 
+
+                             <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{repositorie[0].language}}</div> 
+
+                             <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{repositorie[0].maintainer}}</div> 
+                             
+                            
                             </mat-expansion-panel>
                             
                           </mat-accordion>

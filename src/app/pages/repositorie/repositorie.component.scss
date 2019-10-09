@@ -95,10 +95,6 @@
     padding-left: 10px;
 }
 
-.bold{
-    font-weight: bold;
-}
-
 img{
     border-radius: 5%;
     width: 60px;
@@ -113,4 +109,23 @@ img{
 }
 .geonetwork{
     color: #CCCC00
+}
+
+.metadataTopic{
+    font-weight: bold;
+}
+
+.textMetadata{
+    padding-top: 10px;
+    font-size: 12pt;
+    font-family: 'Times New Roman';
+}
+
+.ftextMetadata{
+    font-size: 12pt;
+    font-family: 'Times New Roman';
+}
+.space{
+    margin-left: 20px;
+    padding-top: 2px;
 }
