@@ -14,11 +14,6 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  ChangeLogged(results: boolean){
-    var value = results;
-    localStorage.setItem('Auth', JSON.stringify(value));
-  }
-
   isLogged(){
     logged = JSON.parse(localStorage.getItem('Auth')); 
     return logged;

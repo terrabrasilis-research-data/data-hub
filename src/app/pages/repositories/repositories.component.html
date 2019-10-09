@@ -87,7 +87,7 @@
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
                     <mat-header-cell *matHeaderCellDef> Repository </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <a class="nav-item nav-link bntHover" [routerLink]="'/login'">{{element.name}}</a> </mat-cell>
+                    <mat-cell *matCellDef="let element"> <a class="nav-item nav-link bntHover" [routerLink]="['/repositories', element.id]" style="font-weight: bold">{{element.name}}</a> </mat-cell>
                 </ng-container>
 
                 <!-- Image Column -->
