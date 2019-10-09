@@ -23,11 +23,13 @@
 
         <div class="greybox-left textBox">
                 Datasets
-                
-                <a *ngFor="let dataset of datasets; let i = index">
-                    <div class="space"><a  class="textlink" href="#">{{datasets[i].name | slice:0:35}}... ({{datasets[i].year}})</a> 
-                    </div>
-                </a>
+                <div *ngFor="let dataset of datasets; let i = index">
+                    <a class="itemLine textlink" href="#">
+                            {{datasets[i].name | slice:0:30}}... ({{datasets[i].year}})
+                    </a>
+  
+                </div>
+
         </div>
 
     </div>
@@ -68,14 +70,34 @@
                                 <mat-panel-description>
                                 </mat-panel-description>
                               </mat-expansion-panel-header>
-                          
-                              <mat-form-field>
-                                <input matInput placeholder="First name">
-                              </mat-form-field>
-                          
-                              <mat-form-field>
-                                <input matInput placeholder="Age">
-                              </mat-form-field>
+
+                              <table class="table table-striped topMargin">
+                                    <thead>
+                                    <tr>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Status</th>
+                                      <th scope="col">Created</th>
+                                      <th scope="col">IP Address</th>
+                                      <th scope="col">Published Ports</th>
+                                      <th scope="col">Ownership</th>  
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let service of services; index as i">
+                                      <td>{{service.name}}</td>
+                                      <td>
+                                          
+                                          <a class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</a>
+                                          <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
+                                    
+                                     </td>
+                                      <td>{{service.created_on | slice:0:25}}</td>
+                                      <td>{{service.address}}</td>
+                                      <td>{{service.ports}}</td>
+                                      <td>{{repositorie[0].maintainer}}</td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
 
                             </mat-expansion-panel>
 

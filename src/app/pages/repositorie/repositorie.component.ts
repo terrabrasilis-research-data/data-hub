@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'app-repositorie',
   templateUrl: './repositorie.component.html',
@@ -13,9 +12,9 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
   private sub: any;
 
   services: Service[] = [
-    {"address": "172.17.01", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "PostgreSQL", "ports": ["5432"]}, 
-    {"address": "172.17.02", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoServer", "ports": ["5555", "5050"]}, 
-    {"address": "172.17.03", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoNetwork", "ports": ["5000"]}
+    {"id": 1, "address": "172.17.01", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "PostgreSQL", "ports": ["5432"]}, 
+    {"id": 2, "address": "172.17.02", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoServer", "ports": ["5555", "5050"]}, 
+    {"id": 3, "address": "172.17.03", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoNetwork", "ports": ["5000"]}
   ]
 
   users: User[] = [
@@ -72,7 +71,15 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-  
+
+  checkServiceStatus(id: number){
+   // if (id == 2){
+   //     return false;
+   // } else {
+   //   return true;
+   // }
+  return true;
+  }
 }
 
 export interface Repositorie{
@@ -87,6 +94,7 @@ export interface Repositorie{
 }
 
 export interface Service {
+  id: number;
   address: string;
   created_on: string;
   name: string;

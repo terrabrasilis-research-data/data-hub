@@ -4,12 +4,13 @@
 }
 
 .left {
-    width: 25%;
     float: right;
+    margin-right: 6%;
+
 }
 
 .right {
-    margin-right: 25%;
+    margin-right: 15%;
 }
 
 .greybox-left {
@@ -128,4 +129,69 @@ img{
 .space{
     margin-left: 20px;
     padding-top: 2px;
+}
+
+.titleService{
+    font-weight: bold;
+    padding-right: 50px;
+}
+.servicesRow{
+    margin-bottom: 10px;
+}
+
+.status{
+    font-weight: bold;
+    background:#5cb85c;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.statusOFF{
+    font-weight: bold;
+    background:#d9534f;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.topMargin{
+    margin-top: 10px;
+}
+
+.rightboxSide{
+    float:right; 
+    padding-left: 2px; 
+    width: 90%;
+    text-align: left;
+    border:solid;
+    border-color: red;
+
+}
+
+.middleboxSide{ 
+    float:left;  
+    width: 10%; 
+    text-align: right;
+    border:solid;
+    border-color: green;
+} 
+
+.sizeline{
+    align-items: center;
+    align-content: center;
+    padding-top: 10px;
+}
+
+.textBox{
+    width: 360px;
+}
+
+.itemLine{
+    display: flex;
+    align-items: center;
+    padding-top: 3px;
+    padding-left: 10px;
 }
