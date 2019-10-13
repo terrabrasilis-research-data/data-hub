@@ -5,12 +5,13 @@
 
 .left {
     float: right;
-    margin-right: 6%;
-
+    width: 28%;
+    margin: 0px;
 }
 
 .right {
     margin-right: 15%;
+    width: 85%;
 }
 
 .greybox-left {
@@ -57,11 +58,11 @@
 
 .textlink{
     color: #0F66A0; 
-
 }
 
 .textlink:hover{
     text-decoration: underline;
+
 }
 
 .header{

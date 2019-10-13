@@ -1,18 +1,53 @@
-.main{
-    margin-left: 20%;
-    margin-right: 20%;
-}
 
 .text-heading {
     font-weight: 300;
     padding-left: 17px;
+    font-size: 20pt;
+}
+
+.imagem{
+    //        <img class="imagem" src="assets/images/header.png" alt="Card image cap">
+
+    height: 270px;
+    width: 100%;
 }
 
 .greybox {
+    margin-left: 20%;
+    margin-right: 20%;
     padding-top: 10px;
     padding-right: 5px;
     padding-left: 5px;
-    margin-top: 45px;
+    margin-top: 25px;
+    background:#f5f5f5;
+    border: 1.5px solid #e3e3e3;
+    border-radius: 0.7em;
+}
+
+.font{
+    font-family: 'Times New Roman';
+}
+
+.bold{
+    font-size: 14pt;
+}
+
+.textRight{
+    text-align: right;
+}
+
+.sizeText{
+    font-size:14px;
+    padding-bottom: 0px;
+}
+
+.graybox2{
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-top: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-top: 25px;
     background:#f5f5f5;
     border: 1.5px solid #e3e3e3;
     border-radius: 0.7em;
@@ -23,7 +58,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-top: 5px;
+    padding-top: 5px;;
 }
 
 .box {
@@ -52,4 +87,5 @@
 
 .textlink:hover{
     text-decoration: underline;
+    cursor: pointer;
 }
