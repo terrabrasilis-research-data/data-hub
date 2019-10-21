@@ -15,7 +15,6 @@ export class SidebarComponent implements OnInit {
   }
 
   isLogged(){
-    logged = JSON.parse(localStorage.getItem('Auth')); 
     return logged;
   }
 

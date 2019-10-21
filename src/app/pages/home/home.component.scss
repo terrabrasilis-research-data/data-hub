@@ -64,9 +64,15 @@
     padding: 5px;
 }
 
+.boxText {
+    width: 20%;
+    margin-left: 80%;
+}
+
 .boxRight {
     padding-bottom: 0px;
     text-align: right;
+    align-content: right;
     /*border-style: solid;
     border-color: purple;*/
 }
