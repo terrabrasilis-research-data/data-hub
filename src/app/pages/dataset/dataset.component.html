@@ -1,21 +1,167 @@
 <div class="main">
 
-        <div class="left" >
-    
-            <div class="greybox-left">
-              Mapa
-              <div style="margin-bottom: 650px"></div>
-            </div>
-        </div>
-        <div class="right">
-    
-            <div class="greybox-right">
-                
-                Conteudo
+    <div class="left" >
 
-                <div style="margin-bottom: 650px"></div>
-                
-            </div>
-        
+        <div class="greybox-left marginBottom textBox">
+                Map
+                <div style="height: 300px; border: solid">
+                </div>
         </div>
+
+        <div class="greybox-left textBox">
+                others_datasets with similar authors
+                <div *ngFor="let dataset of others_datasets; let i = index">
+                    <a class="itemLine textlink" href="#">
+                            {{others_datasets[i].name | slice:0:30}}... ({{others_datasets[i].year}})
+                    </a>
+  
+                </div>
+
+        </div>
+
+    </div>
+    <div class="right">
+
+        <div class="greybox-right">
+
+            <div class="publishIn">Published: {{dataset[0].created_on | slice:5:17}} | 
+                <a *ngFor="let categorie of categories; let i = index">
+                    <a class="textlink" href="#">{{categories[0]}}</a>
+                </a>
+            </div> 
+
+            <div class="title">{{dataset[0].name}}</div> 
+
+            <div class="author"> 
+                <a *ngFor="let user of users; let i = index">
+                    <a class="textlink spacetext" href="#">{{users[i].full_name}}</a> 
+                    <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
+                    <a *ngIf="i == users.length-2"> & </a>
+                </a>
+            </div>
+            
+            <div class="abstract">
+                <div class="header"> Abstract </div>
+                <div class="textAbstract"> 
+                        {{dataset[0].abstract}}
+                </div>
+            </div>
+
+            <div class="repoContent">
+                    <mat-accordion>
+                            <mat-expansion-panel [expanded]="true">
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                Files
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                </mat-panel-description>
+                              </mat-expansion-panel-header>
+
+                              <table class="table table-striped topMargin">
+                                    <thead>
+                                    <tr>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Status</th>
+                                      <th scope="col">Created</th>
+                                      <th scope="col">IP Address</th>
+                                      <th scope="col">Published Ports</th>
+                                      <th scope="col">Ownership</th>  
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let service of services; index as i">
+                                      <td>{{service.name}}</td>
+                                      <td>
+                                          
+                                          <a class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</a>
+                                          <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
+                                    
+                                     </td>
+                                      <td>{{service.created_on | slice:0:25}}</td>
+                                      <td>{{service.address}}</td>
+                                      <td>{{service.ports}}</td>
+                                      <td>{{dataset[0].maintainer}}</td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel>
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                  Metadata
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                </mat-panel-description>
+                              </mat-expansion-panel-header>
+
+                              <div class="ftextMetadata"> <a class="metadataTopic">dataset ID:</a> {{dataset[0].repo_id}}</div> 
+                              
+                              <div class="textMetadata"> <a class="metadataTopic">Publication Date:</a> {{dataset[0].created_on | slice:5:17}}</div> 
+                              
+                              <div class="textMetadata"> <a class="metadataTopic">Title: </a> {{dataset[0].name}}</div> 
+
+                              <div class="textMetadata"> <a class="metadataTopic">Author(s): </a> 
+
+                                    <a *ngFor="let user of users; let i = index">
+                                        <a class="spacetext">{{users[i].full_name}}</a> 
+                                        <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
+                                        <a *ngIf="i == users.length-2"> & </a>
+                                    </a>
+                              </div> 
+
+                              <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{users[0].email}}</div> 
+
+                              <div class="textMetadata"> <a class="metadataTopic">Categorie: </a> 
+                                <a *ngFor="let categorie of categories; let i = index">
+                                    <a>{{categories[0]}}</a>
+                                </a>
+                             </div> 
+
+                             <div class="textMetadata"> <a class="metadataTopic">Keywords: </a> 
+                                <a *ngFor="let keyword of keywords; let i = index">
+                                    <a class="spacetext">{{keywords[0]}}</a> 
+                                    <a *ngIf="i != users.length-1">, </a> 
+                                </a>
+                             </div> 
+
+                             <div class="textMetadata"> <a class="metadataTopic">Coverage: </a> South-bound Latitude: 0.0 West-bound Longitude: 0.0 North-bound Latitude: 0.0 East-bound Longitude: 0.0 </div> 
+
+                             <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{dataset[0].language}}</div> 
+
+                             <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{dataset[0].maintainer}}</div> 
+                             
+                            
+                            </mat-expansion-panel>
+                            
+                          </mat-accordion>
+            </div>
+
+            <div class="cite">
+            <div class="header"> Cite this dataset </div>
+            <div class="textAbstract"> 
+
+                    <a *ngFor="let user of users; let i = index">
+                            <a class="spacetext">{{users[i].full_name}}</a> 
+                            <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
+                            <a *ngIf="i == users.length-2">; </a>
+                    </a>
+                            ({{others_datasets[0].year}}): {{others_datasets[2].name}}. {{categories[0]}}. Terrabrasilis Research Data. <a class="textlink" href="#">http://terrabrasilisresearchdata.dpi.inpe.br/LABTes/1</a>
+                        </div>
+                            <div class="links" style="margin-top: 10px">
+                                    <div class="divcite"> <a class="textlink spacetext" href="#"> Download citation</a> </div>
+                                    </div>
+                   
+                   
+
+           
+        </div>
+            <div style="margin-bottom: 650px">
+            </div>
+
+        </div>
+
+    </div>
 </div>
