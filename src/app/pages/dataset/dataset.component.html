@@ -9,7 +9,7 @@
         </div>
 
         <div class="greybox-left textBox">
-                others_datasets with similar authors
+                Others datasets with similar authors
                 <div *ngFor="let dataset of others_datasets; let i = index">
                     <a class="itemLine textlink" href="#">
                             {{others_datasets[i].name | slice:0:30}}... ({{others_datasets[i].year}})
@@ -58,30 +58,35 @@
                                 </mat-panel-description>
                               </mat-expansion-panel-header>
 
-                              <table class="table table-striped topMargin">
+                              <table class="table table-striped topMargin vertical">
                                     <thead>
                                     <tr>
                                       <th scope="col">Name</th>
-                                      <th scope="col">Status</th>
-                                      <th scope="col">Created</th>
-                                      <th scope="col">IP Address</th>
-                                      <th scope="col">Published Ports</th>
-                                      <th scope="col">Ownership</th>  
+                                      <th scope="col">Size</th>
+                                      <th scope="col">Published on</th>
+                                      <th scope="col"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr *ngFor="let service of services; index as i">
-                                      <td>{{service.name}}</td>
-                                      <td>
-                                          
-                                          <a class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</a>
-                                          <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
+                                    <tr *ngFor="let data of data_objects; index as i">
                                     
-                                     </td>
-                                      <td>{{service.created_on | slice:0:25}}</td>
-                                      <td>{{service.address}}</td>
-                                      <td>{{service.ports}}</td>
-                                      <td>{{dataset[0].maintainer}}</td>
+                                    <td> 
+                                    <div>
+                                            
+                                                    <i class="material-icons sizeIcon">
+                                                        description
+                                                    </i>
+        
+                                                {{data.name}}
+                                    </div>
+
+                                    </td>
+                                      <td>{{data.size}}</td>
+                                      <td>{{data.created_on | slice:5:17}}</td>
+                                      <td>
+                                            <a routerLink="/" class="btn button">Download</a>
+                                            
+                                      </td>
                                     </tr>
                                     </tbody>
                                   </table>

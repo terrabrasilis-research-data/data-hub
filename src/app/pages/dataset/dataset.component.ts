@@ -11,10 +11,10 @@ export class DatasetComponent implements OnInit, OnDestroy {
   id: number;
   private sub: any;
 
-  services: Service[] = [
-    {"id": 1, "address": "172.17.01", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "PostgreSQL", "ports": ["5432"]}, 
-    {"id": 2, "address": "172.17.02", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoServer", "ports": ["5555", "5050"]}, 
-    {"id": 3, "address": "172.17.03", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoNetwork", "ports": ["5000"]}
+  data_objects: Data_obj[] = [
+    {"id": 1, "name": "GHGSat_CH4_03sep2018_source1.npy", "size": "91.4 kB", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT"}, 
+    {"id": 2, "name": "GHGSat_CH4_08nov2018_source1.npy", "size": "91.4 kB", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT"}, 
+    {"id": 3, "name": "GHGSat_CH4_13jan2019_source1_source2.npy", "size": "91.4 kB", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT"}
   ]
 
   users: User[] = [
@@ -95,12 +95,11 @@ export interface Dataset{
   maintainer: string;
 }
 
-export interface Service {
+export interface Data_obj {
   id: number;
-  address: string;
-  created_on: string;
   name: string;
-  ports: Array < string >;
+  size: string;
+  created_on: string;
 }
 
 export interface User {

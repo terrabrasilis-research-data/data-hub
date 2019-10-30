@@ -210,3 +210,23 @@ img{
     padding-top: 3px;
     padding-left: 10px;
 }
+
+.button{
+    background: #0F66A0; 
+    color: white;
+}
+.button:hover{
+    background:rgb(42, 138, 201)
+}
+.sizeIcon{
+
+    color: #4f5355;
+    font-size: 25pt;
+    position: relative;
+  /* Adjust these values accordingly */
+  top: 5px;
+  margin-left: 2px;
+  margin-right: 10px;
+  vertical-align:bottom;
+
+}
