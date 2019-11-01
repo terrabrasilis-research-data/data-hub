@@ -12,6 +12,7 @@ import { MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list'; 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -57,6 +58,7 @@ import { DatasetComponent } from './pages/dataset/dataset.component';
     UiModule,
     MatDialogModule,
     RouterModule,
+    LeafletModule,
     SidebarModule.forRoot(),
     MatSnackBarModule,
     MatTableModule,

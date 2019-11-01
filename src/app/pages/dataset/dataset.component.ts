@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { latLng, tileLayer, Layer, geoJSON } from 'leaflet';
 
 @Component({
   selector: 'app-dataset',
@@ -7,10 +9,53 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dataset.component.scss']
 })
 
-export class DatasetComponent implements OnInit, OnDestroy {
+export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
+  
+  OSM = {
+		id: 'openstreetmap',
+		name: 'Open Street Map',
+		enabled: false,
+		layer: tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Open Street Map'
+		})
+  };
+  
+	geoJSON = {
+		id: 'geoJSON',
+		name: 'Geo JSON Polygon',
+		enabled: true,
+		layer: geoJSON(
+			({
+				type: 'Polygon',
+				coordinates: [[
+					[ -121.6, 46.87 ],
+					[ -121.5, 46.87 ],
+					[ -121.5, 46.93],
+					[ -121.6, 46.87 ]
+				]]
+			}) as any,
+			{ style: () => ({ color: '#ff7800' })})
+	};
+
+	layers: Layer[];
+	layersControl = {
+		baseLayers: {
+			'Open Street Map': this.OSM.layer
+		},
+		overlays: {
+			GeoJSON: this.geoJSON.layer
+		}
+  };
+  
+	options = {
+		zoom: 10,
+		center: latLng(46.879966, -121.726909)
+  };
+  
   id: number;
   private sub: any;
-
+  
   data_objects: Data_obj[] = [
     {"id": 1, "name": "GHGSat_CH4_03sep2018_source1.npy", "size": "91.4 kB", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT"}, 
     {"id": 2, "name": "GHGSat_CH4_08nov2018_source1.npy", "size": "91.4 kB", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT"}, 
@@ -68,6 +113,7 @@ export class DatasetComponent implements OnInit, OnDestroy {
 
        // In a real app: dispatch action to load the details here.
     });
+    
   }
 
   ngOnDestroy() {
@@ -82,6 +128,7 @@ export class DatasetComponent implements OnInit, OnDestroy {
     // }
    return true;
    }
+
 }
 
 export interface Dataset{

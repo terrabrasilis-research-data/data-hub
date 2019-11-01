@@ -4,7 +4,10 @@
 
         <div class="greybox-left marginBottom textBox">
                 Map
-                <div style="height: 300px; border: solid">
+                <div style="height: 300px;"
+                    leaflet
+                    [leafletOptions]="optionsSpec"
+                    [leafletLayers]="layers">
                 </div>
         </div>
 
