@@ -1,0 +1,102 @@
+<div class="main">
+    <div class="loginBox">
+
+            <div class="card">
+                    <article class="card-body">
+                    <h4 class="card-title mb-4 mt-1">Dashboard</h4>
+
+                        <div class="left">
+
+                                <mat-accordion>
+                                        <mat-expansion-panel [expanded]="true">
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                            Quick Publish
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+
+                                          <div>
+                                                <a routerLink="/signup" class="btn button bottom">My Datasets</a>
+                                          </div>
+
+                                          <div class="form-group bottom">
+                                                <label>Name</label>
+                                                <input name="" class="form-control" placeholder="User name" type="text">
+                                            </div> <!-- form-group// -->
+
+                                          <div>
+                                                <a routerLink="/signup" class="btn button">Publish</a>
+                                          </div>
+
+                                        </mat-expansion-panel>
+                                        
+                                      </mat-accordion>
+
+                        </div>
+
+                        <div class="right">
+
+                                <mat-accordion>
+                                        <mat-expansion-panel [expanded]="true">
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                            News feed
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+
+                                          <div *ngFor="let activitie of activities; let i = index">
+                                                <a style="font-weight: bold;">{{activities[i].username}}</a> {{activities[i].activity_type}} 
+                                                <a class="textlink" [routerLink]="['/datasets', activities[i].package_id]">{{activities[i].package_name}}</a>
+                                            </div>
+
+                                          
+                                        
+                                        </mat-expansion-panel>
+                                
+                                </mat-accordion>
+
+                                <div class="up">
+                                    <mat-accordion>
+                                            <mat-expansion-panel [expanded]="true">
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                Repositories
+                                                </mat-panel-title>
+                                                <mat-panel-description>
+                                                </mat-panel-description>
+                                            </mat-expansion-panel-header>
+                
+                                            <a routerLink="/signup" class="btn button">My Repositories</a>
+                                            
+                                            </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                                <div class="up">
+                                    <mat-accordion>
+                                        <mat-expansion-panel [expanded]="true">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                            Services
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+
+                                        <a routerLink="/signup" class="btn button">My Services</a>
+
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                        </div>        
+
+                       
+                    </article>
+                    </div> 
+
+    </div>
+</div>
+    
