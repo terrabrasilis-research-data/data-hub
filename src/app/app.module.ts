@@ -31,6 +31,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { RepositorieComponent } from './pages/repositorie/repositorie.component';
 import { DatasetComponent } from './pages/dataset/dataset.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NewdatasetComponent } from './pages/newdataset/newdataset.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     SignupComponent,
     RepositorieComponent,
     DatasetComponent,
-    DashboardComponent
+    DashboardComponent,
+    NewdatasetComponent
   ],
   entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent],
   imports: [

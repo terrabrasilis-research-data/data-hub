@@ -149,23 +149,6 @@
 
                                 <div class="up">
                                     <mat-accordion>
-                                            <mat-expansion-panel [expanded]="true">
-                                            <mat-expansion-panel-header>
-                                                <mat-panel-title>
-                                                <a class="bold">Repositories</a>
-                                                </mat-panel-title>
-                                                <mat-panel-description>
-                                                </mat-panel-description>
-                                            </mat-expansion-panel-header>
-
-                                            <a routerLink="/signup" class="btn button">New Repositorie</a>
-                                            <a routerLink="/signup" class="btn button leftmargin">My Repositories</a>
-                                            
-                                            </mat-expansion-panel>
-                                    </mat-accordion>
-                                </div>
-                                <div class="up">
-                                    <mat-accordion>
                                         <mat-expansion-panel [expanded]="true">
                                         <mat-expansion-panel-header>
                                             <mat-panel-title>
@@ -175,8 +158,30 @@
                                             </mat-panel-description>
                                         </mat-expansion-panel-header>
 
-                                        <a routerLink="/signup" class="btn button">My Services</a>
-
+                                        <table class="table table-striped topMargin">
+                                                <thead>
+                                                <tr>
+                                                  <th scope="col">Name</th>
+                                                  <th scope="col">Status</th>
+                                                  <th scope="col">IP Address</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let service of services; index as i">
+                                                  <td>{{service.name}}</td>
+                                                  <td>
+                                                      
+                                                        <a class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</a>
+                                                        <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
+                                                  
+                                                   </td>
+                                                  <td>{{service.address}}:{{service.ports}}</td>
+                                                </tr>
+                                                </tbody>
+                                        </table>
+                                        
+                                        <a routerLink="/dashboard" class="btn button leftmargin">My Services</a>
+                                        <a routerLink="/signup" class="btn button leftmargin">New Repositorie</a>
                                         </mat-expansion-panel>
                                     </mat-accordion>
                                 </div>
@@ -191,9 +196,16 @@
                                                     <mat-panel-description>
                                                     </mat-panel-description>
                                                 </mat-expansion-panel-header>
-                    
+                                                
+                                                <div *ngFor="let dataset of datasets; let i = index">
+                                                        <a class="itemLine textlink" href="#">
+                                                                {{datasets[i].name | slice:0:30}}... ({{datasets[i].year}})
+                                                        </a>
+                                      
+                                                    </div>
+
                                                 <a routerLink="/data" class="btn button">New Dataset</a>
-                                                <a routerLink="/signup" class="btn button leftmargin">My Datasets</a>
+                                                <a routerLink="/dashboard" class="btn button leftmargin">My Datasets</a>
                                                 
                                                 </mat-expansion-panel>
                                         </mat-accordion>
