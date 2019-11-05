@@ -1,6 +1,6 @@
 .main{
-    margin-left: 0.5%;
-    margin-right: 0.5%;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
 }
 
 .table {
@@ -147,11 +147,13 @@ p{
     display: flex;
     flex-wrap: wrap;
 }
+
 .button{
     background: #0F66A0; 
     color: white;
     vertical-align: middle;
 }
+
 .button:hover{
     background:rgb(42, 138, 201);
     cursor: pointer;

@@ -1,0 +1,209 @@
+<div class="main">
+    <div class="loginBox">
+
+            <div class="card">
+                    <article class="card-body">
+                    <h4 class="card-title mb-4 mt-1">Dashboard</h4>
+
+                        <div class="left">
+                                <div class="">
+                                <mat-accordion>
+                                        <mat-expansion-panel [expanded]="true">
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                            <a class="bold">Quick Publish</a>
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+
+
+                                          <div class="form-group bottom">
+                                                <label>Title</label>
+                                                <input name="" class="form-control" placeholder="A descriptive title" type="text">
+                                            </div> <!-- form-group// -->
+
+                                            <div class="form-group bottom">
+
+                                                    <label>Description</label>
+                                                    
+                                                    <div class="form-group">
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Some useful notes about the data"></textarea>
+                                                    </div>
+
+                                                </div> <!-- form-group// -->
+
+                                                    <div class="form-group bottom">
+                                                        <label>Tags</label>
+                                                        <input name="" class="form-control" placeholder="land use, land cover, processed images" type="text">
+                                                    </div> <!-- form-group// -->
+
+                                                    <div class="form-group bottom">
+                                                            <div>
+                                                                <label>Repositorie </label>
+                                                                
+                                                            </div>
+                                                            <div>
+                                                                <select class="sizeDropdown">
+                                                                        <option value="volvo">Volvo</option>
+                                                                        <option value="saab">Saab</option>
+                                                                        <option value="opel">Opel</option>
+                                                                        <option value="audi">Audi</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </div> <!-- form-group// -->
+              
+                                                    <div class="form-group bottom">
+                                                            <div>
+                                                                    <label>Visibility </label>
+                                                            </div>
+                                                            <div>
+                                                                    <select class="sizeDropdown">
+                                                                            <option value="volvo">Public</option>
+                                                                            <option value="saab">Private</option>
+                                                                    </select>
+                                                            </div>
+
+                                                        </div> <!-- form-group// -->
+
+                                                        <div class="form-group bottom">
+                                                            <label>Author Email</label>
+                                                            <input name="" class="form-control" placeholder="joe@exemple.com" type="text">
+                                                        </div> <!-- form-group// -->
+
+                                                        <div class="form-group bottom">
+                                                                <label>Maintainer</label>
+                                                                <input name="" class="form-control" placeholder="Joe Bloggs" type="text">
+                                                        </div> <!-- form-group// -->
+
+                                                        <div class="form-group bottom">
+                                                                    <label>Bounding Box</label>
+                                                                    <input name="" class="form-control" placeholder="GEOJSON Bounding Box" type="text">
+                                                        </div> <!-- form-group// -->
+
+                                                        <div class="form-group bottom">
+                                                            <div>
+                                                                <label>Custom Field</label>
+                                                            </div>
+                                                                    
+                                                                    Key <input name="" class="form-control" placeholder="" type="text">
+
+                                                                    Value <input name="" class="form-control" placeholder="" type="text">
+
+                                                        </div> <!-- form-group// -->
+
+                                                        <div class="form-group bottom">
+                                                                <label>URL</label>
+                                                                <input name="" class="form-control" placeholder="http://exemple.com/external-data.csv" type="text">
+                                                        </div> <!-- form-group// -->
+    
+                                                        <div class="form-group bottom">
+                                                                    <label>Name</label>
+                                                                    <input name="" class="form-control" placeholder="http://exemple.com/external-data.csv" type="text">
+                                                        </div> <!-- form-group// -->
+
+                                                        <div class="form-group bottom">
+                                                                <label>Description</label>
+                                                                <input name="" class="form-control" placeholder="Some useful notes about the data" type="text">
+                                                            </div> <!-- form-group// -->
+            
+                                                        <div class="form-group bottom">
+                                                                <label>Format</label>
+                                                                <input name="" class="form-control" placeholder="CSV, XLS or JSON" type="text">
+                                                            </div> <!-- form-group// -->
+        
+                                          <div>
+                                                <a routerLink="/signup" class="btn button">Publish now</a>
+                                          </div>
+
+                                        </mat-expansion-panel>
+                                        
+                                      </mat-accordion>
+
+                                    </div>
+
+                        </div>
+
+                        <div class="right">
+
+                                <mat-accordion>
+                                        <mat-expansion-panel [expanded]="true">
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                            <a class="bold">News feed</a>
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+
+                                          <div *ngFor="let activitie of activities; let i = index">
+                                                <a style="text-decoration: underline;">{{activities[i].username}}</a> {{activities[i].activity_type}} 
+                                                <a class="textlink" [routerLink]="['/datasets', activities[i].package_id]">{{activities[i].package_name}}</a>
+                                            </div>
+
+
+                                        </mat-expansion-panel>
+                                
+                                </mat-accordion>
+
+                                <div class="up">
+                                    <mat-accordion>
+                                            <mat-expansion-panel [expanded]="true">
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                <a class="bold">Repositories</a>
+                                                </mat-panel-title>
+                                                <mat-panel-description>
+                                                </mat-panel-description>
+                                            </mat-expansion-panel-header>
+
+                                            <a routerLink="/signup" class="btn button">New Repositorie</a>
+                                            <a routerLink="/signup" class="btn button leftmargin">My Repositories</a>
+                                            
+                                            </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                                <div class="up">
+                                    <mat-accordion>
+                                        <mat-expansion-panel [expanded]="true">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                            <a class="bold">Services</a>
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                            </mat-panel-description>
+                                        </mat-expansion-panel-header>
+
+                                        <a routerLink="/signup" class="btn button">My Services</a>
+
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+
+                                <div class="up">
+                                        <mat-accordion>
+                                                <mat-expansion-panel [expanded]="true">
+                                                <mat-expansion-panel-header>
+                                                    <mat-panel-title>
+                                                    <a class="bold">Datasets</a>
+                                                    </mat-panel-title>
+                                                    <mat-panel-description>
+                                                    </mat-panel-description>
+                                                </mat-expansion-panel-header>
+                    
+                                                <a routerLink="/data" class="btn button">New Dataset</a>
+                                                <a routerLink="/signup" class="btn button leftmargin">My Datasets</a>
+                                                
+                                                </mat-expansion-panel>
+                                        </mat-accordion>
+                                    </div>
+                        </div>        
+
+                       
+                    </article>
+                    </div> 
+
+    </div>
+</div>
+    
