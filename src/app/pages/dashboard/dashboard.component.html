@@ -6,7 +6,7 @@
                     <h4 class="card-title mb-4 mt-1">Dashboard</h4>
 
                         <div class="left">
-                                <div class="up">
+                                <div class="">
                                 <mat-accordion>
                                         <mat-expansion-panel [expanded]="true">
                                           <mat-expansion-panel-header>
@@ -122,22 +122,6 @@
                                       </mat-accordion>
 
                                     </div>
-                                      <div class="up">
-                                            <mat-accordion>
-                                                    <mat-expansion-panel [expanded]="true">
-                                                    <mat-expansion-panel-header>
-                                                        <mat-panel-title>
-                                                        <a class="bold">Datasets</a>
-                                                        </mat-panel-title>
-                                                        <mat-panel-description>
-                                                        </mat-panel-description>
-                                                    </mat-expansion-panel-header>
-                        
-                                                    <a routerLink="/signup" class="btn button">My Datasets</a>
-                                                    
-                                                    </mat-expansion-panel>
-                                            </mat-accordion>
-                                        </div>
 
                         </div>
 
@@ -173,8 +157,9 @@
                                                 <mat-panel-description>
                                                 </mat-panel-description>
                                             </mat-expansion-panel-header>
-                
-                                            <a routerLink="/signup" class="btn button">My Repositories</a>
+
+                                            <a routerLink="/signup" class="btn button">New Repositorie</a>
+                                            <a routerLink="/signup" class="btn button leftmargin">My Repositories</a>
                                             
                                             </mat-expansion-panel>
                                     </mat-accordion>
@@ -195,6 +180,24 @@
                                         </mat-expansion-panel>
                                     </mat-accordion>
                                 </div>
+
+                                <div class="up">
+                                        <mat-accordion>
+                                                <mat-expansion-panel [expanded]="true">
+                                                <mat-expansion-panel-header>
+                                                    <mat-panel-title>
+                                                    <a class="bold">Datasets</a>
+                                                    </mat-panel-title>
+                                                    <mat-panel-description>
+                                                    </mat-panel-description>
+                                                </mat-expansion-panel-header>
+                    
+                                                <a routerLink="/data" class="btn button">New Dataset</a>
+                                                <a routerLink="/signup" class="btn button leftmargin">My Datasets</a>
+                                                
+                                                </mat-expansion-panel>
+                                        </mat-accordion>
+                                    </div>
                         </div>        
 
                        
