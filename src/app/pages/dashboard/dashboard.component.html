@@ -142,7 +142,6 @@
                                                 <a class="textlink" [routerLink]="['/datasets', activities[i].package_id]">{{activities[i].package_name}}</a>
                                             </div>
 
-
                                         </mat-expansion-panel>
                                 
                                 </mat-accordion>
@@ -180,8 +179,7 @@
                                                 </tbody>
                                         </table>
                                         
-                                        <a routerLink="/dashboard" class="btn button leftmargin">My Services</a>
-                                        <a routerLink="/signup" class="btn button leftmargin">New Repositorie</a>
+                                        <a routerLink="/dashboard" class="btn button">My Services</a>
                                         </mat-expansion-panel>
                                     </mat-accordion>
                                 </div>
@@ -196,13 +194,12 @@
                                                     <mat-panel-description>
                                                     </mat-panel-description>
                                                 </mat-expansion-panel-header>
-                                                
-                                                <div *ngFor="let dataset of datasets; let i = index">
-                                                        <a class="itemLine textlink" href="#">
-                                                                {{datasets[i].name | slice:0:30}}... ({{datasets[i].year}})
-                                                        </a>
-                                      
+
+                                                    <div *ngFor="let dataset of datasets; let i = index">
+                                                            <a class="textlink itemLine" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].name | slice:0:35}}... ({{datasets[i].year}})</a>
                                                     </div>
+
+                                                <br>
 
                                                 <a routerLink="/data" class="btn button">New Dataset</a>
                                                 <a routerLink="/dashboard" class="btn button leftmargin">My Datasets</a>
