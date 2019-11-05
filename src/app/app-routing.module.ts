@@ -8,6 +8,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { RepositorieComponent } from './pages/repositorie/repositorie.component';
 import { DatasetComponent } from './pages/dataset/dataset.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NewdatasetComponent } from './pages/newdataset/newdataset.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'repositories/:id', component: RepositorieComponent },
   { path: 'datasets/:id', component: DatasetComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'data', component: NewdatasetComponent },
 ];
 
 @NgModule({
