@@ -8,7 +8,11 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { RepositorieComponent } from './pages/repositorie/repositorie.component';
 import { DatasetComponent } from './pages/dataset/dataset.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { NewdatasetComponent } from './pages/newdataset/newdataset.component'
+import { NewdatasetComponent } from './pages/newdataset/newdataset.component';
+import { NewrepositorieComponent } from './pages/newrepositorie/newrepositorie.component';
+import { MyrepositoriesComponent } from './pages/myrepositories/myrepositories.component'
+import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component'
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +23,10 @@ const routes: Routes = [
   { path: 'repositories/:id', component: RepositorieComponent },
   { path: 'datasets/:id', component: DatasetComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'data', component: NewdatasetComponent },
+  { path: 'create/dataset', component: NewdatasetComponent },
+  { path: 'create/repositorie', component: NewrepositorieComponent },
+  { path: 'view/repositories', component: MyrepositoriesComponent },
+  { path: 'view/datasets', component: MydatasetsComponent }
 ];
 
 @NgModule({
