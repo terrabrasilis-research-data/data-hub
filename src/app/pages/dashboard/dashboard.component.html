@@ -189,6 +189,29 @@
                                                 <mat-expansion-panel [expanded]="true">
                                                 <mat-expansion-panel-header>
                                                     <mat-panel-title>
+                                                    <a class="bold">Repositories</a>
+                                                    </mat-panel-title>
+                                                    <mat-panel-description>
+                                                    </mat-panel-description>
+                                                </mat-expansion-panel-header>
+
+                                                    <div *ngFor="let repositorie of repositories; let i = index">
+                                                            <a class="textlink itemLine" [routerLink]="['/repositories', repositories[i].repositorie_id]">{{repositories[i].authors[0].split(" ")[1]}} et al. ({{repositories[i].year}}): {{repositories[i].name | slice:0:21}} </a>
+                                                    </div>
+
+                                                <br>
+
+                                                <a routerLink="/create/repositorie" class="btn button">New Repositorie</a>
+                                                <a routerLink="/view/repositories" class="btn button leftmargin">My Repositories</a>
+                                                
+                                                </mat-expansion-panel>
+                                        </mat-accordion>
+                                    </div>
+                                    <div class="up">
+                                        <mat-accordion>
+                                                <mat-expansion-panel [expanded]="true">
+                                                <mat-expansion-panel-header>
+                                                    <mat-panel-title>
                                                     <a class="bold">Datasets</a>
                                                     </mat-panel-title>
                                                     <mat-panel-description>
@@ -196,13 +219,13 @@
                                                 </mat-expansion-panel-header>
 
                                                     <div *ngFor="let dataset of datasets; let i = index">
-                                                            <a class="textlink itemLine" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].name | slice:0:35}}... ({{datasets[i].year}})</a>
+                                                            <a class="textlink itemLine" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].authors[0].split(" ")[1]}} et al. ({{datasets[i].year}}): {{datasets[i].name | slice:0:21}}... </a>
                                                     </div>
 
                                                 <br>
 
-                                                <a routerLink="/data" class="btn button">New Dataset</a>
-                                                <a routerLink="/dashboard" class="btn button leftmargin">My Datasets</a>
+                                                <a routerLink="/create/dataset" class="btn button">New Dataset</a>
+                                                <a routerLink="/view/datasets" class="btn button leftmargin">My Datasets</a>
                                                 
                                                 </mat-expansion-panel>
                                         </mat-accordion>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-let logged = false;
+let logged = true;
 
 @Component({
   selector: 'app-sidebar',

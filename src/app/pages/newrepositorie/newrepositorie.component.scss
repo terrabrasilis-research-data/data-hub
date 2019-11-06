@@ -1,0 +1,52 @@
+.main{
+    margin-top: 60px;
+    margin-left: 2%;
+    margin-right: 2%;
+    position: relative;
+}
+
+.loginBox{ 
+    width:450px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.textlink{
+    color: #0F66A0; 
+
+}
+
+.textlink:hover{
+    text-decoration: underline;
+}
+
+.button{
+    background: #0F66A0; 
+    color: white;
+}
+.button:hover{
+    background:rgb(42, 138, 201)
+}
+
+.sizeTextInput{
+    height: 100px;
+}
+
+.sizeDropdown{
+    height: 35px;
+    width: 150px;
+
+}
+
+.plusicon{
+
+    cursor: pointer;
+}
+
+input {
+    margin: .4rem;
+}
+.desc{
+    color: #6C7581;
+}

@@ -1,5 +1,5 @@
   <!-- Sidebar -->
-  <div class="" id="sidebar-wrapper" style="background-color: rgb(16, 102, 161);">
+  <div class="Side" id="sidebar-wrapper" style="background-color: rgb(16, 102, 161);">
         <div class="list-group list-group-flush">
 
             <!-- Sidebar Header -->
@@ -33,27 +33,27 @@
         
             <span *ngIf="isLogged()">
 
-            <div class="bar-button divboxbuton"  >
+            <div class="bar-button divboxbuton" routerLink="/dashboard">
                 <div class="middleboxSide"> <i class="material-icons">dashboard</i> </div>
-                <div class="rightboxSide">Dashboard</div>
+                <div class="rightboxSide" >Dashboard</div>
             </div>
 
-            <div class="bar-button divboxbuton"  >
+            <div class="bar-button divboxbuton"  routerLink="/create/dataset">
                 <div class="middleboxSide"> <i class="material-icons">note_add</i> </div>
-                <div class="rightboxSide">Add New Data</div>
+                <div class="rightboxSide" >New Dataset</div>
             </div>
 
-            <div class="bar-button divboxbuton"  >
+            <div class="bar-button divboxbuton"  routerLink="create/repositorie">
                 <div class="middleboxSide"> <i class="material-icons">library_add</i> </div>
-                <div class="rightboxSide">Create a Repository</div>
+                <div class="rightboxSide">New Repositorie</div>
             </div>
             
-            <div class="bar-button divboxbuton"  >
+            <div class="bar-button divboxbuton"   routerLink="view/datasets" >
                 <div class="middleboxSide"> <i class="material-icons">description</i> </div>
-                <div class="rightboxSide">My Data</div>
+                <div class="rightboxSide">My Datasets</div>
             </div>
             
-            <div class="bar-button divboxbuton"  >
+            <div class="bar-button divboxbuton"    routerLink="view/repositories" >
                 <div class="middleboxSide"> <i class="material-icons">library_books</i> </div>
                 <div class="rightboxSide">My Repositories</div>
             </div>
