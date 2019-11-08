@@ -1,0 +1,37 @@
+.main{
+    margin-top: 60px;
+    margin-left: 2%;
+    margin-right: 2%;
+    position: relative;
+}
+
+.divBox{ 
+    font-size: 11pt;
+    width:900px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.status{
+    font-weight: bold;
+    background:#5cb85c;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.statusOFF{
+    font-weight: bold;
+    background:#d9534f;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.topMargin{
+    margin-top: 10px;
+}

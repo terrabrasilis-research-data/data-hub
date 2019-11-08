@@ -12,6 +12,7 @@ import { NewdatasetComponent } from './pages/newdataset/newdataset.component';
 import { NewrepositorieComponent } from './pages/newrepositorie/newrepositorie.component';
 import { MyrepositoriesComponent } from './pages/myrepositories/myrepositories.component'
 import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component'
+import { MyservicesComponent } from './pages/myservices/myservices.component'
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'create/dataset', component: NewdatasetComponent },
   { path: 'create/repositorie', component: NewrepositorieComponent },
   { path: 'view/repositories', component: MyrepositoriesComponent },
-  { path: 'view/datasets', component: MydatasetsComponent }
+  { path: 'view/datasets', component: MydatasetsComponent },
+  { path: 'view/services', component: MyservicesComponent },
 ];
 
 @NgModule({

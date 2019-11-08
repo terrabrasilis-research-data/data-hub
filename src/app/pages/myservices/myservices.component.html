@@ -1,0 +1,46 @@
+<div class="main">
+    <div class="divBox">
+
+            <div class="card">
+                    <article class="card-body">
+                    
+                    <h4 class="card-title mb-4 mt-1">My Services</h4>
+                    
+                    <form>
+                           
+                        <table class="table table-striped topMargin">
+                                <thead>
+                                <tr>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Status</th>
+                                  <th scope="col">Created</th>
+                                  <th scope="col">IP Address</th>
+                                  <th scope="col">Published Ports</th>
+                                  <th scope="col">Ownership</th>  
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let service of services; index as i">
+                                  <td>{{service.name}}</td>
+                                  <td>
+                                      
+                                      <a class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</a>
+                                      <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
+                                
+                                 </td>
+                                  <td>{{service.created_on | slice:0:25}}</td>
+                                  <td>{{service.address}}</td>
+                                  <td>{{service.ports}}</td>
+                                  <td>{{repositorie[0].maintainer}}</td>
+                                </tr>
+                                </tbody>
+                              </table>
+
+                    </form>
+
+                    </article>
+                    </div> 
+
+    </div>
+</div>
+    
