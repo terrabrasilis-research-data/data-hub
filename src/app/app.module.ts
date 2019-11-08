@@ -35,6 +35,7 @@ import { NewdatasetComponent } from './pages/newdataset/newdataset.component';
 import { NewrepositorieComponent } from './pages/newrepositorie/newrepositorie.component';
 import { MyrepositoriesComponent } from './pages/myrepositories/myrepositories.component';
 import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component';
+import { MyservicesComponent } from './pages/myservices/myservices.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component';
     NewdatasetComponent,
     NewrepositorieComponent,
     MyrepositoriesComponent,
-    MydatasetsComponent
+    MydatasetsComponent,
+    MyservicesComponent
   ],
   entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent],
   imports: [
