@@ -70,7 +70,7 @@ import { MyservicesComponent } from './pages/myservices/myservices.component';
     UiModule,
     MatDialogModule,
     RouterModule,
-    LeafletModule,
+    LeafletModule.forRoot(),
     SidebarModule.forRoot(),
     MatSnackBarModule,
     MatTableModule,

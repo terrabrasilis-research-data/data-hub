@@ -202,7 +202,6 @@ Time(){
   }
 
   ngOnInit() {
-      
     this.years.forEach(obj => {
       this.filterYear[obj.name] = false
     })

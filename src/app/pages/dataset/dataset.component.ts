@@ -11,15 +11,33 @@ import { latLng, tileLayer, Layer, geoJSON } from 'leaflet';
 
 export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   
-  OSM = {
-		id: 'openstreetmap',
-		name: 'Open Street Map',
-		enabled: false,
-		layer: tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			maxZoom: 18,
-			attribution: 'Open Street Map'
-		})
-  };
+
+  google_terrain = {
+    id: 'google_terrain',
+    enabled: false,
+    name: 'Google Terrain',
+    layer: tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }),
+ };
+
+  google_sattelite = {
+    id: 'google_sattelite',
+    enabled: false,
+    name: 'Google Satellite',
+    layer: tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }),
+ };
+
+  google_hybrid = {
+    id: 'google_hybrid',
+    enabled: true,
+    name: 'Google Hybrid',
+    layer: tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }),
+ }
   
 	geoJSON = {
 		id: 'geoJSON',
@@ -27,30 +45,37 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 		enabled: true,
 		layer: geoJSON(
 			({
-				type: 'Polygon',
+        type: 'Polygon',
+
 				coordinates: [[
-					[ -121.6, 46.87 ],
-					[ -121.5, 46.87 ],
-					[ -121.5, 46.93],
-					[ -121.6, 46.87 ]
+          [
+            -67.92626,
+            6.656333333333333
+          ],
+          [
+            -49.38799999999998,
+            6.656333333333333
+          ],
+          [
+            -49.38799999999998,
+            -3.89446
+          ],
+          [
+            -67.92626,
+            -3.89446
+          ],
+          [
+            -67.92626,
+            6.656333333333333
+          ]
 				]]
 			}) as any,
 			{ style: () => ({ color: '#ff7800' })})
 	};
 
-	layers: Layer[];
-	layersControl = {
-		baseLayers: {
-			'Open Street Map': this.OSM.layer
-		},
-		overlays: {
-			GeoJSON: this.geoJSON.layer
-		}
-  };
+  layers: Layer[] = [];
   
 	options = {
-		zoom: 10,
-		center: latLng(46.879966, -121.726909)
   };
   
   id: number;
@@ -107,8 +132,20 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
   constructor(private route: ActivatedRoute) {}
 
+  
   ngOnInit() {
+
+    this.layers.push(this.google_hybrid.layer)
+
+    this.layers.push(this.geoJSON.layer)
+    
+    this.options = 	{ 
+      zoom: 4,
+		  center: this.geoJSON.layer.getBounds().getCenter()
+    }
+
     this.sub = this.route.params.subscribe(params => {
+
        this.id = +params['id']; // (+) converts string 'id' to a number
 
        // In a real app: dispatch action to load the details here.
