@@ -24,11 +24,8 @@
         <div class="greybox-left textBox">
                 Datasets
                 <div *ngFor="let dataset of datasets; let i = index">
-                    <a class="itemLine textlink" href="#">
-                            {{datasets[i].name | slice:0:30}}... ({{datasets[i].year}})
-                    </a>
-  
-                </div>
+                    <a class="textlink itemLine" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].authors[0].split(" ")[1]}} et al. ({{datasets[i].year}}): {{datasets[i].name | slice:0:18}}... </a>
+            </div>
 
         </div>
 

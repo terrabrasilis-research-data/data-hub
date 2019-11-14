@@ -14,14 +14,12 @@
         <div class="greybox-left textBox">
                 Others datasets with similar authors
                 <div *ngFor="let dataset of others_datasets; let i = index">
-                    <a class="itemLine textlink" href="#">
-                            {{others_datasets[i].name | slice:0:30}}... ({{others_datasets[i].year}})
-                    </a>
-  
+
+                        <a class="textlink itemLine" [routerLink]="['/datasets', others_datasets[i].dataset_id]">{{others_datasets[i].authors[0].split(" ")[1]}} et al. ({{others_datasets[i].year}}): {{others_datasets[i].name | slice:0:18}}... </a>
+
                 </div>
 
-        </div>
-
+            </div>
     </div>
     <div class="right">
 
