@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-let logged = true;
+let logged = false;
 
 @Component({
   selector: 'app-sidebar',
@@ -17,5 +17,11 @@ export class SidebarComponent implements OnInit {
   isLogged(){
     return logged;
   }
-
+  change(){
+	if (logged==true){
+	    logged = false;
+	} else {
+	    logged = true;
+	}
+  }
 }

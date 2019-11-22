@@ -23,7 +23,7 @@
                 
             </div>
 
-            <div class="bar-button divboxbuton" routerLink="/login">
+            <div class="bar-button divboxbuton" (click)="change()">
                 
                 <div class="middleboxSide"> <i class="material-icons">person</i> </div>
                 <div class="rightboxSide">Login</div>
@@ -57,11 +57,11 @@
                 <div class="middleboxSide"> <i class="material-icons">library_books</i> </div>
                 <div class="rightboxSide">My Repositories</div>
             </div>
-            <!--
+            
             <div class="bar-button divboxbuton"  >
                 <div class="middleboxSide"> <i class="material-icons">assessment</i> </div>
                 <div class="rightboxSide">Stats</div>
-            </div> -->
+            </div> 
 
             <div class="bar-button divboxbuton"     routerLink="view/services" >
                 <div class="middleboxSide"> <i class="material-icons">dns</i> </div>
@@ -73,7 +73,7 @@
                 <div class="rightboxSide">Account</div>
             </div>
 
-            <div class="bar-button divboxbuton"  (click)="ChangeLogged(false)">
+            <div class="bar-button divboxbuton"  (click)="change()" routerLink="/" >
                 <div class="middleboxSide"> <i class="material-icons">exit_to_app</i> </div>
                 <div class="rightboxSide">Logout</div>
             </div>
