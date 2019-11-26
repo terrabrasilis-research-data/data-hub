@@ -27,7 +27,7 @@
                                 <br>
                             </div>
                             <br>
-                            <h5 class="textlink" (click)="navigate(groups[j].group_id)">Read more</h5>
+                            <h5 class="textlink" [routerLink]="['/groups', groups[j].group_id]">Read more</h5>
                         </div>
                     </mat-card-content>
                     </span>

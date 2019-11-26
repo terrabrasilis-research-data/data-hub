@@ -14,6 +14,7 @@ import { MyrepositoriesComponent } from './pages/myrepositories/myrepositories.c
 import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component'
 import { MyservicesComponent } from './pages/myservices/myservices.component'
 import { GroupsComponent } from './pages/groups/groups.component';
+import { GroupComponent } from './pages/group/group.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'repositories/:id', component: RepositorieComponent },
   { path: 'datasets/:id', component: DatasetComponent },
+  { path: 'groups/:id', component: GroupComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'create/dataset', component: NewdatasetComponent },
   { path: 'create/repositorie', component: NewrepositorieComponent },

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-groups',
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 export class GroupsComponent implements OnInit {
   id_open: number;
 
-  constructor(private snackBar: MatSnackBar, private router:Router) {
+  constructor(private snackBar: MatSnackBar) {
    }
 
   ngOnInit() {
@@ -28,11 +27,6 @@ export class GroupsComponent implements OnInit {
       this.id_open = null;
     }
     
-  }
-  
-  navigate(id:number){
-
-    this.router.navigate(["/repositories/"+id]);
   }
 
   check(id: number){
@@ -68,7 +62,6 @@ export class GroupsComponent implements OnInit {
     {"group_id": 4, "name": "TREES", "authors": ["Francisco Jairo ","Cornils Astrid"], "year": 2016},
     {"group_id": 5, "name": "LOA", "authors": ["Astrid Cornils"], "year": 2015}  ]
   
-
 }
 
 export interface Group {

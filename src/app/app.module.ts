@@ -38,6 +38,7 @@ import { MyrepositoriesComponent } from './pages/myrepositories/myrepositories.c
 import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component';
 import { MyservicesComponent } from './pages/myservices/myservices.component';
 import { GroupsComponent } from './pages/groups/groups.component';
+import { GroupComponent } from './pages/group/group.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { GroupsComponent } from './pages/groups/groups.component';
     MyrepositoriesComponent,
     MydatasetsComponent,
     MyservicesComponent,
-    GroupsComponent
+    GroupsComponent,
+    GroupComponent
   ],
   entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent],
   imports: [

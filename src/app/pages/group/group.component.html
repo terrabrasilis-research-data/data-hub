@@ -1,0 +1,122 @@
+<div class= pageHeader>
+    {{groups[id-1].name}}
+</div>
+
+<div class="main">
+
+    <div class="left" >
+
+        <div class="greybox-left">
+          
+            <p class="text-muted">Filters:</p>
+            
+            <div class='divfilter'>
+
+                <p class="text-muted">Publication Year:</p>
+                <div class="border3">
+
+                
+                <form [formGroup]="form" (ngSubmit)="years()" >
+                        <div formArrayName="years" *ngFor="let year of form.controls.years.controls; let k = index">
+                          <input type="checkbox" [formControlName]="k" [(ngModel)]="filterYear[years[k].name]"  (change)="filterChange()">
+                          {{years[k].name}}
+                        </div>
+                    
+                </form>
+              </div>
+            </div>
+
+            <div class='divfilter'>
+
+                    <p class="text-muted">Categories:</p>
+                    <div class="border3">
+
+                    <form [formGroup]="form" (ngSubmit)="categories()" >
+                            <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
+                              <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChange()">
+                              {{categories[i].name}}
+                            </div>
+                        
+                    </form>
+                                          
+                  </div>
+            </div>
+
+            <div class='divfilter'>
+
+                    <p class="text-muted">Repositories:</p>
+                    <div class="border3">
+
+                    <form [formGroup]="form" (ngSubmit)="repositories()" >
+                            <div formArrayName="repositories" *ngFor="let repositorie of form.controls.repositories.controls; let l = index">
+                              <input type="checkbox" [formControlName]="l" [(ngModel)]="filterRepository[repositories[l].name]"  (change)="filterChange()">
+                              {{repositories[l].name}}
+                            </div>
+                        
+                    </form>
+                  </div>
+            </div>
+
+            <div class='divfilter'>
+
+                    <p class="text-muted">Filetypes:</p>
+                    <div class="border3">
+
+                    <form [formGroup]="form" (ngSubmit)="filetypes()" >
+                            <div formArrayName="filetypes" *ngFor="let filetype of form.controls.filetypes.controls; let m = index">
+                              <input type="checkbox" [formControlName]="m" [(ngModel)]="filterFiletypes[filetypes[m].name]"  (change)="filterChange()">
+                              {{filetypes[m].name}}
+                            </div>
+                        
+                    </form>
+                  </div>
+            </div>
+   
+        </div>
+    </div>
+    <div class="right">
+
+        <div class="greybox-right">
+            <div class="divrepolist">
+
+                <div class="example-container mat-elevation-z8">
+
+                    <mat-table #table [dataSource]="dataSource">
+    
+                        <!-- dataset Column -->
+                        <ng-container matColumnDef="dataset">
+                            <mat-header-cell *matHeaderCellDef>
+                                {{size}} publications
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" style="display: flex">
+                                <div class="middlebox">
+                                    <a style="font-weight: bold" class="nav-item nav-link bntHover" [routerLink]="['/datasets', element.id]"> {{element.title}} ({{element.year}})</a>
+                                    <a style="padding-left: 15px; flex-wrap: wrap;" >{{element.author}}; {{element.repositorie}}; Size: {{element.size}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.DOI}}</a></a>
+                                </div>
+
+                                <div class="rightbox">
+                                    <i class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="PreviewAbstract(element.abstract)" matTooltip="Preview Abstract">info_outline</i>
+
+                                    <i class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="CopyBibTex(element.id)" matTooltip="Copy BibTex">link</i>
+ 
+                                    <span *ngIf="isFavorite(element.id)"> <i  class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="RemoveDataset(element.id)" matTooltip="Remove from Favorites">grade</i> </span>
+
+                                    <span *ngIf="!isFavorite(element.id)"> <i  class="material-icons" style="padding-left: 4px;cursor: pointer;"  (click)="SaveDataset(element.id)" matTooltip="Save Dataset">bookmarks</i>  </span>
+
+                                </div>
+                                
+                            </mat-cell>
+                        </ng-container>
+    
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+    
+                    <mat-paginator #paginator [pageSize]="12" [pageSizeOptions]="[6, 12, 24]">
+                    </mat-paginator>
+                </div>
+    
+            </div>
+        </div>
+    
+    </div>
