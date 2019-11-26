@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list'; 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MatCardModule, MatButtonModule } from '@angular/material';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +37,7 @@ import { NewrepositorieComponent } from './pages/newrepositorie/newrepositorie.c
 import { MyrepositoriesComponent } from './pages/myrepositories/myrepositories.component';
 import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component';
 import { MyservicesComponent } from './pages/myservices/myservices.component';
+import { GroupsComponent } from './pages/groups/groups.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { MyservicesComponent } from './pages/myservices/myservices.component';
     NewrepositorieComponent,
     MyrepositoriesComponent,
     MydatasetsComponent,
-    MyservicesComponent
+    MyservicesComponent,
+    GroupsComponent
   ],
   entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent],
   imports: [
@@ -63,6 +66,8 @@ import { MyservicesComponent } from './pages/myservices/myservices.component';
     MatTooltipModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatButtonModule,
     MatDatepickerModule,
     MatExpansionModule,
     MatListModule,

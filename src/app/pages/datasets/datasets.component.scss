@@ -20,7 +20,7 @@
     padding-left: 3%;
 }
 
-p{
+p {
     margin-bottom: 3%;
 }
 
@@ -180,4 +180,16 @@ p{
     .east{
         margin-right: 10px;
    } 
+}
+
+.pageHeader{
+	color: white;
+    font-size: 18pt;
+    font-weight: bold;
+	background-color:rgb(42, 138, 201);
+    height: 100px;
+	width: 100%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	padding-top: 1.5%;
 }

@@ -13,11 +13,12 @@ import { NewrepositorieComponent } from './pages/newrepositorie/newrepositorie.c
 import { MyrepositoriesComponent } from './pages/myrepositories/myrepositories.component'
 import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component'
 import { MyservicesComponent } from './pages/myservices/myservices.component'
-
+import { GroupsComponent } from './pages/groups/groups.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'repositories', component: RepositoriesComponent },
+  { path: 'groups', component: GroupsComponent },
   { path: 'datasets', component: DatasetsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

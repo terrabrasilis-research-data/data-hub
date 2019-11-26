@@ -1,0 +1,58 @@
+.main {
+	margin-left: 1.5%;
+	margin-right: 1.5%;
+	padding-top: 1.5%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.groupsList{
+	//margin: 0 auto; //center
+	padding: 14px;
+	//width: 33%; //3 por linha
+	box-sizing: border-box;
+}
+
+
+.tp-card {
+	width: 350px;
+	height: 300px;
+}
+
+.tp-header-image {
+	background-size: cover;
+}
+
+.center {
+	width: 100%;
+}
+
+.left {
+	width: 92%;
+	float: left;
+}
+
+.right {
+	margin-left: 92%;
+}
+
+.textlink:hover {
+	cursor: pointer;
+	color: #0F66A0;
+}
+
+.click{
+	cursor: default;
+}
+
+.pageHeader{
+	color: white;
+    font-size: 18pt;
+    font-weight: bold;
+	background-color:rgb(42, 138, 201);
+    height: 100px;
+	width: 100%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	padding-top: 1.5%;
+}

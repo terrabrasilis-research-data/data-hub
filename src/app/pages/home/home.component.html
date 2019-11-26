@@ -27,7 +27,7 @@
         <div class="graybox2">
         
             <div>
-                <p class="text-muted" style="padding-left: 5px">Latest Repositories:</p>
+                <p class="text-muted" style="padding-left: 5px">Latest Datasets:</p>
             </div>
             
             <div class="container">
@@ -36,7 +36,7 @@
                     <div class="" style="width: 100%">
                         <div>
                             <div class="sizeText font">{{news[i].created_on | slice:5:17}}</div>
-                            <div class="font bold textlink" [routerLink]="['/repositories', news[i].id]">{{news[i].name | slice:0:23}}</div>
+                            <div class="font bold textlink" [routerLink]="['/datasets', news[i].id]">{{news[i].name | slice:0:23}}</div>
                             <div class="font">{{news[i].abstract | slice:0:130}} [...]</div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
         
             <div class="boxRight">
                     <div class="boxText">
-                            <a class="nav-item nav-link textlink" [routerLink]="'/repositories'">More Repositories</a>
+                            <a class="nav-item nav-link textlink" [routerLink]="'/datasets'">More Datasets</a>
                     </div>
                     
                 </div>
