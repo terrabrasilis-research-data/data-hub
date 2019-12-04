@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material'  
-import { MatPaginatorModule, MatSelectModule } from '@angular/material';
+import { MatTableModule } from '@angular/material/table';  
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -13,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list'; 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +39,10 @@ import { NewrepositorieComponent } from './pages/newrepositorie/newrepositorie.c
 import { MyrepositoriesComponent } from './pages/myrepositories/myrepositories.component';
 import { MydatasetsComponent } from './pages/mydatasets/mydatasets.component';
 import { MyservicesComponent } from './pages/myservices/myservices.component';
+import { GroupsComponent } from './pages/groups/groups.component';
+import { GroupComponent } from './pages/group/group.component';
+import { NewgroupComponent } from './pages/newgroup/newgroup.component';
+import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +60,11 @@ import { MyservicesComponent } from './pages/myservices/myservices.component';
     NewrepositorieComponent,
     MyrepositoriesComponent,
     MydatasetsComponent,
-    MyservicesComponent
+    MyservicesComponent,
+    GroupsComponent,
+    GroupComponent,
+    NewgroupComponent,
+    MygroupsComponent
   ],
   entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent],
   imports: [
@@ -63,6 +74,8 @@ import { MyservicesComponent } from './pages/myservices/myservices.component';
     MatTooltipModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatButtonModule,
     MatDatepickerModule,
     MatExpansionModule,
     MatListModule,
@@ -70,7 +83,7 @@ import { MyservicesComponent } from './pages/myservices/myservices.component';
     UiModule,
     MatDialogModule,
     RouterModule,
-    LeafletModule,
+    LeafletModule.forRoot(),
     SidebarModule.forRoot(),
     MatSnackBarModule,
     MatTableModule,

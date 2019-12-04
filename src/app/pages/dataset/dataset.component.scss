@@ -215,9 +215,11 @@ img{
     background: #0F66A0; 
     color: white;
 }
+
 .button:hover{
     background:rgb(42, 138, 201)
 }
+
 .sizeIcon{
 
     color: #4f5355;
@@ -229,4 +231,16 @@ img{
   margin-right: 10px;
   vertical-align:bottom;
 
+}
+
+.pageHeader{
+	color: white;
+    font-size: 18pt;
+    font-weight: bold;
+	background-color:rgb(42, 138, 201);
+    height: 100px;
+	width: 100%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	padding-top: 1.5%;
 }

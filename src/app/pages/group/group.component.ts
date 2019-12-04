@@ -6,16 +6,17 @@ import { MatTableDataSource } from '@angular/material/table'
 import { Clipboard } from 'ts-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BboxComponent } from 'src/app/ui/bbox/bbox.component';
-import { TintervalComponent } from 'src/app/ui/tinterval/tinterval.component';
-
+import { ActivatedRoute } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'app-mydatasets',
-  templateUrl: './mydatasets.component.html',
-  styleUrls: ['./mydatasets.component.scss']
+  selector: 'app-group',
+  templateUrl: './group.component.html',
+  styleUrls: ['./group.component.scss']
 })
-export class MydatasetsComponent implements OnInit {
+export class GroupComponent implements OnInit, MatCardModule {
+  id: number;
+  private sub: any;
 
   displayedColumns = ['dataset'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
@@ -36,26 +37,6 @@ export class MydatasetsComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  
-  Map() {
-    const dialogRef = this.dialog.open(BboxComponent, {
-        data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-    });
-}
-
-Time(){
-    const dialogRef = this.dialog.open(TintervalComponent, {
-        data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-    });
-}
 
   years = [
     { id: 1, name: '2019' },
@@ -89,7 +70,14 @@ Time(){
     { id: 3, name: 'SHP' },
     { id: 4, name: 'TIF' }
    ];
-   
+
+   groups = [
+    {"group_id": 1, "name": "LabISA", "authors": ["Jairo Francisco","Cornils Astrid"], "year": 2019},
+    {"group_id": 2, "name": "LiSS", "authors": ["Cornils Astrid"], "year": 2018},
+    {"group_id": 3, "name": "LAF", "authors": ["Krahl Guilherme", "Jairo Francisco","Cornils Astrid"], "year": 2017},
+    {"group_id": 4, "name": "TREES", "authors": ["Francisco Jairo ","Cornils Astrid"], "year": 2016},
+    {"group_id": 5, "name": "LOA", "authors": ["Astrid Cornils"], "year": 2015}  ]
+
    favorites = [
    ];
 
@@ -168,7 +156,7 @@ Time(){
       }
 }
 
-   constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog) {
+   constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog, private route: ActivatedRoute) {
     this.form = this.formBuilder.group({
       years: new FormArray([]),
       categories: new FormArray([]),
@@ -203,6 +191,12 @@ Time(){
   }
 
   ngOnInit() {
+
+      this.sub = this.route.params.subscribe(params => {
+        this.id = +params['id']; // (+) converts string 'id' to a number
+        // In a real app: dispatch action to load the details here.
+    });
+
     this.years.forEach(obj => {
       this.filterYear[obj.name] = false
     })

@@ -11,15 +11,33 @@ import { latLng, tileLayer, Layer, geoJSON } from 'leaflet';
 
 export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   
-  OSM = {
-		id: 'openstreetmap',
-		name: 'Open Street Map',
-		enabled: false,
-		layer: tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			maxZoom: 18,
-			attribution: 'Open Street Map'
-		})
-  };
+
+  google_terrain = {
+    id: 'google_terrain',
+    enabled: false,
+    name: 'Google Terrain',
+    layer: tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }),
+ };
+
+  google_sattelite = {
+    id: 'google_sattelite',
+    enabled: false,
+    name: 'Google Satellite',
+    layer: tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }),
+ };
+
+  google_hybrid = {
+    id: 'google_hybrid',
+    enabled: true,
+    name: 'Google Hybrid',
+    layer: tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }),
+ }
   
 	geoJSON = {
 		id: 'geoJSON',
@@ -27,30 +45,37 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 		enabled: true,
 		layer: geoJSON(
 			({
-				type: 'Polygon',
+        type: 'Polygon',
+
 				coordinates: [[
-					[ -121.6, 46.87 ],
-					[ -121.5, 46.87 ],
-					[ -121.5, 46.93],
-					[ -121.6, 46.87 ]
+          [
+            -67.92626,
+            6.656333333333333
+          ],
+          [
+            -49.38799999999998,
+            6.656333333333333
+          ],
+          [
+            -49.38799999999998,
+            -3.89446
+          ],
+          [
+            -67.92626,
+            -3.89446
+          ],
+          [
+            -67.92626,
+            6.656333333333333
+          ]
 				]]
 			}) as any,
 			{ style: () => ({ color: '#ff7800' })})
 	};
 
-	layers: Layer[];
-	layersControl = {
-		baseLayers: {
-			'Open Street Map': this.OSM.layer
-		},
-		overlays: {
-			GeoJSON: this.geoJSON.layer
-		}
-  };
+  layers: Layer[] = [];
   
 	options = {
-		zoom: 10,
-		center: latLng(46.879966, -121.726909)
   };
   
   id: number;
@@ -82,14 +107,14 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   ]
   
   others_datasets: GetAllDataset[] = [
-    {"dataset_id": 1, "name": "Radiocarbon ages and pollen record of Kongor Lake sediments", "year": 2019},
-    {"dataset_id": 2, "name": "Multiple proxy data at DSDP Site 72-516F and ODP Hole 171-1049C during Dan-C2 and lower C29n", "year": 2018},
-    {"dataset_id": 3, "name": "Latest Maastrichtian dinocyst and benthic foraminiferal records of Bass River, Meirs Farm and Search Farm sediment cores, New Jersey, USA", "year": 2017},
-    {"dataset_id": 4, "name": "Clumped isotope measurements of Mesozoic belemnites from southern high latitudes", "year": 2016},
-    {"dataset_id": 5, "name": "Sedimentary Fe speciation and Fe isotope compositions from SONNE cruise SO241", "year": 2015},
-    {"dataset_id": 6, "name": "Organic and inorganic geochemical data of sediment cores XC-03 and XC-01-2, Xingu River, Amazon Basin", "year": 2014},
-    {"dataset_id": 7, "name": "Tephra data of sediment cores of the Black Sea covering MIS 6 (184-130 ka BP)", "year": 2019},
-    {"dataset_id": 8, "name": "High resolution in situ temperatures across coral reef slopes: Iriomote-jima, Japan and Gulf of Chiriquí, Panama", "year": 2016},   
+    {"dataset_id": 1, "name": "Radiocarbon ages and pollen record of Kongor Lake sediments", "authors": ["Krahl Guilherme", "Jairo Francisco","Cornils Astrid"], "year": 2019},
+    {"dataset_id": 2, "name": "Multiple proxy data at DSDP Site 72-516F and ODP Hole 171-1049C during Dan-C2 and lower C29n", "authors": ["Jairo Francisco","Cornils Astrid"],"year": 2018},
+    {"dataset_id": 3, "name": "Latest Maastrichtian dinocyst and benthic foraminiferal records of Bass River, Meirs Farm and Search Farm sediment cores, New Jersey, USA", "authors": ["Cornils Astrid"],"year": 2017},
+    {"dataset_id": 4, "name": "Clumped isotope measurements of Mesozoic belemnites from southern high latitudes", "authors": ["Francisco Jairo","Cornils Astrid"],"year": 2016},
+    {"dataset_id": 5, "name": "Sedimentary Fe speciation and Fe isotope compositions from SONNE cruise SO241", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2015},
+    {"dataset_id": 6, "name": "Organic and inorganic geochemical data of sediment cores XC-03 and XC-01-2, Xingu River, Amazon Basin", "authors": ["Cornils Astrid"],"year": 2014},
+    {"dataset_id": 7, "name": "Tephra data of sediment cores of the Black Sea covering MIS 6 (184-130 ka BP)", "authors": ["Astrid Cornils"],"year": 2019},
+    {"dataset_id": 8, "name": "High resolution in situ temperatures across coral reef slopes: Iriomote-jima, Japan and Gulf of Chiriquí, Panama", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2016},   
   ]
 
   dataset: Dataset[] = [
@@ -107,8 +132,20 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
   constructor(private route: ActivatedRoute) {}
 
+  
   ngOnInit() {
+
+    this.layers.push(this.google_hybrid.layer)
+
+    this.layers.push(this.geoJSON.layer)
+    
+    this.options = 	{ 
+      zoom: 4,
+		  center: this.geoJSON.layer.getBounds().getCenter()
+    }
+
     this.sub = this.route.params.subscribe(params => {
+
        this.id = +params['id']; // (+) converts string 'id' to a number
 
        // In a real app: dispatch action to load the details here.
@@ -162,6 +199,7 @@ export interface User {
 
 export interface GetAllDataset {
   dataset_id: number;
+  authors: Array < string >;
   name: string;
   year: number;
 }
