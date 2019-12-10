@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit
   constructor() { }
 
   ngOnInit() {
+    document.getElementById("wrapper").className = "d-flex toggled";
   }
 
 }

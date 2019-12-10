@@ -1,58 +1,60 @@
 <div class= pageHeader>
-        Research groups
+    Research groups
 </div>
 
 <div class="main">
-    <div *ngFor="let group of groups; let j = index" class="groupsList">
-        
-            <mat-card class="tp-card click" (mouseover)="changeText(groups[j].group_id, true)" (mouseout)="changeText(groups[j].group_id, false)" > 
+<div *ngFor="let group of groups; let j = index" class="groupsList">
+    
+        <mat-card class="tp-card click" (mouseover)="changeText(groups[j].group_id, true)" (mouseout)="changeText(groups[j].group_id, false)" > 
 
-                    <span *ngIf="check(groups[j].group_id)">
-                    <mat-card-content>
-                        <div class="center">
-                            <div class="left">
-                                <h4>{{groups[j].name}}</h4>
-                            </div>
-                            <div class="right">
-                                <span *ngIf="isFavorite(groups[j].group_id)">
-                                <i  class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="RemoveDataset(groups[j].group_id)" matTooltip="Remove from Favorites">grade</i>
-                                </span>
-                                <span *ngIf="!isFavorite(groups[j].group_id)">
-                                <i  class="material-icons" style="padding-left: 4px;cursor: pointer;"  (click)="SaveDataset(groups[j].group_id)" matTooltip="Save Dataset">bookmarks</i>
-                                </span>
-                            </div>
-                            <div>
-                                <br>
-                                    The upper limb activity of twenty unilateral upper limb myoelectric prosthesis users and twenty anatomically intact adults were recorded over a 7-day period using two wrist worn accelerometers (Actigraph, LLC). users and twenty anatomically intact adults were recorded over a 7-day period using two wrist worn accelerometers (Actigraph, LLC).
-                                <br>
-                            </div>
+                <span *ngIf="check(groups[j].group_id)">
+                <mat-card-content>
+                    <div class="center">
+                        <div class="left">
+                            <h4>{{groups[j].name}}</h4>
+                        </div>
+                        <div class="right">
+                            <span *ngIf="isFavorite(groups[j].group_id)">
+                            <i  class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="RemoveDataset(groups[j].group_id)" matTooltip="Remove from Favorites">grade</i>
+                            </span>
+                            <span *ngIf="!isFavorite(groups[j].group_id)">
+                            <i  class="material-icons" style="padding-left: 4px;cursor: pointer;"  (click)="SaveDataset(groups[j].group_id)" matTooltip="Save Dataset">bookmarks</i>
+                            </span>
+                        </div>
+                        <div>
                             <br>
-                            <h5 class="textlink" [routerLink]="['/groups', groups[j].group_id]">Read more</h5>
+                                {{groups[j].abstract | slice:0:356}}
+                            <br>
                         </div>
-                    </mat-card-content>
-                    </span>
-        
-                    <span *ngIf="!check(groups[j].group_id)">
-                    <img mat-card-image src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg">
-                    <mat-card-content>
-                        <div class="center">
-                            <div class="left">
-                                <h4>{{groups[j].name}}</h4>
-                            </div>
-                            <div class="right">
-                                <span *ngIf="isFavorite(groups[j].group_id)">
-                                <i  class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="RemoveDataset(groups[j].group_id)" matTooltip="Remove from Favorites">grade</i>
-                                </span>
-                                <span *ngIf="!isFavorite(groups[j].group_id)">
-                                <i  class="material-icons" style="padding-left: 4px;cursor: pointer;"  (click)="SaveDataset(groups[j].group_id)" matTooltip="Save Dataset">bookmarks</i>
-                                </span>
-                            </div>
+                        <br>
+                        <h5 class="textlink" [routerLink]="['/groups', groups[j].group_id]">Read more</h5>
+                    </div>
+                </mat-card-content>
+                </span>
+    
+                <span *ngIf="!check(groups[j].group_id)">
+                <img mat-card-image src={{groups[j].image}}>
+                <mat-card-content>
+                    <div class="center">
+                        <div class="left">
+                            <h4>{{groups[j].name}}</h4>
                         </div>
-                    </mat-card-content>
-                    </span>
-        
-            </mat-card>
-        
-    </div>
+                        <div class="right">
+                            <span *ngIf="isFavorite(groups[j].group_id)">
+                            <i  class="material-icons" style="padding-left: 4px;cursor: pointer;" (click)="RemoveDataset(groups[j].group_id)" matTooltip="Remove from Favorites">grade</i>
+                            </span>
+                            <span *ngIf="!isFavorite(groups[j].group_id)">
+                            <i  class="material-icons" style="padding-left: 4px;cursor: pointer;"  (click)="SaveDataset(groups[j].group_id)" matTooltip="Save Dataset">bookmarks</i>
+                            </span>
+                        </div>
+                    </div>
+                </mat-card-content>
+                </span>
+    
+        </mat-card>
+    
+</div>
 
 </div>
+ 
+ 

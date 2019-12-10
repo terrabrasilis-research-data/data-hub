@@ -1,12 +1,12 @@
 .main{
-    margin-top: 60px;
+    margin-top: 30px;
     margin-left: 2%;
     margin-right: 2%;
     position: relative;
 }
 
 .divBox{ 
-    width:450px;
+    width:800px;
     margin: 0 auto;
     padding: 10px;
     position: relative;
@@ -36,6 +36,7 @@
 .sizeDropdown{
     height: 35px;
     width: 150px;
+    border-radius: 0.5em;
 
 }
 
@@ -46,4 +47,25 @@
 
 .desc{
     color: #6C7581;
+}
+
+.firstbox{ 
+    float:left;  
+    width: 50%;
+} 
+
+.secoundbox{ 
+    display: flex;
+    padding-left: 10px;
+} 
+
+.topMargin{
+    margin-top: 10px;
+}
+
+.image{
+    border-radius: 10%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
 }

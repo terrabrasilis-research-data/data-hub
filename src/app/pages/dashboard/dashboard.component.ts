@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    document.getElementById("wrapper").className = "d-flex";
   }
 
   services: Service[] = [
