@@ -22,26 +22,11 @@
 
                                     </div> <!-- form-group// -->
 
-                                        <div class="form-group bottom">
-                                                <div>
-                                                    <label>Categorie </label>
-                                                    
-                                                </div>
-                                                <div>
-                                                    <select class="sizeDropdown">
-                                                            <option value="volvo">Volvo</option>
-                                                            <option value="saab">Saab</option>
-                                                            <option value="opel">Opel</option>
-                                                            <option value="audi">Audi</option>
-                                                    </select>
-                                                </div>
+                                    <div class="form-group bottom">
+                                        <label>Image</label> <br>
+                                        <input type="file" name="myFile" placeholder="Joe Bloggs">
+                                </div> <!-- form-group// -->
 
-                                            </div> <!-- form-group// -->
-  
-                                            <div class="form-group bottom">
-                                                <label>Keywords</label>
-                                                <input name="" class="form-control" placeholder="land use, land cover, processed images" type="text">
-                                            </div> <!-- form-group// -->
 
                                             <div class="form-group bottom">
                                                     <label>Maintainer</label>
@@ -51,11 +36,6 @@
                                             <div class="form-group bottom">
                                                 <label>Language</label>
                                                 <input name="" class="form-control" placeholder="Joe Bloggs" type="text">
-                                            </div> <!-- form-group// -->
-
-                                            <div class="form-group bottom">
-                                                        <label>Bounding Box</label>
-                                                        <input name="" class="form-control" placeholder="GEOJSON Bounding Box" type="text">
                                             </div> <!-- form-group// -->
 
                                             <div class="form-group bottom">
@@ -79,38 +59,55 @@
                                             <hr class="style1">
                                             <br>
 
+                                            <label>People</label>
+  
                                             <div>
-                                                <label>Services</label>
-                                            </div>
+                                                
+                                                <div class="firstbox">  <input name="" class="form-control" placeholder="Find a member..." type="text"> </div>
+                                                <div class="secoundbox"> <a routerLink="" class="btn button">Invite member</a> </div>
 
-                                            <div class="desc">Select the services you want included in your Research Data Repositorie.</div>
-
-                                            <br>
-
-                                            <div>
-                                              <input type="checkbox" id="scales" name="scales"
-                                                     checked>
-                                              <label for="postgres">PostgreSQL</label>
                                             </div>
-                                            
-                                            <div>
-                                                <input type="checkbox" id="scales" name="scales"
-                                                       >
-                                                <label for="geoserver">GeoServer</label>
-                                            </div>
-
-                                            <div>
-                                                <input type="checkbox" id="scales" name="scales"
-                                                       >
-                                                <label for="geonetwork">GeoNetwork</label>
-                                            </div>
+                                    
+                                            <table class="table table-striped topMargin vertical">
+                                                <thead>
+                                                <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Last Login</th>
+                                                <th scope="col"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let user of users; index as i">
+                                                
+                                                <td> 
+                                                <div>
+                                                        
+                                                        <img src={{user.image}} class="image" alt="Avatar">
+                                                            {{user.full_name}} 
+                                                </div>
+                                                <td>
+                                                        {{user.email}}
+                                                        
+                                                </td>
+                                                <td>
+                                                        {{user.last_login | slice:0:17}}
+                                                        
+                                                </td>
+                                                <td>
+                                                        <a routerLink="/" class="btn button">Remove</a>
+                                                        
+                                                </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
 
                                                 <br>
                                                 <hr class="style1">
                                                 <br>
                                                 
                               <div>
-                                    <a routerLink="/signup" class="btn button">Create repositorie</a>
+                                    <a routerLink="/signup" class="btn button">Create group</a>
                               </div>
                     </form>
 
