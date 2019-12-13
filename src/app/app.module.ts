@@ -26,7 +26,6 @@ import { RepositoriesComponent } from './pages/repositories/repositories.compone
 import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SidebarModule } from 'ng-sidebar';
-import { DialogContentExampleDialog } from './pages/datasets/datasets.component';
 
 import { BboxComponent } from './ui/bbox/bbox.component';
 import { TintervalComponent } from './ui/tinterval/tinterval.component';
@@ -49,7 +48,6 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
     AppComponent,
     HomeComponent,
     RepositoriesComponent,
-    DialogContentExampleDialog,
     DatasetsComponent,
     LoginComponent,
     SignupComponent,
@@ -66,7 +64,7 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
     NewgroupComponent,
     MygroupsComponent
   ],
-  entryComponents: [ DialogContentExampleDialog, BboxComponent, TintervalComponent],
+  entryComponents: [ ],
   imports: [
     BrowserModule,
     FormsModule,
