@@ -1,0 +1,137 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "get_all_datasets Schema",
+    "required": [
+      "id",
+      "title",
+      "year",
+      "author",
+      "abstract",
+      "size",
+      "URL",
+      "categories",
+      "group",
+      "filetypes"
+    ],
+    "properties": {
+      "id": {
+        "$id": "#/properties/id",
+        "type": "integer",
+        "title": "The Id Schema",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "title": {
+        "$id": "#/properties/title",
+        "type": "string",
+        "title": "The Title Schema",
+        "default": "",
+        "examples": [
+          "Current measurements at Langseth/Gakkel Arctic with Lowered ADCP during POLARSTERN cruise"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "year": {
+        "$id": "#/properties/year",
+        "type": "string",
+        "title": "The Year Schema",
+        "default": "",
+        "examples": [
+          "2015"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "author": {
+        "$id": "#/properties/author",
+        "type": "array",
+        "title": "The Author Schema",
+        "items": {
+          "$id": "#/properties/author/items",
+          "type": "string",
+          "title": "The Items Schema",
+          "default": "",
+          "examples": [
+            "Walter, M",
+            "Köhler, J"
+          ],
+          "pattern": "^(.*)$"
+        }
+      },
+      "abstract": {
+        "$id": "#/properties/abstract",
+        "type": "string",
+        "title": "The Abstract Schema",
+        "default": "",
+        "examples": [
+          "Morphometric measurements of Fragilariopsis kerguelensis valves from a two-year time series covering the period from November 2002 to October 2004 collected by a sediment trap at 800m below the ocean surface which was moored near 54° S 140° E in ca. 2300 m water depth, close to the top of the Australia-Antarctica mid-ocean ridge."
+        ],
+        "pattern": "^(.*)$"
+      },
+      "size": {
+        "$id": "#/properties/size",
+        "type": "integer",
+        "title": "The Size Schema",
+        "default": 0,
+        "examples": [
+          4
+        ]
+      },
+      "URL": {
+        "$id": "#/properties/URL",
+        "type": "string",
+        "title": "The URL Schema",
+        "default": "",
+        "examples": [
+          "https://URL.pangaea.de/10.1594/PANGAEA.904373"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "categories": {
+        "$id": "#/properties/categories",
+        "type": "array",
+        "title": "The Categories Schema",
+        "items": {
+          "$id": "#/properties/categories/items",
+          "type": "string",
+          "title": "The Items Schema",
+          "default": "",
+          "examples": [
+            "Chemistry",
+            "Lakes & Rivers"
+          ],
+          "pattern": "^(.*)$"
+        }
+      },
+      "group": {
+        "$id": "#/properties/group",
+        "type": "string",
+        "title": "The Group Schema",
+        "default": "",
+        "examples": [
+          "ODP"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "filetypes": {
+        "$id": "#/properties/filetypes",
+        "type": "array",
+        "title": "The Filetypes Schema",
+        "items": {
+          "$id": "#/properties/filetypes/items",
+          "type": "string",
+          "title": "The Items Schema",
+          "default": "",
+          "examples": [
+            "TIF"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+  

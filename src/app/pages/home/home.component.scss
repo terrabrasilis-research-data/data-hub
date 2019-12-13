@@ -34,12 +34,11 @@
 }
 
 .greybox {
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 25%;
+    margin-right: 25%;
     padding-top: 10px;
     padding-right: 5px;
     padding-left: 5px;
-
     border-radius: 0.7em;
 }
 
@@ -56,8 +55,8 @@
 }
 
 .sizeText{
-    font-size:14px;
-    padding-bottom: 0px;
+    font-size:12px;
+    padding-bottom: 5px;
 }
 
 .graybox2{
@@ -66,10 +65,8 @@
     padding-top: 10px;
     padding-right: 5px;
     padding-left: 5px;
-    margin-top: 110px;
-    background:#f5f5f5;
-    border: 1.5px solid #e3e3e3;
-    border-radius: 0.7em;
+    margin-top: 10px;
+    height: 350px;
 }
 
 .container {
@@ -113,4 +110,22 @@
 .textlink:hover{
     text-decoration: underline;
     cursor: pointer;
+}
+
+.frontHead{
+    font-size: 36px;
+}
+
+
+.center {
+	width: 100%;
+}
+
+.left {
+	width: 92%;
+	float: left;
+}
+
+.right {
+	margin-left: 92%;
 }

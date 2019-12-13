@@ -17,9 +17,17 @@ import { TintervalComponent } from 'src/app/ui/tinterval/tinterval.component';
 })
 export class MydatasetsComponent implements OnInit {
 
+  DATASETS: Element[] = [
+    {id: 1, title: 'Current measurements at Langseth/Gakkel Arctic with Lowered ADCP during POLARSTERN cruise', year: '2015', author: ["Walter, M","Köhler, J"], abstract: "Morphometric measurements of Fragilariopsis kerguelensis valves from a two-year time series covering the period from November 2002 to October 2004 collected by a sediment trap at 800m below the ocean surface which was moored near 54° S 140° E in ca. 2300 m water depth, close to the top of the Australia-Antarctica mid-ocean ridge.", size: 4, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904373", categories: ['Chemistry ','Lakes & Rivers'], repositorie: "ODP", filetypes: ['TIF']},
+    {id: 2, title: 'Sedimentology, geochemistry and winter se ice concentration from the western Amundsen Sea, Antarctica', year: '2018', author: ["Lamping, N","Müller, J","Esper, O et al."], abstract: "The Mar del Plata (MdP) Canyon at the Argentine continental margin is incorporated into a major contourite depositional system, built by the incursion of southern-sourced water masses affecting the seafloor at different waters depths. The new sedimentological, morphological and hydro acoustic data provide novel insights.", size: 3, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904259 ", categories: ['Human Dimensions','Ecology'], repositorie: "AWI_Paleo", filetypes: ['CSV','SHP']},
+    {id: 3, title: 'Long chain alkyl diol, GDGT, and XRF data from Amazon River suspended sediments, tropical Atlantic', year: '2018', author: ["Häggi, C","Schefuß, E","Sawakuchi, AO et al."], abstract: "ighly dynamic environments like estuaries are home to organisms accustomed to wide fluctuations in environmental conditions. However, estuarine temperature and salinity conditions are expected to shift with climate change, potentially altering plant and animal physiology and consequently their ecological interactions.", size: 5, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904259", categories: ['Atmosphere','Chemistry'], repositorie: "MARUM", filetypes: ['XLS']},
+    {id: 4, title: 'Stable water isotope data of ice wedges at the Batagay megaslump and the Adycha River', year: '2019', author: ["Opel, T","Murton, JB","Wetterich, S et al."], abstract: "Emerald Basin on the Scotian Shelf off Nova Scotia, Canada, is home to a globally unique population of the glass sponge Vazella pourtalesi. Through the analysis of both in situ photographs and trawl catch data from annual multispecies bottom-trawl surveys, we examined community composition, species density, and abundance of epibenthos and fish associated.", size: 2, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904259", categories: ['Atmosphere','Ecology'], repositorie: "ODP", filetypes: ['XLS','TIF']},
+    {id: 5, title: 'Stable carbon isotope ratios of archaeal glycerol dibiphytanyl glycerol tetraether', year: '2016', author: ["Hurley, SJ","Close, HG","Elling, FJ et al."], abstract: "Kelps, perennial brown seaweeds of the order Laminariales, are foundational species in Arctic coastal ecosystems. Presently, their ability to persist under polar night conditions might be significantly affected by increasing winter temperatures. We assessed physiological parameters (photosynthesis, pigment content", size: 8, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904259", categories: ['Atmosphere','Agriculture '], repositorie: "AWI_Paleo", filetypes: ['XLS']}, 
+  ];
+
   displayedColumns = ['dataset'];
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
-  size = ELEMENT_DATA.length;
+  dataSource = new MatTableDataSource<Element>(this.DATASETS);
+  size = this.DATASETS.length;
   filterYear = {}
   filterCategory = {}
   filterRepository = {}
@@ -97,7 +105,7 @@ Time(){
     this.snackBar.open("Copied to Clipboard", "", {
       duration: 2000,
     });
-    let data = ELEMENT_DATA[id-1];
+    let data = this.DATASETS[id-1];
     let BibTex = '@proceedings{'+ data.id +', \ntitle\t = {'+data.title+'}, \neditor\t = {'+data.author+'},   \nyear\t = {'+data.year+'}, \nDOI\t = {'+data.DOI+'} \n}';
     Clipboard.copy(BibTex);
    }
@@ -133,7 +141,7 @@ Time(){
    }
 
    filterChange() {
-    this.dataSource.data = ELEMENT_DATA;
+    this.dataSource.data = this.DATASETS;
     this.size = this.dataSource.data.length;
     for (let i = 0; i < this.years.length; i++) {
       if (this.filterYear[this.years[i].name] != false) {
@@ -256,10 +264,3 @@ export class DialogContentExampleDialog {
   }
 }
 
-const ELEMENT_DATA: Element[] = [
-  {id: 1, title: 'Current measurements at Langseth/Gakkel Arctic with Lowered ADCP during POLARSTERN cruise', year: '2015', author: ["Walter, M","Köhler, J"], abstract: "Morphometric measurements of Fragilariopsis kerguelensis valves from a two-year time series covering the period from November 2002 to October 2004 collected by a sediment trap at 800m below the ocean surface which was moored near 54° S 140° E in ca. 2300 m water depth, close to the top of the Australia-Antarctica mid-ocean ridge.", size: 4, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904373", categories: ['Chemistry ','Lakes & Rivers'], repositorie: "ODP", filetypes: ['TIF']},
-  {id: 2, title: 'Sedimentology, geochemistry and winter se ice concentration from the western Amundsen Sea, Antarctica', year: '2018', author: ["Lamping, N","Müller, J","Esper, O et al."], abstract: "The Mar del Plata (MdP) Canyon at the Argentine continental margin is incorporated into a major contourite depositional system, built by the incursion of southern-sourced water masses affecting the seafloor at different waters depths. The new sedimentological, morphological and hydro acoustic data provide novel insights.", size: 3, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904259 ", categories: ['Human Dimensions','Ecology'], repositorie: "AWI_Paleo", filetypes: ['CSV','SHP']},
-  {id: 3, title: 'Long chain alkyl diol, GDGT, and XRF data from Amazon River suspended sediments, tropical Atlantic', year: '2018', author: ["Häggi, C","Schefuß, E","Sawakuchi, AO et al."], abstract: "ighly dynamic environments like estuaries are home to organisms accustomed to wide fluctuations in environmental conditions. However, estuarine temperature and salinity conditions are expected to shift with climate change, potentially altering plant and animal physiology and consequently their ecological interactions.", size: 5, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904259", categories: ['Atmosphere','Chemistry'], repositorie: "MARUM", filetypes: ['XLS']},
-  {id: 4, title: 'Stable water isotope data of ice wedges at the Batagay megaslump and the Adycha River', year: '2019', author: ["Opel, T","Murton, JB","Wetterich, S et al."], abstract: "Emerald Basin on the Scotian Shelf off Nova Scotia, Canada, is home to a globally unique population of the glass sponge Vazella pourtalesi. Through the analysis of both in situ photographs and trawl catch data from annual multispecies bottom-trawl surveys, we examined community composition, species density, and abundance of epibenthos and fish associated.", size: 2, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904259", categories: ['Atmosphere','Ecology'], repositorie: "ODP", filetypes: ['XLS','TIF']},
-  {id: 5, title: 'Stable carbon isotope ratios of archaeal glycerol dibiphytanyl glycerol tetraether', year: '2016', author: ["Hurley, SJ","Close, HG","Elling, FJ et al."], abstract: "Kelps, perennial brown seaweeds of the order Laminariales, are foundational species in Arctic coastal ecosystems. Presently, their ability to persist under polar night conditions might be significantly affected by increasing winter temperatures. We assessed physiological parameters (photosynthesis, pigment content", size: 8, DOI: "https://doi.pangaea.de/10.1594/PANGAEA.904259", categories: ['Atmosphere','Agriculture '], repositorie: "AWI_Paleo", filetypes: ['XLS']}, 
-];
