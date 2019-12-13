@@ -119,14 +119,15 @@ p {
 
 .middlebox{ 
     float:left;  
-    width: 92%;
-    line-height: 1;
-    padding-bottom: 12px;
+    width: 97%;
+    padding-top: 7px;
+
+    padding-bottom: 7px;
 } 
 
 .rightbox{ 
     padding-top: 7px;
-    display: flex;
+    align-self: flex-start;
 } 
 
 .center {
@@ -195,6 +196,52 @@ p {
 }
 
 .fontsize{
-    font-size: 11.5pt;
+    font-size: 12.5pt;
 
+}
+
+.dataTag{
+    font-size: 10pt;
+    font-weight: bold;
+    background:#7bb1be;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+}
+
+.openTag{
+    font-size: 10pt;
+    font-weight: bold;
+    background:#5cb85c;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 6px;
+}
+
+.closeTag{
+    font-size: 10pt;
+    font-weight: bold;
+    background:#d9534f;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 6px;
+}
+
+.groupTag{
+    font-size: 10pt;
+    font-weight: bold;
+    background:#777;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 6px;
 }
