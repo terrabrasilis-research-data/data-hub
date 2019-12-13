@@ -29,7 +29,7 @@ export class MydatasetsComponent implements OnInit {
     {"id": 1, "title": 'Current measurements at Langseth/Gakkel Arctic with Lowered ADCP during POLARSTERN cruise', "year": '2015', "author": ["Walter, M","Köhler, J"], "abstract": "Morphometric measurements of Fragilariopsis kerguelensis valves from a two-year time series covering the period from November 2002 to October 2004 collected by a sediment trap at 800m below the ocean surface which was moored near 54° S 140° E in ca. 2300 m water depth, close to the top of the Australia-Antarctica mid-ocean ridge.", "size": 4, "DOI": "https://doi.pangaea.de/10.1594/PANGAEA.904373", "categories": ['Chemistry ','Lakes & Rivers'], "repositorie": "TREES", "filetypes": ['TIF'], "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "license": "MIT"},
   ];
 
-  
+
   checkOpen(id: number){
     // if (id == 2){
     //     return false;

@@ -13,6 +13,8 @@ export class GroupsComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    document.getElementById("wrapper").className = "d-flex toggled";
   
   }
 
