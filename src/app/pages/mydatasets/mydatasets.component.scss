@@ -20,7 +20,7 @@
     padding-left: 3%;
 }
 
-p{
+p {
     margin-bottom: 3%;
 }
 
@@ -119,14 +119,15 @@ p{
 
 .middlebox{ 
     float:left;  
-    width: 92%;
-    line-height: 1;
-    padding-bottom: 12px;
+    width: 97%;
+    padding-top: 7px;
+
+    padding-bottom: 7px;
 } 
 
 .rightbox{ 
     padding-top: 7px;
-    display: flex;
+    align-self: flex-start;
 } 
 
 .center {
@@ -182,6 +183,65 @@ p{
    } 
 }
 
-.line{
-    height: 65px;
+.pageHeader{
+	color: white;
+    font-size: 18pt;
+    font-weight: bold;
+	background-color:rgb(42, 138, 201);
+    height: 100px;
+	width: 100%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	padding-top: 1.5%;
+}
+
+.fontsize{
+    font-size: 12.5pt;
+
+}
+
+.dataTag{
+    font-size: 10pt;
+    font-weight: bold;
+    background:#7bb1be;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+}
+
+.openTag{
+    font-size: 10pt;
+    font-weight: bold;
+    background:#5cb85c;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 6px;
+}
+
+.closeTag{
+    font-size: 10pt;
+    font-weight: bold;
+    background:#d9534f;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 6px;
+}
+
+.groupTag{
+    font-size: 10pt;
+    font-weight: bold;
+    background:#777;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 6px;
 }
