@@ -17,6 +17,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
+
+import { CommentTree } from './pages/dataset/comments/comment-tree.component'
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +47,7 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 
 @NgModule({
   declarations: [
+    CommentTree,
     AppComponent,
     HomeComponent,
     RepositoriesComponent,

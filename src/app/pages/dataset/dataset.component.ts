@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { latLng, tileLayer, Layer, geoJSON } from 'leaflet';
+import { CommentNode } from 'src/app/pages/dataset/comments/comment-tree.component';
 
 @Component({
   selector: 'app-dataset',
@@ -10,7 +11,16 @@ import { latLng, tileLayer, Layer, geoJSON } from 'leaflet';
 })
 
 export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
+
+  @Input()
+  comments:CommentNode[] = [];
+  text:string;
   
+  addComment(comment:CommentNode){
+    this.comments.push(new CommentNode(this.text))
+    this.text="";    
+    console.log(this.comments);
+  }
 
   google_terrain = {
     id: 'google_terrain',
@@ -135,6 +145,8 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   
   ngOnInit() {
 
+    //this.comments =  [new CommentNode("First")]
+    
     this.layers.push(this.google_hybrid.layer)
 
     this.layers.push(this.geoJSON.layer)
@@ -165,6 +177,8 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     // }
    return true;
    }
+
+
 
 }
 
