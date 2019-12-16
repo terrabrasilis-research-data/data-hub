@@ -44,6 +44,7 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { GroupComponent } from './pages/group/group.component';
 import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { MygroupsComponent } from './pages/mygroups/mygroups.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
     ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
+    HttpClientModule,
     MatDatepickerModule,
     MatExpansionModule,
     MatListModule,

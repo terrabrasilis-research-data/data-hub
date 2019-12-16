@@ -145,6 +145,8 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   
   ngOnInit() {
 
+    document.getElementById("wrapper").className = "d-flex toggled";
+
     //this.comments =  [new CommentNode("First")]
     
     this.layers.push(this.google_hybrid.layer)
