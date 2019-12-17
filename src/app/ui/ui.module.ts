@@ -5,12 +5,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { BboxComponent } from './bbox/bbox.component';
-import { TintervalComponent } from './tinterval/tinterval.component';
-import { MapComponent } from './map/map.component';
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent, BboxComponent, TintervalComponent, MapComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, SidebarComponent],
   imports: [
     CommonModule,
     RouterModule

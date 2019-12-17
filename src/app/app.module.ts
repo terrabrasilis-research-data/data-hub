@@ -29,8 +29,6 @@ import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SidebarModule } from 'ng-sidebar';
 
-import { BboxComponent } from './ui/bbox/bbox.component';
-import { TintervalComponent } from './ui/tinterval/tinterval.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { RepositorieComponent } from './pages/repositorie/repositorie.component';
 import { DatasetComponent } from './pages/dataset/dataset.component';
@@ -45,6 +43,7 @@ import { GroupComponent } from './pages/group/group.component';
 import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +65,8 @@ import { HttpClientModule } from '@angular/common/http';
     GroupsComponent,
     GroupComponent,
     NewgroupComponent,
-    MygroupsComponent
+    MygroupsComponent,
+    DataMapComponent
   ],
   entryComponents: [ ],
   imports: [

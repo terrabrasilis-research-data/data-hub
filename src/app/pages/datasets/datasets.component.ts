@@ -65,15 +65,6 @@ export class DatasetsComponent implements OnInit {
    favorites = [
    ];
 
-   CopyBibTex(id: number){
-    this.snackBar.open("Copied to Clipboard", "", {
-      duration: 2000,
-    });
-    let data = this.DATASETS[id-1];
-    let BibTex = '@proceedings{'+ data.id +', \ntitle\t = {'+data.title+'}, \neditor\t = {'+data.author+'},   \nyear\t = {'+data.year+'}, \nDOI\t = {'+data.DOI+'} \n}';
-    Clipboard.copy(BibTex);
-   }
-
    filterChange() {
     this.dataSource.data = this.DATASETS;
     this.size = this.dataSource.data.length;

@@ -153,9 +153,11 @@ export class GroupComponent implements OnInit, MatCardModule {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
   });
+    
 }
 
   async getGroups(){
+
     const response = await this.gs.get_groups();
     this.groups = response;
 
@@ -182,10 +184,16 @@ export class GroupComponent implements OnInit, MatCardModule {
       })
       this.repositories.forEach(obj => {
         this.filterRepository[obj.name] = false
+        if (obj.name == this.groups[this.id - 1].name){
+          this.filterRepository[obj.name] = true
+        }
       })
       this.filetypes.forEach(obj => {
         this.filterFiletypes[obj.name] = false
       });
+
+      this.dataSource.data = this.dataSource.data.filter(x => (x.repositorie == this.groups[this.id -1].name) )
+      this.size = this.dataSource.data.length;
   }
 
   async getDatasets(){
@@ -193,7 +201,7 @@ export class GroupComponent implements OnInit, MatCardModule {
     this.DATASETS = response;
     this.dataSource.data = this.DATASETS;
     this.size = this.DATASETS.length;
-  
+   
     var lookup = {};
     var count = 0;
   
@@ -233,6 +241,9 @@ export class GroupComponent implements OnInit, MatCardModule {
         }
       }
     }
+
+    
+    
   }
   
 }

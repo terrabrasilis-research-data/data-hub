@@ -34,18 +34,15 @@ export class CommentTree implements OnInit {
   constructor(){}
 
   ngOnInit(){
-    console.log(this.comments);
   }
 
   addComment(comment:CommentNode){
     comment.addAnwser(new CommentNode(this.text));      
     comment.isOpen = false;
     this.text="";    
-    console.log(this.comments);
   }
 
   openCommentText(comment){
-    console.log(comment)
     comment.isOpen = !comment.isOpen;
   }
 

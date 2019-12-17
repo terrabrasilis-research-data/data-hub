@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BboxComponent } from './bbox.component';
+import { DataMapComponent } from './data-map.component';
 
-describe('BboxComponent', () => {
-  let component: BboxComponent;
-  let fixture: ComponentFixture<BboxComponent>;
+describe('DataMapComponent', () => {
+  let component: DataMapComponent;
+  let fixture: ComponentFixture<DataMapComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BboxComponent ]
+      declarations: [ DataMapComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BboxComponent);
+    fixture = TestBed.createComponent(DataMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
