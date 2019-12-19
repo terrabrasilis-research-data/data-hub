@@ -10,18 +10,18 @@
                     [leafletLayers]="layers">
                 </div>
         </div>
-
+<!--
         <div class="greybox-left marginBottom textBox">
             <div class="topicHead">Dataset metric</div>
             <div style="height: 40px">
                 <a>... </a> 
             </div>
         </div>
-
+-->
         <div class="greybox-left marginBottom textBox">
             <div class="topicHead">Other datasets from same authors</div>
                 <div *ngFor="let dataset of others_datasets; let i = index">
-                        <div *ngIf="i<11">
+                        <div *ngIf="i<8">
                         <a class="textlink itemLine" [routerLink]="['/datasets', others_datasets[i].id]">{{others_datasets[i].author[1].split(" ")[0]}} et al. ({{others_datasets[i].year}}): {{others_datasets[i].title | slice:0:18}}... </a>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
             <div class="greybox-left marginBottom textBox">
                 <div class="topicHead">Export</div>
 
-                <div class="textlink" (click)="CopyBibTex()">BibTeX</div>
+                <div class="textlink" (click)="CopyBibTex()">BibTeX  CSL  DataCite  Dublin  Core  JSON  JSON-LD  GeoJSON  MARCXML  Mendeley  </div>
                 
             </div>
 
@@ -182,7 +182,7 @@
                               </mat-expansion-panel>
 
                           </mat-accordion>
-
+<!--
             <div class="header"> Comments </div> 
             
             <textarea style=" margin-top: 7px;" [(ngModel)]="text" cols="40" rows="4" placeholder="Add a public comment ..."></textarea>
@@ -193,7 +193,7 @@
             <comment-tree [comments]="comments">  
             </comment-tree>
 
-           
+        -->
         </div>
             <div style="margin-bottom: 300px">
             </div>
