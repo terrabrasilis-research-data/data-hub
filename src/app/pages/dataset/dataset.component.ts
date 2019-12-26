@@ -15,6 +15,8 @@ import { DatasetsService } from '../datasets/datasets.service';
 })
 
 export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
+  
+  public layersControl: any;
 
   @Input()
   comments:CommentNode[] = [];
@@ -24,51 +26,6 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     this.comments.push(new CommentNode(this.text))
     this.text="";    
   }
-
-  google_hybrid = {
-    id: 'google_hybrid',
-    enabled: true,
-    name: 'Google Hybrid',
-    layer: tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    }),
- }
-  
-	geoJSON = {
-		id: 'geoJSON',
-		name: 'Geo JSON Polygon',
-		enabled: true,
-		layer: geoJSON(
-			({
-        type: 'Polygon',
-
-				coordinates: [[
-          [
-            -67.92626,
-            6.656333333333333
-          ],
-          [
-            -49.38799999999998,
-            6.656333333333333
-          ],
-          [
-            -49.38799999999998,
-            -3.89446
-          ],
-          [
-            -67.92626,
-            -3.89446
-          ],
-          [
-            -67.92626,
-            6.656333333333333
-          ]
-				]]
-			}) as any,
-			{ style: () => ({ color: '#ff7800' })})
-	};
-
-  layers: Layer[] = [];
   
 	options = {
   };
@@ -92,12 +49,45 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
     document.getElementById("wrapper").className = "d-flex toggled";
     
-    this.layers.push(this.google_hybrid.layer)
-    this.layers.push(this.geoJSON.layer)
+    this.layersControl = {
+      baseLayers: {
+        'Google Hybrid':  tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}' , { enebled: true, maxZoom: 18, attribution: '...', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
+        'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+      },
+      overlays: { 
+        'Geo JSON Polygon': geoJSON(
+          ({
+            type: 'Polygon',
+    
+            coordinates: [[
+              [
+                -67.92626,
+                6.656333333333333
+              ],
+              [
+                -49.38799999999998,
+                6.656333333333333
+              ],
+              [
+                -49.38799999999998,
+                -3.89446
+              ],
+              [
+                -67.92626,
+                -3.89446
+              ],
+              [
+                -67.92626,
+                6.656333333333333
+              ]]
+            ]}) as any, { style: () => ({ color: '#ff7800' })})
+      }
+    }
     
     this.options = 	{ 
       zoom: 4,
-		  center: this.geoJSON.layer.getBounds().getCenter()
+      center: this.layersControl.overlays['Geo JSON Polygon'].getBounds().getCenter(),
+      layers: [ this.layersControl.baseLayers['Google Hybrid'], this.layersControl.overlays['Geo JSON Polygon'] ]
     }
 
     this.sub = this.route.params.subscribe(params => {
