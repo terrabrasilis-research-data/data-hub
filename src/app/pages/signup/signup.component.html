@@ -9,15 +9,15 @@
                             <form>
                             <div class="form-group">
                                 <label>User name</label>
-                                <input name="" class="form-control" placeholder="User name" type="text">
+                                <input name="username" class="form-control" placeholder="User name" type="text" [ngModel]="username" (ngModelChange)="usernameModelChange($event)">
                             </div> <!-- form-group// -->
                             <div class="form-group">
                                 <label>E-mail address</label>
-                                <input name="" class="form-control" placeholder="Email" type="email">
+                                <input name="email" class="form-control" placeholder="Email" type="email" [ngModel]="email" (ngModelChange)="emailModelChange($event)">
                             </div> <!-- form-group// -->
                             <div class="form-group">
                                 <label>Your password</label>
-                                <input class="form-control" placeholder="******" type="password">
+                                <input name="password" class="form-control" placeholder="******" type="password" [ngModel]="password" (ngModelChange)="passwordModelChange($event)">
                             </div> <!-- form-group// --> 
                             <div class="form-group">
                                     <label>Reenter password</label>
@@ -25,14 +25,14 @@
                             </div> <!-- form-group// --> 
                             <div class="form-group">
                                     <label>Full name</label>
-                                    <input name="" class="form-control" placeholder="Full name" type="text">
+                                    <input name="fullname" class="form-control" placeholder="Full name" type="text" [ngModel]="fullname" (ngModelChange)="fullnameModelChange($event)"> 
                             </div> <!-- form-group// -->
                             <div class="checkbox">
-                                    <label><input type="checkbox"> Yes, I have read the<a class="float-right textlink left" href="#"> privacy policy.</a></label>
+                                    <label><input type="checkbox" name="privacy" FormControlName="privacy"> Yes, I have read the<a class="float-right textlink left" href="#"> privacy policy.</a></label>
                                   </div> <!-- checkbox .// -->
                             <br>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block button">Create Account</button>
+                                <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-block button">Create Account</button>
                             </div> <!-- form-group// -->                                                           
                         </form>
                         </article>

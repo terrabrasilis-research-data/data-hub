@@ -1,5 +1,5 @@
 # TerraBrasilis Research Data - Data Hub
-The Data Hub is the interface that gives users the functionality of Data Management. Inspired by digital libraries, the component will enable researchers to take full advantage of Research Data Repository functionality without the need for technical knowledge. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+The Data Portal is responsible for organizing the entry of researchers and users in the form of a web interface and the platform's functionalities. Inspired by digital libraries, the Data Portal will provide navigation through all published data sets, visualization of research groups, generation of citation of data sets, download of data among other functions. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
 ## Development server
 
@@ -20,3 +20,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
