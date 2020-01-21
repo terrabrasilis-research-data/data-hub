@@ -38,7 +38,14 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.ss.user_create( this.username, this.email, this.password, this.fullname  );
+  private async onSubmit() {
+    try {
+      const response = await this.ss.user_create(this.username, this.email, this.password, this.fullname);
+      if (response) {
+        console.log("Done!")
+      } 
+    } catch (err) {
+      console.log(err)
+    } 
   }
 }
