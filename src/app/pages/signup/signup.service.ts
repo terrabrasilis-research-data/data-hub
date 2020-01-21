@@ -9,17 +9,12 @@ export class SignupService {
   }
 
   public async user_create(name: string, email: string, password: string, full_name: string): Promise<any> {
-    
-      const response = await this.http.get(`http://localhost:5000/api/3/action/package_list`).toPromise();
-      return response;
-
-    //const response = await this.http.post(`http://localhost:5000/api/3/action/user_create`, {'name': name, 'email': email, 'password': password, 'fullname': full_name}, {
-    //  headers: new HttpHeaders ({
-    //    Authorization: '0498a5c2-24a5-4848-a23b-29044879c1fa'
-    //  })
-    //}).toPromise();
-    //return response;
-    
+    const response = await this.http.post(`http://localhost:5000/api/3/action/user_create`, {'name': name, 'email': email, 'password': password, 'fullname': full_name}, {
+      headers: new HttpHeaders ({
+        Authorization: 'e4794835-de49-4993-a0fd-1a4adabc0c38'
+      })
+    }).toPromise();
+    return response;
   }
 
 }
