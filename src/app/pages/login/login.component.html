@@ -13,20 +13,17 @@
                         </div> <!-- form-group// -->
 
                         <div class="form-group">
-                            <a class="float-right textlink" href="#">Forgot?</a>
-                            <label>Your password</label>
+                            <label>Password</label>
                             <input type="password" class="form-control" formControlName="Password" [ngModel]="password" (ngModelChange)="passwordModelChange($event)">
                         </div> <!-- form-group// --> 
 
-                        <div class="form-group"> 
-                        <div class="checkbox">
-                          <label> <input type="checkbox"> Save password </label> 
-                        </div> <!-- checkbox .// -->
 
-                        </div> <!-- form-group// -->  
                         <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block button">Login</button>
-                        </div> <!-- form-group// -->                                                           
+                        </div> <!-- form-group// -->          
+
+                        Forgotten your password? <a class="float-right textlink" href="#">click here</a>
+                                                                   
                     </form>
                     </article>
                     </div> 
