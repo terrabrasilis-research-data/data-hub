@@ -17,6 +17,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
 import { CommentTree } from './pages/dataset/comments/comment-tree.component'
 import { RouterModule } from '@angular/router';
@@ -88,6 +89,7 @@ import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
     RouterModule,
     LeafletModule.forRoot(),
     SidebarModule.forRoot(),
+    NgBootstrapFormValidationModule.forRoot(),
     MatSnackBarModule,
     MatTableModule,
     MatInputModule,

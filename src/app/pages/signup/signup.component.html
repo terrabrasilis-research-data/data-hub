@@ -6,37 +6,52 @@
                             You can sign up for a user account using this form. 
                             <br>
                             <br>
-                            <form>
-                            <div class="form-group">
-                                <label>User name</label>
-                                <input name="username" class="form-control" placeholder="User name" type="text" [ngModel]="username" (ngModelChange)="usernameModelChange($event)">
-                            </div> <!-- form-group// -->
-                            <div class="form-group">
-                                <label>E-mail address</label>
-                                <input name="email" class="form-control" placeholder="Email" type="email" [ngModel]="email" (ngModelChange)="emailModelChange($event)">
-                            </div> <!-- form-group// -->
-                            <div class="form-group">
-                                <label>Your password</label>
-                                <input name="password" class="form-control" placeholder="******" type="password" [ngModel]="password" (ngModelChange)="passwordModelChange($event)">
-                            </div> <!-- form-group// --> 
-                            <div class="form-group">
-                                    <label>Reenter password</label>
-                                    <input class="form-control" placeholder="******" type="password">
-                            </div> <!-- form-group// --> 
-                            <div class="form-group">
-                                    <label>Full name</label>
-                                    <input name="fullname" class="form-control" placeholder="Full name" type="text" [ngModel]="fullname" (ngModelChange)="fullnameModelChange($event)"> 
-                            </div> <!-- form-group// -->
-                            <div class="checkbox">
-                                    <label><input type="checkbox" name="privacy" FormControlName="privacy"> Yes, I have read the<a class="float-right textlink left" href="#"> privacy policy.</a></label>
-                                  </div> <!-- checkbox .// -->
-                            <br>
-                            <div class="form-group">
-                                <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-block button">Create Account</button>
-                            </div> <!-- form-group// -->                                                           
-                        </form>
+                            <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+
+                                <div class="form-group">
+                                  <label class="control-label">User name</label>
+                                  <input type="text" class="form-control" formControlName="Username"  [ngModel]="username" (ngModelChange)="usernameModelChange($event)">
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label">Email</label>
+                                  <input type="text" class="form-control" formControlName="Email" [ngModel]="email" (ngModelChange)="emailModelChange($event)">
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label">Password</label>
+                                  <input type="password" class="form-control" formControlName="Password" [ngModel]="password" (ngModelChange)="passwordModelChange($event)">
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="control-label">Reenter password</label>
+                                  <input type="password" class="form-control" formControlName="RePassword">
+                                </div>
+
+                                <div class="form-group">
+                                        <label class="control-label">Full name</label>
+                                        <input type="text" class="form-control" formControlName="Fullname" [ngModel]="fullname" (ngModelChange)="fullnameModelChange($event)">
+                                </div>
+                                
+                                <button class="btn btn-outline-secondary" type="button" (click)="onReset()">Reset</button>
+     
+                                <button class="btn btn-primary pull-right button" type="submit">Submit</button>
+
+                              </form>
+                              
                         </article>
+
                         </div> 
         </div>
+
+        <div class=""  *ngIf="showMsg" style="width: 50%; margin-left: 25%; margin-right: 25%; margin-top: 30px">
+                <div class="col-xs-12">
+                <p class="alert alert-success">
+                    <strong>Registration Success!</strong> Please click <a routerLink="/login">here</a> to login!
+        
+                </p>
+            </div>
+            </div>
+
     </div>
         

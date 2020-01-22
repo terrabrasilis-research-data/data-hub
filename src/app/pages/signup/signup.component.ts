@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { SignupService } from '../signup/signup.service';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,6 +11,10 @@ import { SignupService } from '../signup/signup.service';
 
 export class SignupComponent implements OnInit {
 
+  formGroup: FormGroup;
+
+  showMsg: boolean = false;
+ 
   public username: string = "";
   public email: string = "";
   public password: string = "";
@@ -31,21 +37,58 @@ export class SignupComponent implements OnInit {
   }
   constructor(
     private ss: SignupService,
+    private router: Router,
   ) {
     
   }
  
-  ngOnInit() {
+  ngOnInit() { 
+    
+    this.formGroup = new FormGroup({
+
+      Username: new FormControl('', [
+        Validators.required
+      ]),
+
+      Email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+      ]),
+
+      Password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20)
+      ]),
+
+      RePassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20)
+      ]),
+
+      Fullname: new FormControl('', [
+        Validators.required
+      ]),
+
+    });
   }
 
   private async onSubmit() {
     try {
       const response = await this.ss.user_create(this.username, this.email, this.password, this.fullname);
       if (response) {
-        console.log("Done!")
+        this.formGroup.reset(); 
+        this.showMsg= true;
       } 
     } catch (err) {
       console.log(err)
     } 
   }
+
+  onReset() {
+    this.formGroup.reset();
+  }
+  
 }
+
