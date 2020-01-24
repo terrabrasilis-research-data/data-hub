@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { SignupService } from '../signup/signup.service';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -37,7 +36,6 @@ export class SignupComponent implements OnInit {
   }
   constructor(
     private ss: SignupService,
-    private router: Router,
   ) {
     
   }
@@ -77,8 +75,11 @@ export class SignupComponent implements OnInit {
   private async onSubmit() {
     try {
       const response = await this.ss.user_create(this.username, this.email, this.password, this.fullname);
-      if (response) {
+      const response2 = await this.ss.user_create_db(this.username, this.email, this.fullname, '2019-09-04T14:48:54+00:00', '2019-09-04T14:48:54+00:00');
+
+      if (response2) {
         console.log(response)
+        console.log(response2)
         this.formGroup.reset(); 
         this.showMsg= true;
       } 
