@@ -4,7 +4,7 @@
             <div class="card">
                     <article class="card-body">
                     <h4 class="card-title mb-4 mt-1">Dashboard</h4>
-
+                                                
                         <div class="left">
                                 <div class="">
                                 <mat-accordion>
@@ -16,8 +16,12 @@
                                             <mat-panel-description>
                                             </mat-panel-description>
                                           </mat-expansion-panel-header>
-
-
+                                          
+                                          <button (click)="printUser()"> DEBUG </button>
+                                          <br>
+                                          <br>
+                                          <br>
+                                          
                                           <div class="form-group bottom">
                                                 <label>Title</label>
                                                 <input name="" class="form-control" placeholder="A descriptive title" type="text">
@@ -114,7 +118,7 @@
                                                             </div> <!-- form-group// -->
         
                                           <div>
-                                                <a routerLink="/signup" class="btn button">Publish now</a>
+                                                <a  class="btn button">Publish now</a>
                                           </div>
 
                                         </mat-expansion-panel>

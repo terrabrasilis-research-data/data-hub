@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { LoginService } from './login.service';
+import { Store } from '@ngrx/store';
+import { addUserData } from './login.action';
+import * as fromLogin from './login.reducer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +26,9 @@ export class LoginComponent implements OnInit {
     this.password = str;
   }
   constructor(
-    private ls: LoginService
+    private ls: LoginService,
+    private store: Store<fromLogin.AppState>,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -42,15 +48,19 @@ export class LoginComponent implements OnInit {
   }
 
   private async onSubmit() {
-    /*try {
-      const response = await this.ss.user_create(this.username, this.email, this.password, this.fullname);
+    try {
+      const response = await this.ls.user_login(this.username, this.password);
       if (response) {
+        //console.log(response)
+        this.store.dispatch(addUserData({
+          user: response
+        }))
         this.formGroup.reset(); 
-        this.router.navigate([`/login`]);
+        this.router.navigate([`/dashboard`]);
       } 
     } catch (err) {
       console.log(err)
-    } */
+    }
   }
 
   onReset() {

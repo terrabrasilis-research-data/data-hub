@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as fromLogin from '../login/login.reducer';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  id: number;
 
-  constructor() { }
+  constructor(
+    private store: Store<fromLogin.AppState>,
+  ) {
+    this.store.pipe(select('login')).subscribe(res => {
+      if(res){
+        this.user = res['user'];
+      }
+  })
+}
 
+ public user: any;
+ 
   ngOnInit() {
     document.getElementById("wrapper").className = "d-flex";
   }
@@ -46,15 +57,12 @@ export class DashboardComponent implements OnInit {
     {"repositorie_id": 5, "name": "Boron Repository", "authors": ["Astrid Cornils"], "year": 2015}  ]
   
   checkServiceStatus(id: number){
-    // if (id == 2){
-    //     return false;
-    // } else {
-    //   return true;
-    // }
    return true;
    }
 
-
+   printUser(){
+     console.log(this.user)
+   }
 }
 
 export interface Activities {
