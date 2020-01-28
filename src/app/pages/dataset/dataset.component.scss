@@ -62,6 +62,8 @@
 
 .textlink:hover{
     text-decoration: underline;
+    cursor: pointer;
+
 
 }
 
@@ -217,7 +219,7 @@ img{
 }
 
 .button:hover{
-    background:rgb(42, 138, 201)
+    background:rgb(42, 138, 201);
 }
 
 .sizeIcon{
@@ -243,4 +245,13 @@ img{
 	padding-left: 1.5%;
 	padding-right: 1.5%;
 	padding-top: 1.5%;
+}
+
+.textCite{
+    font-size: 14px;
+}
+
+.topicHead{
+    margin-bottom: 15px;
+    
 }

@@ -3,26 +3,27 @@
 
             <div class="card">
                     <article class="card-body">
-                    <a routerLink="/signup" class="float-right btn button">Sign up</a>
+                     <button routerLink="/signup" class="btn btn-primary float-right button">Sign up</button>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
-                         <form>
+                    <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+
                         <div class="form-group">
-                            <label>Your email</label>
-                            <input name="" class="form-control" placeholder="Email" type="email">
+                            <label>Username</label>
+                            <input type="text" class="form-control" formControlName="Username"  [ngModel]="username" (ngModelChange)="usernameModelChange($event)">
                         </div> <!-- form-group// -->
+
                         <div class="form-group">
-                            <a class="float-right textlink" href="#">Forgot?</a>
-                            <label>Your password</label>
-                            <input class="form-control" placeholder="******" type="password">
+                            <label>Password</label>
+                            <input type="password" class="form-control" formControlName="Password" [ngModel]="password" (ngModelChange)="passwordModelChange($event)">
                         </div> <!-- form-group// --> 
-                        <div class="form-group"> 
-                        <div class="checkbox">
-                          <label> <input type="checkbox"> Save password </label>
-                        </div> <!-- checkbox .// -->
-                        </div> <!-- form-group// -->  
+
+
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block button"> Login  </button>
-                        </div> <!-- form-group// -->                                                           
+                                <button type="submit" class="btn btn-primary btn-block button">Login</button>
+                        </div> <!-- form-group// -->          
+
+                        <a class="float-right textlink" href="#">Forgot password?</a>
+                                                                   
                     </form>
                     </article>
                     </div> 

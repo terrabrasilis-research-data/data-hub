@@ -17,6 +17,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+
+import { CommentTree } from './pages/dataset/comments/comment-tree.component'
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,8 +30,6 @@ import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SidebarModule } from 'ng-sidebar';
 
-import { BboxComponent } from './ui/bbox/bbox.component';
-import { TintervalComponent } from './ui/tinterval/tinterval.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { RepositorieComponent } from './pages/repositorie/repositorie.component';
 import { DatasetComponent } from './pages/dataset/dataset.component';
@@ -42,9 +43,12 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { GroupComponent } from './pages/group/group.component';
 import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { MygroupsComponent } from './pages/mygroups/mygroups.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
 
 @NgModule({
   declarations: [
+    CommentTree,
     AppComponent,
     HomeComponent,
     RepositoriesComponent,
@@ -62,7 +66,8 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
     GroupsComponent,
     GroupComponent,
     NewgroupComponent,
-    MygroupsComponent
+    MygroupsComponent,
+    DataMapComponent
   ],
   entryComponents: [ ],
   imports: [
@@ -74,6 +79,7 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
     ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
+    HttpClientModule,
     MatDatepickerModule,
     MatExpansionModule,
     MatListModule,
@@ -83,6 +89,7 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
     RouterModule,
     LeafletModule.forRoot(),
     SidebarModule.forRoot(),
+    NgBootstrapFormValidationModule.forRoot(),
     MatSnackBarModule,
     MatTableModule,
     MatInputModule,

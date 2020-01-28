@@ -5,8 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table'
 import { Routes, RouterModule } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BboxComponent } from 'src/app/ui/bbox/bbox.component';
-import { TintervalComponent } from 'src/app/ui/tinterval/tinterval.component';
 
 
 @Component({
@@ -61,26 +59,6 @@ filterChange() {
         }
 
     }
-}
-
-Map() {
-    const dialogRef = this.dialog.open(BboxComponent, {
-        data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-    });
-}
-
-Time(){
-    const dialogRef = this.dialog.open(TintervalComponent, {
-        data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-    });
 }
 
 @ViewChild(MatPaginator, {

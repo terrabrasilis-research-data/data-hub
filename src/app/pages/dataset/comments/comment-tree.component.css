@@ -1,0 +1,19 @@
+#mainDiv{
+    padding-left: 25px;
+  }
+
+.button{
+    margin-top: 7px;
+    background: #0F66A0; 
+    color: white;
+}
+
+.textlink{
+  color: #0F66A0; 
+}
+
+.textlink:hover{
+  text-decoration: underline;
+  cursor: pointer;
+
+}
