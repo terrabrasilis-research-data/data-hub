@@ -17,11 +17,6 @@
                                             </mat-panel-description>
                                           </mat-expansion-panel-header>
                                           
-                                          <button (click)="printUser()"> DEBUG </button>
-                                          <br>
-                                          <br>
-                                          <br>
-                                          
                                           <div class="form-group bottom">
                                                 <label>Title</label>
                                                 <input name="" class="form-control" placeholder="A descriptive title" type="text">
@@ -117,8 +112,12 @@
                                                                 <input name="" class="form-control" placeholder="CSV, XLS or JSON" type="text">
                                                             </div> <!-- form-group// -->
         
+                                                           
                                           <div>
-                                                <a  class="btn button">Publish now</a>
+                                                <button class="btn btn-primary pull-right button" type="submit">Publish now</button>
+
+                                                <button (click)="printUser()"> DEBUG </button>
+
                                           </div>
 
                                         </mat-expansion-panel>

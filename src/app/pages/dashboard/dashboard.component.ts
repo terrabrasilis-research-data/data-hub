@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   ) {
     this.store.pipe(select('login')).subscribe(res => {
       if(res){
-        this.user = res['user'];
+        this.user = res['user']['user'];
       }
   })
 }
