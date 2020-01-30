@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as fromLogin from '../../pages/login/login.reducer';
 import { Store, select } from '@ngrx/store';
+import { rmvUserData } from 'src/app/pages/login/login.action';
 
 let logged = false;
 
@@ -33,7 +34,7 @@ export class SidebarComponent implements OnInit {
   }
   
   logout(){
-
+    this.store.dispatch(rmvUserData(null))
   }
 
 }

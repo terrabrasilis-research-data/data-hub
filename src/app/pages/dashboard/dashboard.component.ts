@@ -14,12 +14,12 @@ export class DashboardComponent implements OnInit {
   ) {
     this.store.pipe(select('login')).subscribe(res => {
       if(res){
-        this.user = res['user']['user'];
+        this.user = res;
       }
   })
 }
 
- public user: any;
+ public user: any = null;
  
   ngOnInit() {
     document.getElementById("wrapper").className = "d-flex";

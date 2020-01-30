@@ -2,5 +2,5 @@
 export interface LoginState {
 
     /** JSON with userData */
-    readonly userData: any;
+    readonly user: any;
 }
