@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-    addUserData,
-    rmvUserData
+    addUserData
 } from './login.action';
 import { LoginState } from './login.state';
 
@@ -18,13 +17,8 @@ export const reducer = createReducer(initialState,
 
     on(addUserData, (state, payload) => {
       localStorage.setItem('user', JSON.stringify(payload['user']));
+      console.log(payload['user'])
       return { ...state, user: payload['user'] };
     }),
-/*
-    on(rmvUserData, (state) => {
-      localStorage.setItem('user', null);
-      return { ...state, user: null };
-    }),
-*/
 )
 

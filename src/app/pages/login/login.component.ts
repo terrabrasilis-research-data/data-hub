@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   
   public username: string = "";
   public password: string = "";
+  showMsg: boolean = false;
 
   public usernameModelChange(str: string): void {
     this.username = str;
@@ -50,14 +51,15 @@ export class LoginComponent implements OnInit {
   private async onSubmit() {
     try {
       const response = await this.ls.user_login(this.username, this.password);
-      if (response) {
-        //console.log(response)
+      if (response['message'] != 'Wrong credentials') {
         this.store.dispatch(addUserData({
           user: response
         }))
         this.formGroup.reset(); 
         this.router.navigate([`/dashboard`]);
-      } 
+      } else {
+        this.showMsg = true;
+      }
     } catch (err) {
       console.log(err)
     }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as fromLogin from '../../pages/login/login.reducer';
 import { Store, select } from '@ngrx/store';
 import { rmvUserData } from 'src/app/pages/login/login.action';
+import { Router } from '@angular/router';
 
 let logged = false;
 
@@ -14,6 +15,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private store: Store<fromLogin.AppState>,
+    private router: Router,
   ) {
     this.store.pipe(select('login')).subscribe(res => {
       if(res){
@@ -35,6 +37,7 @@ export class SidebarComponent implements OnInit {
   
   logout(){
     this.store.dispatch(rmvUserData(null))
+    this.router.navigate([`/`]);
   }
 
 }
