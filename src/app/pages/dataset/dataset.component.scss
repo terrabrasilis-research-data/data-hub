@@ -107,6 +107,8 @@
     margin-bottom: 13pt;
 }
 .textBox{
+
+    word-wrap: break-word;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
@@ -254,4 +256,12 @@ img{
 .topicHead{
     margin-bottom: 15px;
     
+}
+
+.spacetext2{
+    margin-right: 9px;
+}
+
+.exportBox{
+    padding-bottom: 30px;
 }
