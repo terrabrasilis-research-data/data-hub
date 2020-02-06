@@ -3,136 +3,105 @@
 
             <div class="card">
                     <article class="card-body">
-                    <a routerLink="/view/repositories" class="float-right btn button">My Repositories</a>
+                    <div routerLink="/view/repositories" class="float-right btn button">My Repositories</div>
                     <h4 class="card-title mb-4 mt-1">New Repository</h4>
-                    
-                    <form>
-                            <div class="form-group bottom">
-                                    <label>Name</label>
-                                    <input name="" class="form-control" placeholder="A descriptive title" type="text">
-                                </div> <!-- form-group// -->
 
-                                <div class="form-group bottom">
+                    <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
 
-                                        <label>Description</label>
-                                        
-                                        <div class="form-group">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Some useful notes about the group"></textarea>
-                                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input name="" class="form-control" formControlName="Name" [ngModel]="name" (ngModelChange)="nameModelChange($event)" placeholder="A descriptive title" type="text">
+                        </div>
+ 
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="" class="form-control" formControlName="Description" [ngModel]="description" (ngModelChange)="descriptionModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
+                        </div>
 
-                                    </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <label>Collaborators</label>
+                            <div style="width: 15px"></div>
+                            <select class="sizeDropdown" formControlName="Collaborators" [ngModel]="collaborators" (ngModelChange)="collaboratorsModelChange($event)">
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                            </select>
+                        </div>
 
-                                    <div class="form-group bottom">
-                                            <div>
-                                                <label>Collaborators </label>
-                                                
-                                            </div>
-                                            <div>
-                                                <select class="sizeDropdown">
-                                                        <option value="volvo">Volvo</option>
-                                                        <option value="saab">Saab</option>
-                                                        <option value="opel">Opel</option>
-                                                        <option value="audi">Audi</option>
-                                                </select>
-                                            </div>
+                        <div class="form-group">
+                            <label>Maintainer</label>
+                            <input name="" class="form-control" formControlName="Maintainer" [ngModel]="maintainer" (ngModelChange)="maintainerModelChange($event)" placeholder="Maintainer name" type="text">
+                        </div>
+ 
+                        <div class="form-group">
+                            <label>Categorie</label>
+                            <div style="width: 15px"></div>
+                            <select class="sizeDropdown" formControlName="Categorie" [ngModel]="categorie" (ngModelChange)="categorieModelChange($event)">
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                            </select>
+                        </div>
 
-                                        </div> <!-- form-group// -->
+                        <div class="form-group">
+                            <label>Keywords</label>
+                            <input name="" class="form-control" formControlName="Keywords" [ngModel]="keywords" (ngModelChange)="keywordsModelChange($event)" placeholder="land use, land cover, processed images" type="text">
+                        </div>
 
-                                            <div class="form-group bottom">
-                                                    <label>Maintainer</label>
-                                                    <input name="" class="form-control" placeholder="Joe Bloggs" type="text">
-                                            </div> <!-- form-group// -->
+                        <hr class="style1">
 
-                                            <div class="form-group bottom">
-                                                <label>Language</label>
-                                                <input name="" class="form-control" placeholder="Joe Bloggs" type="text">
-                                            </div> <!-- form-group// -->
+                        <div>
+                            <label>Services</label>
+                        </div>
 
-                                            <div class="form-group bottom">
-                                                    <div>
-                                                        <label>Categorie </label>
-                                                        
-                                                    </div>
-                                                    <div>
-                                                        <select class="sizeDropdown">
-                                                                <option value="volvo">Volvo</option>
-                                                                <option value="saab">Saab</option>
-                                                                <option value="opel">Opel</option>
-                                                                <option value="audi">Audi</option>
-                                                        </select>
-                                                    </div>
-    
-                                                </div> <!-- form-group// -->
-      
-                                                <div class="form-group bottom">
-                                                    <label>Keywords</label>
-                                                    <input name="" class="form-control" placeholder="land use, land cover, processed images" type="text">
-                                                </div> <!-- form-group// -->
-    
-                                            <div class="form-group bottom">
-                                                        <label>Bounding Box</label>
-                                                        <input name="" class="form-control" placeholder="GEOJSON Bounding Box" type="text">
-                                            </div> <!-- form-group// -->
+                        <div class="desc">Select the services you want included in your Research Data Repository.</div>
 
-                                            <div class="form-group bottom">
-                                                <div>
-                                                    <label>Custom Field</label>
-                                                </div>
-                                                        
-                                                        Key <input name="" class="form-control" placeholder="" type="text">
+                        <br>
 
-                                                        Value <input name="" class="form-control" placeholder="" type="text">
-                                                        
-                                                        <br>
+                        <div>
+                        <input class="checkPad" formControlName="PostgreSQL" type="checkbox" id="scales" name="scales" [ngModel]="postgres" (ngModelChange)="postgresModelChange($event)"
+                                checked>
+                        <label for="postgres">PostgreSQL</label>
+                        </div>
+                        
+                        <div>
+                            <input class="checkPad" formControlName="GeoServer" type="checkbox" id="scales" name="scales" [ngModel]="geoserver" (ngModelChange)="geoserverModelChange($event)"
+                            checked>
+                            <label for="geoserver">GeoServer</label>
+                        </div>
 
-                                                        Key <input name="" class="form-control" placeholder="" type="text">
+                        <div>
+                            <input class="checkPad" formControlName="GeoNetwork" type="checkbox" id="scales" name="scales" [ngModel]="geonetwork" (ngModelChange)="geonetworkModelChange($event)"
+                            checked>
+                            <label for="geonetwork">GeoNetwork</label>
+                        </div>
 
-                                                        Value <input name="" class="form-control" placeholder="" type="text">
-                                                        
-                                            </div> <!-- form-group// -->
+                        <div>
+                            <input class="checkPad" formControlName="TerraMA2" type="checkbox" id="scales" name="scales" [ngModel]="terrama2" (ngModelChange)="terrama2ModelChange($event)"
+                            checked>
+                            <label for="terrama2">TerraMA2</label>
+                        </div>
 
-                                            <br>
-                                            <hr class="style1">
-                                            <br>
+                        <div>
+                            <input class="checkPad" formControlName="OwnCloud" type="checkbox" id="scales" name="scales" [ngModel]="owncloud" (ngModelChange)="owncloudModelChange($event)"
+                            checked>
+                            <label for="owncloud">OwnCloud</label>
+                        </div>
 
-                                            <div>
-                                                <label>Services</label>
-                                            </div>
+                        <hr class="style1">
 
-                                            <div class="desc">Select the services you want included in your Research Data Repository.</div>
+                        <button class="btn btn-outline-secondary" type="button" (click)="onReset()">Reset</button>
 
-                                            <br>
+                        <button class="btn btn-primary pull-right button" type="submit">Create repositorie</button>
 
-                                            <div>
-                                              <input class="checkPad" type="checkbox" id="scales" name="scales"
-                                                     checked>
-                                              <label for="postgres">PostgreSQL</label>
-                                            </div>
-                                            
-                                            <div>
-                                                <input class="checkPad" type="checkbox" id="scales" name="scales"
-                                                       >
-                                                <label for="geoserver">GeoServer</label>
-                                            </div>
-
-                                            <div>
-                                                <input class="checkPad" type="checkbox" id="scales" name="scales"
-                                                       >
-                                                <label for="geonetwork">GeoNetwork</label>
-                                            </div>
-
-                                                <br>
-                                                <hr class="style1">
-                                                <br>
-                                                
-                              <div>
-                                    <a routerLink="/signup" class="btn button">Create repositorie</a>
-                              </div>
                     </form>
 
                     </article>
-                    </div> 
-
+                </div>
     </div>
+                <div style="margin-bottom: 60px">
+                </div>
+
 </div>
-    
