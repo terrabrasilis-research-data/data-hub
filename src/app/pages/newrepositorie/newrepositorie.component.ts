@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { GroupsService } from '../groups/groups.service';
 
 @Component({
   selector: 'app-newrepositorie',
@@ -14,9 +15,9 @@ export class NewrepositorieComponent implements OnInit {
  
   public name: string = "";
   public description: string = "";
-  public collaborators: number = 0;
+  public collaborators: number = null;
   public maintainer: string = "";
-  public categorie: number = 0;
+  public categorie: number = null;
   public keywords: string = "";
   public postgres: boolean = true;
   public geoserver: boolean = true;
@@ -67,9 +68,12 @@ export class NewrepositorieComponent implements OnInit {
   public owncloudModelChange(bol: boolean): void {
     this.owncloud = bol;
   }
-  constructor() { }
+
+  constructor(private gs:GroupsService) { }
 
   ngOnInit() {
+    this.getGroups();
+    this.getCategories();
 
     this.formGroup = new FormGroup({
 
@@ -115,6 +119,16 @@ export class NewrepositorieComponent implements OnInit {
 
   }
 
+  async getGroups(){
+    const response = await this.gs.get_groups();
+    this.groups = response;
+  }
+
+  async getCategories(){
+    const response = await this.gs.get_categories();
+    this.categories = response;
+  }
+
   private async onSubmit() {
     try {
       console.log("sucess")
@@ -126,4 +140,19 @@ export class NewrepositorieComponent implements OnInit {
   onReset() {
     this.formGroup.reset();
   }
+
+
+  groups: Group[]; 
+  categories: Categorie[];
+
+}
+
+export interface Group {
+  group_id: number;
+  name: string;
+}
+
+export interface Categorie {
+  categorie_id: number;
+  name: string;
 }

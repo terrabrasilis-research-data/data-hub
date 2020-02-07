@@ -22,11 +22,9 @@
                             <label>Collaborators</label>
                             <div style="width: 15px"></div>
                             <select class="sizeDropdown" formControlName="Collaborators" [ngModel]="collaborators" (ngModelChange)="collaboratorsModelChange($event)">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
+                                <option *ngFor="let group of groups" value="{{group.group_id}}">{{group.name}}</option>
                             </select>
+                        
                         </div>
 
                         <div class="form-group">
@@ -37,12 +35,11 @@
                         <div class="form-group">
                             <label>Categorie</label>
                             <div style="width: 15px"></div>
+
                             <select class="sizeDropdown" formControlName="Categorie" [ngModel]="categorie" (ngModelChange)="categorieModelChange($event)">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
+                                <option *ngFor="let categorie of categories" value="{{categorie.categorie_id}}">{{categorie.name}}</option>
                             </select>
+
                         </div>
 
                         <div class="form-group">
