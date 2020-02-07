@@ -59,10 +59,6 @@ export class DashboardComponent implements OnInit {
   checkServiceStatus(id: number){
    return true;
    }
-
-   printUser(){
-     console.log(this.user)
-   }
 }
 
 export interface Activities {

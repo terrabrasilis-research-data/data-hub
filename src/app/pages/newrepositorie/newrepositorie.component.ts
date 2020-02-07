@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { GroupsService } from '../groups/groups.service';
+import { RepositorieService } from '../myrepositories/repositories.service';
+import * as fromLogin from '../login/login.reducer';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-newrepositorie',
@@ -69,7 +72,16 @@ export class NewrepositorieComponent implements OnInit {
     this.owncloud = bol;
   }
 
-  constructor(private gs:GroupsService) { }
+  constructor(private gs:GroupsService, private rs:RepositorieService, private store: Store<fromLogin.AppState>) {
+    this.store.pipe(select('login')).subscribe(res => {
+      if(res){
+        this.user = res;
+      }
+    })
+  }
+
+  public user: any = null;
+  todayISOString : string = new Date().toISOString();
 
   ngOnInit() {
     this.getGroups();
@@ -131,7 +143,13 @@ export class NewrepositorieComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      console.log("sucess")
+      const response = await this.rs.repositorie_create(this.user['user']['access_token'], this.name, this.description, this.collaborators, this.maintainer, this.categorie, this.keywords, this.postgres, this.geoserver, this.geonetwork, this.terrama2, this.owncloud, this.todayISOString );
+      if (response) {
+        console.log(response);
+        this.formGroup.reset();
+        this.showMsg = true;
+      }
+
     } catch (err) {
         console.log(err)
     }
