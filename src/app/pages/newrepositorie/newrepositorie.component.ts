@@ -145,7 +145,6 @@ export class NewrepositorieComponent implements OnInit {
     try {
       const response = await this.rs.repositorie_create(this.user['user']['access_token'], this.name, this.description, this.collaborators, this.maintainer, this.categorie, this.keywords, this.postgres, this.geoserver, this.geonetwork, this.terrama2, this.owncloud, this.todayISOString );
       if (response) {
-        console.log(response);
         this.formGroup.reset();
         this.showMsg = true;
       }
