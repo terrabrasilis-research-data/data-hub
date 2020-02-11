@@ -90,11 +90,14 @@ export class NewrepositorieComponent implements OnInit {
     this.formGroup = new FormGroup({
 
       Name: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(34)
       ]),
 
       Description: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.maxLength(500)
       ]),
 
       Collaborators: new FormControl('', [
@@ -102,7 +105,8 @@ export class NewrepositorieComponent implements OnInit {
       ]),
 
       Maintainer: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.maxLength(355)
       ]),
 
       Categorie: new FormControl('', [
