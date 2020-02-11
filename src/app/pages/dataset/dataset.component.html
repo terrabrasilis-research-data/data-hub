@@ -22,7 +22,7 @@
             <div class="topicHead">Other datasets from same authors</div>
                 <div *ngFor="let dataset of others_datasets; let i = index">
                         <div *ngIf="i<8">
-                        <a class="textlink itemLine" [routerLink]="['/datasets', others_datasets[i].id]">{{others_datasets[i].author[1].split(" ")[0]}} et al. ({{others_datasets[i].year}}): {{others_datasets[i].title | slice:0:18}}... </a>
+                        <a class="textlink itemLine" [routerLink]="['/datasets', others_datasets[i].id]">{{others_datasets[i].author[1].name.split(" ")[0]}} et al. ({{others_datasets[i].year}}): {{others_datasets[i].title | slice:0:18}}... </a>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
 
                 <div class="textCite"> 
                     <a *ngFor="let user of users; let i = index">
-                            <a class="spacetext">{{users[i]}}</a> 
+                            <a class="spacetext">{{users[i].name}}</a> 
                             <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
                             <a *ngIf="i == users.length-2">; </a>
                     </a>
@@ -72,9 +72,15 @@
 
             <div class="author"> 
                 <a *ngFor="let user of users; let i = index">
-                    <a class="textlink spacetext" href="#">{{users[i]}}</a> 
-                    <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
-                    <a *ngIf="i == users.length-2"> & </a>
+                    <a class="chipsBox"> 
+                            <div class="chip">
+                                    <img src="{{users[i].img}}" width="16" height="16">
+                                    {{users[i].name}}
+                            </div>
+                                  
+                        </a> 
+                    <a *ngIf="i != users.length-1 && i != users.length-2 "></a> 
+                    <a *ngIf="i == users.length-2"></a>
                 </a>
             </div>
             
@@ -148,8 +154,8 @@
 
                               <div class="textMetadata"> <a class="metadataTopic">Author(s): </a> 
 
-                                    <a *ngFor="let user of users; let i = index">
-                                        <a class="spacetext">{{users[i]}}</a> 
+                                    <a *ngFor="let user of users.name; let i = index">
+                                        <a class="spacetext">{{users[i].name}}</a> 
                                         <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
                                         <a *ngIf="i == users.length-2"> & </a>
                                     </a>

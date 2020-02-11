@@ -4,9 +4,9 @@
       "title":"Sedimentology, geochemistry and winter se ice concentration from the western Amundsen Sea, Antarctica",
       "year":"2018",
       "author":[
-         "Lamping Nick",
-         "Müller Jack",
-         "Esper O Carbon."
+         {"name": "Lamping Nick","img":"assets/images/img_avatar.png"},
+         {"name": "Müller Jack","img":"assets/images/img_avatar.png"},
+         {"name": "Müller Jack.", "img":"assets/images/img_avatar.png"}
       ],
       "abstract":"The Mar del Plata (MdP) Canyon at the Argentine continental margin is incorporated into a major contourite depositional system, built by the incursion of southern-sourced water masses affecting the seafloor at different waters depths. The new sedimentological, morphological and hydro acoustic data provide novel insights.",
       "size":3,
@@ -38,9 +38,9 @@
       "title":"Biomarkers (TEX86), planktic isotopes and XRF records of IODP Site",
       "year":"2015",
       "author":[
-         "De Vleeschouwer Donald",
-         "Petrick, Barth",
-         "Martínez‐García, Alec"
+         {"name": "De Vleeschouwer Donald","img":"assets/images/img_avatar.png"},
+         {"name": "Petrick, Barth","img":"assets/images/img_avatar.png"},
+         {"name": "Martínez‐García, Alec", "img":"assets/images/img_avatar.png"}
       ],
       "abstract":"The north Icelandic shelf is partly distinguished by the Tjörnes Fracture Zone featuring numerous active basins in a mud-dominated shelf environment. Late Glacial and Holocene high-resolution sedimentary records from this area have been studied with tephrochronology as the main tool for correlation and for exact timing of palaeoceanographic events in the area. ",
       "size":5,
@@ -73,9 +73,9 @@
       "title":"Age determination, stable carbon, and hydrogen isotope composition",
       "year":"2019",
       "author":[
-         "Miller Cloud",
-         "Finch JM Tras",
-         "Hill T Cold."
+         {"name": "Miller Cloud","img":"assets/images/img_avatar.png"},
+         {"name": "Finch JM Tras","img":"assets/images/img_avatar.png"},
+         {"name": "Müller Jack.", "img":"assets/images/img_avatar.png"}
       ],
       "abstract":"This data set consist of three parts: (1) fish underwater visual census data (total length > 3 cm) from 20 reef sites in North Malé Atoll, the Maldives; (2) combined biomass composition data for each fish species at each body mass class; and (3) stable isotope data (δ15N, δ13C) from fish species contributing to 80% of biomass per size class (and some species collected to refer to others which were unavailable to be collected.",
       "size":10,
@@ -106,9 +106,9 @@
       "title":"Stable water isotope data of ice wedges at the Batagay megaslump and the Adycha River",
       "year":"2019",
       "author":[
-         "Opel Tesla",
-         "Murton JB Travis",
-         "Wetterich S Chris."
+         {"name": "Opel Tesla","img":"assets/images/img_avatar2.png"},
+         {"name": "Murton JB Travis","img":"assets/images/img_avatar.png"},
+         {"name": "Wetterich S Chris", "img":"assets/images/img_avatar.png"}
       ],
       "abstract":"Emerald Basin on the Scotian Shelf off Nova Scotia, Canada, is home to a globally unique population of the glass sponge Vazella pourtalesi. Through the analysis of both in situ photographs and trawl catch data from annual multispecies bottom-trawl surveys, we examined community composition, species density, and abundance of epibenthos and fish associated.",
       "size":2,
@@ -140,9 +140,9 @@
       "title":"Stable carbon isotope ratios of archaeal glycerol dibiphytanyl glycerol tetraether",
       "year":"2016",
       "author":[
-         "Hurley Sith-James",
-         "Close H Golds",
-         "Elling J Seth."
+         {"name": "Hurley Sith-James","img":"assets/images/img_avatar.png"},
+         {"name": "Close H Golds","img":"assets/images/img_avatar.png"},
+         {"name": "Elling J Seth.", "img":"assets/images/img_avatar2.png"}
       ],
       "abstract":"Kelps, perennial brown seaweeds of the order Laminariales, are foundational species in Arctic coastal ecosystems. Presently, their ability to persist under polar night conditions might be significantly affected by increasing winter temperatures. We assessed physiological parameters (photosynthesis, pigment content",
       "size":8,
@@ -173,9 +173,9 @@
       "title":"Depth-related differences in archaeal populations impact the isoprenoid tetraether",
       "year":"2016",
       "author":[
-         "Besseling Mick",
-         "Hopmans E Cloud",
-         "Koenen M Carbon."
+         {"name": "Besseling Mick","img":"assets/images/img_avatar2.png"},
+         {"name": "Hopmans E Cloud","img":"assets/images/img_avatar.png"},
+         {"name": "Koenen M Carbon", "img":"assets/images/img_avatar2.png"}
       ],
       "abstract":"Samples were obtained during the Schmidt Ocean Institute cruise Exploring Fronts With Multiple Robots to the Pacific Ocean in 2012",
       "size":9,
@@ -207,9 +207,9 @@
       "title":"Peat parameters, age model, elemental concentrations and grain size data from the Laphroaig",
       "year":"2017",
       "author":[
-         "Kylander Mount",
-         "Söderlindh Jonny",
-         "Schenk F  Mungall."
+         {"name": "Kylander Mount","img":"assets/images/img_avatar.png"},
+         {"name": "Söderlindh Jonny","img":"assets/images/img_avatar.png"},
+         {"name": "Koenen M Carbon", "img":"assets/images/img_avatar2.png"}
       ],
       "abstract":"Monthly averaged sea temperature at 4 different levels (surface, 20 m, 50m and 80 m) is provided, based on 4 up to 10 observations each month, from January 1974. Observation point is located at 42°03' 00N, 3°15 15E ~4 km offshore LEstartit (Costa Brava, NW Mediterranean) Each data file (in EXCEL) corresponds to data of a single level: SST (surface), S20T (20 m), S50T (50 m) and S80T (80 m)",
       "size":1,
@@ -240,8 +240,8 @@
       "title":"Geochemical data from the Ebberston 87 Core Cleveland Basin, Yorkshire, UK",
       "year":"2017",
       "author":[
-         "Atar E März",
-         "Aplin AC Mungall. "
+         {"name": "Atar E März","img":"assets/images/img_avatar.png"},
+         {"name": "Aplin AC Mungall","img":"assets/images/img_avatar.png"}
       ],
       "abstract":"Here we present a new set of high-resolution early Pleistocene records from the eastern equatorial Pacific (EEP). Sediment composition from Ocean Drilling Program Sites 1240 and 1238 is used to reconstruct past changes in the atmosphere-ocean system. Particularly remarkable is the presence of laminated diatom oozes (LDOs) during glacial periods between 1.85 and 2.25 Ma coinciding",
       "size":2,
@@ -273,9 +273,9 @@
       "title":"ODP 763A pollen and leaf wax n-alkane compound distributions and isotopes",
       "year":"2018",
       "author":[
-         "Andrae JWalter",
-         "McInerney Alber",
-         "Polissar PJ Gold."
+         {"name": "Andrae JWalter","img":"assets/images/img_avatar2.png"},
+         {"name": "McInerney Alber","img":"assets/images/img_avatar2.png"},
+         {"name": "Polissar PJ Gold", "img":"assets/images/img_avatar2.png"}
       ],
       "abstract":"Here we present a new set of high-resolution early Pleistocene records from the eastern equatorial Pacific (EEP). Sediment composition from Ocean Drilling Program Sites 1240 and 1238 is used to reconstruct past changes in the atmosphere-ocean system. Particularly remarkable is the presence of laminated diatom oozes (LDOs) during glacial periods between 1.85 and 2.25 Ma coinciding",
       "size":3,
@@ -307,9 +307,9 @@
       "title":"Abundance, primary production rates and net calcification rates of Tridacna maxima giant clams",
       "year":"2018",
       "author":[
-         "Rossbach Silver",
-         "Saderne Valw",
-         "Anton A Carbon."
+         {"name": "Rossbach Silver","img":"assets/images/img_avatar2.png"},
+         {"name": "Saderne Valw","img":"assets/images/img_avatar2.png"},
+         {"name": "Anton A Carbon", "img":"assets/images/img_avatar2.png"}
       ],
       "abstract":"he Indian Monsoon and the westerlies strongly influence the sedimentation in the northeastern Arabian Sea by impacting rainfall and erosion on land and on biogeochemical processes in the ocean. To disentangle the terrestrial and oceanic processes, we analysed mineralogical and bulk geochemical components of a Holocene sediment core offshore Pakistan. ",
       "size":5,
@@ -340,9 +340,9 @@
       "title":"Time series of basal melt rates of the Roi Baudouin Ice Shelf, Antarctica",
       "year":"2015",
       "author":[
-         "Sun Su",
-         "Hattermann Tonny",
-         "Pattyn F Chris."
+         {"name": "Sun Su","img":"assets/images/img_avatar2.png"},
+         {"name": "Hattermann Tonny","img":"assets/images/img_avatar.png"},
+         {"name": "Pattyn F Chris", "img":"assets/images/img_avatar2.png"}
       ],
       "abstract":"Spatial survey on the state of coastal beach waters in Ghana, 2016",
       "size":5,
@@ -373,7 +373,7 @@
       "title":"Interaction of a deep-sea current with a blind submarine canyon Mar del Plata Canyon, Argentina",
       "year":"2019",
       "author":[
-         "Warratz Gojh"
+         {"name": "Warratz Gojh","img":"assets/images/img_avatar.png"}
       ],
       "abstract":"DY081 was the first fieldwork component of a European Research Council funded project, ICY-LAB, led by Dr. K. Hendry from the University of Bristol to study nutrient cycling in the North Atlantic. This data release contains seawater bottle data collected during DY081 by standard CTD rosette, remotely operated vehicle and Tow fish, together with ancillary, processed.",
       "size":4,
@@ -405,9 +405,9 @@
       "title":"Profile of vertical fish echo sounding with Simrad EK60",
       "year":"2016",
       "author":[
-         "Veloso-Alarcón ME",
-         "Jansson Pic",
-         "De Batist M Gold."
+         {"name": "Veloso-Alarcón ME","img":"assets/images/img_avatar2.png"},
+         {"name": "Jansson Pic","img":"assets/images/img_avatar.png"},
+         {"name": "De Batist M Gold", "img":"assets/images/img_avatar.png"}
       ],
       "abstract":"We here present data underlying a pilot study that investigated the effects of oligo-alginate elicitation on juvenile and adult sporophytes of Saccharina japonica cultivated in China and on adult sporophytes of Saccharina latissima cultivated in Germany. In two consecutive years, treatment with oligo-alginate clearly reduced the detachment of S. japonica juveniles",
       "size":1,
@@ -439,9 +439,9 @@
       "title":"Long chain alkyl diol, GDGT, and XRF data from Amazon River suspended sediments, tropical Atlantic",
       "year":"2018",
       "author":[
-         "Häggi Cold",
-         "Schefuß Eth",
-         "Sawakuchi AO Seth."
+         {"name": "Häggi Cold","img":"assets/images/img_avatar2.png"},
+         {"name": "Schefuß Eth","img":"assets/images/img_avatar2.png"},
+         {"name": "Sawakuchi AO Seth", "img":"assets/images/img_avatar2.png"}
       ],
       "abstract":"ighly dynamic environments like estuaries are home to organisms accustomed to wide fluctuations in environmental conditions. However, estuarine temperature and salinity conditions are expected to shift with climate change, potentially altering plant and animal physiology and consequently their ecological interactions.",
       "size":5,
@@ -472,9 +472,9 @@
       "title":"Calcareous nannofossils absolute abundance and accumulation rates",
       "year":"2017",
       "author":[
-         "Suchéras-Marx Bold",
-         "Mattioli Erth",
-         "Allemand P Chris."
+         {"name": "Suchéras-Marx Bold","img":"assets/images/img_avatar.png"},
+         {"name": "Mattioli Erth","img":"assets/images/img_avatar2.png"},
+         {"name": "Allemand P Chris", "img":"assets/images/img_avatar2.png"}
       ],
       "abstract":"Climate change will shift mean environmental conditions and also increase the frequency and intensity of extreme events, exerting additional stress on ecosystems. While field observations on extremes are emerging, experimental evidence of their biological consequences is rare. Here, we introduce a mesocosm system that was developed.",
       "size":5,

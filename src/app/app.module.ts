@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips'; 
 
 import { StoreModule } from '@ngrx/store';
 import * as fromLogin from './pages/login/login.reducer';
@@ -80,6 +81,7 @@ import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
     MatTooltipModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatChipsModule,
     MatCardModule,
     MatButtonModule,
     HttpClientModule,

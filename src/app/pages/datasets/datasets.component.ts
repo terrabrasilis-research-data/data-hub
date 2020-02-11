@@ -229,7 +229,7 @@ export interface Element {
   id: number;
   title: string;
   year: string;
-  author: Array < string > ;
+  author: User;
   abstract: string;
   categories: Array < string > ;
   size: number;
@@ -247,4 +247,9 @@ export interface Group {
   year: number;
   abstract: string;
   image: string;
+}
+
+export interface User {
+  name: string;
+  img: string;
 }

@@ -132,7 +132,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   
   data_objects: Data_obj[];
 
-  users: string[];
+  users: User = null;
 
   others_datasets: Dataset[];
 
@@ -148,7 +148,7 @@ export interface Dataset{
   id: number;
   title: string;
   year: string;
-  author: Array < string > ;
+  author: User;
   abstract: string;
   categories: Array < string > ;
   size: number;
@@ -165,4 +165,9 @@ export interface Data_obj {
   name: string;
   size: string;
   created_on: string;
+}
+
+export interface User {
+  name: string;
+  img: string;
 }
