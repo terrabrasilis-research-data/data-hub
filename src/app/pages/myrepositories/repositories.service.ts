@@ -18,6 +18,17 @@ export class RepositorieService {
     let owncloud_service_id
 
     /*
+    CREATE REPOSITORIE
+    */
+   const responseRepo = await this.http.post(`http://127.0.0.1:8090/api/v1.0/repositories`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on}, {
+    headers: new HttpHeaders ({
+        Authorization: 'Bearer ' + userToken
+    })
+    }).toPromise();
+    
+    let repo_id = responseRepo[0]['repo_id']
+ 
+    /*
     CREATE HOST
     */
     const responseHost = await this.http.post(`http://127.0.0.1:8090/api/v1.0/hosts`, {'name': 'Main_Server', 'address': '255.255.255.0',  'created_on': created_on}, {
@@ -58,6 +69,15 @@ export class RepositorieService {
                 Authorization: 'Bearer ' + userToken
             })
             }).toPromise();
+
+            /*
+            CREATE SERVICE_REPO_REL - POSTGRES
+            */
+           const responseRepoServicePostgres = await this.http.post(`http://127.0.0.1:8090/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': postgres_service_id}, {
+            headers: new HttpHeaders ({
+                Authorization: 'Bearer ' + userToken
+            })
+            }).toPromise();
     }
 
     if(geoserver == true){
@@ -86,6 +106,15 @@ export class RepositorieService {
             CREATE SERVICE_HOST_REL - GEOSERVER
             */
            const responseHostServiceGeoserver = await this.http.post(`http://127.0.0.1:8090/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': geoserver_service_id}, {
+            headers: new HttpHeaders ({
+                Authorization: 'Bearer ' + userToken
+            })
+            }).toPromise();
+
+            /*
+            CREATE SERVICE_REPO_REL - GEOSERVER
+            */
+           const responseRepoServiceGeoserver = await this.http.post(`http://127.0.0.1:8090/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': geoserver_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -122,6 +151,15 @@ export class RepositorieService {
                 Authorization: 'Bearer ' + userToken
             })
             }).toPromise();
+            
+            /*
+            CREATE SERVICE_REPO_REL - GEONETWORK
+            */
+           const responseRepoServiceGeonetwork = await this.http.post(`http://127.0.0.1:8090/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': geonetwork_service_id}, {
+            headers: new HttpHeaders ({
+                Authorization: 'Bearer ' + userToken
+            })
+            }).toPromise();
     }
 
     if(terrama2 == true){
@@ -150,6 +188,15 @@ export class RepositorieService {
             CREATE SERVICE_HOST_REL - TERRAMA2
             */
            const responseHostServiceTerraMA2 = await this.http.post(`http://127.0.0.1:8090/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': terrama2_service_id}, {
+            headers: new HttpHeaders ({
+                Authorization: 'Bearer ' + userToken
+            })
+            }).toPromise();
+
+            /*
+            CREATE SERVICE_REPO_REL - TERRAMA2
+            */
+           const responseRepoServiceTerraMA2 = await this.http.post(`http://127.0.0.1:8090/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': terrama2_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -186,17 +233,17 @@ export class RepositorieService {
                 Authorization: 'Bearer ' + userToken
             })
             }).toPromise();
-    }
 
-    /*
-    CREATE REPOSITORIE
-    */
-    const responseRepo = await this.http.post(`http://127.0.0.1:8090/api/v1.0/repositories`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on}, {
-        headers: new HttpHeaders ({
-            Authorization: 'Bearer ' + userToken
-        })
-        }).toPromise();
-     
-        return responseRepo
+            /*
+            CREATE SERVICE_REPO_REL - OWNCLOUD
+            */
+           const responseRepoServiceowncloud = await this.http.post(`http://127.0.0.1:8090/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': owncloud_service_id}, {
+            headers: new HttpHeaders ({
+                Authorization: 'Bearer ' + userToken
+            })
+            }).toPromise();
+         }
+
+         return responseRepo
     }
 }
