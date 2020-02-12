@@ -22,18 +22,6 @@
             </div>
         </div>
 
-        <div class='divfilter'>
-
-            <p class="text-muted">Keywords:</p>
-            <div class="border3">
-
-                <form [formGroup]="form" (ngSubmit)="keywords()">
-                    <div formArrayName="keywords" *ngFor="let filter of form.controls.keywords.controls; let j = index">
-                        <input type="checkbox" [formControlName]="j" (change)="filterChange()" [(ngModel)]="filterKeywords[keywords[j].name]"> {{keywords[j].name}}
-                    </div>
-                </form>
-            </div>
-        </div>
     <!--
         <div class='divfilter'>
 

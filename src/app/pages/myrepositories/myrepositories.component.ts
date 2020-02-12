@@ -19,7 +19,6 @@ export class MyrepositoriesComponent implements OnInit {
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   
   filterCategories = {}
-  filterKeywords = {}
  
   categories = [
    { id: 1, name: 'Chemistry' },
@@ -33,13 +32,6 @@ export class MyrepositoriesComponent implements OnInit {
    { id: 9, name: 'Agriculture' }
   ]
   
-  keywords = [
-    { id: 1, name: 'Climate' },
-    { id: 2, name: 'Fire ' },
-    { id: 3, name: 'Biodiversity' },
-    { id: 4, name: 'Monitoring' },
-    { id: 5, name: 'Ecology' }
-  ]
 
 filterChange() {
     this.dataSource.data = ELEMENT_DATA;
@@ -49,16 +41,6 @@ filterChange() {
         } else {}
     }
 
-    for (let i = 0; i < this.keywords.length; i++) {
-        if (this.filterKeywords[this.keywords[i].name] != false) {
-
-            this.dataSource.data = this.dataSource.data.filter(x => (x.keywords.includes(this.keywords[i].name)))
-
-        } else {
-
-        }
-
-    }
 }
 
 @ViewChild(MatPaginator, {
@@ -77,8 +59,7 @@ ngAfterViewInit() {
 
 constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
     this.form = this.formBuilder.group({
-        categories: new FormArray([]),
-        keywords: new FormArray([])
+        categories: new FormArray([])
     });
 
     this.addCheckboxes();
@@ -89,19 +70,12 @@ private addCheckboxes() {
         const control = new FormControl(i === 0); // if first item set to true, else false
         (this.form.controls.categories as FormArray).push(control);
     });
-    this.keywords.map((o, j) => {
-        const control = new FormControl(j === 0); // if first item set to true, else false
-        (this.form.controls.keywords as FormArray).push(control);
-    });
 }
 
 ngOnInit() {
 
     this.categories.forEach(obj => {
         this.filterCategories[obj.name] = false
-    })
-    this.keywords.forEach(obj => {
-        this.filterKeywords[obj.name] = false
     })
 }
 
@@ -117,13 +91,12 @@ export interface Element {
     image: Array < string > ;
     abstract: string;
     categories: Array < string > ;
-    keywords: Array < string > ;
 }
 
 const ELEMENT_DATA: Element[] = [
-  {id: 1, name: 'Hydrogen Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: [,'Atmosphere','Geophysics'] , keywords: ['Climate','Ecology']},
-  {id: 2, name: 'Helium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Lakes & Rivers' ], keywords: ['Fire','Biodiversity ']},
-  {id: 3, name: 'Lithium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Agriculture'], keywords: ['Fire','Monitoring']},
-  {id: 4, name: 'Beryllium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Ecology','Geophysics'], keywords: ['Climate','Fire ']},
-  {id: 5, name: 'Boron Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png",], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Lakes & Rivers','Human Dimensions'], keywords: ['Biodiversity','Monitoring']},
+  {id: 1, name: 'Hydrogen Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: [,'Atmosphere','Geophysics']},
+  {id: 2, name: 'Helium Repository', image: ["assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Lakes & Rivers' ],},
+  {id: 3, name: 'Lithium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar2.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Agriculture'], },
+  {id: 4, name: 'Beryllium Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png"], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Oceans','Ecology','Geophysics'],},
+  {id: 5, name: 'Boron Repository', image: ["assets/images/img_avatar2.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png", "assets/images/img_avatar.png",], abstract: "Some quick example text to build on the card title and make up the bulk of the card's content.",categories: ['Chemistry','Land Surface','Lakes & Rivers','Human Dimensions']},
   ];

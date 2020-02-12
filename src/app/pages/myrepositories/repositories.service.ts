@@ -8,7 +8,7 @@ export class RepositorieService {
   constructor(private http: HttpClient) {
   }
 
-  public async repositorie_create(userToken: string, name: string, description: string, collaborators: number, maintainer: string, categorie: number, keywords: string, postgres: boolean, geoserver: boolean, geonetwork: boolean, terrama2: boolean, owncloud: boolean, created_on: string): Promise<any> {
+  public async repositorie_create(userToken: string, name: string, description: string, collaborators: number, maintainer: string, categorie: number, postgres: boolean, geoserver: boolean, geonetwork: boolean, terrama2: boolean, owncloud: boolean, created_on: string, ckan_api_key: string): Promise<any> {
  
     let postgres_service_id
     let geoserver_service_id
@@ -26,7 +26,16 @@ export class RepositorieService {
     }).toPromise();
     
     let repo_id = responseRepo[0]['repo_id']
- 
+
+    /*
+    CREATE ORGANIZATION CKAN
+    */
+    const responseOrganizationCkan = await this.http.post(`http://localhost:5000/api/3/action/organization_create`, {'name': name, 'description': description}, {
+        headers: new HttpHeaders ({
+          Authorization: ckan_api_key
+        })
+      }).toPromise();
+
     /*
     CREATE HOST
     */

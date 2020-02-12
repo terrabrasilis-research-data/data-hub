@@ -21,7 +21,6 @@ export class NewrepositorieComponent implements OnInit {
   public collaborators: number = null;
   public maintainer: string = "";
   public categorie: number = null;
-  public keywords: string = "";
   public postgres: boolean = true;
   public geoserver: boolean = true;
   public geonetwork: boolean = true;
@@ -46,10 +45,6 @@ export class NewrepositorieComponent implements OnInit {
 
   public categorieModelChange(num: number): void {
     this.categorie = num;
-  }
-
-  public keywordsModelChange(str: string): void {
-    this.keywords = str;
   }
 
   public postgresModelChange(bol: boolean): void {
@@ -92,7 +87,8 @@ export class NewrepositorieComponent implements OnInit {
       Name: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(34)
+        Validators.maxLength(34),
+        Validators.pattern("^[a-zA-Z0-9_]*$")
       ]),
 
       Description: new FormControl('', [
@@ -110,10 +106,6 @@ export class NewrepositorieComponent implements OnInit {
       ]),
 
       Categorie: new FormControl('', [
-        Validators.required
-      ]),
-
-      Keywords: new FormControl('', [
         Validators.required
       ]),
 
@@ -147,7 +139,7 @@ export class NewrepositorieComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.rs.repositorie_create(this.user['user']['access_token'], this.name, this.description, this.collaborators, this.maintainer, this.categorie, this.keywords, this.postgres, this.geoserver, this.geonetwork, this.terrama2, this.owncloud, this.todayISOString );
+      const response = await this.rs.repositorie_create(this.user['user']['access_token'], this.name, this.description, this.collaborators, this.maintainer, this.categorie, this.postgres, this.geoserver, this.geonetwork, this.terrama2, this.owncloud, this.todayISOString, this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

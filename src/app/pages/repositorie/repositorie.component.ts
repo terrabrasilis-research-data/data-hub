@@ -28,12 +28,6 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
     "Sensoriamento Remoto"
   ]
   
-  keywords: string[] = [
-    "Sistemas Socioambientais", 
-    "Atividade Antr\u00f3picas", 
-    "Uso e Cobertura da Terra"
-  ]
-  
   datasets: Dataset[] = [
     {"dataset_id": 1, "name": "Radiocarbon ages and pollen record of Kongor Lake sediments", "authors": ["Krahl Guilherme", "Jairo Francisco","Cornils Astrid"], "year": 2019},
     {"dataset_id": 2, "name": "Multiple proxy data at DSDP Site 72-516F and ODP Hole 171-1049C during Dan-C2 and lower C29n", "authors": ["Jairo Francisco","Cornils Astrid"],"year": 2018},
