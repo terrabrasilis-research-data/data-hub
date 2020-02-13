@@ -1,15 +1,6 @@
 <div class="main">
 
     <div class="left" >
-
-        <div class="greybox-left marginBottom textBox">
-                Services
-                <div>
-                    <a *ngFor="let service of services; let i = index">
-                       <i class="material-icons" style="font-size: 12px" [ngClass]="{postgres: services[i].name == 'PostgreSQL', geoserver: services[i].name == 'GeoServer', geonetwork: services[i].name == 'GeoNetwork' }">fiber_manual_record</i> {{services[i].name}}
-                    </a>
-                </div>
-        </div>
         
         <div class="greybox-left marginBottom textBox">
              Collaborators
@@ -35,21 +26,27 @@
         <div class="greybox-right">
 
             <div class="publishIn">Published: {{repositorie[0].created_on | slice:5:17}} | 
-                <a *ngFor="let categorie of categories; let i = index">
-                    <a class="textlink" href="#">{{categories[0]}}</a>
+                <a *ngFor="let categorie of repositorie[0].categories; let i = index">
+                    <a class="textlink" href="#">{{repositorie[0].categories}}</a>
                 </a>
             </div> 
 
             <div class="title">{{repositorie[0].name}}</div> 
 
             <div class="author"> 
-                <a *ngFor="let user of users; let i = index">
-                    <a class="textlink spacetext" href="#">{{users[i].full_name}}</a> 
-                    <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
-                    <a *ngIf="i == users.length-2"> & </a>
-                </a>
-            </div>
-            
+                    <a *ngFor="let user of users; let i = index">
+                        <a class="chipsBox"> 
+                                <div class="chip">
+                                        <img src="{{users[i].image}}" width="16" height="16">
+                                        {{users[i].full_name}}
+                                </div>
+                                      
+                            </a> 
+                        <a *ngIf="i != users.length-1 && i != users.length-2 "></a> 
+                        <a *ngIf="i == users.length-2"></a>
+                    </a>
+                </div>
+
             <div class="abstract">
                 <div class="header"> Abstract </div>
                 <div class="textAbstract"> 
@@ -80,7 +77,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr *ngFor="let service of services; index as i">
+                                    <tr *ngFor="let service of repositorie[0].services; index as i">
                                       <td>{{service.name}}</td>
                                       <td>
                                           
@@ -129,10 +126,6 @@
                                     <a>{{categories[0]}}</a>
                                 </a>
                              </div> 
-
-                             <div class="textMetadata"> <a class="metadataTopic">Coverage: </a> South-bound Latitude: 0.0 West-bound Longitude: 0.0 North-bound Latitude: 0.0 East-bound Longitude: 0.0 </div> 
-
-                             <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{repositorie[0].language}}</div> 
 
                              <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{repositorie[0].maintainer}}</div> 
                              

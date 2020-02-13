@@ -86,7 +86,7 @@ export class NewrepositorieComponent implements OnInit {
 
       Name: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(6),
         Validators.maxLength(34),
         Validators.pattern("^[a-zA-Z0-9_]*$")
       ]),
