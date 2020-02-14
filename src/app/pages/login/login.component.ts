@@ -51,13 +51,14 @@ export class LoginComponent implements OnInit {
   private async onSubmit() {
     try {
       const response = await this.ls.user_login(this.username, this.password);
-      if (response['message'] != 'Wrong credentials') {
+      if (response['access_token']) {
         this.store.dispatch(addUserData({
           user: response
         }))
         this.formGroup.reset(); 
         this.router.navigate([`/dashboard`]);
       } else {
+        this.formGroup.reset(); 
         this.showMsg = true;
       }
     } catch (err) {
