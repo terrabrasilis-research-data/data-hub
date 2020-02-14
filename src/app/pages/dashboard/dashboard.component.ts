@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
+import { GroupsService } from '../groups/groups.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,7 @@ import { Store, select } from '@ngrx/store';
 export class DashboardComponent implements OnInit {
 
   constructor(
+    private gs:GroupsService,
     private store: Store<fromLogin.AppState>,
   ) {
     this.store.pipe(select('login')).subscribe(res => {
@@ -22,7 +24,13 @@ export class DashboardComponent implements OnInit {
  public user: any = null;
  
   ngOnInit() {
+    this.getGroups();
     document.getElementById("wrapper").className = "d-flex";
+  }
+  
+  async getGroups(){
+    const response = await this.gs.get_groups();
+    this.groups = response;
   }
 
   services: Service[] = [
@@ -55,10 +63,21 @@ export class DashboardComponent implements OnInit {
     {"repositorie_id": 3, "name": "Lithium Repository", "authors": ["Krahl Guilherme", "Jairo Francisco","Cornils Astrid"], "year": 2017},
     {"repositorie_id": 4, "name": "Beryllium Repository", "authors": ["Francisco Jairo ","Cornils Astrid"], "year": 2016},
     {"repositorie_id": 5, "name": "Boron Repository", "authors": ["Astrid Cornils"], "year": 2015}  ]
+
+    groups: Group[]; 
   
-  checkServiceStatus(id: number){
+    checkServiceStatus(id: number){
    return true;
    }
+}
+
+export interface Group {
+  group_id: number;
+  authors: Array < string >;
+  name: string;
+  year: number;
+  abstract: string;
+  image: string;
 }
 
 export interface Activities {

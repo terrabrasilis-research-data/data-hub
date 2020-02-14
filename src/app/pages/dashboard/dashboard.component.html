@@ -116,8 +116,6 @@
                                           <div>
                                                 <button class="btn btn-primary pull-right button" type="submit">Publish now</button>
 
-                                                <button (click)="printUser()"> DEBUG </button>
-
                                           </div>
 
                                         </mat-expansion-panel>
@@ -198,8 +196,8 @@
                                                     </mat-panel-description>
                                                 </mat-expansion-panel-header>
 
-                                                    <div *ngFor="let repositorie of repositories; let i = index">
-                                                            <a class="textlink itemLine" [routerLink]="['/groups', repositories[i].repositorie_id]">{{repositories[i].authors[0].split(" ")[1]}} et al. ({{repositories[i].year}}): {{repositories[i].name | slice:0:21}} </a>
+                                                    <div *ngFor="let group of groups; let j = index">
+                                                            <a class="textlink itemLine" [routerLink]="['/groups', groups[j].group_id]"><b>{{groups[j].name}}:</b> &nbsp; {{groups[j].users[0].full_name.split(" ")[0]}} {{groups[j].users[0].full_name.split(" ")[1]}}, {{groups[j].users[0].full_name.split(" ")[0]}} {{groups[j].users[0].full_name.split(" ")[1]}}... </a>
                                                     </div>
 
                                                 <br>

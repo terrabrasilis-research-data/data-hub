@@ -15,11 +15,12 @@ export class MygroupsComponent implements OnInit  {
   constructor(private snackBar: MatSnackBar, private gs:GroupsService) {
    }
 
-  ngOnInit() {
-
+   ngOnInit() {
+     
     document.getElementById("wrapper").className = "d-flex toggled";
     this.getGroups();
   }
+  
   async getGroups(){
     const response = await this.gs.get_groups();
     console.log(response);
