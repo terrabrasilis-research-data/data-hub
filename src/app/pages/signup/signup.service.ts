@@ -11,7 +11,7 @@ export class SignupService {
   public async user_create(name: string, email: string, password: string, full_name: string): Promise<any> {
     const response = await this.http.post(`http://localhost:5000/api/3/action/user_create`, {'name': name, 'email': email, 'password': password, 'fullname': full_name}, {
       headers: new HttpHeaders ({
-        Authorization: '91303f75-738b-4df8-9dcd-608c92c00875'
+        Authorization: '6db412c2-6bbc-40fb-9ac1-2015ba977ddf'
       })
     }).toPromise();
     return response;

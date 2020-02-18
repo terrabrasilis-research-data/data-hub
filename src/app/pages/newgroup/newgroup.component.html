@@ -3,117 +3,123 @@
 
             <div class="card">
                     <article class="card-body">
-                    <a routerLink="/view/repositories" class="float-right btn button">My Groups</a>
+                    <div routerLink="/view/repositories" class="float-right btn button">My Groups</div>
                     <h4 class="card-title mb-4 mt-1">New Groups</h4>
-                    
-                    <form>
-                            <div class="form-group bottom">
+
+                    <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+
+                                <div class="form-group">
                                     <label>Name</label>
-                                    <input name="" class="form-control" placeholder="A descriptive name" type="text">
-                                </div> <!-- form-group// -->
+                                    <input name="" class="form-control" formControlName="Name" [ngModel]="name" (ngModelChange)="nameModelChange($event)" placeholder="A descriptive name" type="text">
+                                </div>
+         
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea name="" class="form-control" formControlName="Description" [ngModel]="description" (ngModelChange)="descriptionModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
+                                </div>
 
                                 <div class="form-group bottom">
-
-                                        <label>Description</label>
-                                        
-                                        <div class="form-group">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Some useful notes about the repositorie"></textarea>
-                                        </div>
-
-                                    </div> <!-- form-group// -->
-
-                                    <div class="form-group bottom">
                                         <label>Image</label> <br>
-                                        <input type="file" name="myFile" placeholder="Joe Bloggs">
-                                </div> <!-- form-group// -->
+                                        <input type="file" name="myFile" formControlName="Image" [ngModel]="image" (ngModelChange)="imageModelChange($event)">
+                                </div>
 
+        
+                                <div class="form-group">
+                                    <label>Maintainer</label>
+                                    <input name="" class="form-control" formControlName="Maintainer" [ngModel]="maintainer" (ngModelChange)="maintainerModelChange($event)" placeholder="Maintainer name" type="text">
+                                </div>
 
-                                            <div class="form-group bottom">
-                                                    <label>Maintainer</label>
-                                                    <input name="" class="form-control" placeholder="Joe Bloggs" type="text">
-                                            </div> <!-- form-group// -->
+                
+                                <div class="form-group">
+                                        <label>Language</label>
+                                        <input name="" class="form-control" formControlName="Language" [ngModel]="language" (ngModelChange)="languageModelChange($event)" placeholder="Language of the datasets" type="text">
+                                </div>
+        
+                                <br>
+                                <hr class="style1">
+                                <br>
 
-                                            <div class="form-group bottom">
-                                                <label>Language</label>
-                                                <input name="" class="form-control" placeholder="Joe Bloggs" type="text">
-                                            </div> <!-- form-group// -->
+                                <label>People</label>
 
-                                            <div class="form-group bottom">
-                                                <div>
-                                                    <label>Custom Field</label>
-                                                </div>
-                                                        
-                                                        Key <input name="" class="form-control" placeholder="" type="text">
+                                <div>
 
-                                                        Value <input name="" class="form-control" placeholder="" type="text">
-                                                        
-                                                        <br>
+                                    <div> 
+                                
+                                        <mat-form-field appearance="fill" class="people">
+                                                <mat-label class="textMenu">Select in users...</mat-label>
+                                                <mat-select [(value)]="selected" class="textMenu" multiple> 
+                                                <mat-option *ngFor="let user of users_no_logged" [value]="user">
+                                                {{user.full_name}}
+                                                </mat-option>
+                                                </mat-select>
+                                        </mat-form-field>
 
-                                                        Key <input name="" class="form-control" placeholder="" type="text">
+                                        <div class="btn button addBtn" (click)="AddUsers(selected)">Add member(s)</div>
 
-                                                        Value <input name="" class="form-control" placeholder="" type="text">
-                                                        
-                                            </div> <!-- form-group// -->
+                                    </div>
 
-                                            <br>
-                                            <hr class="style1">
-                                            <br>
-
-                                            <label>People</label>
-  
-                                            <div>
-                                                
-                                                <div class="firstbox">  <input name="" class="form-control" placeholder="Find a member..." type="text"> </div>
-                                                <div class="secoundbox"> <a routerLink="" class="btn button">Invite member</a> </div>
-
-                                            </div>
+                                </div>
+                        
+                                <table class="table table-striped topMargin vertical">
+                                    <thead>
+                                    <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Last Login</th>
+                                    <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let user of users_selected; index as i">
                                     
-                                            <table class="table table-striped topMargin vertical">
-                                                <thead>
-                                                <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Last Login</th>
-                                                <th scope="col"></th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr *ngFor="let user of users; index as i">
-                                                
-                                                <td> 
-                                                <div>
-                                                        
-                                                        <img src={{user.image}} class="image" alt="Avatar">
-                                                            {{user.full_name}} 
-                                                </div>
-                                                <td>
-                                                        {{user.email}}
-                                                        
-                                                </td>
-                                                <td>
-                                                        {{user.last_login | slice:0:17}}
-                                                        
-                                                </td>
-                                                <td>
-                                                        <a routerLink="/" class="btn button">Remove</a>
-                                                        
-                                                </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                    <td> 
+                                    <div>
+                                            
+                                            <img src={{user.image}} class="image" alt="Avatar">
+                                                {{user.full_name}} 
+                                    </div>
+                                    <td>
+                                            {{user.email}}
+                                            
+                                    </td>
+                                    <td>
+                                            {{user.last_login | slice:0:17}}
+                                            
+                                    </td>
+                                    <td>
+                                            <div *ngIf="isUser(user.user_id)" class="btn button" (click)="removeUser(user.user_id)">Remove</div>
+                                            
+                                    </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
 
-                                                <br>
-                                                <hr class="style1">
-                                                <br>
-                                                
-                              <div>
-                                    <a routerLink="/signup" class="btn button">Create group</a>
-                              </div>
-                    </form>
+                                    <br>
+                                    <hr class="style1">
+                                    <br>
+                                    
+                                <button class="btn btn-outline-secondary" type="button" (click)="onReset()">Reset</button>
+        
+                                <button class="btn btn-primary pull-right button" type="submit">Create repositorie</button>
+        
+                            </form>
+        
 
                     </article>
                     </div> 
 
     </div>
+
+    <div class=""  *ngIf="showMsg" style="width: 50%; margin-left: 25%; margin-right: 25%">
+                <div class="col-xs-12">
+                <p class="alert alert-success">
+                    <strong>Successful creation!</strong> Please click <a routerLink="/view/groups">here</a> to view!
+        
+                </p>
+            </div>
+            </div>
+
+            <div style="margin-bottom: 75px">
+                </div>
 </div>
     

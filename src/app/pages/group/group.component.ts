@@ -52,6 +52,7 @@ export class GroupComponent implements OnInit, MatCardModule {
   filetypes = [];
   
   groups: Group[]; 
+  selected_group: Group[];
   
   CopyBibTex(id: number){
     this.snackBar.open("Copied to Clipboard", "", {
@@ -63,11 +64,6 @@ export class GroupComponent implements OnInit, MatCardModule {
    }
 
    checkOpen(id: number){
-    // if (id == 2){
-    //     return false;
-    // } else {
-    //   return true;
-    // }
    return true;
    }
 
@@ -160,7 +156,8 @@ export class GroupComponent implements OnInit, MatCardModule {
 
     const response = await this.gs.get_groups();
     this.groups = response;
-
+    this.selected_group = this.groups.filter(x => (x.group_id == this.id))
+    
     var lookup = {};
     var count = 0;
   
@@ -184,7 +181,7 @@ export class GroupComponent implements OnInit, MatCardModule {
       })
       this.repositories.forEach(obj => {
         this.filterRepository[obj.name] = false
-        if (obj.name == this.groups[this.id - 1].name){
+        if (obj.name == this.selected_group[0].name){
           this.filterRepository[obj.name] = true
         }
       })
@@ -192,7 +189,7 @@ export class GroupComponent implements OnInit, MatCardModule {
         this.filterFiletypes[obj.name] = false
       });
 
-      this.dataSource.data = this.dataSource.data.filter(x => (x.repositorie == this.groups[this.id -1].name) )
+      this.dataSource.data = this.dataSource.data.filter(x => (x.repositorie == this.selected_group[0].name) )
       this.size = this.dataSource.data.length;
   }
 
@@ -241,8 +238,6 @@ export class GroupComponent implements OnInit, MatCardModule {
         }
       }
     }
-
-    
     
   }
   

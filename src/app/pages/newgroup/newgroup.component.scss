@@ -26,7 +26,8 @@
     color: white;
 }
 .button:hover{
-    background:rgb(42, 138, 201)
+    background:rgb(42, 138, 201);
+    cursor: pointer;
 }
 
 .sizeTextInput{
@@ -68,4 +69,14 @@
     width: 50px;
     height: 50px;
     margin-right: 10px;
+}
+
+.people{
+    width: 250px;
+}
+
+.addBtn{
+    margin-left: 10px;
+    height: 40px;
+    margin-bottom: 20px;
 }

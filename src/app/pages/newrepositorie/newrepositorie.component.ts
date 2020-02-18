@@ -26,6 +26,7 @@ export class NewrepositorieComponent implements OnInit {
   public geonetwork: boolean = true;
   public terrama2: boolean = true;
   public owncloud: boolean = true;
+  public selectedFile: File;
 
   public nameModelChange(str: string): void {
     this.name = str;
@@ -65,6 +66,10 @@ export class NewrepositorieComponent implements OnInit {
   
   public owncloudModelChange(bol: boolean): void {
     this.owncloud = bol;
+  }
+
+  public onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
   }
 
   constructor(private gs:GroupsService, private rs:RepositorieService, private store: Store<fromLogin.AppState>) {
