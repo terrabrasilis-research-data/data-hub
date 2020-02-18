@@ -96,9 +96,9 @@
                                         <a style="font-weight: bold; padding-left: 7px" class="nav-item nav-link bntHover fontsize" [routerLink]="['/datasets', element.id]"> {{element.title}}</a>
                                         
                                         <h6 style="padding-left: 7px" class="card-subtitle mb-2 text-muted">
-    
+
                                             <a *ngFor="let author of element.author; let j = index">
-                                                <a class="spacetext">{{ element.author[j]}}</a> 
+                                                <a class="spacetext">{{ element.author[j].name}}</a> 
                                                 <a *ngIf="j !=  element.author.length-1 && j !=  element.author.length-2 ">, </a> 
                                                 <a *ngIf="j ==  element.author.length-2"> & </a>
                                             </a>

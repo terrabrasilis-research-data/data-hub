@@ -197,7 +197,7 @@
                                                 </mat-expansion-panel-header>
 
                                                     <div *ngFor="let group of groups; let j = index">
-                                                            <a class="textlink itemLine" [routerLink]="['/groups', groups[j].group_id]"><b>{{groups[j].name}}:</b> &nbsp; {{groups[j].users[0].full_name.split(" ")[0]}} {{groups[j].users[0].full_name.split(" ")[1]}}, {{groups[j].users[0].full_name.split(" ")[0]}} {{groups[j].users[0].full_name.split(" ")[1]}}... </a>
+                                                            <a class="textlink itemLine" [routerLink]="['/groups', groups[j].group_id]"><b>{{groups[j].name}}:</b> &nbsp; {{groups[j].users[0].full_name.split(" ")[0]}} {{groups[j].users[0].full_name.split(" ")[1]}},  {{groups[j].users[1].full_name.split(" ")[0]}} {{groups[j].users[1].full_name.split(" ")[1]}}... </a>
                                                     </div>
 
                                                 <br>
