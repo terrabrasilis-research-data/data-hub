@@ -196,8 +196,8 @@
                                                     </mat-panel-description>
                                                 </mat-expansion-panel-header>
 
-                                                    <div *ngFor="let group of groups; let j = index">
-                                                            <a class="textlink itemLine" [routerLink]="['/groups', groups[j].group_id]"><b>{{groups[j].name}}:</b> &nbsp; {{groups[j].users[0].full_name.split(" ")[0]}} {{groups[j].users[0].full_name.split(" ")[1]}},  {{groups[j].users[1].full_name.split(" ")[0]}} {{groups[j].users[1].full_name.split(" ")[1]}}... </a>
+                                                    <div *ngFor="let group of groups; let j = index;">
+                                                            <a class="textlink itemLine" *ngIf="j<5" [routerLink]="['/groups', groups[j].group_id]">{{groups[j].users[0].full_name.split(" ")[1]}} et al. ({{groups[j].created_on | slice:12:16}}): &nbsp; <b>{{groups[j].name}}</b> </a>
                                                     </div>
 
                                                 <br>
@@ -220,7 +220,7 @@
                                                 </mat-expansion-panel-header>
 
                                                     <div *ngFor="let dataset of datasets; let i = index">
-                                                            <a class="textlink itemLine" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].authors[0].split(" ")[1]}} et al. ({{datasets[i].year}}): {{datasets[i].name | slice:0:21}}... </a>
+                                                            <a class="textlink itemLine" *ngIf="i<8" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].authors[0].split(" ")[1]}} et al. ({{datasets[i].year}}): {{datasets[i].name | slice:0:21}}... </a>
                                                     </div>
 
                                                 <br>
@@ -236,7 +236,8 @@
                        
                     </article>
                     </div> 
-
+                    <div style="margin-bottom: 95px">
+                    </div>
     </div>
 </div>
     

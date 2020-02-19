@@ -57,13 +57,6 @@ export class DashboardComponent implements OnInit {
     {"dataset_id": 8, "name": "High resolution in situ temperatures across coral reef slopes: Iriomote-jima, Japan and Gulf of Chiriquí, Panama", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2016},   
   ]
   
-  repositories: Repositorie[] = [
-    {"repositorie_id": 1, "name": "Hydrogen Repository", "authors": ["Jairo Francisco","Cornils Astrid"], "year": 2019},
-    {"repositorie_id": 2, "name": "Helium Repository", "authors": ["Cornils Astrid"], "year": 2018},
-    {"repositorie_id": 3, "name": "Lithium Repository", "authors": ["Krahl Guilherme", "Jairo Francisco","Cornils Astrid"], "year": 2017},
-    {"repositorie_id": 4, "name": "Beryllium Repository", "authors": ["Francisco Jairo ","Cornils Astrid"], "year": 2016},
-    {"repositorie_id": 5, "name": "Boron Repository", "authors": ["Astrid Cornils"], "year": 2015}  ]
-
     groups: Group[]; 
   
     checkServiceStatus(id: number){
@@ -99,13 +92,6 @@ export interface Service {
 
 export interface Dataset {
   dataset_id: number;
-  authors: Array < string >;
-  name: string;
-  year: number;
-}
-
-export interface Repositorie {
-  repositorie_id: number;
   authors: Array < string >;
   name: string;
   year: number;
