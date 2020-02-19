@@ -4,6 +4,7 @@ import { GroupsService } from '../groups/groups.service';
 import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
 
+
 @Component({
   selector: 'app-newgroup',
   templateUrl: './newgroup.component.html',
@@ -21,7 +22,6 @@ export class NewgroupComponent implements OnInit {
   public description: string = "";
   public maintainer: string = "";
   public language: string = "";
-  public image: string = "";
 
   public nameModelChange(str: string): void {
     this.name = str;
@@ -38,16 +38,13 @@ export class NewgroupComponent implements OnInit {
   public languageModelChange(str: string): void {
     this.language = str;
   }
-
-  public imageModelChange(str: string): void {
-    this.image = str;
-  }
   
   constructor(private gs:GroupsService, private store: Store<fromLogin.AppState>) { this.store.pipe(select('login')).subscribe(res => {
     if(res){
       this.user = res;
     }
   })
+  
 }
 
   public user: any = null;
@@ -72,11 +69,6 @@ export class NewgroupComponent implements OnInit {
       ]),
 
       Maintainer: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(355)
-      ]),
-
-      Image: new FormControl('', [
         Validators.required,
         Validators.maxLength(355)
       ]),
@@ -123,7 +115,7 @@ export class NewgroupComponent implements OnInit {
   private async onSubmit() {
     try {
       console.log(this.users_selected)
-      const response = await this.gs.create_group(this.user['user']['access_token'], this.name, this.description, this.image, this.maintainer, this.language, this.users_selected, this.todayISOString, this.user['user']['ckan_api_key'] );
+      const response = await this.gs.create_group(this.user['user']['access_token'], this.name, this.description, '', this.maintainer, this.language, this.users_selected, this.todayISOString, this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;
