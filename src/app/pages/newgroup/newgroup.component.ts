@@ -60,8 +60,9 @@ export class NewgroupComponent implements OnInit {
 
       Name: new FormControl('', [
         Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(34)
+        Validators.minLength(4),
+        Validators.maxLength(34),
+        Validators.pattern("^[a-z0-9_]*$")
       ]),
 
       Description: new FormControl('', [
@@ -86,24 +87,33 @@ export class NewgroupComponent implements OnInit {
     })
   }
   
-  logged_user: User[];
+  logged_user: CKAN_User[];
 
-  users: User[] = []
+  users: CKAN_User[] = []
 
-  users_no_logged: User[] = []
+  users_no_logged: CKAN_User[] = []
 
-  users_selected: User[] = []
+  users_selected: CKAN_User[] = []
+
+  userdb: User[] = []
 
   async getUsers(){
+    const responsedb = await this.gs.get_users_db();
+    this.userdb = responsedb.filter(x => (x.user_id > 10));
     const response = await this.gs.get_users();
-    this.users = response;
-    this.users_no_logged = this.users.filter(x => (x.user_id != this.user['user']['user_id']));
-    this.logged_user = this.users.filter(x => (x.user_id == this.user['user']['user_id']));
+    this.users = response['result'].filter(x => (x.sysadmin == false));
+    for (let index = 0; index < this.users.length; index++) {
+      let indexUser = this.userdb.filter(x => (x.full_name == this.users[index].fullname));
+      this.users[index].user_id = indexUser[0].user_id;
+      this.users[index].image = indexUser[0].image;
+    }
+    this.users_no_logged = this.users.filter(x => (x.fullname != this.user['user']['full_name']));
+    this.logged_user = this.users.filter(x => (x.fullname == this.user['user']['full_name']));
     this.users_selected = this.logged_user;
   }
   
-  isUser(id: number){
-    if (id == this.user['user']['user_id'])
+  isUser(fullname: string){
+    if (fullname == this.user['user']['full_name'])
       return false
     else
       return true
@@ -111,9 +121,9 @@ export class NewgroupComponent implements OnInit {
 
   private async onSubmit() {
     try {
+      console.log(this.users_selected)
       const response = await this.gs.create_group(this.user['user']['access_token'], this.name, this.description, this.image, this.maintainer, this.language, this.users_selected, this.todayISOString, this.user['user']['ckan_api_key'] );
       if (response) {
-        console.log(response)
         this.formGroup.reset();
         this.showMsg = true;
       }
@@ -126,7 +136,7 @@ export class NewgroupComponent implements OnInit {
     this.formGroup.reset();
   }
 
-  AddUsers(selectedUsers: Array < User >) {
+  AddUsers(selectedUsers: Array < CKAN_User >) {
 
     for (let index = 0; index < selectedUsers.length; index++) {
       if(this.users_selected.includes(selectedUsers[index]) == false)
@@ -135,10 +145,16 @@ export class NewgroupComponent implements OnInit {
 
   }
 
-  removeUser(remove_id: number){
-    this.users_selected = this.users_selected.filter(x => (x.user_id != remove_id))
+  removeUser(remove_id: string){
+    this.users_selected = this.users_selected.filter(x => (x.id != remove_id))
   }
 
+  checkuserStatus(status: string){
+    if (status == 'active')
+      return true
+    else
+      return false
+  }
 }
 
 export interface User {
@@ -150,5 +166,20 @@ export interface User {
   created_on: string;
   full_name: string;
   image:  string;
+}
 
+export interface CKAN_User {
+  email_hash: string;
+  apikey: string;
+  display_name: string;
+  created: string;
+  id: string;
+  sysadmin: boolean;
+  activity_streams_email_notifications: boolean;
+  state: string;
+  fullname: string;
+  email: string;
+  number_created_packages: number;
+  user_id: number;
+  image:  string;
 }

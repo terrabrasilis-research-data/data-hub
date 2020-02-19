@@ -22,7 +22,6 @@ export class GroupsComponent implements OnInit {
   
   async getGroups(){
     const response = await this.gs.get_groups();
-    console.log(response);
     this.groups = response;
   }
 

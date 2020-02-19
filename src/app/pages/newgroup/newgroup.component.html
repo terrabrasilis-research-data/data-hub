@@ -49,7 +49,7 @@
                                                 <mat-label class="textMenu">Select in users...</mat-label>
                                                 <mat-select [(value)]="selected" class="textMenu" multiple> 
                                                 <mat-option *ngFor="let user of users_no_logged" [value]="user">
-                                                {{user.full_name}}
+                                                {{user.fullname}}
                                                 </mat-option>
                                                 </mat-select>
                                         </mat-form-field>
@@ -64,8 +64,8 @@
                                     <thead>
                                     <tr>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Last Login</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">Created</th>
                                     <th scope="col"></th>
                                     </tr>
                                     </thead>
@@ -76,18 +76,19 @@
                                     <div>
                                             
                                             <img src={{user.image}} class="image" alt="Avatar">
-                                                {{user.full_name}} 
+                                                {{user.fullname}} 
                                     </div>
                                     <td>
-                                            {{user.email}}
+                                            <a class="status" style="color: white" *ngIf="checkuserStatus(user.state)">active</a>
+                                            <a class="statusOFF" style="color: white" *ngIf="!checkuserStatus(user.state)">deleted</a>
+                                      
+                                    </td>
+                                    <td>
+                                            {{user.created | slice:0:16}}
                                             
                                     </td>
                                     <td>
-                                            {{user.last_login | slice:0:17}}
-                                            
-                                    </td>
-                                    <td>
-                                            <div *ngIf="isUser(user.user_id)" class="btn button" (click)="removeUser(user.user_id)">Remove</div>
+                                            <div *ngIf="isUser(user.fullname)" class="btn button" (click)="removeUser(user.id)">Remove</div>
                                             
                                     </td>
                                     </tr>

@@ -25,13 +25,13 @@
 
         <div class="greybox-right">
 
-            <div class="publishIn">Published: {{repositorie[0].created_on | slice:5:17}} | 
-                <a *ngFor="let categorie of repositorie[0].categories; let i = index">
-                    <a class="textlink" href="#">{{repositorie[0].categories}}</a>
+            <div class="publishIn">Published: {{ created_on | slice:5:17}} | 
+                <a *ngFor="let categorie of categories; let i = index">
+                    <a class="textlink" href="#">{{categories}}</a>
                 </a>
             </div> 
 
-            <div class="title">{{repositorie[0].name}}</div> 
+            <div class="title">{{repo_name}}</div> 
 
             <div class="author"> 
                     <a *ngFor="let user of users; let i = index">
@@ -50,7 +50,7 @@
             <div class="abstract">
                 <div class="header"> Abstract </div>
                 <div class="textAbstract"> 
-                        {{repositorie[0].abstract}}
+                        {{repo_abstract}}
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr *ngFor="let service of repositorie[0].services; index as i">
+                                    <tr *ngFor="let service of services; index as i">
                                       <td>{{service.name}}</td>
                                       <td>
                                           
@@ -88,7 +88,7 @@
                                       <td>{{service.created_on | slice:0:25}}</td>
                                       <td>{{service.address}}</td>
                                       <td>{{service.ports}}</td>
-                                      <td>{{repositorie[0].maintainer}}</td>
+                                      <td>{{maintainer}}</td>
                                     </tr>
                                     </tbody>
                                   </table>
@@ -104,11 +104,11 @@
                                 </mat-panel-description>
                               </mat-expansion-panel-header>
 
-                              <div class="ftextMetadata"> <a class="metadataTopic">Repositorie ID:</a> {{repositorie[0].repo_id}}</div> 
+                              <div class="ftextMetadata"> <a class="metadataTopic">Repositorie ID:</a> {{repo_id}}</div> 
                               
-                              <div class="textMetadata"> <a class="metadataTopic">Publication Date:</a> {{repositorie[0].created_on | slice:5:17}}</div> 
+                              <div class="textMetadata"> <a class="metadataTopic">Publication Date:</a> {{created_on | slice:5:17}}</div> 
                               
-                              <div class="textMetadata"> <a class="metadataTopic">Title: </a> {{repositorie[0].name}}</div> 
+                              <div class="textMetadata"> <a class="metadataTopic">Title: </a> {{repo_name}}</div> 
 
                               <div class="textMetadata"> <a class="metadataTopic">Author(s): </a> 
 
@@ -119,15 +119,15 @@
                                     </a>
                               </div> 
 
-                              <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{users[0].email}}</div> 
+                              <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{user_email}}</div> 
 
                               <div class="textMetadata"> <a class="metadataTopic">Categorie: </a> 
                                 <a *ngFor="let categorie of categories; let i = index">
-                                    <a>{{categories[0]}}</a>
+                                    <a>{{categories}}</a>
                                 </a>
                              </div> 
 
-                             <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{repositorie[0].maintainer}}</div> 
+                             <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{maintainer}}</div> 
                              
                             
                             </mat-expansion-panel>

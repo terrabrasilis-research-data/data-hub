@@ -30,6 +30,7 @@ export class GroupComponent implements OnInit, MatCardModule {
   filterCategory = {}
   filterRepository = {}
   filterFiletypes = {}
+  title = ""
  
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   
@@ -157,6 +158,7 @@ export class GroupComponent implements OnInit, MatCardModule {
     const response = await this.gs.get_groups();
     this.groups = response;
     this.selected_group = this.groups.filter(x => (x.group_id == this.id))
+    this.title = this.selected_group[0].name
     
     var lookup = {};
     var count = 0;

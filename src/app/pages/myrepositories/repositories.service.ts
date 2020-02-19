@@ -284,4 +284,24 @@ public async get_repositorie(id: number): Promise<any> {
     const response = await this.http.get(`http://127.0.0.1:8090/api/v1.0/repositories/`+id).toPromise();
     return response;
   }
+
+public async get_members_repositorie(id: number, userToken: string): Promise<any> {
+
+    /*
+    GET GROUP_REPOSITORIE
+    */
+   const responseGroupRepositorie = await this.http.get(`http://127.0.0.1:8090/api/v1.0/group_repositorie_rel/`+id, {
+    headers: new HttpHeaders ({
+        Authorization: 'Bearer ' + userToken
+    })
+    }).toPromise();
+    
+    let group_id = responseGroupRepositorie['group_id']
+
+    const response = await this.http.get(`http://127.0.0.1:8090/api/v1.0/groups/`+ group_id).toPromise();
+    
+    return response['groups'];
+    
+  }  
+  
 }
