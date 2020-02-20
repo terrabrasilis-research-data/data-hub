@@ -20,6 +20,7 @@
 
                                 <div class="form-group bottom">
                                         <label>Image</label> <br>
+                                        
                                         <app-image></app-image>
                                 </div>
 
@@ -47,7 +48,7 @@
                                 
                                         <mat-form-field appearance="fill" class="people">
                                                 <mat-label class="textMenu">Select in users...</mat-label>
-                                                <mat-select [(value)]="selected" formControlName="People" class="textMenu" multiple> 
+                                                <mat-select [(value)]="selected" class="textMenu" multiple> 
                                                 <mat-option *ngFor="let user of users_no_logged" [value]="user">
                                                 {{user.fullname}}
                                                 </mat-option>

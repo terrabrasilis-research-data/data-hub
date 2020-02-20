@@ -14,8 +14,6 @@ export class NewgroupComponent implements OnInit {
 
   formGroup: FormGroup;
 
-  formPeople: FormGroup;
-
   showMsg: boolean = false;
  
   public name: string = "";
@@ -135,13 +133,11 @@ export class NewgroupComponent implements OnInit {
       if(this.users_selected.includes(selectedUsers[index]) == false)
         this.users_selected.push(selectedUsers[index]);
     }
-    this.formPeople.reset();
 
   }
 
   removeUser(remove_id: string){
     this.users_selected = this.users_selected.filter(x => (x.id != remove_id))
-    this.formPeople.reset();
   }
 
   checkuserStatus(status: string){

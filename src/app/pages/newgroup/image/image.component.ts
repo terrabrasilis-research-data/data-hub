@@ -25,13 +25,8 @@ export class ImageComponent {
 
       this.selectedFile = new ImageSnippet(event.target.result, file);
 
-      this.imageService.uploadImage(this.selectedFile.file).subscribe(
-        (res) => {
-        
-        },
-        (err) => {
-        
-        })
+      this.imageService.uploadImage(this.selectedFile.file);
+      
     });
 
     reader.readAsDataURL(file);
