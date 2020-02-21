@@ -9,7 +9,7 @@ export class ImageService {
 
   public uploadImage(image: File): Promise<any> {
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append('image', image, image.name);
     return this.http.post(`http://localhost:8090/api/v1.0/image_upload`, formData).toPromise();
   }
 }

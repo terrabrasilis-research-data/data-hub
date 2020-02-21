@@ -11,6 +11,8 @@ import { Store, select } from '@ngrx/store';
   styleUrls: ['./newgroup.component.scss']
 })
 export class NewgroupComponent implements OnInit {
+  
+  public file_name: string = ""
 
   formGroup: FormGroup;
 
@@ -20,6 +22,10 @@ export class NewgroupComponent implements OnInit {
   public description: string = "";
   public maintainer: string = "";
   public language: string = "";
+  
+  getName(event) {
+    this.file_name = event;
+  }
 
   public nameModelChange(str: string): void {
     this.name = str;
@@ -112,8 +118,7 @@ export class NewgroupComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      console.log(this.users_selected)
-      const response = await this.gs.create_group(this.user['user']['access_token'], this.name, this.description, '', this.maintainer, this.language, this.users_selected, this.todayISOString, this.user['user']['ckan_api_key'] );
+      const response = await this.gs.create_group(this.user['user']['access_token'], this.name, this.description, this.file_name, this.maintainer, this.language, this.users_selected, this.todayISOString, this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

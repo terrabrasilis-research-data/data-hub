@@ -34,7 +34,7 @@ export class GroupsService {
     /*
     CREATE GROUP
     */
-    const reponseGroup = await this.http.post(`http://127.0.0.1:8090/api/v1.0/groups`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'language': language, 'image': 'assets/images/ocean-snow-island.jpg'}, {
+    const reponseGroup = await this.http.post(`http://127.0.0.1:8090/api/v1.0/groups`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'language': language, 'image': 'http://localhost:8090/api/v1.0/uploads/'+image}, {
       headers: new HttpHeaders ({
           Authorization: 'Bearer ' + userToken
       })
