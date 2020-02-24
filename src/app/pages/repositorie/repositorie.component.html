@@ -86,7 +86,10 @@
                                     
                                      </td>
                                       <td>{{service.created_on | slice:0:25}}</td>
-                                      <td>{{service.address}}</td>
+                                      
+                                      <div *ngIf="servicepath(services[i].name)"><td>{{service.address}}</td></div>
+                                      <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address}}/{{service.name}}</td></div>    
+
                                       <td>{{service.ports}}</td>
                                       <td>{{maintainer}}</td>
                                     </tr>

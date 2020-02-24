@@ -175,7 +175,9 @@
                                                         <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
                                                   
                                                    </td>
-                                                  <td>{{service.address}}:{{service.ports[0]}}</td>
+                                                  <div *ngIf="servicepath(services[i].name)"><td>{{service.address | slice:7:30}}</td></div>
+                                                  <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address | slice:7:30}}/{{service.name}}</td></div>
+                                                
                                                 </tr>
                                                 </tbody>
                                         </table>

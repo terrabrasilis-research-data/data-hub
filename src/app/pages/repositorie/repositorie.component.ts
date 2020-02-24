@@ -69,6 +69,13 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
   return true;
   }
   
+  servicepath(name: string){
+    if (name == "PostgreSQL")
+      return true
+    else
+      return false
+   }
+   
   async getRepositorie(id){
 
     const response = await this.rs.get_repositorie(this.id);

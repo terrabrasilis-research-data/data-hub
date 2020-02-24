@@ -28,8 +28,9 @@
                                       <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
                                 
                                  </td>
-                                  <td>{{service.created_on | slice:0:25}}</td>
-                                  <td>{{service.address}}</td>
+                                  <td>{{service.created_on | slice:0:16}}</td>
+                                  <div *ngIf="servicepath(services[i].name)"><td>{{service.address}}</td></div>
+                                  <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address}}/{{service.name}}</td></div>
                                   <td>{{service.ports}}</td>
                                   <td>{{repositorie[0].maintainer}}</td>
                                 </tr>

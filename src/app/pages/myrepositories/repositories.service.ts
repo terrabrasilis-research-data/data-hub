@@ -8,7 +8,7 @@ export class RepositorieService {
   constructor(private http: HttpClient) {
   }
 
-  public async repositorie_create(userToken: string, name: string, description: string, collaborators: number, maintainer: string, categorie: number, postgres: boolean, geoserver: boolean, geonetwork: boolean, terrama2: boolean, owncloud: boolean, created_on: string, ckan_api_key: string): Promise<any> {
+  public async repositorie_create(userToken: string, name: string, description: string, collaborators: number, maintainer: string, categorie: number, postgres: boolean, geoserver: boolean, geonetwork: boolean, terrama2: boolean, owncloud: boolean, created_on: string, ckan_api_key: string, repourl: string): Promise<any> {
  
     let postgres_service_id
     let geoserver_service_id
@@ -40,7 +40,7 @@ export class RepositorieService {
     /*
     CREATE HOST
     */
-    const responseHost = await this.http.post(`http://127.0.0.1:8090/api/v1.0/hosts`, {'name': name, 'address': '127.0.0.1/'+name,  'created_on': created_on}, {
+    const responseHost = await this.http.post(`http://127.0.0.1:8090/api/v1.0/hosts`, {'name': name, 'address': repourl,  'created_on': created_on}, {
         headers: new HttpHeaders ({
             Authorization: 'Bearer ' + userToken
         })

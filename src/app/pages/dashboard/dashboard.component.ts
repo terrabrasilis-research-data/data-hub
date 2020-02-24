@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
 import { GroupsService } from '../groups/groups.service';
+import { RepositorieService } from '../myrepositories/repositories.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,7 @@ import { GroupsService } from '../groups/groups.service';
 export class DashboardComponent implements OnInit {
 
   constructor(
+    private rs:RepositorieService,
     private gs:GroupsService,
     private store: Store<fromLogin.AppState>,
   ) {
@@ -25,6 +27,7 @@ export class DashboardComponent implements OnInit {
  
   ngOnInit() {
     this.getGroups();
+    this.getRepositorie(3);
     document.getElementById("wrapper").className = "d-flex";
   }
   
@@ -33,11 +36,16 @@ export class DashboardComponent implements OnInit {
     this.groups = response;
   }
 
-  services: Service[] = [
-    {"id": 1, "address": "172.17.01", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "PostgreSQL", "ports": ["5432"]}, 
-    {"id": 2, "address": "172.17.02", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoServer", "ports": ["5555", "5050"]}, 
-    {"id": 3, "address": "172.17.03", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoNetwork", "ports": ["5000"]}
-  ]
+  servicepath(name: string){
+    if (name == "PostgreSQL")
+      return true
+    else
+      return false
+   }
+   
+  services = [];
+  
+  repositorie = [];
 
   activities: Activities[] = [
     {"username": "Gabriel", "activity_type": "updated the dataset", "package_name": "ASGS Geographic Correspondences (2016)", "package_id": "1", "timestamp": "Wed, 04 Sep 2019 14:48:54 GMT"},
@@ -62,6 +70,14 @@ export class DashboardComponent implements OnInit {
     checkServiceStatus(id: number){
    return true;
    }
+
+   async getRepositorie(id){
+
+    const response = await this.rs.get_repositorie(id);
+    this.repositorie = response['repositorie'];
+    this.services = this.repositorie[0].services;
+  } 
+
 }
 
 export interface Group {
