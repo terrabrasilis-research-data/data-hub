@@ -6,7 +6,7 @@
 }
 
 .loginBox{ 
-    width:75%;
+    width:73%;
     margin: 0 auto;
     padding: 10px;
     position: relative;
@@ -114,5 +114,21 @@
     align-items: center;
     padding-top: 3px;
     padding-left: 10px;
+    font-size: 12pt;
+}
+
+.btn1{
+    font-size: 11pt;
+    color:rgb(42, 138, 201)
+}
+
+.btn1:hover{
+    color: #0F66A0; 
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+.icon{
     font-size: 12pt;
 }

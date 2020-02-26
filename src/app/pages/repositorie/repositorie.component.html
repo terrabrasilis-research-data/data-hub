@@ -71,7 +71,7 @@
                                       <th scope="col">Name</th>
                                       <th scope="col">Status</th>
                                       <th scope="col">Created</th>
-                                      <th scope="col">IP Address</th>
+                                      <th scope="col">Address</th>
                                       <th scope="col">Published Ports</th>
                                       <th scope="col">Ownership</th>  
                                     </tr>
@@ -87,10 +87,14 @@
                                      </td>
                                       <td>{{service.created_on | slice:0:25}}</td>
                                       
-                                      <div *ngIf="servicepath(services[i].name)"><td>{{service.address}}</td></div>
-                                      <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address}}/{{service.name}}</td></div>    
-
-                                      <td>{{service.ports}}</td>
+                                      <div *ngIf="servicepath(services[i].name)"><td>{{service.address}} </td></div>
+                                      <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address}}/{{service.name}} </td></div>
+                                      
+                                      <td>
+                                            <div *ngIf="servicepath(services[i].name)"><a href="{{service.address}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
+                                            <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><a href="{{service.address}}/{{service.name}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
+                                      </td>
+                                            
                                       <td>{{maintainer}}</td>
                                     </tr>
                                     </tbody>

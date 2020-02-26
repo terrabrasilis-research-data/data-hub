@@ -221,3 +221,19 @@ img{
     width: 30px;
     border-radius: 50%;
   }
+  
+  .btn{
+    font-size: 11pt;
+    color:rgb(42, 138, 201)
+}
+
+.btn:hover{
+    color: #0F66A0; 
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+.icon{
+    font-size: 12pt;
+}

@@ -15,7 +15,7 @@ export class MyservicesComponent implements OnInit {
   constructor( private rs:RepositorieService ) { }
 
   ngOnInit() {
-    this.getRepositorie(3);
+    this.getRepositorie(1);
   }
 
 

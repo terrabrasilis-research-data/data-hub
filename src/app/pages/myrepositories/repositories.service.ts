@@ -19,7 +19,7 @@ export class RepositorieService {
     /*
     CREATE REPOSITORIE
     */
-   const responseRepo = await this.http.post(`http://127.0.0.1:8090/api/v1.0/repositories`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on}, {
+   const responseRepo = await this.http.post(`http://127.0.0.1:8090/api/v1.0/repositories`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'path': repourl,}, {
     headers: new HttpHeaders ({
         Authorization: 'Bearer ' + userToken
     })
@@ -40,7 +40,7 @@ export class RepositorieService {
     /*
     CREATE HOST
     */
-    const responseHost = await this.http.post(`http://127.0.0.1:8090/api/v1.0/hosts`, {'name': name, 'address': repourl,  'created_on': created_on}, {
+    const responseHost = await this.http.post(`http://127.0.0.1:8090/api/v1.0/hosts`, {'name': name, 'address': 'http://localhost', 'created_on': created_on}, {
         headers: new HttpHeaders ({
             Authorization: 'Bearer ' + userToken
         })

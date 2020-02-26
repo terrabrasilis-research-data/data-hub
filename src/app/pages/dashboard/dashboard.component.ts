@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
  
   ngOnInit() {
     this.getGroups();
-    this.getRepositorie(3);
+    this.getRepositorie(1);
     document.getElementById("wrapper").className = "d-flex";
   }
   
@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
     groups: Group[]; 
   
     checkServiceStatus(id: number){
-   return true;
+    return true;
    }
 
    async getRepositorie(id){

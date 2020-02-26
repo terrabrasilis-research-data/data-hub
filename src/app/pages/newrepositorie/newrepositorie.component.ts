@@ -156,7 +156,7 @@ export class NewrepositorieComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.rs.repositorie_create(this.user['user']['access_token'], this.name, this.description, this.collaborators, this.maintainer, this.categorie, this.postgres, this.geoserver, this.geonetwork, this.terrama2, this.owncloud, this.todayISOString, this.user['user']['ckan_api_key'], 'http://localhost/'+this.repourl );
+      const response = await this.rs.repositorie_create(this.user['user']['access_token'], this.name, this.description, this.collaborators, this.maintainer, this.categorie, this.postgres, this.geoserver, this.geonetwork, this.terrama2, this.owncloud, this.todayISOString, this.user['user']['ckan_api_key'], this.repourl );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;
