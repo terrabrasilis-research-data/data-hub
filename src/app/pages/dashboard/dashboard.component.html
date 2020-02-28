@@ -207,7 +207,7 @@
                                                 </mat-expansion-panel-header>
 
                                                     <div *ngFor="let group of groups; let j = index;">
-                                                            <a class="textlink itemLine" *ngIf="j<5" [routerLink]="['/groups', groups[j].group_id]">{{groups[j].users[0].full_name.split(" ")[1]}} et al. ({{groups[j].created_on | slice:12:16}}): &nbsp; <b>{{groups[j].name}}</b> </a>
+                                                            <a class="textlink itemLine" *ngIf="j<6" [routerLink]="['/groups', groups[j].group_id]">{{groups[j].users[0].full_name.split(" ")[1]}} et al. ({{groups[j].created_on | slice:12:16}}): &nbsp; <b>{{groups[j].name}}</b> </a>
                                                     </div>
 
                                                 <br>
