@@ -3,6 +3,7 @@ import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
 import { GroupsService } from '../groups/groups.service';
 import { RepositorieService } from '../myrepositories/repositories.service';
+import { SignupService } from '../signup/signup.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private rs:RepositorieService,
     private gs:GroupsService,
+    private ss:SignupService,
     private store: Store<fromLogin.AppState>,
   ) {
     this.store.pipe(select('login')).subscribe(res => {
@@ -27,13 +29,37 @@ export class DashboardComponent implements OnInit {
  
   ngOnInit() {
     this.getGroups();
+    this.getActivity();
+    this.get_users_ckan();
     this.getRepositorie(1);
+
     document.getElementById("wrapper").className = "d-flex";
   }
   
   async getGroups(){
     const response = await this.gs.get_groups();
     this.groups = response;
+  }
+
+  async getActivity(){
+    const response = await this.ss.get_activity(this.user['user']['ckan_api_key']);
+    this.activities_list = response['result']
+  }
+
+  async get_users_ckan(){
+    const response = await this.ss.get_users_ckan();
+    this.ckan_users = response['result'];
+  }
+
+  getUser(id: string){
+    return this.ckan_users.filter(x => (x.id == id))[0]['display_name'];    
+  }
+
+  getActivityName(type: string){
+    if(this.activity_dict.filter(x => (x.ckan_activity_type == type)).length == 1)
+      return this.activity_dict.filter(x => (x.ckan_activity_type == type))[0]['activity_string']
+    else
+      return type
   }
 
   servicepath(name: string){
@@ -46,6 +72,18 @@ export class DashboardComponent implements OnInit {
   services = [];
   
   repositorie = [];
+  
+  organizations = [];
+
+  activities_list = [];
+
+  ckan_users = [];
+  
+  activity_dict = [
+    {"ckan_activity_type": "new organization", "activity_string": "created a repository"},
+    {"ckan_activity_type": "new user", "activity_string": "signed up"},
+    {"ckan_activity_type": "new group", "activity_string": "created the group "}
+  ];
 
   activities: Activities[] = [
     {"username": "Gabriel", "activity_type": "updated the dataset", "package_name": "ASGS Geographic Correspondences (2016)", "package_id": "1", "timestamp": "Wed, 04 Sep 2019 14:48:54 GMT"},

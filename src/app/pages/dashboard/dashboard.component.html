@@ -138,10 +138,17 @@
                                             </mat-panel-description>
                                           </mat-expansion-panel-header>
 
-                                          <div *ngFor="let activitie of activities; let i = index">
-                                                <a style="text-decoration: underline;">{{activities[i].username}}</a> {{activities[i].activity_type}} 
-                                                <a class="textlink" [routerLink]="['/datasets', activities[i].package_id]">{{activities[i].package_name}}</a>
-                                            </div>
+                                          <div *ngFor="let activitie of activities_list; let i = index">
+
+                                            <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{getUser(activitie.user_id)}}</a>
+
+                                            {{getActivityName(activitie.activity_type)}}
+                                            
+                                            <a *ngIf="activitie.activity_type === 'new group'">
+                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.group.title}}</a>
+                                            </a>
+
+                                          </div>
 
                                         </mat-expansion-panel>
                                 
