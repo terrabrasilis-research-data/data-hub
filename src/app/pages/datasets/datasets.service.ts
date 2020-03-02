@@ -19,15 +19,32 @@ export class DatasetsService {
     return response['result'];
   }
 
-  public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, dataurl: string, dataname: string, datadescription: string, dataformat: string, ckan_api_key: string): Promise<any> {
-    const responseDataset = await this.http.post(`http://localhost:5000/api/3/action/package_create`, {'name': name, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}] }, {
+  public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, dataurl: string, dataname: string, datadescription: string, dataformat: string, tags: string[], boundbox: string, key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, ckan_api_key: string): Promise<any> {
+
+    let tags_dict = tags.map(x => {
+      return({'name': x});
+    });
+
+    let key_list = [key1, key2, key3, 'spatial']
+    let value_list = [value1, value2, value3, boundbox]
+    var extra = []; 
+
+    for (let index = 0; index < 3; index++) {
+      if (key_list[index] && value_list[index])
+        extra.push({
+          value: key_list[index],
+          key: value_list[index]
+      });
+    }
+    
+    const responseDataset = await this.http.post(`http://localhost:5000/api/3/action/package_create`, {'name': name, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}], 'tags': tags_dict, "extras": extra }, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
       })
     }).toPromise();
 
     let package_id = responseDataset['result']['id']
-    
+
     const responseResource = await this.http.post(`http://localhost:5000/api/3/action/resource_create`, {'package_id': package_id, 'name': dataname, 'url': dataurl, 'description': datadescription, 'format': dataformat}, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key

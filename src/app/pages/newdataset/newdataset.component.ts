@@ -21,7 +21,7 @@ export class NewdatasetComponent implements OnInit {
   public description: string = "";
   public tags: string = "";
   public license: string = "cc-by";
-  public collaborators: string = "";
+  public collaborators: string = null;
   public visibility: boolean = false;
   public maintainer: string = "";
   public authoremail: string = "";
@@ -256,7 +256,7 @@ export class NewdatasetComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.user['user']['ckan_api_key'] );
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.boundbox, this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;
