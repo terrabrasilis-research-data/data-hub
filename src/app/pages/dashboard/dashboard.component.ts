@@ -82,7 +82,9 @@ export class DashboardComponent implements OnInit {
   activity_dict = [
     {"ckan_activity_type": "new organization", "activity_string": "created a repository"},
     {"ckan_activity_type": "new user", "activity_string": "signed up"},
-    {"ckan_activity_type": "new group", "activity_string": "created the group "}
+    {"ckan_activity_type": "new group", "activity_string": "created the group "},
+    {"ckan_activity_type": "new package ", "activity_string": "created the dataset "},
+    {"ckan_activity_type": "changed package", "activity_string": "changed a package"}
   ];
 
   activities: Activities[] = [

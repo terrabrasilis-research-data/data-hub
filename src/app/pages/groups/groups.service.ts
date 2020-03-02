@@ -32,14 +32,26 @@ export class GroupsService {
   public async create_group(userToken: string, name: string, description: string, image: string, maintainer: string, language: string, users: CKAN_User[], created_on: string, ckan_api_key: string): Promise<any> {
           
     /*
+    CREATE GROUP CKAN
+    */
+    const responseGroupCkan = await this.http.post(`http://localhost:5000/api/3/action/group_create`, {'name': name, 'title': name, 'description': description, 'state': 'active', 'users': users }, {
+      headers: new HttpHeaders ({
+        Authorization: ckan_api_key
+      })
+    }).toPromise();
+
+    let ckan_group_id = responseGroupCkan['result']['id']
+    console.log({'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'language': language, 'ckan_group_id': ckan_group_id, 'image': 'http://localhost:8090/api/v1.0/uploads/'+image})
+
+    /*
     CREATE GROUP
     */
-    const reponseGroup = await this.http.post(`http://127.0.0.1:8090/api/v1.0/groups`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'language': language, 'image': 'http://localhost:8090/api/v1.0/uploads/'+image}, {
+    const reponseGroup = await this.http.post(`http://127.0.0.1:8090/api/v1.0/groups`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'language': language, 'ckan_group_id': ckan_group_id, 'image': 'http://localhost:8090/api/v1.0/uploads/'+image}, {
       headers: new HttpHeaders ({
           Authorization: 'Bearer ' + userToken
       })
       }).toPromise();
-
+      
       let group_id = reponseGroup[0]['group_id']
 
     for (let index = 0; index < users.length; index++) {
@@ -53,15 +65,6 @@ export class GroupsService {
         })
         }).toPromise();
     }
-
-    /*
-    CREATE GROUP CKAN
-    */
-    const responseGroupCkan = await this.http.post(`http://localhost:5000/api/3/action/group_create`, {'name': name, 'title': name, 'description': description, 'state': 'active', 'users': users }, {
-      headers: new HttpHeaders ({
-        Authorization: ckan_api_key
-      })
-    }).toPromise();
 
       return reponseGroup;
   }

@@ -22,38 +22,56 @@
 
                                         <div class="form-group">
                                           <label>Tags</label>
-                                          <textarea name="" class="form-control" formControlName="Tags" [ngModel]="tags" (ngModelChange)="tagsModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
+                                          <input type="text" class="form-control"  formControlName="Tags" [ngModel]="tags" (ngModelChange)="tagsModelChange($event)" placeholder="land use, land cover...">
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label>License</label>
+                                          <div style="width: 15px"></div>
+                                          <select class="sizeDropdown sizeInput" formControlName="License" [ngModel]="license" (ngModelChange)="licenseModelChange($event)">
+                                                <option *ngFor="let lic of licences" value="{{lic.id}}">{{lic.title}}</option>
+                                          </select>
+                                        
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label>Repository</label>
+                                          <div style="width: 15px"></div>
+                                          <select class="sizeDropdown sizeInputFull" formControlName="Repository" [ngModel]="repository" (ngModelChange)="repositoryModelChange($event)">
+                                                <option *ngFor="let repo of repositories" value="{{repo.name}}">{{repo.name}}</option>
+                                          </select>
+                                        
                                         </div>
 
                                         <div class="form-group">
                                           <label>Collaborators</label>
                                           <div style="width: 15px"></div>
-                                          <select class="sizeDropdown" formControlName="Collaborators" [ngModel]="collaborators" (ngModelChange)="collaboratorsModelChange($event)">
-                                                <option *ngFor="let group of groups" value="{{group.group_id}}">{{group.name}}</option>
+                                          <select class="sizeDropdown sizeInputFull" formControlName="Collaborators" [ngModel]="collaborators" (ngModelChange)="collaboratorsModelChange($event)">
+                                                <option *ngFor="let group of groups" value="{{group.ckan_group_id}}">{{group.name}}</option>
                                           </select>
                                         
                                         </div>
-
-                                        <div class="form-group">
-                                          <label>Visibility</label>
-                                          <div style="width: 15px"></div>
-                                          <select class="sizeDropdown" formControlName="Visibility" [ngModel]="visibility" (ngModelChange)="visibilityModelChange($event)">
-                                                <option value="public">Public</option>
-                                                <option value="private">Private</option>
-                                          </select>
                                         
-                                        </div>
-
                                         <div class="form-group">
                                             <label>Maintainer</label>
                                             <input name="" class="form-control" formControlName="Maintainer" [ngModel]="maintainer" (ngModelChange)="maintainerModelChange($event)" placeholder="Maintainer name" type="text">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Author Email</label>
-                                            <input name="" class="form-control" formControlName="AuthorEmail" [ngModel]="authoremail" (ngModelChange)="authorEmailModelChange($event)" placeholder="Author Email name" type="text">
+                                          <label>Visibility</label>
+                                          <div style="width: 15px"></div>
+                                          <select class="sizeDropdown sizeInputFull" formControlName="Visibility" [ngModel]="visibility" (ngModelChange)="visibilityModelChange($event)">
+                                                <option value="false">Public</option>
+                                                <option value="true">Private</option>
+                                          </select>
+                                        
                                         </div>
-                
+
+                                        <div class="form-group">
+                                            <label>Author Email</label>
+                                            <input name="" class="form-control" formControlName="AuthorEmail" [ngModel]="authoremail" (ngModelChange)="authorEmailModelChange($event)" placeholder="Email address" type="text">
+                                        </div>
+                                        
 
                                         <div class="form-group">
                                             <label>Bounding Box</label>
@@ -64,7 +82,7 @@
                                             <label>Categorie</label>
                                             <div style="width: 15px"></div>
                             
-                                            <select class="sizeDropdown" formControlName="Categorie" [ngModel]="categorie" (ngModelChange)="categorieModelChange($event)">
+                                            <select class="sizeDropdown sizeInputFull" formControlName="Categorie" [ngModel]="categorie" (ngModelChange)="categorieModelChange($event)">
                                                 <option *ngFor="let categorie of categories" value="{{categorie.categorie_id}}">{{categorie.name}}</option>
                                             </select>
                             
@@ -150,22 +168,22 @@
 
                                                 <div class="form-group">
                                                         <label>URL</label>
-                                                        <input name="" class="form-control" formControlName="DataURL" [ngModel]="dataUrl" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text">
+                                                        <input name="" class="form-control" formControlName="DataURL" [ngModel]="dataurl" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text">
                                                 </div>
 
                                                 <div class="form-group">
                                                         <label>Name</label>
-                                                        <input name="" class="form-control" formControlName="DataName" [ngModel]="dataName" (ngModelChange)="dataNameModelChange($event)" placeholder="" type="text"  placeholder="A descriptive name">
+                                                        <input name="" class="form-control" formControlName="DataName" [ngModel]="dataname" (ngModelChange)="dataNameModelChange($event)" placeholder="" type="text"  placeholder="Datafile name">
                                                 </div>
 
                                                 <div class="form-group">
                                                         <label>Description</label>
-                                                        <textarea name="" class="form-control" formControlName="DataDescription" [ngModel]="dataDescription" (ngModelChange)="dataDescriptionModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
+                                                        <textarea name="" class="form-control" formControlName="DataDescription" [ngModel]="datadescription" (ngModelChange)="dataDescriptionModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
                                                 </div>
 
                                                 <div class="form-group">
                                                         <label>Format</label>
-                                                        <input name="" class="form-control" formControlName="DataFormat" [ngModel]="dataFormat" (ngModelChange)="dataFormatModelChange($event)" placeholder="CSV, XLS or JSON" type="text">
+                                                        <input name="" class="form-control" formControlName="DataFormat" [ngModel]="dataformat" (ngModelChange)="dataFormatModelChange($event)" placeholder="CSV, XLS or JSON" type="text">
                                                 </div>  
 
                                                 <hr class="style1">
@@ -183,7 +201,7 @@
                                         <div class=""  *ngIf="showMsg" style="width: 50%; margin-left: 25%; margin-right: 25%">
                                                 <div class="col-xs-12">
                                                 <p class="alert alert-success">
-                                                    <strong>Successful creation!</strong> Please click <a routerLink="/view/repositories">here</a> to view!
+                                                    <strong>Successful creation!</strong> Please click <a routerLink="/datasets">here</a> to view!
                                         
                                                 </p>
                                             </div>

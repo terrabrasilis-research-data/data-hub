@@ -148,6 +148,10 @@
                                                 <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.group.title}}</a>
                                             </a>
 
+                                            <a *ngIf="activitie.activity_type === 'new package'">
+                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.package.title}}</a>
+                                            </a>
+                                            
                                           </div>
 
                                         </mat-expansion-panel>
