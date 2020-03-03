@@ -4,6 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { GroupsService } from '../groups/groups.service';
 import { RepositorieService } from '../myrepositories/repositories.service';
 import { SignupService } from '../signup/signup.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { DatasetsService } from '../datasets/datasets.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +14,91 @@ import { SignupService } from '../signup/signup.service';
 })
 export class DashboardComponent implements OnInit {
 
+  formGroup: FormGroup;
+
+  showMsg: boolean = false;
+ 
+  public title: string = "";
+  public description: string = "";
+  public tags: string = "";
+  public license: string = "cc-by";
+  public collaborators: string = null;
+  public visibility: boolean = false;
+  public maintainer: string = "";
+  public authoremail: string = "";
+  public repository: string = "";
+  public boundbox: string = "";
+  public categorie: number = null;
+  public dataurl: string = null;
+  public dataname: string = null;
+  public datadescription: string = null;
+  public dataformat: string = null;
+
+  public titleModelChange(str: string): void {
+    this.title = str;
+  }
+
+  public descriptionModelChange(str: string): void {
+    this.description = str;
+  }
+  
+  public tagsModelChange(str: string): void {
+    this.tags = str;
+  }
+
+  public licenseModelChange(str: string): void {
+    this.license = str;
+  }
+
+  public collaboratorsModelChange(str: string): void {
+    this.collaborators = str;
+  }
+
+  public visibilityModelChange(bol: boolean): void {
+    this.visibility = bol;
+  }
+
+  public maintainerModelChange(str: string): void {
+    this.maintainer = str;
+  }
+
+  public authorEmailModelChange(str: string): void {
+    this.authoremail = str;
+  }
+
+  public repositoryModelChange(str: string): void {
+    this.repository = str;
+  }
+
+  public boundboxModelChange(str: string): void {
+    this.boundbox = str;
+  }
+
+  public categorieModelChange(num: number): void {
+    this.categorie = num;
+  }
+
+  public urlModelChange(str: string): void {
+    this.dataurl = str;
+  }
+
+  public dataNameModelChange(str: string): void {
+    this.dataname = str;
+  }
+
+  public dataDescriptionModelChange(str: string): void {
+    this.datadescription = str;
+  }
+
+  public dataFormatModelChange(str: string): void {
+    this.dataformat = str;
+  }
+  
   constructor(
     private rs:RepositorieService,
     private gs:GroupsService,
     private ss:SignupService,
+    private ds: DatasetsService,
     private store: Store<fromLogin.AppState>,
   ) {
     this.store.pipe(select('login')).subscribe(res => {
@@ -26,16 +109,144 @@ export class DashboardComponent implements OnInit {
 }
 
  public user: any = null;
- 
+ todayISOString : string = new Date().toISOString();
+
   ngOnInit() {
     this.getGroups();
     this.getActivity();
     this.get_users_ckan();
     this.getRepositorie(1);
-
+    this.getLicense();
+    this.getGroups();
+    this.getCategories();
+    this.getRepositories();
     document.getElementById("wrapper").className = "d-flex";
+
+    this.formGroup = new FormGroup({
+
+      Title: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(100),
+        Validators.pattern("^[a-z0-9_]*$")
+      ]),
+
+      Description: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(500)
+      ]),
+
+      Tags: new FormControl('', [
+        Validators.required
+      ]),
+
+      Collaborators: new FormControl('', [
+        Validators.required
+      ]),
+
+      Visibility: new FormControl('', [
+      ]),
+
+      Maintainer: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(355)
+      ]),
+
+      AuthorEmail: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+      ]),
+
+      BoundBox: new FormControl('', [
+        Validators.required
+      ]),
+
+      Categorie: new FormControl('', [
+        Validators.required
+      ]),
+
+      Repository: new FormControl('', [
+        Validators.required
+      ]),
+
+      License: new FormControl('', [
+        Validators.required
+      ]),
+
+      Key1: new FormControl('', [
+      ]),
+
+      Value1: new FormControl('', [
+      ]),
+
+      Key2: new FormControl('', [
+      ]),
+
+      Value2: new FormControl('', [
+      ]),
+
+      Key3: new FormControl('', [
+      ]),
+
+      Value3: new FormControl('', [
+      ]),
+
+      DataURL: new FormControl('', [
+        Validators.required
+      ]),
+
+      DataName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(100),
+        Validators.pattern("^[a-z0-9_]*$")
+      ]),
+
+      DataDescription: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(500)
+      ]),
+
+      DataFormat: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(6),
+      ]),
+
+    });
   }
   
+  async getCategories(){
+    const response = await this.gs.get_categories();
+    this.categories = response;
+  }
+  
+  async getLicense(){
+    const response = await this.ds.get_license_list();
+    this.licences = response;
+  }
+  
+  async getRepositories(){
+    const response = await this.rs.get_repositories();
+    this.repositories = response['repositorie'];
+  }
+
+  private async onSubmit() {
+    try {
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.boundbox, "", "", "", "", "", "", this.user['user']['ckan_api_key'] );
+      if (response) {
+        this.formGroup.reset();
+        this.showMsg = true;
+      }
+
+    } catch (err) {
+        console.log(err)
+    }
+  }
+
+  onReset() {
+    this.formGroup.reset();
+  }
+
   async getGroups(){
     const response = await this.gs.get_groups();
     this.groups = response;
@@ -68,7 +279,15 @@ export class DashboardComponent implements OnInit {
     else
       return false
    }
-   
+
+  groups: Group[]; 
+
+  categories: Categorie[];
+
+  licences: License[];
+
+  repositories = [];
+
   services = [];
   
   repositorie = [];
@@ -105,9 +324,7 @@ export class DashboardComponent implements OnInit {
     {"dataset_id": 8, "name": "High resolution in situ temperatures across coral reef slopes: Iriomote-jima, Japan and Gulf of Chiriquí, Panama", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2016},   
   ]
   
-    groups: Group[]; 
-  
-    checkServiceStatus(id: number){
+  checkServiceStatus(id: number){
     return true;
    }
 
@@ -118,15 +335,6 @@ export class DashboardComponent implements OnInit {
     this.services = this.repositorie[0].services;
   } 
 
-}
-
-export interface Group {
-  group_id: number;
-  authors: Array < string >;
-  name: string;
-  year: number;
-  abstract: string;
-  image: string;
 }
 
 export interface Activities {
@@ -151,4 +359,19 @@ export interface Dataset {
   authors: Array < string >;
   name: string;
   year: number;
+}
+
+export interface Group {
+  ckan_group_id: string;
+  name: string;
+}
+
+export interface Categorie {
+  categorie_id: number;
+  name: string;
+}
+
+export interface License {
+  title: string;
+  id: string;
 }
