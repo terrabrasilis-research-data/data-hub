@@ -43,7 +43,7 @@ export class NewgroupComponent implements OnInit {
   public languageModelChange(str: string): void {
     this.language = str;
   }
-  
+
   constructor(
     private gs:GroupsService, 
     private router:Router,
@@ -72,8 +72,7 @@ export class NewgroupComponent implements OnInit {
       Name: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(34),
-        Validators.pattern("^[a-z0-9_]*$")
+        Validators.maxLength(34)
       ]),
 
       Description: new FormControl('', [
@@ -127,7 +126,7 @@ export class NewgroupComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.gs.create_group(this.user['user']['access_token'], this.name, this.description, this.file_name, this.maintainer, this.language, this.users_selected, this.todayISOString, this.user['user']['ckan_api_key'] );
+      const response = await this.gs.create_group(this.user['user']['access_token'], this.name, this.description, this.file_name, this.maintainer, this.language, this.users_selected, this.todayISOString, this.name.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

@@ -19,7 +19,7 @@ export class DatasetsService {
     return response['result'];
   }
 
-  public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, dataurl: string, dataname: string, datadescription: string, dataformat: string, tags: string[], boundbox: string, key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, ckan_api_key: string): Promise<any> {
+  public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, dataurl: string, dataname: string, datadescription: string, dataformat: string, tags: string[], boundbox: string, key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, nameAlpha: string, ckan_api_key: string): Promise<any> {
 
     let tags_dict = tags.map(x => {
       return({'name': x});
@@ -37,7 +37,7 @@ export class DatasetsService {
       });
     }
     
-    const responseDataset = await this.http.post(`http://localhost:5000/api/3/action/package_create`, {'name': name, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}], 'tags': tags_dict, "extras": extra }, {
+    const responseDataset = await this.http.post(`http://localhost:5000/api/3/action/package_create`, {'name': nameAlpha, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}], 'tags': tags_dict, "extras": extra }, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
       })

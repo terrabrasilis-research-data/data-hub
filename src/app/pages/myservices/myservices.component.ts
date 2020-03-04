@@ -15,6 +15,8 @@ export class MyservicesComponent implements OnInit {
 
   repositorie = [];
 
+  path = "";
+
   constructor( 
     private rs:RepositorieService,
     private router: Router,
@@ -34,7 +36,7 @@ export class MyservicesComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    this.getRepositorie(1);
+    this.getRepositorie(3);
   }
 
   checkServiceStatus(id: number){
@@ -58,6 +60,7 @@ export class MyservicesComponent implements OnInit {
     const response = await this.rs.get_repositorie(id);
     this.repositorie = response['repositorie'];
     this.services = this.repositorie[0].services;
+    this.path = this.repositorie[0]['path'];
   } 
 
 }

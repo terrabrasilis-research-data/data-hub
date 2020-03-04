@@ -18,6 +18,7 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
   created_on = "";
   categories = "";
   repo_name = "";
+  path = "";
   repo_abstract = "";
   repo_id = "";
   user_email = "";
@@ -94,6 +95,7 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
     this.created_on = this.repositorie[0].created_on;
     this.categories = this.repositorie[0].categories;
     this.repo_name = this.repositorie[0].name;
+    this.path = this.repositorie[0].path;
     this.repo_abstract = this.repositorie[0].abstract;
     this.repo_id = this.repositorie[0].repo_id;
     this.maintainer = this.repositorie[0].maintainer;

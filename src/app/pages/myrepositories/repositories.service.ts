@@ -31,7 +31,7 @@ export class RepositorieService {
     CREATE ORGANIZATION CKAN
    */
   
-    const responseOrganizationCkan = await this.http.post(`http://localhost:5000/api/3/action/organization_create`, {'name': name, 'description': description}, {
+    const responseOrganizationCkan = await this.http.post(`http://localhost:5000/api/3/action/organization_create`, {'name': repourl, 'title': name, 'description': description}, {
         headers: new HttpHeaders ({
           Authorization: ckan_api_key
         })
@@ -39,14 +39,14 @@ export class RepositorieService {
 
     /*
     CREATE HOST
-    */
+    
     const responseHost = await this.http.post(`http://127.0.0.1:8090/api/v1.0/hosts`, {'name': name, 'address': 'http://localhost', 'created_on': created_on}, {
         headers: new HttpHeaders ({
             Authorization: 'Bearer ' + userToken
         })
         }).toPromise();
-    
-    let host_id = responseHost[0]['host_id']
+    */
+    let host_id = 1;
 
     if(postgres == true){
 

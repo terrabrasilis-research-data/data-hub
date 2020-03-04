@@ -156,8 +156,7 @@ export class NewdatasetComponent implements OnInit {
       Title: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(100),
-        Validators.pattern("^[a-z0-9_]*$")
+        Validators.maxLength(100)
       ]),
 
       Description: new FormControl('', [
@@ -238,7 +237,7 @@ export class NewdatasetComponent implements OnInit {
 
       DataFormat: new FormControl('', [
         Validators.required,
-        Validators.maxLength(6),
+        Validators.maxLength(8),
       ]),
 
     });
@@ -267,7 +266,7 @@ export class NewdatasetComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.boundbox, this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.user['user']['ckan_api_key'] );
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.boundbox, this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

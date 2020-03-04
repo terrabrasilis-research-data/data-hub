@@ -30,12 +30,13 @@
                                  </td>
                                   <td>{{service.created_on | slice:0:16}}</td>
 
-                                  <div *ngIf="servicepath(services[i].name)"><td>{{service.address}} </td></div>
-                                  <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address}}/{{service.name}} </td></div>
+                                 
+                                  <div *ngIf="servicepath(services[i].name)"><td>{{service.address}}/{{path}} </td></div>
+                                  <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address}}/{{path}}/{{service.name}} </td></div>
                                   
                                   <td>
-                                  <div *ngIf="servicepath(services[i].name)"><a href="{{service.address}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
-                                  <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><a href="{{service.address}}/{{service.name}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
+                                        <div *ngIf="servicepath(services[i].name)"><a href="{{service.address}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
+                                        <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><a href="{{service.address}}/{{service.name}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
                                   </td>
                                   
                                   <td>{{repositorie[0].maintainer}}</td>

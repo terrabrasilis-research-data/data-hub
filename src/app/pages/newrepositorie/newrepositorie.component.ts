@@ -109,13 +109,12 @@ export class NewrepositorieComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(34),
-        Validators.pattern("^[a-zA-Z0-9_]*$")
       ]),
 
       RepoURL: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(8),
+        Validators.minLength(2),
+        Validators.maxLength(10),
         Validators.pattern("^[a-zA-Z0-9_]*$")
       ]),
 

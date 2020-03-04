@@ -29,20 +29,19 @@ export class GroupsService {
     return response;
   }
 
-  public async create_group(userToken: string, name: string, description: string, image: string, maintainer: string, language: string, users: CKAN_User[], created_on: string, ckan_api_key: string): Promise<any> {
+  public async create_group(userToken: string, name: string, description: string, image: string, maintainer: string, language: string, users: CKAN_User[], created_on: string, groupurl: string, ckan_api_key: string): Promise<any> {
           
     /*
     CREATE GROUP CKAN
     */
-    const responseGroupCkan = await this.http.post(`http://localhost:5000/api/3/action/group_create`, {'name': name, 'title': name, 'description': description, 'state': 'active', 'users': users }, {
+    const responseGroupCkan = await this.http.post(`http://localhost:5000/api/3/action/group_create`, {'name': groupurl, 'title': name, 'description': description, 'state': 'active', 'users': users }, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
       })
     }).toPromise();
 
     let ckan_group_id = responseGroupCkan['result']['id']
-    console.log({'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'language': language, 'ckan_group_id': ckan_group_id, 'image': 'http://localhost:8090/api/v1.0/uploads/'+image})
-
+    
     /*
     CREATE GROUP
     */

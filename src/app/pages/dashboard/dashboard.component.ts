@@ -35,6 +35,8 @@ export class DashboardComponent implements OnInit {
   public datadescription: string = null;
   public dataformat: string = null;
 
+  path = "";
+  
   public titleModelChange(str: string): void {
     this.title = str;
   }
@@ -123,7 +125,7 @@ export class DashboardComponent implements OnInit {
     this.getGroups();
     this.getActivity();
     this.get_users_ckan();
-    //this.getRepositorie(1);
+    this.getRepositorie(3);
     this.getLicense();
     this.getGroups();
     this.getCategories();
@@ -135,8 +137,7 @@ export class DashboardComponent implements OnInit {
       Title: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(100),
-        Validators.pattern("^[a-z0-9_]*$")
+        Validators.maxLength(100)
       ]),
 
       Description: new FormControl('', [
@@ -217,7 +218,7 @@ export class DashboardComponent implements OnInit {
 
       DataFormat: new FormControl('', [
         Validators.required,
-        Validators.maxLength(6),
+        Validators.maxLength(8),
       ]),
 
     });
@@ -240,7 +241,7 @@ export class DashboardComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.boundbox, "", "", "", "", "", "", this.user['user']['ckan_api_key'] );
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.boundbox, "", "", "", "", "", "", this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;
@@ -341,6 +342,7 @@ export class DashboardComponent implements OnInit {
     const response = await this.rs.get_repositorie(id);
     this.repositorie = response['repositorie'];
     this.services = this.repositorie[0]['services'];
+    this.path = this.repositorie[0]['path'];
   } 
 
 }
