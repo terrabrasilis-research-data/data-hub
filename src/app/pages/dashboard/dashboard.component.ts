@@ -6,6 +6,7 @@ import { RepositorieService } from '../myrepositories/repositories.service';
 import { SignupService } from '../signup/signup.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { DatasetsService } from '../datasets/datasets.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -98,6 +99,7 @@ export class DashboardComponent implements OnInit {
     private rs:RepositorieService,
     private gs:GroupsService,
     private ss:SignupService,
+    private router:Router,
     private ds: DatasetsService,
     private store: Store<fromLogin.AppState>,
   ) {
@@ -106,22 +108,28 @@ export class DashboardComponent implements OnInit {
         this.user = res;
       }
   })
+
 }
 
  public user: any = null;
  todayISOString : string = new Date().toISOString();
 
   ngOnInit() {
+
+    if(!this.user['user']){
+      this.router.navigate(['/login']);
+    }
+
     this.getGroups();
     this.getActivity();
     this.get_users_ckan();
-    this.getRepositorie(1);
+    //this.getRepositorie(1);
     this.getLicense();
     this.getGroups();
     this.getCategories();
     this.getRepositories();
     document.getElementById("wrapper").className = "d-flex";
-
+    
     this.formGroup = new FormGroup({
 
       Title: new FormControl('', [
@@ -290,7 +298,7 @@ export class DashboardComponent implements OnInit {
 
   services = [];
   
-  repositorie = [];
+  repositorie = [{}];
   
   organizations = [];
 
@@ -332,7 +340,7 @@ export class DashboardComponent implements OnInit {
 
     const response = await this.rs.get_repositorie(id);
     this.repositorie = response['repositorie'];
-    this.services = this.repositorie[0].services;
+    this.services = this.repositorie[0]['services'];
   } 
 
 }

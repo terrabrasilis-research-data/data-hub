@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositorieService } from './repositories.service';
+import * as fromLogin from '../login/login.reducer';
+import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myrepositories',
@@ -9,9 +12,26 @@ import { RepositorieService } from './repositories.service';
 
 export class MyrepositoriesComponent implements OnInit {
     
-      constructor(private rs:RepositorieService) { }
+      constructor(
+        private rs:RepositorieService,
+        private router: Router,
+        private store: Store<fromLogin.AppState>,
+        
+        ) { this.store.pipe(select('login')).subscribe(res => {
+          if(res){
+            this.user = res;
+          }
+        })
+      }
     
+      public user: any = null;
+  
       ngOnInit() {
+
+        if(!this.user['user']){
+          this.router.navigate(['/login']);
+        }
+
         this.getRepositories();
       }
     

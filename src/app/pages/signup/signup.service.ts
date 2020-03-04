@@ -11,7 +11,7 @@ export class SignupService {
   public async user_create(name: string, email: string, password: string, full_name: string): Promise<any> {
     const response = await this.http.post(`http://localhost:5000/api/3/action/user_create`, {'name': name, 'email': email, 'password': password, 'fullname': full_name}, {
       headers: new HttpHeaders ({
-        Authorization: '56019677-b89c-4759-971e-536cece43f46'
+        Authorization: '2448c920-f869-4a7b-b5c0-8911c4b86fa1'
       })
     }).toPromise();
     return response;
@@ -34,7 +34,7 @@ export class SignupService {
   public async get_users_ckan(): Promise<any> {
     const response = await this.http.get(`http://localhost:5000/api/3/action/user_list`, {
       headers: new HttpHeaders ({
-        Authorization: '56019677-b89c-4759-971e-536cece43f46'
+        Authorization: '2448c920-f869-4a7b-b5c0-8911c4b86fa1'
       })
     }).toPromise();
     return response;
@@ -43,7 +43,7 @@ export class SignupService {
   public async organization_show(id: string): Promise<any> {
     const response = await this.http.post(`http://localhost:5000/api/3/action/organization_show`, {'id': id}, {
       headers: new HttpHeaders ({
-        Authorization: '56019677-b89c-4759-971e-536cece43f46'
+        Authorization: '2448c920-f869-4a7b-b5c0-8911c4b86fa1'
       })
     }).toPromise();
     return response;

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { GroupsService } from '../groups/groups.service';
 import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -43,7 +44,11 @@ export class NewgroupComponent implements OnInit {
     this.language = str;
   }
   
-  constructor(private gs:GroupsService, private store: Store<fromLogin.AppState>) { this.store.pipe(select('login')).subscribe(res => {
+  constructor(
+    private gs:GroupsService, 
+    private router:Router,
+    private store: Store<fromLogin.AppState>
+    ) { this.store.pipe(select('login')).subscribe(res => {
     if(res){
       this.user = res;
     }
@@ -55,7 +60,11 @@ export class NewgroupComponent implements OnInit {
   todayISOString : string = new Date().toISOString();
 
   ngOnInit() {
-    
+
+    if(!this.user['user']){
+      this.router.navigate(['/login']);
+    }
+
     this.getUsers();
 
     this.formGroup = new FormGroup({

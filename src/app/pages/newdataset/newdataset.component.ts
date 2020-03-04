@@ -5,6 +5,7 @@ import { RepositorieService } from '../myrepositories/repositories.service';
 import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
 import { DatasetsService } from '../datasets/datasets.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newdataset',
@@ -127,6 +128,7 @@ export class NewdatasetComponent implements OnInit {
     private gs:GroupsService, 
     private rs:RepositorieService, 
     private ds: DatasetsService, 
+    private router:Router,
     private store: Store<fromLogin.AppState>) {
     this.store.pipe(select('login')).subscribe(res => {
       if(res){
@@ -139,6 +141,11 @@ export class NewdatasetComponent implements OnInit {
   todayISOString : string = new Date().toISOString();
 
   ngOnInit() {
+
+    if(!this.user['user']){
+      this.router.navigate(['/login']);
+    }
+
     this.getLicense();
     this.getGroups();
     this.getCategories();

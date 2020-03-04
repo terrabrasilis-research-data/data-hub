@@ -47,19 +47,23 @@
                                                     <div class="form-group">
                                                     <label>Repository</label>
                                                     <div style="width: 15px"></div>
-                                                    <select class="sizeDropdown sizeInputFull" formControlName="Repository" [ngModel]="repository" (ngModelChange)="repositoryModelChange($event)">
+                                                    <select class="sizeDropdown sizeInput" formControlName="Repository" [ngModel]="repository" (ngModelChange)="repositoryModelChange($event)">
                                                             <option *ngFor="let repo of repositories" value="{{repo.name}}">{{repo.name}}</option>
                                                     </select>
                                                     
                                                     </div>
         
                                                     <div class="form-group">
-                                                    <label>Collaborators</label>
-                                                    <div style="width: 15px"></div>
-                                                    <select class="sizeDropdown sizeInputFull" formControlName="Collaborators" [ngModel]="collaborators" (ngModelChange)="collaboratorsModelChange($event)">
-                                                            <option *ngFor="let group of groups" value="{{group.ckan_group_id}}">{{group.name}}</option>
-                                                    </select>
-                                                    
+                                                        <label>Collaborators</label>
+                                                        <div style="width: 15px"></div>
+                                                        <select class="sizeDropdown sizeInput" formControlName="Collaborators" [ngModel]="collaborators" (ngModelChange)="collaboratorsModelChange($event)">
+                                                            <ng-container *ngFor="let group of groups">
+                                                                <option *ngIf="group.ckan_group_id" value="{{group.ckan_group_id}}">
+                                                                    {{group.name}}
+                                                                </option>
+                                                            </ng-container>
+                                                        </select>
+
                                                     </div>
                                                     
                                                     <div class="form-group">
@@ -70,7 +74,7 @@
                                                     <div class="form-group">
                                                     <label>Visibility</label>
                                                     <div style="width: 15px"></div>
-                                                    <select class="sizeDropdown sizeInputFull" formControlName="Visibility" [ngModel]="visibility" (ngModelChange)="visibilityModelChange($event)">
+                                                    <select class="sizeDropdown sizeInput" formControlName="Visibility" [ngModel]="visibility" (ngModelChange)="visibilityModelChange($event)">
                                                             <option value="false">Public</option>
                                                             <option value="true">Private</option>
                                                     </select>
@@ -92,7 +96,7 @@
                                                         <label>Categorie</label>
                                                         <div style="width: 15px"></div>
                                         
-                                                        <select class="sizeDropdown sizeInputFull" formControlName="Categorie" [ngModel]="categorie" (ngModelChange)="categorieModelChange($event)">
+                                                        <select class="sizeDropdown sizeInput" formControlName="Categorie" [ngModel]="categorie" (ngModelChange)="categorieModelChange($event)">
                                                             <option *ngFor="let categorie of categories" value="{{categorie.categorie_id}}">{{categorie.name}}</option>
                                                         </select>
                                         

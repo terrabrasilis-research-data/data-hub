@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GroupsService } from '../groups/groups.service';
+import * as fromLogin from '../login/login.reducer';
+import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mygroups',
@@ -12,11 +15,26 @@ export class MygroupsComponent implements OnInit  {
 
   id_open: number;
 
-  constructor(private snackBar: MatSnackBar, private gs:GroupsService) {
-   }
+  constructor(
+    private snackBar: MatSnackBar, 
+    private gs:GroupsService,
+    private router: Router,
+    private store: Store<fromLogin.AppState>,
+    ) { this.store.pipe(select('login')).subscribe(res => {
+      if(res){
+        this.user = res;
+      }
+    })
+  }
 
+   public user: any = null;
+  
    ngOnInit() {
      
+    if(!this.user['user']){
+      this.router.navigate(['/login']);
+    }
+
     document.getElementById("wrapper").className = "d-flex toggled";
     this.getGroups();
   }

@@ -7,7 +7,10 @@ import { Clipboard } from 'ts-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DatasetsService } from '../datasets/datasets.service';
+import * as fromLogin from '../login/login.reducer';
 import { GroupsService } from '../groups/groups.service';
+import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-mydatasets',
@@ -110,14 +113,27 @@ export class MydatasetsComponent implements OnInit {
       }
 }
 
-   constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog, private ds: DatasetsService, private gs: GroupsService) {
+   constructor(
+     private formBuilder: FormBuilder, 
+     private snackBar: MatSnackBar, 
+     public dialog: MatDialog, 
+     private router:Router,
+     private ds: DatasetsService, 
+     private gs: GroupsService,
+     private store: Store<fromLogin.AppState>
+     ){
     this.form = this.formBuilder.group({
       years: new FormArray([]),
       categories: new FormArray([]),
       repositories: new FormArray([]),
       filetypes: new FormArray([]),
     });
-    
+    { this.store.pipe(select('login')).subscribe(res => {
+      if(res){
+        this.user = res;
+      }
+    })
+  }
   }
 
   private addCheckboxes() {
@@ -142,9 +158,15 @@ export class MydatasetsComponent implements OnInit {
       (this.form.controls.filetypes as FormArray).push(control);
     });
   }
+
+  public user: any = null;
   
   ngOnInit() {
-    
+
+    if(!this.user['user']){
+      this.router.navigate(['/login']);
+    }
+
     document.getElementById("wrapper").className = "d-flex toggled";
 
     this.getDatasets();

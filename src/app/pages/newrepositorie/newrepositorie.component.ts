@@ -4,6 +4,7 @@ import { GroupsService } from '../groups/groups.service';
 import { RepositorieService } from '../myrepositories/repositories.service';
 import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newrepositorie',
@@ -77,7 +78,12 @@ export class NewrepositorieComponent implements OnInit {
     this.selectedFile = event.target.files[0]
   }
 
-  constructor(private gs:GroupsService, private rs:RepositorieService, private store: Store<fromLogin.AppState>) {
+  constructor(
+    private gs:GroupsService, 
+    private router:Router,
+    private rs:RepositorieService, 
+    private store: Store<fromLogin.AppState>
+    ) {
     this.store.pipe(select('login')).subscribe(res => {
       if(res){
         this.user = res;
@@ -89,6 +95,11 @@ export class NewrepositorieComponent implements OnInit {
   todayISOString : string = new Date().toISOString();
 
   ngOnInit() {
+
+    if(!this.user['user']){
+      this.router.navigate(['/login']);
+    }
+    
     this.getGroups();
     this.getCategories();
 

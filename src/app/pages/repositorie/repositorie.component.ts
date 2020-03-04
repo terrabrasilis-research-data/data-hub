@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RepositorieService } from '../myrepositories/repositories.service';
 import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
@@ -39,7 +39,13 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
     {"dataset_id": 8, "name": "High resolution in situ temperatures across coral reef slopes: Iriomote-jima, Japan and Gulf of Chiriquí, Panama", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2016},   
   ]
   
-  constructor(private route: ActivatedRoute, private rs:RepositorieService, private store: Store<fromLogin.AppState>) { this.store.pipe(select('login')).subscribe(res => {
+  constructor(
+    private route: ActivatedRoute, 
+    private rs:RepositorieService, 
+    private router: Router,
+    private store: Store<fromLogin.AppState>
+    ) { 
+    this.store.pipe(select('login')).subscribe(res => {
     if(res){
       this.user = res;
     }
@@ -47,7 +53,12 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
   
   public user: any = null;
 
-  ngOnInit() {
+  ngOnInit() {  
+    
+    if(!this.user['user']){
+      this.router.navigate(['/login']);
+    }
+
     this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; // (+) converts string 'id' to a number
        // In a real app: dispatch action to load the details here.
