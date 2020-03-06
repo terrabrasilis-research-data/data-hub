@@ -17,6 +17,15 @@ export class SignupService {
     return response;
   }
 
+  public async get_members(id: string): Promise<any> {
+    const response = await this.http.post(`http://localhost:5000/api/3/action/member_list`, {'id': id, 'object_type': 'user'}, {
+      headers: new HttpHeaders ({
+        Authorization: '3a5f17f6-9ae7-4b60-8c79-acd6f60913cc'
+      })
+    }).toPromise();
+    return response;
+  }
+
   public async user_create_db(username: string, password: string, email: string, full_name: string, created_on: string, last_login: string, ckan_api_key: string): Promise<any> {
     const response = await this.http.post(`http://localhost:8090/api/v1.0/users`, {'username': username, 'password': password, 'email': email, 'image': 'assets/images/img_avatar.png', 'created_on': created_on, 'last_login': last_login, 'full_name': full_name, 'ckan_api_key': ckan_api_key}).toPromise();
   return response;

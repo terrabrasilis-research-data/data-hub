@@ -14,6 +14,11 @@ export class DatasetsService {
     return response;
   }
 
+  public async get_ckan_datasets(): Promise<any> {
+    const response = await this.http.get(`http://localhost:5000/api/3/action/package_search`).toPromise();
+    return response;
+  }
+
   public async get_license_list(): Promise<any> {
     const response = await this.http.get(`http://localhost:5000/api/3/action/license_list`).toPromise();
     return response['result'];
