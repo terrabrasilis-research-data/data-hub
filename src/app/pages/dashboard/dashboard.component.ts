@@ -125,7 +125,7 @@ export class DashboardComponent implements OnInit {
     this.getGroups();
     this.getActivity();
     this.get_users_ckan();
-    this.getRepositorie(3);
+    this.getRepositorie(2);
     this.getLicense();
     this.getGroups();
     this.getCategories();

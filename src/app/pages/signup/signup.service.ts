@@ -3,15 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class SignupService {
-
+  
   /** start http service client */
   constructor(private http: HttpClient) {
+  
   }
+  
+  public static API_KEY= '3e2e945a-c89c-49b5-886b-a04e560c53e2';
+ 
 
   public async user_create(name: string, email: string, password: string, full_name: string): Promise<any> {
     const response = await this.http.post(`http://localhost:5000/api/3/action/user_create`, {'name': name, 'email': email, 'password': password, 'fullname': full_name}, {
       headers: new HttpHeaders ({
-        Authorization: '3a5f17f6-9ae7-4b60-8c79-acd6f60913cc'
+        Authorization: SignupService.API_KEY
       })
     }).toPromise();
     return response;
@@ -20,7 +24,25 @@ export class SignupService {
   public async get_members(id: string): Promise<any> {
     const response = await this.http.post(`http://localhost:5000/api/3/action/member_list`, {'id': id, 'object_type': 'user'}, {
       headers: new HttpHeaders ({
-        Authorization: '3a5f17f6-9ae7-4b60-8c79-acd6f60913cc'
+        Authorization: SignupService.API_KEY
+      })
+    }).toPromise();
+    return response;
+  }
+
+  public async get_users_ckan(): Promise<any> {
+    const response = await this.http.get(`http://localhost:5000/api/3/action/user_list`, {
+      headers: new HttpHeaders ({
+        Authorization: SignupService.API_KEY
+      })
+    }).toPromise();
+    return response;
+  }
+  
+  public async organization_show(id: string): Promise<any> {
+    const response = await this.http.post(`http://localhost:5000/api/3/action/organization_show`, {'id': id}, {
+      headers: new HttpHeaders ({
+        Authorization: SignupService.API_KEY
       })
     }).toPromise();
     return response;
@@ -40,22 +62,4 @@ export class SignupService {
     return response;
   }
   
-  public async get_users_ckan(): Promise<any> {
-    const response = await this.http.get(`http://localhost:5000/api/3/action/user_list`, {
-      headers: new HttpHeaders ({
-        Authorization: '3a5f17f6-9ae7-4b60-8c79-acd6f60913cc'
-      })
-    }).toPromise();
-    return response;
-  }
-  
-  public async organization_show(id: string): Promise<any> {
-    const response = await this.http.post(`http://localhost:5000/api/3/action/organization_show`, {'id': id}, {
-      headers: new HttpHeaders ({
-        Authorization: '3a5f17f6-9ae7-4b60-8c79-acd6f60913cc'
-      })
-    }).toPromise();
-    return response;
-  }
-
 }
