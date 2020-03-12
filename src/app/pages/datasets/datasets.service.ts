@@ -24,14 +24,14 @@ export class DatasetsService {
     return response['result'];
   }
 
-  public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, dataurl: string, dataname: string, datadescription: string, dataformat: string, tags: string[], boundbox: string, key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, nameAlpha: string, ckan_api_key: string): Promise<any> {
+  public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, dataurl: string, dataname: string, datadescription: string, dataformat: string, tags: string[], key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, nameAlpha: string, ckan_api_key: string): Promise<any> {
 
     let tags_dict = tags.map(x => {
       return({'name': x});
     });
 
-    let key_list = [key1, key2, key3, 'spatial']
-    let value_list = [value1, value2, value3, boundbox]
+    let key_list = [key1, key2, key3]
+    let value_list = [value1, value2, value3]
     var extra = []; 
 
     for (let index = 0; index < 3; index++) {
