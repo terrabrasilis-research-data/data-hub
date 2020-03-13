@@ -7,10 +7,11 @@ export class FileService {
 
   constructor(private http: HttpClient) {}
 
-  public uploadFile(file: File): Promise<any> {
+  public uploadFile(file: File, repo_id: number): Promise<any> {
     const formData = new FormData();
     formData.append('file', file, file.name);
-    return this.http.post(`http://localhost:8090/api/v1.0/file_upload`, formData).toPromise();
+    let result = this.http.post(`http://localhost:8090/api/v1.0/file_upload/`+repo_id, formData).toPromise();
+    return result;
   }
 }
 

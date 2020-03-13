@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FileService } from './file.service';
 
 class FileSnippet {
@@ -13,12 +13,14 @@ class FileSnippet {
 
 export class FileComponent {
 
+  @Input() repo_id: number;
+  
   selectedFile: FileSnippet;
   todayISOString : string = new Date().toISOString();
 
   constructor(private fileService: FileService){}
 
-  processFile(fileInput: any) {
+  processFile(fileInput: any, repo_id: number) {
     const file: File = fileInput.files[0];
     
     const oldName = file.name;
@@ -36,8 +38,7 @@ export class FileComponent {
     reader.addEventListener('load', (event: any) => {
 
       this.selectedFile = new FileSnippet(event.target.result, file);
-      let results = this.fileService.uploadFile(this.selectedFile.file);
-      
+      let results = this.fileService.uploadFile(this.selectedFile.file, repo_id);
     });
 
     reader.readAsDataURL(file);

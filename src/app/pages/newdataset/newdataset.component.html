@@ -38,7 +38,7 @@
                                           <label>Repository</label>
                                           <div style="width: 15px"></div>
                                           <select class="sizeDropdown sizeInput" formControlName="Repository" [ngModel]="repository" (ngModelChange)="repositoryModelChange($event)">
-                                                <option *ngFor="let repo of repositories" value="{{repo.name}}">{{repo.name}}</option>
+                                                <option *ngFor="let repo of repositories" value="{{repo.repo_id}}">{{repo.name}}</option>
                                           </select>
                                         
                                         </div>
@@ -171,6 +171,8 @@
                                                         <app-file
                                         
                                                         (toggle)="getName($event)"
+
+                                                        [repo_id]="repo_id"
                                                     
                                                         >
                                                         </app-file>

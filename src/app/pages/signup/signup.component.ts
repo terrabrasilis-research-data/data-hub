@@ -77,10 +77,8 @@ private async onSubmit() {
         const response = await this.ss.user_create(this.username, this.email, this.password, this.fullname);
         if (response) {
             try {
-                console.log(response)
                 const response2 = await this.ss.user_create_db(this.username, this.password, this.email, this.fullname, '2019-09-04T14:48:54+00:00', '2019-09-04T14:48:54+00:00', response['result'].apikey);
                 if (response2) {
-                    console.log(response2)
                     this.formGroup.reset();
                     this.showMsg = true;
                 }

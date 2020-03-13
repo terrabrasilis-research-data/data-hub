@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+  repo_id = 1;
+
   formGroup: FormGroup;
 
   showMsg: boolean = false;
