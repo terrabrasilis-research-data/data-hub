@@ -49,7 +49,7 @@ import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
-import { FileComponent } from './pages/newgroup/file/file.component';
+import { FileComponent } from './ui/file/file.component';
 
 @NgModule({
   declarations: [
