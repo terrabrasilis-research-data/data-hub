@@ -19,6 +19,9 @@ export class DashboardComponent implements OnInit {
 
   showMsg: boolean = false;
  
+  showLink: boolean = false;
+  showUpload: boolean = true;
+
   public title: string = "";
   public description: string = "";
   public tags: string = "";
@@ -120,7 +123,7 @@ export class DashboardComponent implements OnInit {
     this.getGroups();
     this.getActivity();
     this.get_users_ckan();
-    this.getRepositorie(1);
+    this.getRepositorie(3);
     this.getLicense();
     this.getGroups();
     this.getCategories();
@@ -214,7 +217,17 @@ export class DashboardComponent implements OnInit {
 
     });
   }
-  
+
+  async changeLink(){
+    this.showLink = true;
+    this.showUpload = false;
+  }
+
+  async changeUpload(){
+    this.showLink = false;
+    this.showUpload = true;
+  }
+
   async getCategories(){
     const response = await this.gs.get_categories();
     this.categories = response;

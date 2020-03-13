@@ -14,10 +14,14 @@ import { Router } from '@angular/router';
 })
 export class NewdatasetComponent implements OnInit {
 
+  public file_name: string = ""
+
   formGroup: FormGroup;
 
   showMsg: boolean = false;
- 
+  showLink: boolean = false;
+  showUpload: boolean = true;
+
   public title: string = "";
   public description: string = "";
   public tags: string = "";
@@ -38,6 +42,10 @@ export class NewdatasetComponent implements OnInit {
   public dataname: string = null;
   public datadescription: string = null;
   public dataformat: string = null;
+
+  getName(event) {
+    this.file_name = event;
+  }
 
   public titleModelChange(str: string): void {
     this.title = str;
@@ -232,6 +240,16 @@ export class NewdatasetComponent implements OnInit {
 
     });
 
+  }
+
+  async changeLink(){
+    this.showLink = true;
+    this.showUpload = false;
+  }
+
+  async changeUpload(){
+    this.showLink = false;
+    this.showUpload = true;
   }
 
   async getGroups(){

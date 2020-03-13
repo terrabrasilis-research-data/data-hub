@@ -96,11 +96,27 @@
                                         
                                                     </div>
         
-                                                <div class="form-group">
-                                                        <label>URL</label>
-                                                        <input name="" class="form-control" formControlName="DataURL" [ngModel]="dataurl" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text">
+                                                    <div *ngIf="showUpload" class="form-group">
+                                                        <label>Data</label>
+                                                        
+                                                        <br>
+
+                                                        <app-file
+                                        
+                                                        (toggle)="getName($event)"
+                                                    
+                                                        >
+                                                        </app-file>
+
+                                                        <button (click)="changeLink()" class="btn btn-outline-secondary" type="button" (click)="onReset()">Link</button>
                                                 </div>
-        
+                                                
+                                                <div *ngIf="showLink" class="form-group">
+                                                        <label>URL</label>
+                                                        <br>
+                                                        <input name="" class="form-control float-left sizetext2" formControlName="DataURL" [ngModel]="dataurl" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text"> <button (click)="changeUpload()" class="btn btn-outline-danger" style="margin-left: 10px;" type="button">Remove</button>
+                                                </div>
+
                                                 <div class="form-group">
                                                         <label>Name</label>
                                                         <input name="" class="form-control" formControlName="DataName" [ngModel]="dataname" (ngModelChange)="dataNameModelChange($event)" placeholder="" type="text"  placeholder="Datafile name">

@@ -49,7 +49,7 @@ import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
-import { ImageComponent } from './pages/newgroup/image/image.component';
+import { FileComponent } from './pages/newgroup/file/file.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +73,7 @@ import { ImageComponent } from './pages/newgroup/image/image.component';
     NewgroupComponent,
     MygroupsComponent,
     DataMapComponent,
-    ImageComponent
+    FileComponent
   ],
   entryComponents: [ ],
   imports: [

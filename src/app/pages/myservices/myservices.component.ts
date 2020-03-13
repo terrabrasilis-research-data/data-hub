@@ -36,7 +36,7 @@ export class MyservicesComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    this.getRepositorie(1);
+    this.getRepositorie(3);
   }
 
   checkServiceStatus(id: number){

@@ -163,9 +163,25 @@
                                         <hr class="style1">
                                         <br>
 
-                                                <div class="form-group">
+                                                <div *ngIf="showUpload" class="form-group">
+                                                        <label>Data</label>
+                                                        
+                                                        <br>
+
+                                                        <app-file
+                                        
+                                                        (toggle)="getName($event)"
+                                                    
+                                                        >
+                                                        </app-file>
+
+                                                        <button (click)="changeLink()" class="btn btn-outline-secondary" type="button" (click)="onReset()">Link</button>
+                                                </div>
+                                                
+                                                <div *ngIf="showLink" class="form-group">
                                                         <label>URL</label>
-                                                        <input name="" class="form-control" formControlName="DataURL" [ngModel]="dataurl" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text">
+                                                        <br>
+                                                        <input name="" class="form-control float-left sizetext" formControlName="DataURL" [ngModel]="dataurl" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text"> <button (click)="changeUpload()" class="btn btn-outline-danger" style="margin-left: 15px;" type="button">Remove</button>
                                                 </div>
 
                                                 <div class="form-group">

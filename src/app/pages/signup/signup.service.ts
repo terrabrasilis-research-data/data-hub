@@ -9,9 +9,8 @@ export class SignupService {
   
   }
   
-  public static API_KEY= '742d2046-acb1-4779-aa09-4074fc9fda6d';
+  public static API_KEY= '3e2e945a-c89c-49b5-886b-a04e560c53e2';
  
-
   public async user_create(name: string, email: string, password: string, full_name: string): Promise<any> {
     const response = await this.http.post(`http://localhost:5000/api/3/action/user_create`, {'name': name, 'email': email, 'password': password, 'fullname': full_name}, {
       headers: new HttpHeaders ({

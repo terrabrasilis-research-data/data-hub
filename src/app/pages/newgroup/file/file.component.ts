@@ -1,25 +1,25 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ImageService } from './image.service';
+import { FileService } from './file.service';
 
-class ImageSnippet {
+class FileSnippet {
   constructor(public src: string, public file: File) {}
 }
 
 @Component({
-  selector: 'app-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss']
+  selector: 'app-file',
+  templateUrl: './file.component.html',
+  styleUrls: ['./file.component.scss']
 })
 
-export class ImageComponent {
+export class FileComponent {
 
-  selectedFile: ImageSnippet;
+  selectedFile: FileSnippet;
   todayISOString : string = new Date().toISOString();
 
-  constructor(private imageService: ImageService){}
+  constructor(private fileService: FileService){}
 
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
+  processFile(fileInput: any) {
+    const file: File = fileInput.files[0];
     
     const oldName = file.name;
     const fileExtension = oldName.slice(oldName.lastIndexOf('.') - oldName.length);
@@ -35,8 +35,8 @@ export class ImageComponent {
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
 
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-      let results = this.imageService.uploadImage(this.selectedFile.file);
+      this.selectedFile = new FileSnippet(event.target.result, file);
+      let results = this.fileService.uploadFile(this.selectedFile.file);
       
     });
 
