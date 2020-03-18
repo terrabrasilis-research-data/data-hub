@@ -19,6 +19,11 @@ export class DatasetsService {
     return response;
   }
 
+  public async get_ckan_dataset(id: string): Promise<any> {
+    const response = await this.http.post(`http://localhost:5000/api/3/action/package_show`,{'id': id}).toPromise();
+    return response;
+  }
+
   public async get_license_list(): Promise<any> {
     const response = await this.http.get(`http://localhost:5000/api/3/action/license_list`).toPromise();
     return response['result'];
@@ -27,7 +32,7 @@ export class DatasetsService {
   public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, dataurl: string, dataname: string, datadescription: string, dataformat: string, tags: string[], key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, nameAlpha: string, ckan_api_key: string): Promise<any> {
 
     let tags_dict = tags.map(x => {
-      return({'name': x});
+      return({'name': x.trim()});
     });
 
     let key_list = [key1, key2, key3]

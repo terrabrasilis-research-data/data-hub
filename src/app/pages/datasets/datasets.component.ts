@@ -288,8 +288,6 @@ export class DatasetsComponent implements OnInit {
         }
       }
 
-     
-     
   }
   
   ckan_users = [];

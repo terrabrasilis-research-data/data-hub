@@ -39,6 +39,7 @@ export class FileComponent {
 
       this.selectedFile = new FileSnippet(event.target.result, file);
       let results = this.fileService.uploadFile(this.selectedFile.file, repo_id);
+
     });
 
     reader.readAsDataURL(file);

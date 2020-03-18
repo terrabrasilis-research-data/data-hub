@@ -288,13 +288,6 @@ export class DashboardComponent implements OnInit {
       return type
   }
 
-  servicepath(name: string){
-    if (name == "PostgreSQL")
-      return true
-    else
-      return false
-   }
-
   groups: Group[]; 
 
   categories: Categorie[];

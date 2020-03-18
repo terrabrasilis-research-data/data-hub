@@ -30,22 +30,6 @@
 
             <div class='divfilter'>
 
-                    <p class="text-muted">Categories:</p>
-                    <div class="border3">
-
-                    <form [formGroup]="form" (ngSubmit)="categories()" >
-                            <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
-                              <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChange()">
-                              {{categories[i].name}}
-                            </div>
-                        
-                    </form>
-                                          
-                  </div>
-            </div>
-
-            <div class='divfilter'>
-
                     <p class="text-muted">Groups:</p>
                     <div class="border3">
 
@@ -56,6 +40,23 @@
                             </div>
                         
                     </form>
+                  </div>
+            </div>
+
+
+            <div class='divfilter'>
+
+                    <p class="text-muted">Tags:</p>
+                    <div class="border3">
+
+                    <form [formGroup]="form" (ngSubmit)="categories()" >
+                            <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
+                              <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChange()">
+                              {{categories[i].name}}
+                            </div>
+                        
+                    </form>
+                                          
                   </div>
             </div>
 
