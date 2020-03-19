@@ -20,9 +20,13 @@ export class FileComponent {
 
   constructor(private fileService: FileService){}
 
-  processFile(fileInput: any, repo_id: number) {
-    const file: File = fileInput.files[0];
+  async processFile(fileInput: any, repo_id: number) {
     
+    if (repo_id == null){
+      repo_id = 99999;
+    }
+
+    const file: File = fileInput.files[0];
     const oldName = file.name;
     const fileExtension = oldName.slice(oldName.lastIndexOf('.') - oldName.length);
     const str = oldName.slice(0, oldName.lastIndexOf('.')) + "_" + this.todayISOString.slice(0,19).replace('T', '').replace(':', '').replace(':', '').replace('-', '').replace('-', '');
@@ -35,11 +39,12 @@ export class FileComponent {
     });
 
     const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
+    reader.addEventListener('load', async (event: any) => {
 
       this.selectedFile = new FileSnippet(event.target.result, file);
-      let results = this.fileService.uploadFile(this.selectedFile.file, repo_id);
-
+      const results = await this.fileService.uploadFile(this.selectedFile.file, repo_id);
+      this.toggle.emit(results);
+    
     });
 
     reader.readAsDataURL(file);

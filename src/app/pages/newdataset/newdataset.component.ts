@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class NewdatasetComponent implements OnInit {
 
-  public file_name: string = ""
+  public file_url: string = ""
 
   formGroup: FormGroup;
 
@@ -43,8 +43,9 @@ export class NewdatasetComponent implements OnInit {
   public datadescription: string = null;
   public dataformat: string = null;
 
-  getName(event) {
-    this.file_name = event;
+  getDataURL(event) {
+    this.file_url = event;
+    console.log(this.file_url)
   }
 
   public titleModelChange(str: string): void {

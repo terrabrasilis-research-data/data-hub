@@ -26,6 +26,7 @@ export class NewgroupComponent implements OnInit {
   
   getName(event) {
     this.file_name = event;
+    console.log(this.file_name)
   }
 
   public nameModelChange(str: string): void {
