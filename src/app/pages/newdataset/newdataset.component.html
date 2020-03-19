@@ -75,16 +75,7 @@
                                             <label>Author Email</label>
                                             <input name="" class="form-control" formControlName="AuthorEmail" [ngModel]="authoremail" (ngModelChange)="authorEmailModelChange($event)" placeholder="Email address" type="text">
                                         </div>
-                                        <div class="form-group">
-                                            <label>Categorie</label>
-                                            <div style="width: 15px"></div>
-                            
-                                            <select class="sizeDropdown sizeInput" formControlName="Categorie" [ngModel]="categorie" (ngModelChange)="categorieModelChange($event)">
-                                                <option *ngFor="let categorie of categories" value="{{categorie.categorie_id}}">{{categorie.name}}</option>
-                                            </select>
-                            
-                                        </div>
-  
+                                        
                                         <br>
                                         <hr class="style1">
                                         <br>

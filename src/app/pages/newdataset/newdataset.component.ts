@@ -32,7 +32,6 @@ export class NewdatasetComponent implements OnInit {
   public authoremail: string = "";
   public repo_id: number = null;
   public repo_name: string = "";
-  public categorie: number = null;
   public key1: string = null;
   public value1: string = null;
   public key2: string = null;
@@ -82,10 +81,6 @@ export class NewdatasetComponent implements OnInit {
 
   public repositoryModelChange(num: number): void {
     this.repo_id = num;
-  }
-
-  public categorieModelChange(num: number): void {
-    this.categorie = num;
   }
 
   public key1ModelChange(str: string): void {
@@ -152,7 +147,6 @@ export class NewdatasetComponent implements OnInit {
 
     this.getLicense();
     this.getGroups();
-    this.getCategories();
     this.getRepositories();
 
     this.formGroup = new FormGroup({
@@ -187,10 +181,6 @@ export class NewdatasetComponent implements OnInit {
       AuthorEmail: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-      ]),
-
-      Categorie: new FormControl('', [
-        Validators.required
       ]),
 
       Repository: new FormControl('', [
@@ -258,11 +248,6 @@ export class NewdatasetComponent implements OnInit {
     this.groups = response;
   }
 
-  async getCategories(){
-    const response = await this.gs.get_categories();
-    this.categories = response;
-  }
-  
   async getLicense(){
     const response = await this.ds.get_license_list();
     this.licences = response;
@@ -299,7 +284,6 @@ export class NewdatasetComponent implements OnInit {
   }
 
   groups: Group[]; 
-  categories: Categorie[];
   licences: License[];
   repositories = [];
 
@@ -307,11 +291,6 @@ export class NewdatasetComponent implements OnInit {
 
 export interface Group {
   ckan_group_id: string;
-  name: string;
-}
-
-export interface Categorie {
-  categorie_id: number;
   name: string;
 }
 

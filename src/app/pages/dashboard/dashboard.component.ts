@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
   public maintainer: string = "";
   public authoremail: string = "";
   public repository: string = "";
-  public categorie: number = null;
   public dataurl: string = null;
   public dataname: string = null;
   public datadescription: string = null;
@@ -75,10 +74,6 @@ export class DashboardComponent implements OnInit {
 
   public repositoryModelChange(str: string): void {
     this.repository = str;
-  }
-
-  public categorieModelChange(num: number): void {
-    this.categorie = num;
   }
 
   public urlModelChange(str: string): void {
@@ -128,7 +123,6 @@ export class DashboardComponent implements OnInit {
     this.getRepositorie(3);
     this.getLicense();
     this.getGroups();
-    this.getCategories();
     this.getRepositories();
     document.getElementById("wrapper").className = "d-flex";
     
@@ -164,10 +158,6 @@ export class DashboardComponent implements OnInit {
       AuthorEmail: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-      ]),
-
-      Categorie: new FormControl('', [
-        Validators.required
       ]),
 
       Repository: new FormControl('', [
@@ -220,6 +210,13 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  servicepath(name: string){
+    if (name == "PostgreSQL")
+      return true
+    else
+      return false
+   }
+
   async changeLink(){
     this.showLink = true;
     this.showUpload = false;
@@ -230,11 +227,6 @@ export class DashboardComponent implements OnInit {
     this.showUpload = true;
   }
 
-  async getCategories(){
-    const response = await this.gs.get_categories();
-    this.categories = response;
-  }
-  
   async getLicense(){
     const response = await this.ds.get_license_list();
     this.licences = response;
@@ -290,8 +282,6 @@ export class DashboardComponent implements OnInit {
 
   groups: Group[]; 
 
-  categories: Categorie[];
-
   licences: License[];
 
   repositories = [];
@@ -313,13 +303,6 @@ export class DashboardComponent implements OnInit {
     {"ckan_activity_type": "new package ", "activity_string": "created the dataset "},
     {"ckan_activity_type": "changed package", "activity_string": "changed a package"}
   ];
-
-  activities: Activities[] = [
-    {"username": "Gabriel", "activity_type": "updated the dataset", "package_name": "ASGS Geographic Correspondences (2016)", "package_id": "1", "timestamp": "Wed, 04 Sep 2019 14:48:54 GMT"},
-    {"username": "Gabriel", "activity_type": "updated the dataset", "package_name": "ASGS Geographic Correspondences (2011)", "package_id": "2", "timestamp": "Wed, 04 Sep 2019 14:48:54 GMT"},
-    {"username": "João", "activity_type": "updated the dataset", "package_name": "ASGS Geographic Correspondences (2006)", "package_id": "3", "timestamp": "Wed, 04 Sep 2019 14:48:54 GMT"},
-    {"username": "Lucas", "activity_type": "updated the dataset", "package_name": "ASGS Geographic Correspondences (2001)", "package_id": "4", "timestamp": "Wed, 04 Sep 2019 14:48:54 GMT"},
-  ]
 
   datasets: Dataset[] = [
     {"dataset_id": 1, "name": "Radiocarbon ages and pollen record of Kongor Lake sediments", "authors": ["Krahl Guilherme", "Jairo Francisco","Cornils Astrid"], "year": 2019},
@@ -372,11 +355,6 @@ export interface Dataset {
 
 export interface Group {
   ckan_group_id: string;
-  name: string;
-}
-
-export interface Categorie {
-  categorie_id: number;
   name: string;
 }
 

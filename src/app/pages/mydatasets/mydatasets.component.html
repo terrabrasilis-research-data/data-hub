@@ -6,6 +6,8 @@
 
 <div class="main">
 
+    <div class="main">
+
         <div class="left" >
     
             <div class="greybox-left">
@@ -13,7 +15,7 @@
                 <p class="text-muted">Filters:</p>
                 
                 <div class='divfilter'>
-    
+        
                     <p class="text-muted">Publication Year:</p>
                     <div class="border3">
     
@@ -26,22 +28,6 @@
                         
                     </form>
                   </div>
-                </div>
-    
-                <div class='divfilter'>
-    
-                        <p class="text-muted">Categories:</p>
-                        <div class="border3">
-    
-                        <form [formGroup]="form" (ngSubmit)="categories()" >
-                                <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
-                                  <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChange()">
-                                  {{categories[i].name}}
-                                </div>
-                            
-                        </form>
-                                              
-                      </div>
                 </div>
     
                 <div class='divfilter'>
@@ -59,6 +45,23 @@
                       </div>
                 </div>
     
+    
+                <div class='divfilter'>
+    
+                        <p class="text-muted">Tags:</p>
+                        <div class="border3">
+    
+                        <form [formGroup]="form" (ngSubmit)="categories()" >
+                                <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
+                                  <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChange()">
+                                  {{categories[i].name}}
+                                </div>
+                            
+                        </form>
+                                              
+                      </div>
+                </div>
+    
                 <div class='divfilter'>
     
                         <p class="text-muted">Filetypes:</p>
@@ -73,7 +76,7 @@
                         </form>
                       </div>
                 </div>
-       
+    
             </div>
         </div>
         <div class="right">
@@ -91,24 +94,25 @@
                                     {{size}} publications
                                 </mat-header-cell>
                                 <mat-cell *matCellDef="let element" style="display: flex">
+    
                                     <div class="middlebox ">
                                         
-                                        <a class="dataTag" style="padding-left: 7px; color: white">{{element.created_on | slice:5:17}}</a> <a class="openTag" style="color: white" *ngIf="checkOpen(element.id)">Open Access</a>   <a class="groupTag" style="padding-left: 7px; color: white">{{element.repositorie}}</a>
+                                        <a class="dataTag" style="padding-left: 7px; color: white; padding-right: 7px;">{{formatDate(element.metadata_created)}}</a> <a class="openTag" style="color: white" *ngIf="checkOpen(element.id)">Open Access</a>  <a class="groupTag" style="padding-left: 7px; color: white">{{element.groups[0].title}}</a>
     
                                         <a style="font-weight: bold; padding-left: 7px" class="nav-item nav-link bntHover fontsize" [routerLink]="['/datasets', element.id]"> {{element.title}}</a>
                                         
                                         <h6 style="padding-left: 7px" class="card-subtitle mb-2 text-muted">
     
-                                            <a *ngFor="let author of element.author; let j = index">
-                                                <a class="spacetext">{{ element.author[j].name}}</a> 
-                                                <a *ngIf="j !=  element.author.length-1 && j !=  element.author.length-2 ">, </a> 
-                                                <a *ngIf="j ==  element.author.length-2"> & </a>
+                                            <a *ngFor="let author of element.authors; let j = index">
+                                                <a class="spacetext">{{ author.name }}</a> 
+                                                <a *ngIf="j !=  element.authors.length-1 && j !=  element.authors.length-2 ">, </a> 
+                                                <a *ngIf="j ==  element.authors.length-2"> & </a>
                                             </a>
                                         </h6>
                                         <div style="padding-left: 7px; padding-top: 5px; flex-wrap: wrap; padding-bottom: 5px">
-                                            <a> {{element.abstract}} </a>
+                                            <a> {{element.notes}} </a>
                                         </div> 
-                                        <a style="padding-left: 7px; flex-wrap: wrap;" >Size: {{element.size}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.DOI}}</a></a>
+                                        <a style="padding-left: 7px; flex-wrap: wrap;" >Size: {{element.num_resources}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.url}}</a></a>
                                     </div>
     
                                     <div class="rightbox">
