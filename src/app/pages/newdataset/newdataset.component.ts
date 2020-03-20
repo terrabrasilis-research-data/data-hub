@@ -38,14 +38,12 @@ export class NewdatasetComponent implements OnInit {
   public value2: string = null;
   public key3: string = null;
   public value3: string = null;
-  public dataurl: string = null;
   public dataname: string = null;
   public datadescription: string = null;
   public dataformat: string = null;
 
   getDataURL(event) {
     this.file_url = event;
-    console.log(this.file_url)
   }
 
   public titleModelChange(str: string): void {
@@ -82,6 +80,8 @@ export class NewdatasetComponent implements OnInit {
 
   public repositoryModelChange(num: number): void {
     this.repo_id = num;
+    if (this.repo_id != null)
+      this.getRepositorie(this.repo_id);
   }
 
   public key1ModelChange(str: string): void {
@@ -109,7 +109,7 @@ export class NewdatasetComponent implements OnInit {
   }
 
   public urlModelChange(str: string): void {
-    this.dataurl = str;
+    this.file_url = str;
   }
 
   public dataNameModelChange(str: string): void {
@@ -210,10 +210,6 @@ export class NewdatasetComponent implements OnInit {
       Value3: new FormControl('', [
       ]),
 
-      DataURL: new FormControl('', [
-        Validators.required
-      ]),
-
       DataName: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -266,10 +262,8 @@ export class NewdatasetComponent implements OnInit {
 
   private async onSubmit() {
    
-    this.getRepositorie(this.repo_id);
-
     try {
-      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repo_name, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repo_name, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

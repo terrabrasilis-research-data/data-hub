@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
 
   formGroup: FormGroup;
 
+  public file_url: string = ""
+
   showMsg: boolean = false;
  
   showLink: boolean = false;
@@ -33,13 +35,16 @@ export class DashboardComponent implements OnInit {
   public maintainer: string = "";
   public authoremail: string = "";
   public repository: string = "";
-  public dataurl: string = null;
   public dataname: string = null;
   public datadescription: string = null;
   public dataformat: string = null;
 
   path = "";
   
+  getDataURL(event) {
+    this.file_url = event;
+  }
+
   public titleModelChange(str: string): void {
     this.title = str;
   }
@@ -77,7 +82,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public urlModelChange(str: string): void {
-    this.dataurl = str;
+    this.file_url = str;
   }
 
   public dataNameModelChange(str: string): void {
@@ -120,7 +125,7 @@ export class DashboardComponent implements OnInit {
     this.getGroups();
     this.getActivity();
     this.get_users_ckan();
-    this.getRepositorie(3);
+    this.getRepositorie(2);
     this.getLicense();
     this.getGroups();
     this.getRepositories();
@@ -186,10 +191,6 @@ export class DashboardComponent implements OnInit {
       Value3: new FormControl('', [
       ]),
 
-      DataURL: new FormControl('', [
-        Validators.required
-      ]),
-
       DataName: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -239,7 +240,7 @@ export class DashboardComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.dataurl, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), "", "", "", "", "", "", this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), "", "", "", "", "", "", this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

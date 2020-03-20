@@ -200,8 +200,8 @@
                                                   
                                                    </td>
                                                    <td>
-                                                   <a *ngIf="servicepath(services[i].name)" href="{{service.address}}/{{path}}:{{service.ports}}" class="btn1">{{service.address | slice:7:25}}/{{path}}<i class="material-icons icon">open_in_new</i></a>
-                                                   <a *ngIf="!servicepath(services[i].name)"  href="{{service.address}}/{{path}}/{{service.name}}:{{service.ports}}" style="text-transform: lowercase;" class="btn1">{{service.address | slice:7:25}}/{{path}}/{{service.name}} <i class="material-icons icon">open_in_new</i></a>
+                                                   <a *ngIf="servicepath(services[i].name)" href="{{service.address}}/{{path}}:{{service.ports}}" class="btn1">{{service.address | slice:0:25}}/{{path}}<i class="material-icons icon">open_in_new</i></a>
+                                                   <a *ngIf="!servicepath(services[i].name)"  href="{{service.address}}/{{path}}/{{service.name}}:{{service.ports}}" style="text-transform: lowercase;" class="btn1">{{service.address | slice:0:25}}/{{path}}/{{service.name}} <i class="material-icons icon">open_in_new</i></a>
                                                    </td>
                                                 </tr>
                                                 </tbody>
