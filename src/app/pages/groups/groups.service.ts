@@ -14,6 +14,11 @@ export class GroupsService {
     return response['groups'];
   }
 
+  public async get_groups_from_user(user_id: number): Promise<any> {
+    const response = await this.http.get(`http://127.0.0.1:8090/api/v1.0/groups_from_user/`+ user_id).toPromise();
+    return response['groups'];
+  }
+
   public async get_categories(): Promise<any> {
     const response = await this.http.get(`http://127.0.0.1:8090/api/v1.0/categories`).toPromise();
     return response;

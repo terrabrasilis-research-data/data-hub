@@ -147,7 +147,7 @@ export class NewdatasetComponent implements OnInit {
     }
 
     this.getLicense();
-    this.getGroups();
+    this.getGroupsFromUser(this.user['user']['user_id']);
     this.getRepositories();
 
     this.formGroup = new FormGroup({
@@ -240,10 +240,10 @@ export class NewdatasetComponent implements OnInit {
     this.showUpload = true;
   }
 
-  async getGroups(){
-    const response = await this.gs.get_groups();
+  async getGroupsFromUser(user_id: number){
+    const response = await this.gs.get_groups_from_user(user_id);
     this.groups = response;
-  }
+  } 
 
   async getLicense(){
     const response = await this.ds.get_license_list();

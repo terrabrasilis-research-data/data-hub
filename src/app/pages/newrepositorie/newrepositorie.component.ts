@@ -100,7 +100,7 @@ export class NewrepositorieComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     
-    this.getGroups();
+    this.getGroupsFromUser(this.user['user']['user_id']);
     this.getCategories();
 
     this.formGroup = new FormGroup({
@@ -154,10 +154,10 @@ export class NewrepositorieComponent implements OnInit {
 
   }
 
-  async getGroups(){
-    const response = await this.gs.get_groups();
+  async getGroupsFromUser(user_id: number){
+    const response = await this.gs.get_groups_from_user(user_id);
     this.groups = response;
-  }
+  } 
 
   async getCategories(){
     const response = await this.gs.get_categories();

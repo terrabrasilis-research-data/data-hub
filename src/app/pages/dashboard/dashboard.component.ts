@@ -122,12 +122,11 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    this.getGroups();
     this.getActivity();
     this.get_users_ckan();
     this.getRepositorie(2);
     this.getLicense();
-    this.getGroups();
+    this.getGroupsFromUser(this.user['user']['user_id']);
     this.getRepositories();
     document.getElementById("wrapper").className = "d-flex";
     
@@ -255,8 +254,8 @@ export class DashboardComponent implements OnInit {
     this.formGroup.reset();
   }
 
-  async getGroups(){
-    const response = await this.gs.get_groups();
+  async getGroupsFromUser(user_id: number){
+    const response = await this.gs.get_groups_from_user(user_id);
     this.groups = response;
   }
 
