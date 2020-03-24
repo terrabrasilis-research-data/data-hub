@@ -124,10 +124,9 @@ export class DashboardComponent implements OnInit {
 
     this.getActivity();
     this.get_users_ckan();
-    this.getRepositorie(2);
     this.getLicense();
     this.getGroupsFromUser(this.user['user']['user_id']);
-    this.getRepositories();
+    this.getRepositorieFromUsers(this.user['user']['user_id']);
     document.getElementById("wrapper").className = "d-flex";
     
     this.formGroup = new FormGroup({
@@ -232,9 +231,12 @@ export class DashboardComponent implements OnInit {
     this.licences = response;
   }
   
-  async getRepositories(){
-    const response = await this.rs.get_repositories();
+  async getRepositorieFromUsers(user_id: number){
+    const response = await this.rs.get_repositorie_from_users(user_id);
     this.repositories = response['repositorie'];
+    this.repositorie = this.repositories[0];
+    this.services = this.repositorie['services'];
+    this.path = this.repositorie['path'];
   }
 
   private async onSubmit() {
@@ -318,14 +320,6 @@ export class DashboardComponent implements OnInit {
   checkServiceStatus(id: number){
     return true;
    }
-
-   async getRepositorie(id){
-
-    const response = await this.rs.get_repositorie(id);
-    this.repositorie = response['repositorie'];
-    this.services = this.repositorie[0]['services'];
-    this.path = this.repositorie[0]['path'];
-  } 
 
 }
 

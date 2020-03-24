@@ -13,9 +13,11 @@ export class MyservicesComponent implements OnInit {
 
   services = [];
 
-  repositorie = [];
+  repositories = [];
 
-  path = "";
+  paths = [];
+  
+  maintainer = [];
 
   constructor( 
     private rs:RepositorieService,
@@ -36,7 +38,7 @@ export class MyservicesComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    this.getRepositorie(2);
+    this.getRepositorieFromUsers(this.user['user']['user_id']);
   }
 
   checkServiceStatus(id: number){
@@ -55,13 +57,19 @@ export class MyservicesComponent implements OnInit {
       return false
    }
    
-   async getRepositorie(id){
-
-    const response = await this.rs.get_repositorie(id);
-    this.repositorie = response['repositorie'];
-    this.services = this.repositorie[0].services;
-    this.path = this.repositorie[0]['path'];
-  } 
+  async getRepositorieFromUsers(user_id: number){
+    const response = await this.rs.get_repositorie_from_users(user_id);
+    this.repositories = response['repositorie'];
+    
+    for (let i = 0; i < this.repositories.length; i++) {
+      for (let j = 0; j < this.repositories[i]['services'].length; j++) {
+        this.services.push(this.repositories[i]['services'][j])
+        this.paths.push(this.repositories[i]['path'])
+        this.maintainer.push(this.repositories[i]['maintainer'])
+      }
+    }
+    
+   }
 
 }
 

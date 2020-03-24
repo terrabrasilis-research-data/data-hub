@@ -285,6 +285,11 @@ public async get_repositorie(id: number): Promise<any> {
     return response;
   }
 
+public async get_repositorie_from_users(id_user: number): Promise<any> {
+    const response = await this.http.get(`http://127.0.0.1:8090/api/v1.0/repositories_from_user/`+id_user).toPromise();
+    return response;
+  }
+
 public async get_members_repositorie(id: number, userToken: string): Promise<any> {
 
     /*

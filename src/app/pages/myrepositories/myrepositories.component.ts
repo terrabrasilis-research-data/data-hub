@@ -32,7 +32,7 @@ export class MyrepositoriesComponent implements OnInit {
           this.router.navigate(['/login']);
         }
 
-        this.getRepositories();
+        this.getRepositorieFromUsers(this.user['user']['user_id']);
       }
     
       checkServiceStatus(id: number){
@@ -43,10 +43,10 @@ export class MyrepositoriesComponent implements OnInit {
         console.log()
        }
 
-       async getRepositories(){
-        const response = await this.rs.get_repositories();
+       async getRepositorieFromUsers(user_id: number){
+        const response = await this.rs.get_repositorie_from_users(user_id);
         this.repositories = response['repositorie'];
-      }
+       }
 
       repositories = [];
 
