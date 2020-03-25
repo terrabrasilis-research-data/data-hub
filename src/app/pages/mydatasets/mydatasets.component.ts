@@ -10,6 +10,8 @@ import { GroupsService } from '../groups/groups.service';
 import { SignupService } from '../signup/signup.service';
 import { CloseScrollStrategy } from '@angular/cdk/overlay';
 import { DatasetsService } from '../datasets/datasets.service';
+import * as fromLogin from '../login/login.reducer';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-mydatasets',
@@ -20,11 +22,12 @@ import { DatasetsService } from '../datasets/datasets.service';
 export class MydatasetsComponent implements OnInit {
 
   DATASETS: RootObject[] = [];
+  NEW_DATASETS: RootObject[] = [];
   groups: Group[]; 
 
   displayedColumns = ['dataset'];
-  dataSource = new MatTableDataSource<RootObject>(this.DATASETS);
-  size = this.DATASETS.length;
+  dataSource = new MatTableDataSource<RootObject>(this.NEW_DATASETS);
+  size = this.NEW_DATASETS.length;
   filterYear = {}
   filterCategory = {}
   filterRepository = {}
@@ -67,7 +70,7 @@ export class MydatasetsComponent implements OnInit {
 
    filterChange() {
   
-    this.dataSource.data = this.DATASETS;
+    this.dataSource.data = this.NEW_DATASETS;
     this.size = this.dataSource.data.length;
 
     for (let i = 0; i < this.years.length; i++) {
@@ -109,9 +112,15 @@ export class MydatasetsComponent implements OnInit {
      public dialog: MatDialog, 
      private ds: DatasetsService,
      private ss: SignupService,
-     private gs: GroupsService
+     private gs: GroupsService,
+     private store: Store<fromLogin.AppState>,
      ) {
-       
+       this.store.pipe(select('login')).subscribe(res => {
+         if(res){
+           this.user = res;
+         }
+     })
+   
     this.form = this.formBuilder.group({
       years: new FormArray([]),
       categories: new FormArray([]),
@@ -120,6 +129,8 @@ export class MydatasetsComponent implements OnInit {
     });
     
   }
+  
+  public user: any = null;
 
   ngOnInit() {
     
@@ -239,6 +250,17 @@ export class MydatasetsComponent implements OnInit {
       }
     }
 
+    for (let i = 0; i < this.DATASETS.length; i++) {
+      for (let j = 0; j < this.DATASETS[i]['authors'].length; j++) {
+        if (this.DATASETS[i]['authors'][j].name == this.user['user']['full_name']){
+          this.NEW_DATASETS.push(this.DATASETS[i])
+        }
+      }
+    }
+    
+    this.dataSource.data = this.NEW_DATASETS;
+    this.size = this.NEW_DATASETS.length;
+    
     lookup = {};
     count = 0;
 
