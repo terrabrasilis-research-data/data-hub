@@ -17,25 +17,27 @@ export class FileComponent {
   
   selectedFile: FileSnippet;
   todayISOString : string = new Date().toISOString();
+  str = "";
 
   constructor(private fileService: FileService){}
 
   async processFile(fileInput: any, repo_id: number) {
     
-    if (repo_id == null){
-      repo_id = 99999;
-    }
-
     const file: File = fileInput.files[0];
     const oldName = file.name;
     const fileExtension = oldName.slice(oldName.lastIndexOf('.') - oldName.length);
-    const str = oldName.slice(0, oldName.lastIndexOf('.')) + "_" + this.todayISOString.slice(0,19).replace('T', '').replace(':', '').replace(':', '').replace('-', '').replace('-', '');
-    
-    this.toggle.emit(str + fileExtension);
+    this.str = oldName.slice(0, oldName.lastIndexOf('.'));
+
+    if (repo_id == null){
+      repo_id = 99999;
+      this.str = oldName.slice(0, oldName.lastIndexOf('.')) + "_" + this.todayISOString.slice(0,19).replace('T', '').replace(':', '').replace(':', '').replace('-', '').replace('-', '');
+    } 
+
+    this.toggle.emit(this.str + fileExtension);
     
     Object.defineProperty(file, 'name', {
       writable: true,
-      value: str + fileExtension
+      value: this.str + fileExtension
     });
 
     const reader = new FileReader();
