@@ -48,7 +48,7 @@ import { GroupComponent } from './pages/group/group.component';
 import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
+import { DataMapComponent } from './ui/data-map/data-map.component';
 import { FileComponent } from './ui/file/file.component';
 
 @NgModule({

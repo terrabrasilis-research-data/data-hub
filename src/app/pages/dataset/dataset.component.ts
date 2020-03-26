@@ -47,6 +47,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   maintainer = "";
   extra = [];
   other_datasets = [];
+  resource_url = "";
   year = null;
   tags_list = [];
 
