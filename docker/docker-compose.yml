@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  datahub:
+    container_name: datahub
+    restart: unless-stopped
+    build: 
+        context: ..
+        dockerfile: docker/datahub/Dockerfile
+    ports:
+        - "8091:4200"
+  mockapi:
+    container_name: datahub_mockapi
+    restart: unless-stopped
+    build:
+        context: ../data
+        dockerfile: ../docker/mockapi/Dockerfile
+    ports:
+        - "8090:8000"
