@@ -1,6 +1,6 @@
 <div class="main">
 
-    <div class="left" *ngIf="dataset">
+    <div class="left">
 
         <div class="greybox-left marginBottom textBox">
             <div class="topicHead">Region of interest</div>
@@ -10,178 +10,212 @@
                     [leafletLayers]="layers">
                 </div>
         </div>
+
 <!--
         <div class="greybox-left marginBottom textBox">
-            <div class="topicHead">Dataset metric</div>
-            <div style="height: 40px">
-                <a>... </a> 
+                <div class="topicHead">Dataset metric</div>
+                <div style="height: 40px">
+                    <a>... </a> 
+                </div>
             </div>
-        </div>
 -->
+
         <div class="greybox-left marginBottom textBox">
-            <div class="topicHead">Other datasets from same authors</div>
-                <div *ngFor="let dataset of others_datasets; let i = index">
-                        <div *ngIf="i<8">
-                        <a class="textlink itemLine" [routerLink]="['/datasets', others_datasets[i].id]">{{others_datasets[i].author[1].split(" ")[0]}} et al. ({{others_datasets[i].year}}): {{others_datasets[i].title | slice:0:18}}... </a>
+                <div class="topicHead">Other datasets with same tags</div>
+                 
+                    <div *ngFor="let dataset of other_datasets; let i = index">
+                            <div *ngIf="i<8">
+                            <a class="textlink itemLine" [routerLink]="['/dataset', dataset.id]">{{dataset.author.split(" ")[0]}} et al. ({{formatDateYear(dataset.metadata_created)}}): {{dataset.title | slice:0:18}}... </a>
+                        </div>
+                    </div>
+
+                </div>
+                
+            <div class="greybox-left marginBottom textBox">
+                    <div class="topicHead">Cite as</div>
+    
+                    <div class="textCite"> 
+                        <a *ngFor="let user of users; let i = index">
+                                <a class="spacetext">{{users[i].name}}</a> 
+                                <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
+                                <a *ngIf="i == users.length-2">; </a>
+                        </a>
+                                ({{year}}): {{title}}. Terrabrasilis Research Data. http://tbrd.dpi.inpe.br/LABTes/1
+                    </div>
+          
+                </div>
+    
+                <div class="greybox-left marginBottom textBox exportBox">
+                    <div class="topicHead">Export</div>
+    
+                    <a class="textlink spacetext2" href="#">BibTeX</a> 
+                    <a class="textlink spacetext2" href="#">CSL</a> 
+                    <a class="textlink spacetext2" href="#">DataCite</a> 
+                    <a class="textlink spacetext2" href="#">Dublin</a> 
+                    <a class="textlink spacetext2" href="#">Core</a> 
+                    <a class="textlink spacetext2" href="#">JSON</a> 
+                    <a class="textlink spacetext2" href="#">JSON-LD</a> 
+                    <a class="textlink spacetext2" href="#">GeoJSON</a> 
+                    <a class="textlink spacetext2" href="#">MARCXML</a> 
+                    <a class="textlink spacetext2" href="#">Mendeley</a> 
+                </div>
+
+    </div>
+    <div class="right">
+
+            <div class="greybox-right">
+
+            <div class="publishIn">Published: {{formatDate(metadata_created)}} | 
+                 
+                <a class="textlink" href="#">{{tag}}</a>
+                    
+            </div>
+
+            <div class="title">{{title}}</div> 
+
+                <div class="author"> 
+                    <a *ngFor="let user of users; let i = index">
+                        <a class="chipsBox"> 
+                                <div class="chip">
+                                        <img src="{{users[i].img}}" width="16" height="16">
+                                        {{users[i].name}}
+                                </div>
+                                      
+                            </a> 
+                        <a *ngIf="i != users.length-1 && i != users.length-2 "></a> 
+                        <a *ngIf="i == users.length-2"></a>
+                    </a>
+                </div>
+
+            <div class="abstract">
+                    <div class="header"> Abstract </div>
+                    <div class="textAbstract"> 
+                            {{abstract}}
                     </div>
                 </div>
 
-            </div>
 
-            <div class="greybox-left marginBottom textBox">
-                <div class="topicHead">Cite as</div>
 
-                <div class="textCite"> 
-                    <a *ngFor="let user of users; let i = index">
-                            <a class="spacetext">{{users[i]}}</a> 
-                            <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
-                            <a *ngIf="i == users.length-2">; </a>
-                    </a>
-                            ({{dataset.year}}): {{dataset.title}}. Terrabrasilis Research Data. http://tbrd.dpi.inpe.br/LABTes/1
-                </div>
-                
-            </div>
+                <div class="repoContent">
+                        <mat-accordion>
+                                <mat-expansion-panel [expanded]="true">
+                                  <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                    Files
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                    </mat-panel-description>
+                                  </mat-expansion-panel-header>
+    
+                                  <table class="table table-striped topMargin vertical">
+                                        <thead>
+                                        <tr>
+                                          <th scope="col">Name</th>
+                                          <th scope="col">Format</th>
+                                          <th scope="col">Published on</th>
+                                          <th scope="col"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let data of resources; index as i">
+                                        
+                                        <td> 
+                                        <div>
+                                                
+                                                        <i class="material-icons sizeIcon">
+                                                            description
+                                                        </i>
+            
+                                                    {{data.name}}
+                                        </div>
+    
+                                        </td>
+                                          <td><div style="margin-top: 9px;">{{data.format}}</div></td>
+                                          <td><div style="margin-top: 9px;">{{formatDate(data.created)}}</div></td>
+                                          <td>
+                                                <a href="{{data.url}}" class="btn button">Download</a>
+                                                
+                                          </td>
+                                        </tr>
+                                        </tbody>
+                                      </table>
+    
+                                </mat-expansion-panel>
+    
+                                <mat-expansion-panel>
+                                  <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                      Metadata
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                    </mat-panel-description>
+                                  </mat-expansion-panel-header>
+    
+                                  <div class="ftextMetadata"> <a class="metadataTopic">Dataset ID:</a> {{id}}</div> 
+                                  
+                                  <div class="textMetadata"> <a class="metadataTopic">Publication Date:</a> {{formatDate(metadata_created)}}</div> 
+                                  
+                                  <div class="textMetadata"> <a class="metadataTopic">Title: </a> {{title}}</div> 
+    
+                                  <div class="textMetadata"> <a class="metadataTopic">Author(s): </a> 
+    
+                                        <a *ngFor="let user of users; let i = index">
+                                            <a class="spacetext">{{users[i].name}}</a> 
+                                            <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
+                                            <a *ngIf="i == users.length-2"> & </a>
+                                        </a>
+                                  </div> 
+                               
+                                  <div class="textMetadata"> <a class="metadataTopic">License: </a> {{license}}</div> 
+    
+                                  <div class="textMetadata"> <a class="metadataTopic">Author email: </a> {{author_email}}</div> 
+    
+                                  <div class="textMetadata"> <a class="metadataTopic">Tags: </a> 
+    
+                                    <a *ngFor="let t of tags; let i = index">
+                                            <a class="spacetext">{{t.name}}</a> 
+                                            <a *ngIf="i != tags.length-1 && i != tags.length-2 ">, </a> 
+                                            <a *ngIf="i == tags.length-2"> & </a>
+                                        </a>
+                                 </div> 
+    
+                                 <div class="textMetadata"> <a class="metadataTopic">Coverage: </a> South-bound Latitude: 0.0 West-bound Longitude: 0.0 North-bound Latitude: 0.0 East-bound Longitude: 0.0 </div> 
+    
+                                 <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{maintainer}}</div> 
+                                 
+                                 <a *ngFor="let item of extra; let i = index">
+                                    
+                                    <div class="textMetadata"> <a class="metadataTopic">{{item.key}}: </a> {{item.value}}</div> 
+    
+                                 </a>
+                             
+                                </mat-expansion-panel>
+    
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                      <mat-panel-title>
+                                        Visualization
+                                      </mat-panel-title>
+                                      <mat-panel-description>
+                                      </mat-panel-description>
+                                    </mat-expansion-panel-header>
+    
+                                    <app-data-map
+                                    
+                                    [id]="id"
 
-            <div class="greybox-left marginBottom textBox">
-                <div class="topicHead">Export</div>
+                                    ></app-data-map>
+    
+                                  </mat-expansion-panel>
+    
+                              </mat-accordion>
 
-                <div class="textlink" (click)="CopyBibTex()">BibTeX  CSL  DataCite  Dublin  Core  JSON  JSON-LD  GeoJSON  MARCXML  Mendeley  </div>
-                
+
+
             </div>
 
     </div>
-    <div *ngIf="dataset" class="right">
-
-        <div class="greybox-right">
-
-            <div class="publishIn">Published: {{dataset.created_on | slice:5:17}} | 
-                
-                <a class="textlink" href="#">{{categories[0]}}</a>
-                    
-            </div> 
-
-            <div class="title">{{dataset.title}}</div> 
-
-            <div class="author"> 
-                <a *ngFor="let user of users; let i = index">
-                    <a class="textlink spacetext" href="#">{{users[i]}}</a> 
-                    <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
-                    <a *ngIf="i == users.length-2"> & </a>
-                </a>
-            </div>
-            
-            <div class="abstract">
-                <div class="header"> Abstract </div>
-                <div class="textAbstract"> 
-                        {{dataset.abstract}}
-                </div>
-            </div>
-
-            <div class="repoContent">
-                    <mat-accordion>
-                            <mat-expansion-panel [expanded]="true">
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                Files
-                                </mat-panel-title>
-                                <mat-panel-description>
-                                </mat-panel-description>
-                              </mat-expansion-panel-header>
-
-                              <table class="table table-striped topMargin vertical">
-                                    <thead>
-                                    <tr>
-                                      <th scope="col">Name</th>
-                                      <th scope="col">Size</th>
-                                      <th scope="col">Published on</th>
-                                      <th scope="col"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr *ngFor="let data of data_objects; index as i">
-                                    
-                                    <td> 
-                                    <div>
-                                            
-                                                    <i class="material-icons sizeIcon">
-                                                        description
-                                                    </i>
-        
-                                                {{data.name}}
-                                    </div>
-
-                                    </td>
-                                      <td>{{data.size}}</td>
-                                      <td>{{data.created_on | slice:5:17}}</td>
-                                      <td>
-                                            <a routerLink="/" class="btn button">Download</a>
-                                            
-                                      </td>
-                                    </tr>
-                                    </tbody>
-                                  </table>
-
-                            </mat-expansion-panel>
-
-                            <mat-expansion-panel>
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                  Metadata
-                                </mat-panel-title>
-                                <mat-panel-description>
-                                </mat-panel-description>
-                              </mat-expansion-panel-header>
-
-                              <div class="ftextMetadata"> <a class="metadataTopic">Dataset ID:</a> {{dataset.id}}</div> 
-                              
-                              <div class="textMetadata"> <a class="metadataTopic">Publication Date:</a> {{dataset.created_on | slice:5:17}}</div> 
-                              
-                              <div class="textMetadata"> <a class="metadataTopic">Title: </a> {{dataset.title}}</div> 
-
-                              <div class="textMetadata"> <a class="metadataTopic">Author(s): </a> 
-
-                                    <a *ngFor="let user of users; let i = index">
-                                        <a class="spacetext">{{users[i]}}</a> 
-                                        <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
-                                        <a *ngIf="i == users.length-2"> & </a>
-                                    </a>
-                              </div> 
-                              
-                              <div class="textMetadata"> <a class="metadataTopic">License: </a> {{dataset.license}}</div> 
-
-                              <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{dataset.contact_email}}</div> 
-
-                              <div class="textMetadata"> <a class="metadataTopic">Categorie: </a> 
-
-                                <a *ngFor="let categorie of categories; let i = index">
-                                        <a class="spacetext">{{categories[i]}}</a> 
-                                        <a *ngIf="i != categories.length-1 && i != categories.length-2 ">, </a> 
-                                        <a *ngIf="i == categories.length-2"> & </a>
-                                    </a>
-                             </div> 
-
-                             <div class="textMetadata"> <a class="metadataTopic">Coverage: </a> South-bound Latitude: 0.0 West-bound Longitude: 0.0 North-bound Latitude: 0.0 East-bound Longitude: 0.0 </div> 
-
-                             <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{dataset.language}}</div> 
-
-                             <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{dataset.maintainer}}</div> 
-
-                            </mat-expansion-panel>
-
-                            <mat-expansion-panel>
-                                <mat-expansion-panel-header>
-                                  <mat-panel-title>
-                                    Visualization
-                                  </mat-panel-title>
-                                  <mat-panel-description>
-                                  </mat-panel-description>
-                                </mat-expansion-panel-header>
-
-                                <app-data-map></app-data-map>
-
-                              </mat-expansion-panel>
-
-                          </mat-accordion>
+    
 <!--
             <div class="header"> Comments </div> 
             
@@ -194,11 +228,7 @@
             </comment-tree>
 
         -->
-        </div>
-            <div style="margin-bottom: 300px">
-            </div>
-
-        </div>
-
+    <div style="margin-bottom: 105px">
     </div>
+
 </div>

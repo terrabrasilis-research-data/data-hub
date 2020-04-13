@@ -4,7 +4,7 @@
             <div class="card">
                     <article class="card-body">
                      <button routerLink="/signup" class="btn btn-primary float-right button">Sign up</button>
-                    <h4 class="card-title mb-4 mt-1">Sign in</h4>
+                    <h4 class="card-title mb-4 mt-1">Log in</h4>
                     <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
 
                         <div class="form-group">
@@ -27,7 +27,15 @@
                     </form>
                     </article>
                     </div> 
+                   
 
     </div>
+    <div class=""  *ngIf="showMsg" style="width: 50%; margin-left: 25%; margin-right: 25%; margin-top: 30px">
+    <div class="col-xs-12">
+        <p class="alert alert-danger">
+            <strong>Log in Failed!</strong> Username or Password is incorrect.
+        </p>
+    </div>
+</div>
 </div>
     

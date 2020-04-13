@@ -1,121 +1,45 @@
 <div class="main">
+        <div class="divBox">
+    
+                <div class="card">
+                        <article class="card-body">
+                        
+                        <h4 class="card-title mb-4 mt-1">Repositories</h4>
 
-<div class="left">
+                        <form>
+                               
+                               <table class="table table-striped topMargin">
+                                <thead>
+                                <tr>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Abstract</th>
+                                  <th scope="col">Created on</th>
+                                  <th scope="col">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let repositorie of repositories; index as i" class="line" [routerLink]="['/repositories', repositorie.repo_id]"> 
+                                  <td><b>{{repositorie.name}}</b></td>
 
-    <div class="greybox-left">
-        <p class="text-muted">Filters:</p>
+                                  <td class="abstract">{{repositorie.abstract | slice:0:180}}</td>
+  
+                                  <td>{{repositorie.created_on | slice:0:25}}</td>
 
-        <div class='divfilter'>
-
-            <p class="text-muted">Categories:</p>
-
-            <div class="border3">
-
-                <form [formGroup]="form" (ngSubmit)="categories()">
-
-                    <div formArrayName="categories" *ngFor="let categorie of form.controls.categories.controls; let i = index">
-                        <input type="checkbox" [formControlName]="i" (change)="filterChange()" [(ngModel)]="filterCategories[categories[i].name]"> {{categories[i].name}}
-                    </div>
-
-                </form>
-
-            </div>
-        </div>
-
-        <div class='divfilter'>
-
-            <p class="text-muted">Keywords:</p>
-            <div class="border3">
-
-                <form [formGroup]="form" (ngSubmit)="keywords()">
-                    <div formArrayName="keywords" *ngFor="let filter of form.controls.keywords.controls; let j = index">
-                        <input type="checkbox" [formControlName]="j" (change)="filterChange()" [(ngModel)]="filterKeywords[keywords[j].name]"> {{keywords[j].name}}
-                    </div>
-                </form>
-            </div>
-        </div>
-    <!--
-        <div class='divfilter'>
-
-            <p class="text-muted">Spatial:</p>
-
-            <div class="center">
-                <mat-form-field>
-                    <input matInput placeholder="North" class="matInputBBox">
-                </mat-form-field>
-            </div>
-
-            <div class="center">
-            
-                <mat-form-field class= "east">
-                    <input matInput placeholder="East" class="matInputBBox">
-                </mat-form-field>
-                
-                <mat-form-field>
-                    <input matInput placeholder="West" class="matInputBBox">
-                </mat-form-field>
-
-            </div>
-
-            <div class="center">
-                <mat-form-field>
-                    <input matInput placeholder="South" class="matInputBBox">
-                </mat-form-field>
-            </div>
-
-            <div class="filterBtn">
-
-                <a class="btn btnpress button" style="color:white; margin-right: 10px; margin-bottom: 10px;" (click)="Map()" matTooltip="Select Bounding Box"> <i class="material-icons">crop_free</i> </a>
-
-                <a class="btn btnpress button" style="color:white; margin-right: 10px; margin-bottom: 10px">Apply</a>
-
-                <a class="btn btnpress button" style="color:white; margin-bottom: 10px">Clear</a>
-
-            </div>
-
-        </div>
-    -->
-    </div>
-
-    <div style="margin-bottom: 100px"></div>
-</div>
-<div class="right">
-
-    <div class="greybox-right">
-        <div class="example-container mat-elevation-z8">
-            <mat-table #table [dataSource]="dataSource">
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                    <mat-header-cell *matHeaderCellDef> Repository </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <a class="nav-item nav-link bntHover" [routerLink]="['/repositories', element.id]" style="font-weight: bold">{{element.name}}</a> </mat-cell>
-                </ng-container>
-
-                <!-- Image Column -->
-                <ng-container matColumnDef="image">
-                    <mat-header-cell *matHeaderCellDef> Collaborators </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <img src={{element.image[0]}} alt="Avatar"> <img src={{element.image[1]}} alt="Avatar" style="margin-left: -8px;">
-                        <div class="divmini">+ {{element.image.length}}</div>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Abstract Column -->
-                <ng-container matColumnDef="abstract">
-                    <mat-header-cell *matHeaderCellDef> Abstract </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.abstract}} </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-
-            <mat-paginator #paginator [length]="dataSource.data.length" [pageSize]="12" [pageSizeOptions]="[6, 12, 24]">
-            </mat-paginator>
+                                  <td>
+                                      
+                                    <a class="status" style="color: white" *ngIf="checkServiceStatus()">running</a>
+                                    <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus()">stopped</a>
+                              
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+    
+                        </form>
+                        </article>
+                        </div> 
+                        <div style="margin-bottom: 105px">
+                        </div>
         </div>
     </div>
-
-    <div class='divbo'>
-
-    </div>
-
-</div>
+        

@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RepositorieService } from '../myrepositories/repositories.service';
+import * as fromLogin from '../login/login.reducer';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-repositorie',
@@ -8,32 +11,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class RepositorieComponent implements OnInit, OnDestroy  {
+
   id: number;
   private sub: any;
 
-  services: Service[] = [
-    {"id": 1, "address": "172.17.01", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "PostgreSQL", "ports": ["5432"]}, 
-    {"id": 2, "address": "172.17.02", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoServer", "ports": ["5555", "5050"]}, 
-    {"id": 3, "address": "172.17.03", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "name": "GeoNetwork", "ports": ["5000"]}
-  ]
+  created_on = "";
+  categories = "";
+  repo_name = "";
+  path = "";
+  repo_abstract = "";
+  repo_id = "";
+  user_email = "";
+  maintainer = "";
+  services = [];
 
-  users: User[] = [
-    {"email": "email@email.com", "username": "username_1", "uri": "http://127.0.0.1:5000/api/v1.0/users/1", "last_login": "Wed, 04 Sep 2019 14:48:54 GMT", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "full_name": "Krahl, Guilherme", "image": "assets/images/img_avatar.png"}, 
-    {"email": "email2@email2.com", "username": "username_2", "uri": "http://127.0.0.1:5000/api/v1.0/users/2", "last_login": "Wed, 04 Sep 2019 14:48:54 GMT", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "full_name": "Jairo Francisco", "image": "assets/images/img_avatar2.png"},
-    {"email": "email2@email2.com", "username": "username_2", "uri": "http://127.0.0.1:5000/api/v1.0/users/2", "last_login": "Wed, 04 Sep 2019 14:48:54 GMT", "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", "full_name": "Cornils, Astrid", "image": "assets/images/img_avatar2.png"}
+  users: User[];
 
-  ]
-  
-  categories: string[] = [
-    "Sensoriamento Remoto"
-  ]
-  
-  keywords: string[] = [
-    "Sistemas Socioambientais", 
-    "Atividade Antr\u00f3picas", 
-    "Uso e Cobertura da Terra"
-  ]
-  
+  repositorie = [];
+
   datasets: Dataset[] = [
     {"dataset_id": 1, "name": "Radiocarbon ages and pollen record of Kongor Lake sediments", "authors": ["Krahl Guilherme", "Jairo Francisco","Cornils Astrid"], "year": 2019},
     {"dataset_id": 2, "name": "Multiple proxy data at DSDP Site 72-516F and ODP Hole 171-1049C during Dan-C2 and lower C29n", "authors": ["Jairo Francisco","Cornils Astrid"],"year": 2018},
@@ -44,34 +39,39 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
     {"dataset_id": 7, "name": "Tephra data of sediment cores of the Black Sea covering MIS 6 (184-130 ka BP)", "authors": ["Astrid Cornils"],"year": 2019},
     {"dataset_id": 8, "name": "High resolution in situ temperatures across coral reef slopes: Iriomote-jima, Japan and Gulf of Chiriquí, Panama", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2016},   
   ]
-
-  repositorie: Repositorie[] = [
-      {
-        "custom_fields": [], 
-        "repo_id": 1, 
-        "abstract": "During several expeditions to the Southern Ocean from 1982 to 2005 the gonad maturity of selected calanoid copepods was determined to elucidate the life-cycle strategies of the different species. Five different developmental stages of ovaries (unripe, semi-ripe, ripe, semi-spent, spent) were separated according to Runge (1985) and Corkett and McLaren (1979). The stage „semi-spent“ was only investigated in few species and expeditions. In this stages the spent oviduct still contains a few eggs in some unwarranted rows.", 
-        "language": "Portugu\u00eas", 
-        "name": "Hydrogen Repository", 
-        "bbox": "{\"type\":\"Polygon\",\"coordinates\":[[[-70.0588433406,-33.3848757513],[-35.2541558406,-33.3848757513],[-35.2541558406,0.2315631899],[-70.0588433406,0.2315631899],[-70.0588433406,-33.3848757513]]]}", 
-        "created_on": "Wed, 04 Sep 2019 14:48:54 GMT", 
-        "maintainer": "username"
-      }
-  ]
-
-  constructor(private route: ActivatedRoute) { }
   
-  ngOnInit() {
+  constructor(
+    private route: ActivatedRoute, 
+    private rs:RepositorieService, 
+    private router: Router,
+    private store: Store<fromLogin.AppState>
+    ) { 
+    this.store.pipe(select('login')).subscribe(res => {
+    if(res){
+      this.user = res;
+    }
+  }) }
+  
+  public user: any = null;
+
+  ngOnInit() {  
     
+    if(!this.user['user']){
+      this.router.navigate(['/login']);
+    }
+
     this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; // (+) converts string 'id' to a number
        // In a real app: dispatch action to load the details here.
     });
+    this.getRepositorie(this.id);
+    this.getMembers(this.id);
   }
-
+  
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
+  
   checkServiceStatus(id: number){
    // if (id == 2){
    //     return false;
@@ -80,25 +80,34 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
    // }
   return true;
   }
-}
+  
+  servicepath(name: string){
+    if (name == "PostgreSQL")
+      return true
+    else
+      return false
+   }
+   
+  async getRepositorie(id){
 
-export interface Repositorie{
-  custom_fields: Array < string >;
-  repo_id: number;
-  abstract: string;
-  language: string;
-  name: string;
-  bbox: string;
-  created_on: string;
-  maintainer: string;
-}
+    const response = await this.rs.get_repositorie(this.id);
+    this.repositorie = response['repositorie'];
+    this.created_on = this.repositorie[0].created_on;
+    this.categories = this.repositorie[0].categories;
+    this.repo_name = this.repositorie[0].name;
+    this.path = this.repositorie[0].path;
+    this.repo_abstract = this.repositorie[0].abstract;
+    this.repo_id = this.repositorie[0].repo_id;
+    this.maintainer = this.repositorie[0].maintainer;
+    this.services = this.repositorie[0].services;
+  } 
 
-export interface Service {
-  id: number;
-  address: string;
-  created_on: string;
-  name: string;
-  ports: Array < string >;
+  async getMembers(id){
+    const response = await this.rs.get_members_repositorie(this.id, this.user['user']['access_token']);
+    this.users = response[0]['users'];
+    this.user_email = this.users[0].email;
+  }
+
 }
 
 export interface User {
@@ -109,7 +118,6 @@ export interface User {
   created_on: string;
   full_name: string;
   image:  string;
-
 }
 
 export interface Dataset {
@@ -117,4 +125,14 @@ export interface Dataset {
   authors: Array < string >;
   name: string;
   year: number;
+}
+
+export interface Repositorie {
+  maintainer: string;
+  name: string;
+  abstract: string;
+  categories: string[];
+  repo_is: number;
+  created_on: string;
+  services: any[];
 }

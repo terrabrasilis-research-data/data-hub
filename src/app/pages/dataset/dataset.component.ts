@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ɵConsole } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { latLng, tileLayer, Layer, geoJSON } from 'leaflet';
@@ -7,6 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Clipboard } from 'ts-clipboard';
 import { DatasetsService } from '../datasets/datasets.service';
+import { SignupService } from '../signup/signup.service';
+import { GroupsService } from '../groups/groups.service';
 
 @Component({
   selector: 'app-dataset',
@@ -30,19 +32,32 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 	options = {
   };
   
-  id: number;
+  id: string;
   private sub: any;
-  
-  CopyBibTex(){
-    this.snackBar.open("Copied to Clipboard", "", {
-      duration: 2000,
-    });
-    let data = this.dataset;
-    let BibTex = '@proceedings{'+ data.id +', \ntitle\t = {'+data.title+'}, \neditor\t = {'+data.author+'},   \nyear\t = {'+data.year+'}, \nDOI\t = {'+data.DOI+'} \n}';
-    Clipboard.copy(BibTex);
-   }
 
-  constructor(private route: ActivatedRoute, private snackBar: MatSnackBar, public dialog: MatDialog, private ds: DatasetsService,) {}
+  metadata_created: Date;
+  tag = "";
+  tags = [];
+  title = "";
+  users = [];
+  abstract = [];
+  resources = [];
+  license = "";
+  author_email = "";
+  maintainer = "";
+  extra = [];
+  other_datasets = [];
+  resource_url = "";
+  year = null;
+  tags_list = [];
+
+  constructor(
+    private route: ActivatedRoute, 
+    public dialog: MatDialog, 
+    private ss: SignupService,
+    private ds: DatasetsService,
+    private gs: GroupsService,
+  ) {}
 
   
   ngOnInit() {
@@ -91,78 +106,189 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     }
 
     this.sub = this.route.params.subscribe(params => {
-
-       this.id = +params['id']; // (+) converts string 'id' to a number
-
+       this.id = params['id']; // (+) converts string 'id' to a number
        // In a real app: dispatch action to load the details here.
     });
-
-    this.get_datasets();
     
+    this.get_users_ckan();
+    this.getDataset(this.id)
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
-  checkServiceStatus(id: number){
-    // if (id == 2){
-    //     return false;
-    // } else {
-    //   return true;
-    // }
-   return true;
-   }
+  formatDate(date) {
 
-   async get_datasets(){
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc", "Nov", "Dec"];
 
-    const response = await this.ds.get_datasets();
-    this.others_datasets = response;
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
-    this.dataset = this.others_datasets.filter(x => (x.id == this.id))[0];
-    this.categories = this.others_datasets[this.id].categories;
-    this.users = this.others_datasets[this.id].author;
-    this.data_objects = this.others_datasets[this.id].data;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [day, monthNames[month], year].join(' ');
+  }
+
+  formatDateYear(date) {
+    var d = new Date(date),
+        year = d.getFullYear();
+    return year;
+  }
+
+  async getDataset(id: string){
+
+    const response = await this.ds.get_ckan_dataset(id);
+    this.DATASETS = response['result'];
+    
+    await this.getGroupsMembers( this.DATASETS['groups'][0].id,  this.DATASETS['groups'][0].title);
+    
+    this.metadata_created = this.DATASETS['metadata_created'];
+    this.year = this.formatDateYear(this.DATASETS['metadata_created']);
+    this.tag  = this.DATASETS['tags'][0].name;
+    this.tags = this.DATASETS['tags'];
+
+    for (let index = 0; index < this.tags.length; index++) {
+      this.tags_list[index] = this.tags[index].name.trim();
+    }
+
+    this.title = this.DATASETS['title'];
+    this.users = this.groupsMembers.filter(x => (x.group_name == this.DATASETS['groups'][0].title));
+    this.abstract = this.DATASETS['notes'];
+    this.resources = this.DATASETS['resources'];
+    this.license = this.DATASETS['license_title'];
+    this.author_email = this.DATASETS['author_email'];
+    this.maintainer = this.DATASETS['maintainer'];
+    this.extra = this.DATASETS['extras'];
+
+    this.getDatasets();
+  }
+
+  async getDatasets(){
+
+    const response = await this.ds.get_ckan_datasets();
+    this.other_datasets = response['result']['results'];
+
+    this.other_datasets = this.other_datasets.filter(x => ( this.tags_list.includes(x.tags[0].name.trim()) ));
 
   }
 
-  dataset: Dataset = null;
-
-  categories: string[];
+  async get_users_ckan(){
+    const response = await this.ss.get_users_ckan();
+    this.ckan_users = response['result'];
+  }
   
-  data_objects: Data_obj[];
+  groupsMembers = [];
 
-  users: string[];
+  async getGroupsMembers(id: string, name: string){
+    const response = await this.ss.get_members(id);
+    const responsedb = await this.gs.get_users_db();
+    for (let index = 0; index < response['result'].length; index++) {
+      this.groupsMembers.push({'group_name': name, 'id': response['result'][index][0], 'name': this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name'], 'img': responsedb.filter(x => (x.full_name == this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name']))[0].image    })
+    }
+  }
 
-  others_datasets: Dataset[];
+  ckan_users = [];
 
+  DATASETS: RootObject[] = [];
 }
 
-export interface Dataset{
-  custom_fields: Array < string >;
-  repo_id: number;
-  language: string;
-  bbox: string;
-  maintainer: string;
-  data: Array < Data_obj > ;
-  id: number;
-  title: string;
-  year: string;
-  author: Array < string > ;
-  abstract: string;
-  categories: Array < string > ;
-  size: number;
-  repositorie: string;
-  DOI: string;
-  filetypes:  Array < string > 
-  created_on: string;
-  license: string;
-  contact_email: string;
-}
-
-export interface Data_obj {
-  id: number;
+export interface Resource {
+  mimetype: any;
+  cache_url: any;
+  hash: string;
+  description: string;
   name: string;
-  size: string;
-  created_on: string;
+  format: string;
+  url: string;
+  cache_last_updated: any;
+  package_id: string;
+  created: Date;
+  state: string;
+  mimetype_inner: any;
+  last_modified: any;
+  position: number;
+  url_type: any;
+  id: string;
+  resource_type: any;
+  size: any;
+}
+
+export interface Tag {
+  vocabulary_id: any;
+  state: string;
+  display_name: string;
+  id: string;
+  name: string;
+}
+
+export interface Group {
+  display_name: string;
+  description: string;
+  image_display_url: string;
+  title: string;
+  id: string;
+  name: string;
+}
+
+export interface Organization {
+  description: string;
+  created: Date;
+  title: string;
+  name: string;
+  is_organization: boolean;
+  state: string;
+  image_url: string;
+  type: string;
+  id: string;
+  approval_status: string;
+}
+
+export interface Extra {
+  key: string;
+  value: string;
+}
+
+export interface RootObject {
+  license_title: string;
+  maintainer: string;
+  relationships_as_object: any[];
+  private: boolean;
+  maintainer_email: any;
+  num_tags: number;
+  id: string;
+  metadata_created: Date;
+  metadata_modified: Date;
+  author: string;
+  author_email: string;
+  state: string;
+  version: any;
+  creator_user_id: string;
+  type: string;
+  resources: Resource[];
+  num_resources: number;
+  tags: Tag[];
+  groups: Group[];
+  license_id: string;
+  relationships_as_subject: any[];
+  organization: Organization;
+  name: string;
+  isopen: boolean;
+  url: any;
+  notes: string;
+  owner_org: string;
+  extras: Extra[];
+  license_url: string;
+  title: string;
+  authors: authors[];
+}
+
+export interface authors {
+  name: string;
+  group_name: string;
+  id: string;
+  img: string;
 }

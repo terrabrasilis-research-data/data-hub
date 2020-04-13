@@ -33,7 +33,7 @@
                     </span>
         
                     <span *ngIf="!check(groups[j].group_id)">
-                    <img mat-card-image src={{groups[j].image}}>
+                    <img class="imagemcrop" mat-card-image src={{groups[j].image}}>
                     <mat-card-content>
                         <div class="center">
                             <div class="left">
@@ -52,7 +52,8 @@
                     </span>
         
             </mat-card>
-        
+            <div style="margin-bottom: 105px">
+            </div>
     </div>
 </div>
      

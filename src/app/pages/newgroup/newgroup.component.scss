@@ -26,7 +26,8 @@
     color: white;
 }
 .button:hover{
-    background:rgb(42, 138, 201)
+    background:rgb(42, 138, 201);
+    cursor: pointer;
 }
 
 .sizeTextInput{
@@ -68,4 +69,37 @@
     width: 50px;
     height: 50px;
     margin-right: 10px;
+}
+.mat-form-field {
+    width: 250px !important; 
+
+}
+.people{
+    width: 250px;
+}
+
+.addBtn{
+    margin-left: 10px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.status{
+    font-weight: bold;
+    background:#5cb85c;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.statusOFF{
+    font-weight: bold;
+    background:#d9534f;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
 }

@@ -25,6 +25,7 @@
     "@material/card": "^4.0.0",
     "@material/icon-button": "^3.1.0",
     "@ng-bootstrap/ng-bootstrap": "^5.0.0",
+    "@ngrx/store": "^8.6.0",
     "@types/jquery": "^3.3.30",
     "angular-openlayers-directive": "^2.1.0",
     "bootstrap": "^4.3.1",

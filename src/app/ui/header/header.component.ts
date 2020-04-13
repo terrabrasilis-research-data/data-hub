@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-let logged = false;
+import * as fromLogin from '../../pages/login/login.reducer';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +11,19 @@ let logged = false;
 
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+    constructor(
+      private store: Store<fromLogin.AppState>,
+    ) {
+      this.store.pipe(select('login')).subscribe(res => {
+        if(res){
+          this.user = res['user']
+        }
+    })
+  }
+
+ public user: any;
 
   ngOnInit() {
-    
   }
   
   OpenMenu() {
@@ -24,13 +33,11 @@ export class HeaderComponent implements OnInit {
       document.getElementById("wrapper").className = "d-flex";
   }
 
-  ChangeLogged(results: boolean){
-    var value = results;
-    localStorage.setItem('Auth', JSON.stringify(value));
-  }
-
   isLogged(){
-    return logged;
+    if(this.user)
+      return true;
+    else
+      return false
   }
 
 }

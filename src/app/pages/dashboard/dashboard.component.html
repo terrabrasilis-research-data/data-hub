@@ -4,7 +4,7 @@
             <div class="card">
                     <article class="card-body">
                     <h4 class="card-title mb-4 mt-1">Dashboard</h4>
-
+                                                
                         <div class="left">
                                 <div class="">
                                 <mat-accordion>
@@ -16,107 +16,121 @@
                                             <mat-panel-description>
                                             </mat-panel-description>
                                           </mat-expansion-panel-header>
+                                          
+                                            <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
 
-
-                                          <div class="form-group bottom">
-                                                <label>Title</label>
-                                                <input name="" class="form-control" placeholder="A descriptive title" type="text">
-                                            </div> <!-- form-group// -->
-
-                                            <div class="form-group bottom">
-
+                                              
+                                            <div class="form-group">
+                                                    <label class="control-label">Title</label>
+                                                    <input type="text" class="form-control" formControlName="Title"  [ngModel]="title" (ngModelChange)="titleModelChange($event)" placeholder="A descriptive title">
+                                                    </div>
+        
+                                                    <div class="form-group">
                                                     <label>Description</label>
+                                                    <textarea name="" class="form-control" formControlName="Description" [ngModel]="description" (ngModelChange)="descriptionModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
+                                                    </div>
+        
+                                                    <div class="form-group">
+                                                    <label>Tags</label>
+                                                    <input type="text" class="form-control"  formControlName="Tags" [ngModel]="tags" (ngModelChange)="tagsModelChange($event)" placeholder="land use, land cover...">
+                                                    </div>
+        
+                                                    <div class="form-group">
+                                                    <label>License</label>
+                                                    <div style="width: 15px"></div>
+                                                    <select class="sizeDropdown sizeInput" formControlName="License" [ngModel]="license" (ngModelChange)="licenseModelChange($event)">
+                                                            <option *ngFor="let lic of licences" value="{{lic.id}}">{{lic.title}}</option>
+                                                    </select>
+                                                    
+                                                    </div>
+        
+                                                    <div class="form-group">
+                                                    <label>Repository</label>
+                                                    <div style="width: 15px"></div>
+                                                    <select class="sizeDropdown sizeInput" formControlName="Repository" [ngModel]="repository" (ngModelChange)="repositoryModelChange($event)">
+                                                            <option *ngFor="let repo of repositories" value="{{repo.name}}">{{repo.name}}</option>
+                                                    </select>
+                                                    
+                                                    </div>
+        
+                                                    <div class="form-group">
+                                                        <label>Collaborators</label>
+                                                        <div style="width: 15px"></div>
+                                                        <select class="sizeDropdown sizeInput" formControlName="Collaborators" [ngModel]="collaborators" (ngModelChange)="collaboratorsModelChange($event)">
+                                                            <ng-container *ngFor="let group of groups">
+                                                                <option *ngIf="group.ckan_group_id" value="{{group.ckan_group_id}}">
+                                                                    {{group.name}}
+                                                                </option>
+                                                            </ng-container>
+                                                        </select>
+
+                                                    </div>
                                                     
                                                     <div class="form-group">
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Some useful notes about the data"></textarea>
+                                                        <label>Maintainer</label>
+                                                        <input name="" class="form-control" formControlName="Maintainer" [ngModel]="maintainer" (ngModelChange)="maintainerModelChange($event)" placeholder="Maintainer name" type="text">
                                                     </div>
-
-                                                </div> <!-- form-group// -->
-
-                                                    <div class="form-group bottom">
-                                                        <label>Tags</label>
-                                                        <input name="" class="form-control" placeholder="land use, land cover, processed images" type="text">
-                                                    </div> <!-- form-group// -->
-
-                                                    <div class="form-group bottom">
-                                                            <div>
-                                                                <label>Group </label>
-                                                                
-                                                            </div>
-                                                            <div>
-                                                                <select class="sizeDropdown">
-                                                                        <option value="volvo">Volvo</option>
-                                                                        <option value="saab">Saab</option>
-                                                                        <option value="opel">Opel</option>
-                                                                        <option value="audi">Audi</option>
-                                                                </select>
-                                                            </div>
-
-                                                        </div> <!-- form-group// -->
-              
-                                                    <div class="form-group bottom">
-                                                            <div>
-                                                                    <label>Visibility </label>
-                                                            </div>
-                                                            <div>
-                                                                    <select class="sizeDropdown">
-                                                                            <option value="volvo">Public</option>
-                                                                            <option value="saab">Private</option>
-                                                                    </select>
-                                                            </div>
-
-                                                        </div> <!-- form-group// -->
-
-                                                        <div class="form-group bottom">
-                                                            <label>Author Email</label>
-                                                            <input name="" class="form-control" placeholder="joe@exemple.com" type="text">
-                                                        </div> <!-- form-group// -->
-
-                                                        <div class="form-group bottom">
-                                                                <label>Maintainer</label>
-                                                                <input name="" class="form-control" placeholder="Joe Bloggs" type="text">
-                                                        </div> <!-- form-group// -->
-
-                                                        <div class="form-group bottom">
-                                                                    <label>Bounding Box</label>
-                                                                    <input name="" class="form-control" placeholder="GEOJSON Bounding Box" type="text">
-                                                        </div> <!-- form-group// -->
-
-                                                        <div class="form-group bottom">
-                                                            <div>
-                                                                <label>Custom Field</label>
-                                                            </div>
-                                                                    
-                                                                    Key <input name="" class="form-control" placeholder="" type="text">
-
-                                                                    Value <input name="" class="form-control" placeholder="" type="text">
-
-                                                        </div> <!-- form-group// -->
-
-                                                        <div class="form-group bottom">
-                                                                <label>URL</label>
-                                                                <input name="" class="form-control" placeholder="http://exemple.com/external-data.csv" type="text">
-                                                        </div> <!-- form-group// -->
-    
-                                                        <div class="form-group bottom">
-                                                                    <label>Name</label>
-                                                                    <input name="" class="form-control" placeholder="http://exemple.com/external-data.csv" type="text">
-                                                        </div> <!-- form-group// -->
-
-                                                        <div class="form-group bottom">
-                                                                <label>Description</label>
-                                                                <input name="" class="form-control" placeholder="Some useful notes about the data" type="text">
-                                                            </div> <!-- form-group// -->
-            
-                                                        <div class="form-group bottom">
-                                                                <label>Format</label>
-                                                                <input name="" class="form-control" placeholder="CSV, XLS or JSON" type="text">
-                                                            </div> <!-- form-group// -->
         
-                                          <div>
-                                                <a routerLink="/signup" class="btn button">Publish now</a>
-                                          </div>
+                                                    <div class="form-group">
+                                                    <label>Visibility</label>
+                                                    <div style="width: 15px"></div>
+                                                    <select class="sizeDropdown sizeInput" formControlName="Visibility" [ngModel]="visibility" (ngModelChange)="visibilityModelChange($event)">
+                                                            <option value="false">Public</option>
+                                                            <option value="true">Private</option>
+                                                    </select>
+                                                    
+                                                    </div>
+        
+                                                    <div class="form-group">
+                                                        <label>Author Email</label>
+                                                        <input name="" class="form-control" formControlName="AuthorEmail" [ngModel]="authoremail" (ngModelChange)="authorEmailModelChange($event)" placeholder="Email address" type="text">
+                                                    </div>
+        
+                                                    <div *ngIf="showUpload" class="form-group">
+                                                        <label>Data</label>
+                                                        
+                                                        <br>
 
+                                                        <app-file
+                                        
+                                                        (toggle)="getName($event)"
+                                                        [repo_id]="repo_id"
+                                                    
+                                                        >
+                                                        </app-file>
+
+                                                        <button (click)="changeLink()" class="btn btn-outline-secondary" type="button" (click)="onReset()">Link</button>
+                                                </div>
+                                                
+                                                <div *ngIf="showLink" class="form-group">
+                                                        <label>URL</label>
+                                                        <br>
+                                                        <input name="" class="form-control float-left sizetext2" formControlName="DataURL" [ngModel]="dataurl" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text"> <button (click)="changeUpload()" class="btn btn-outline-danger" style="margin-left: 10px;" type="button">Remove</button>
+                                                </div>
+
+                                                <div class="form-group">
+                                                        <label>Name</label>
+                                                        <input name="" class="form-control" formControlName="DataName" [ngModel]="dataname" (ngModelChange)="dataNameModelChange($event)" placeholder="" type="text"  placeholder="Datafile name">
+                                                </div>
+        
+                                                <div class="form-group">
+                                                        <label>Description</label>
+                                                        <textarea name="" class="form-control" formControlName="DataDescription" [ngModel]="datadescription" (ngModelChange)="dataDescriptionModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
+                                                </div>
+        
+                                                <div class="form-group">
+                                                        <label>Format</label>
+                                                        <input name="" class="form-control" formControlName="DataFormat" [ngModel]="dataformat" (ngModelChange)="dataFormatModelChange($event)" placeholder="CSV, XLS or JSON" type="text">
+                                                </div>  
+        
+                                                <hr class="style1">
+
+                                        <button class="btn btn-outline-secondary" type="button" (click)="onReset()">Reset</button>
+                
+                                        <button class="btn btn-primary pull-right button" type="submit">Publish</button>
+                
+                                        </form>
+                            
                                         </mat-expansion-panel>
                                         
                                       </mat-accordion>
@@ -137,10 +151,21 @@
                                             </mat-panel-description>
                                           </mat-expansion-panel-header>
 
-                                          <div *ngFor="let activitie of activities; let i = index">
-                                                <a style="text-decoration: underline;">{{activities[i].username}}</a> {{activities[i].activity_type}} 
-                                                <a class="textlink" [routerLink]="['/datasets', activities[i].package_id]">{{activities[i].package_name}}</a>
-                                            </div>
+                                          <div *ngFor="let activitie of activities_list; let i = index">
+
+                                            <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{getUser(activitie.user_id)}}</a>
+
+                                            {{getActivityName(activitie.activity_type)}}
+                                            
+                                            <a *ngIf="activitie.activity_type === 'new group'">
+                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.group.title}}</a>
+                                            </a>
+
+                                            <a *ngIf="activitie.activity_type === 'new package'">
+                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.package.title}}</a>
+                                            </a>
+                                            
+                                          </div>
 
                                         </mat-expansion-panel>
                                 
@@ -162,7 +187,7 @@
                                                 <tr>
                                                   <th scope="col">Name</th>
                                                   <th scope="col">Status</th>
-                                                  <th scope="col">IP Address</th>
+                                                  <th scope="col">Address</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -174,7 +199,10 @@
                                                         <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
                                                   
                                                    </td>
-                                                  <td>{{service.address}}:{{service.ports[0]}}</td>
+                                                   <td>
+                                                   <a *ngIf="servicepath(services[i].name)" href="{{service.address}}/{{path}}:{{service.ports}}" class="btn1">{{service.address | slice:0:25}}/{{path}}<i class="material-icons icon">open_in_new</i></a>
+                                                   <a *ngIf="!servicepath(services[i].name)"  href="{{service.address}}/{{path}}/{{service.name}}:{{service.ports}}" style="text-transform: lowercase;" class="btn1">{{service.address | slice:0:25}}/{{path}}/{{service.name}} <i class="material-icons icon">open_in_new</i></a>
+                                                   </td>
                                                 </tr>
                                                 </tbody>
                                         </table>
@@ -195,8 +223,8 @@
                                                     </mat-panel-description>
                                                 </mat-expansion-panel-header>
 
-                                                    <div *ngFor="let repositorie of repositories; let i = index">
-                                                            <a class="textlink itemLine" [routerLink]="['/groups', repositories[i].repositorie_id]">{{repositories[i].authors[0].split(" ")[1]}} et al. ({{repositories[i].year}}): {{repositories[i].name | slice:0:21}} </a>
+                                                    <div *ngFor="let group of groups; let j = index;">
+                                                            <a class="textlink itemLine" *ngIf="j<6" [routerLink]="['/groups', groups[j].group_id]">{{groups[j].users[0].full_name.split(" ")[1]}} et al. ({{groups[j].created_on | slice:12:16}}): &nbsp; <b>{{groups[j].name}}</b> </a>
                                                     </div>
 
                                                 <br>
@@ -218,9 +246,9 @@
                                                     </mat-panel-description>
                                                 </mat-expansion-panel-header>
 
-                                                    <div *ngFor="let dataset of datasets; let i = index">
-                                                            <a class="textlink itemLine" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].authors[0].split(" ")[1]}} et al. ({{datasets[i].year}}): {{datasets[i].name | slice:0:21}}... </a>
-                                                    </div>
+                                                <div *ngFor="let d of datasets; let j = index;">
+                                                        <a class="textlink itemLine" [routerLink]="['/dataset', d.id]">{{d.author.split(" ")[1]}} et al. ({{formatDateYear(d.metadata_created)}}):  &nbsp; <b>{{d.title}}</b> </a>
+                                                </div>
 
                                                 <br>
 
@@ -235,7 +263,8 @@
                        
                     </article>
                     </div> 
-
+                    <div style="margin-bottom: 95px">
+                    </div>
     </div>
 </div>
     

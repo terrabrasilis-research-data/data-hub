@@ -7,7 +7,7 @@
 
 .divBox{ 
     font-size: 11pt;
-    width:900px;
+    width:1000px;
     margin: 0 auto;
     padding: 10px;
     position: relative;
@@ -34,4 +34,20 @@
 
 .topMargin{
     margin-top: 10px;
+}
+
+.btn{
+    font-size: 11pt;
+    color:rgb(42, 138, 201)
+}
+
+.btn:hover{
+    color: #0F66A0; 
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+.icon{
+    font-size: 12pt;
 }

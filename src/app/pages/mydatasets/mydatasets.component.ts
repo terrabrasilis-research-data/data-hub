@@ -6,8 +6,12 @@ import { MatTableDataSource } from '@angular/material/table'
 import { Clipboard } from 'ts-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DatasetsService } from '../datasets/datasets.service';
 import { GroupsService } from '../groups/groups.service';
+import { SignupService } from '../signup/signup.service';
+import { CloseScrollStrategy } from '@angular/cdk/overlay';
+import { DatasetsService } from '../datasets/datasets.service';
+import * as fromLogin from '../login/login.reducer';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-mydatasets',
@@ -17,12 +21,13 @@ import { GroupsService } from '../groups/groups.service';
 
 export class MydatasetsComponent implements OnInit {
 
-  DATASETS: Element[] = [];
+  DATASETS: RootObject[] = [];
+  NEW_DATASETS: RootObject[] = [];
   groups: Group[]; 
 
   displayedColumns = ['dataset'];
-  dataSource = new MatTableDataSource<Element>(this.DATASETS);
-  size = this.DATASETS.length;
+  dataSource = new MatTableDataSource<RootObject>(this.NEW_DATASETS);
+  size = this.NEW_DATASETS.length;
   filterYear = {}
   filterCategory = {}
   filterRepository = {}
@@ -32,7 +37,7 @@ export class MydatasetsComponent implements OnInit {
   
   form: FormGroup;
 
-  /**
+   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
    */
@@ -46,10 +51,8 @@ export class MydatasetsComponent implements OnInit {
    return true;
    }
 
-
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    
+    this.dataSource.paginator = this.paginator;  
   }
 
    years = [];
@@ -65,52 +68,59 @@ export class MydatasetsComponent implements OnInit {
    favorites = [
    ];
 
-   CopyBibTex(id: number){
-    this.snackBar.open("Copied to Clipboard", "", {
-      duration: 2000,
-    });
-    let data = this.DATASETS[id-1];
-    let BibTex = '@proceedings{'+ data.id +', \ntitle\t = {'+data.title+'}, \neditor\t = {'+data.author+'},   \nyear\t = {'+data.year+'}, \nDOI\t = {'+data.DOI+'} \n}';
-    Clipboard.copy(BibTex);
-   }
-
    filterChange() {
-    this.dataSource.data = this.DATASETS;
+  
+    this.dataSource.data = this.NEW_DATASETS;
     this.size = this.dataSource.data.length;
+
     for (let i = 0; i < this.years.length; i++) {
       if (this.filterYear[this.years[i].name] != false) {
-        this.dataSource.data = this.dataSource.data.filter(x => (x.year == this.years[i].name) )
+        this.dataSource.data = this.dataSource.data.filter(x => (this.formatDateYear(x.metadata_created) == this.years[i].name) )
         this.size = this.dataSource.data.length;
       } else {
       }
     }
+
     for (let i = 0; i < this.categories.length; i++) {
         if (this.filterCategory[this.categories[i].name] != false) {
-            this.dataSource.data = this.dataSource.data.filter(x => (x.categories.includes(this.categories[i].name)))
+            this.dataSource.data = this.dataSource.data.filter(x => (x.tags.filter(t => (t.name == this.categories[i].name))).length);
             this.size = this.dataSource.data.length;
         } else {
-
         }
       }
+
     for (let i = 0; i < this.repositories.length; i++) {
         if (this.filterRepository[this.repositories[i].name] != false) {
-            this.dataSource.data = this.dataSource.data.filter(x => (x.repositorie == this.repositories[i].name) )
+          this.dataSource.data = this.dataSource.data.filter(x => (x.groups.filter(g => (g.title == this.repositories[i].name))).length);
             this.size = this.dataSource.data.length;
         } else {
-
         }
       }
+
     for (let i = 0; i < this.filetypes.length; i++) {
         if (this.filterFiletypes[this.filetypes[i].name] != false) {
-            this.dataSource.data = this.dataSource.data.filter(x => (x.filetypes.includes(this.filetypes[i].name)))
+            this.dataSource.data = this.dataSource.data.filter(x => (x.resources.filter (r => (r.format == this.filetypes[i].name))).length);
             this.size = this.dataSource.data.length;
         } else  {
-
         }
       }
 }
 
-   constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, public dialog: MatDialog, private ds: DatasetsService, private gs: GroupsService) {
+   constructor(
+     private formBuilder: FormBuilder, 
+     private snackBar: MatSnackBar, 
+     public dialog: MatDialog, 
+     private ds: DatasetsService,
+     private ss: SignupService,
+     private gs: GroupsService,
+     private store: Store<fromLogin.AppState>,
+     ) {
+       this.store.pipe(select('login')).subscribe(res => {
+         if(res){
+           this.user = res;
+         }
+     })
+   
     this.form = this.formBuilder.group({
       years: new FormArray([]),
       categories: new FormArray([]),
@@ -119,7 +129,18 @@ export class MydatasetsComponent implements OnInit {
     });
     
   }
+  
+  public user: any = null;
 
+  ngOnInit() {
+    
+    document.getElementById("wrapper").className = "d-flex toggled";
+
+    this.getDatasets();
+    this.getGroups();
+    this.get_users_ckan();
+  }
+  
   private addCheckboxes() {
 
     this.categories.map((o, i) => {
@@ -142,18 +163,67 @@ export class MydatasetsComponent implements OnInit {
       (this.form.controls.filetypes as FormArray).push(control);
     });
   }
-  
-  ngOnInit() {
-    
-    document.getElementById("wrapper").className = "d-flex toggled";
 
-    this.getDatasets();
-    this.getGroups();
+  checkFalse(){
+
+    this.addCheckboxes();
+
+    this.years.forEach(obj => {
+      this.filterYear[obj.name] = false
+    })
+    
+    this.categories.forEach(obj => {
+      this.filterCategory[obj.name] = false
+    })
+    
+    this.repositories.forEach(obj => {
+      this.filterRepository[obj.name] = false
+    })
+
+    this.filetypes.forEach(obj => {
+      this.filterFiletypes[obj.name] = false
+    });
+
+  }
+
+  formatDate(date) {
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc", "Nov", "Dec"];
+
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [day, monthNames[month], year].join(' ');
+  }
+
+  formatDateYear(date) {
+    var d = new Date(date),
+        year = d.getFullYear();
+    return year;
+  }
+
+  async get_users_ckan(){
+    const response = await this.ss.get_users_ckan();
+    this.ckan_users = response['result'];
+  }
+  
+  groupsMembers = [];
+
+  async getGroupsMembers(id: string, name: string){
+    const response = await this.ss.get_members(id);
+    for (let index = 0; index < response['result'].length; index++) {
+      this.groupsMembers.push({'group_name': name, 'id': response['result'][index][0], 'name': this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name']})
+    }
   }
 
   async getDatasets(){
-    const response = await this.ds.get_datasets();
-    this.DATASETS = response;
+    const response = await this.ds.get_ckan_datasets();
+    this.DATASETS = response['result']['results'];
     this.dataSource.data = this.DATASETS;
     this.size = this.DATASETS.length;
 
@@ -161,45 +231,69 @@ export class MydatasetsComponent implements OnInit {
     var count = 0;
 
     for (let i = 0; i < this.DATASETS.length; i++) {
-      for (let j = 0; j < this.DATASETS[i].filetypes.length; j++) {
-      var name = this.DATASETS[i].filetypes[j];
+
+      await this.getGroupsMembers(this.DATASETS[i].groups[0].id, this.DATASETS[i].groups[0].title);
+      
+      this.DATASETS[i].authors = this.groupsMembers.filter(x => (x.group_name == this.DATASETS[i].groups[0].title));
+     
+      for (let j = 0; j < 1; j++) {
+      var name = this.DATASETS[i].resources['format'];
     
       if (!(name in lookup)) {
         lookup[name] = 1;
         count = count + 1;
-        this.filetypes.push({"id": count, "name": this.DATASETS[i].filetypes[j]})
+        for (let index = 0; index < this.DATASETS[i].resources.length; index++) {
+          this.filetypes.push({"id": count, "name": this.DATASETS[i].resources[index].format})
+        }
+       
         }
       }
     }
 
+    for (let i = 0; i < this.DATASETS.length; i++) {
+      for (let j = 0; j < this.DATASETS[i]['authors'].length; j++) {
+        if (this.DATASETS[i]['authors'][j].name == this.user['user']['full_name']){
+          this.NEW_DATASETS.push(this.DATASETS[i])
+        }
+      }
+    }
+    
+    this.dataSource.data = this.NEW_DATASETS;
+    this.size = this.NEW_DATASETS.length;
+    
     lookup = {};
     count = 0;
 
     for (let i = 0; i < this.DATASETS.length; i++) {
-      var name =this.DATASETS[i].year;
+      var name = this.DATASETS[i].metadata_created.getFullYear;
     
       if (!(name in lookup)) {
         lookup[name] = 1;
         count = count + 1;
-        this.years.push({"id": count, "name": this.DATASETS[i].year})
+        this.years.push({"id": count, "name": this.formatDateYear(this.DATASETS[i].metadata_created) })
         }
       }
 
     for (let i = 0; i < this.DATASETS.length; i++) {
-      for (let j = 0; j < this.DATASETS[i].categories.length; j++) {
-      var name = this.DATASETS[i].categories[j];
+      for (let j = 0; j < this.DATASETS[i].tags.length; j++) {
+      var name = this.DATASETS[i].tags[j];
     
       if (!(name in lookup)) {
         lookup[name] = 1;
         count = count + 1;
-        this.categories.push({"id": count, "name": this.DATASETS[i].categories[j]})
+        for (let index = 0; index < this.DATASETS[i].tags.length; index++) {
+          this.categories.push({"id": count, "name": this.DATASETS[i].tags[index].display_name})
+          
+          }
         }
       }
     }
+    this.checkFalse();
   }
-  
+
 
   async getGroups(){
+
     const response = await this.gs.get_groups();
     this.groups = response;
 
@@ -216,44 +310,103 @@ export class MydatasetsComponent implements OnInit {
         }
       }
 
-      this.addCheckboxes();
-  
-      this.years.forEach(obj => {
-        this.filterYear[obj.name] = false
-      })
-      this.categories.forEach(obj => {
-        this.filterCategory[obj.name] = false
-      })
-      this.repositories.forEach(obj => {
-        this.filterRepository[obj.name] = false
-      })
-      this.filetypes.forEach(obj => {
-        this.filterFiletypes[obj.name] = false
-      });
   }
   
+  ckan_users = [];
 }
 
-export interface Element {
-  id: number;
-  title: string;
-  year: string;
-  author: Array < string > ;
-  abstract: string;
-  categories: Array < string > ;
-  size: number;
-  repositorie: string;
-  DOI: string;
-  filetypes:  Array < string > 
-  created_on: string;
-  license: string;
+export interface Resource {
+  mimetype: any;
+  cache_url: any;
+  hash: string;
+  description: string;
+  name: string;
+  format: string;
+  url: string;
+  cache_last_updated: any;
+  package_id: string;
+  created: Date;
+  state: string;
+  mimetype_inner: any;
+  last_modified: any;
+  position: number;
+  url_type: any;
+  id: string;
+  resource_type: any;
+  size: any;
+}
+
+export interface Tag {
+  vocabulary_id: any;
+  state: string;
+  display_name: string;
+  id: string;
+  name: string;
 }
 
 export interface Group {
-  group_id: number;
-  authors: Array < string >;
+  display_name: string;
+  description: string;
+  image_display_url: string;
+  title: string;
+  id: string;
   name: string;
-  year: number;
-  abstract: string;
-  image: string;
+}
+
+export interface Organization {
+  description: string;
+  created: Date;
+  title: string;
+  name: string;
+  is_organization: boolean;
+  state: string;
+  image_url: string;
+  type: string;
+  id: string;
+  approval_status: string;
+}
+
+export interface Extra {
+  key: string;
+  value: string;
+}
+
+export interface RootObject {
+  license_title: string;
+  maintainer: string;
+  relationships_as_object: any[];
+  private: boolean;
+  maintainer_email: any;
+  num_tags: number;
+  id: string;
+  metadata_created: Date;
+  metadata_modified: Date;
+  author: string;
+  author_email: string;
+  state: string;
+  version: any;
+  creator_user_id: string;
+  type: string;
+  resources: Resource[];
+  num_resources: number;
+  tags: Tag[];
+  groups: Group[];
+  license_id: string;
+  relationships_as_subject: any[];
+  organization: Organization;
+  name: string;
+  isopen: boolean;
+  url: any;
+  notes: string;
+  owner_org: string;
+  extras: Extra[];
+  license_url: string;
+  title: string;
+  authors: authors[];
+}
+
+export interface authors {
+  name: string;
+  group_name: string;
+  id: string;
 }

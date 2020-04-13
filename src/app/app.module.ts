@@ -16,6 +16,10 @@ import { MatListModule } from '@angular/material/list';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips'; 
+
+import { StoreModule } from '@ngrx/store';
+import * as fromLogin from './pages/login/login.reducer';
 
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
@@ -44,7 +48,8 @@ import { GroupComponent } from './pages/group/group.component';
 import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
+import { DataMapComponent } from './ui/data-map/data-map.component';
+import { FileComponent } from './ui/file/file.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +72,8 @@ import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
     GroupComponent,
     NewgroupComponent,
     MygroupsComponent,
-    DataMapComponent
+    DataMapComponent,
+    FileComponent
   ],
   entryComponents: [ ],
   imports: [
@@ -77,6 +83,7 @@ import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
     MatTooltipModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatChipsModule,
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
@@ -90,6 +97,7 @@ import { DataMapComponent } from './pages/dataset/data-map/data-map.component';
     LeafletModule.forRoot(),
     SidebarModule.forRoot(),
     NgBootstrapFormValidationModule.forRoot(),
+    StoreModule.forRoot({ login: fromLogin.reducer }),
     MatSnackBarModule,
     MatTableModule,
     MatInputModule,

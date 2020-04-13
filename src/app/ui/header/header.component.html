@@ -21,12 +21,12 @@
                     <div class="navbar-nav">
                         
                         <span *ngIf="!isLogged()">
-                            <div class="textbar" routerLink="/login" >Login</div> 
+                            <div class="textbar" routerLink="/login" >Log in</div> 
                         </span>
                         
                         <span *ngIf="isLogged()">
                             <div>
-                                <div class="middlebox6"> <div style="color:white">Welcome {{user.name}}</div></div>
+                                <div class="middlebox6"> <div style="color:white">{{user.full_name.split(" ")[0]}} {{user.full_name.split(" ")[1]}}</div></div>
                                 <div class="rightbox6" ><img src="assets/images/img_avatar.png" alt="Avatar"> </div>
                             </div>
                         </span>
