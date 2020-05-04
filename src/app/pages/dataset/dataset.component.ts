@@ -28,23 +28,28 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     this.comments.push(new CommentNode(this.text))
     this.text="";    
   }
-  
+
 	options = {
   };
   
   id: string;
+  id_proc = "";
   private sub: any;
 
   metadata_created: Date;
   tag = "";
   tags = [];
   title = "";
+  month = null;
+  url = "";
+  purl = "http://purl.dpi.inpe.br/tbrd/H5JT7";
   users = [];
   abstract = [];
   resources = [];
   license = "";
   author_email = "";
   maintainer = "";
+  bib_author = "";
   extra = [];
   other_datasets = [];
   resource_url = "";
@@ -55,6 +60,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     private route: ActivatedRoute, 
     public dialog: MatDialog, 
     private ss: SignupService,
+    private snackBar: MatSnackBar,
     private ds: DatasetsService,
     private gs: GroupsService,
   ) {}
@@ -133,10 +139,40 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     return [day, monthNames[month], year].join(' ');
   }
 
+  CopyBibTex(){
+    this.snackBar.open("Copied to Clipboard", "", {
+      duration: 2000,
+    });
+    this.id_proc = this.groupsNames[0].split(" ")[1] + this.year;
+    for (let index = 0; index < this.groupsNames.length; index++) {
+      this.bib_author = this.bib_author + this.groupsNames[index].replace(" ",", ");
+      if (index != this.groupsNames.length -1){
+        this.bib_author = this.bib_author + " and "
+      }
+    }
+    let BibTex = '@dataset{'+ this.id_proc +', \n\xa0\xa0title\t\t = {{'+this.title+'}}, \n\xa0\xa0author\t = {'+this.bib_author+'}, \n\xa0\xa0month\t\t = '+this.month.toLowerCase()+',  \n\xa0\xa0year\t\t = '+this.year+',  \n\xa0\xa0publisher\t = {TerraBrasilis Research Data}, \n\xa0\xa0purl\t\t = {'+this.purl+'}, \n\xa0\xa0url\t\t = {'+this.url+'} \n}';
+    Clipboard.copy(BibTex);
+   }
+
   formatDateYear(date) {
     var d = new Date(date),
         year = d.getFullYear();
     return year;
+  }
+
+  formatDateMonth(date) {
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc", "Nov", "Dec"];
+
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return monthNames[month];
   }
 
   async getDataset(id: string){
@@ -148,6 +184,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     
     this.metadata_created = this.DATASETS['metadata_created'];
     this.year = this.formatDateYear(this.DATASETS['metadata_created']);
+    this.month = this.formatDateMonth(this.DATASETS['metadata_created']);
     this.tag  = this.DATASETS['tags'][0].name;
     this.tags = this.DATASETS['tags'];
 
@@ -157,13 +194,14 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
     this.title = this.DATASETS['title'];
     this.users = this.groupsMembers.filter(x => (x.group_name == this.DATASETS['groups'][0].title));
+    this.url = "http://terrabrasilisrd.dpi.inpe.br/"+"datasets/"+this.id
     this.abstract = this.DATASETS['notes'];
     this.resources = this.DATASETS['resources'];
     this.license = this.DATASETS['license_title'];
     this.author_email = this.DATASETS['author_email'];
     this.maintainer = this.DATASETS['maintainer'];
     this.extra = this.DATASETS['extras'];
-
+    
     this.getDatasets();
   }
 
@@ -182,12 +220,14 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   }
   
   groupsMembers = [];
+  groupsNames = [];
 
   async getGroupsMembers(id: string, name: string){
     const response = await this.ss.get_members(id);
     const responsedb = await this.gs.get_users_db();
     for (let index = 0; index < response['result'].length; index++) {
       this.groupsMembers.push({'group_name': name, 'id': response['result'][index][0], 'name': this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name'], 'img': responsedb.filter(x => (x.full_name == this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name']))[0].image    })
+      this.groupsNames.push(this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name'])
     }
   }
 

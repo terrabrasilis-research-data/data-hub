@@ -40,7 +40,7 @@
                                 <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
                                 <a *ngIf="i == users.length-2">; </a>
                         </a>
-                                ({{year}}): {{title}}. Terrabrasilis Research Data. http://tbrd.dpi.inpe.br/LABTes/1
+                                ({{year}}): {{title}}. Terrabrasilis Research Data. {{purl}}
                     </div>
           
                 </div>
@@ -48,7 +48,8 @@
                 <div class="greybox-left marginBottom textBox exportBox">
                     <div class="topicHead">Export</div>
     
-                    <a class="textlink spacetext2" href="#">BibTeX</a> 
+                    <a class="textlink spacetext2" (click)="CopyBibTex()">BibTeX</a> 
+                    <!--
                     <a class="textlink spacetext2" href="#">CSL</a> 
                     <a class="textlink spacetext2" href="#">DataCite</a> 
                     <a class="textlink spacetext2" href="#">Dublin</a> 
@@ -58,6 +59,7 @@
                     <a class="textlink spacetext2" href="#">GeoJSON</a> 
                     <a class="textlink spacetext2" href="#">MARCXML</a> 
                     <a class="textlink spacetext2" href="#">Mendeley</a> 
+                    -->
                 </div>
 
     </div>
