@@ -15,11 +15,24 @@ export class RepositorieService {
     let geonetwork_service_id
     let terrama2_service_id
     let owncloud_service_id
+    let services_list = ["geoserver", "nginx", "postgis", "volume"]
+
+    if (geonetwork == true){
+        services_list.push('geonetwork')
+    }
+
+    if (terrama2 == true){
+        services_list.push('terrama2')
+    }
+
+    if (owncloud == true){
+        services_list.push('owncloud')
+    }
 
     /*
     CREATE REPOSITORIE
     */
-   const responseRepo = await this.http.post(`http://127.0.0.1:8090/api/v1.0/repositories`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'path': repourl,}, {
+   const responseRepo = await this.http.post(`http://127.0.0.1:8090/api/v1.0/repositories`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'path': repourl, 'services': services_list}, {
     headers: new HttpHeaders ({
         Authorization: 'Bearer ' + userToken
     })
