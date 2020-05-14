@@ -26,6 +26,17 @@ export class SignupService {
     return response2;
   }
 
+  public async user_update(userToken: string, user_id: number, username: string, email: string, password: string, full_name: string, created_on: string, last_login:string, image: string, apikey: string): Promise<any> {
+    
+    const response = await this.http.put(`http://localhost:8090/api/v1.0/users/`+user_id, { 'username': username, 'password': password, 'email': email, 'image': 'http://localhost:8090/api/v1.0/uploads/'+image, 'created_on': created_on, 'last_login': last_login, 'full_name': full_name, 'ckan_api_key': apikey }, {
+      headers: new HttpHeaders ({
+          Authorization: 'Bearer ' + userToken
+      })
+      }).toPromise();
+
+    return response;
+  }
+
   public async get_members(id: string): Promise<any> {
     const response = await this.http.post(`http://localhost:5000/api/3/action/member_list`, {'id': id, 'object_type': 'user'}, {
       headers: new HttpHeaders ({

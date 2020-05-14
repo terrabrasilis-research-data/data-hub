@@ -17,6 +17,7 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { GroupComponent } from './pages/group/group.component';
+import { EdituserComponent } from './pages/edituser/edituser.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'view/datasets', component: MydatasetsComponent },
   { path: 'view/groups', component: MygroupsComponent },
   { path: 'view/services', component: MyservicesComponent },
+  { path: 'edit/user', component: EdituserComponent}
 ];
 
 @NgModule({
