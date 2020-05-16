@@ -44,6 +44,8 @@ export class NewrepositorieComponent implements OnInit {
 
   public collaboratorsModelChange(num: number): void {
     this.collaborators = num;
+    if (num)
+      this.getCKANUsersFromGroup(num);
   }
 
   public maintainerModelChange(str: string): void {
@@ -153,6 +155,25 @@ export class NewrepositorieComponent implements OnInit {
     });
 
   }
+  
+  async getCKANUsersFromGroup(group_id: number){
+  
+    let this_group = this.groups.filter(x => (x.group_id == group_id))[0];
+    let CKAN_Users = [];
+    
+    const response = await this.gs.get_users();
+
+    for (let index = 0; index < response['result'].length; index++) {
+      for (let index2 = 0; index2 < this_group['users'].length; index2++) {
+            
+        console.log(response['result'][index]['display_name'] + ' - ' + this_group['users'][index2]['full_name'])
+
+        if(response['result'][index]['display_name'] == this_group['users'][index2]['full_name'])
+          CKAN_Users.push(response['result'][index])
+      }
+    }
+    console.log(CKAN_Users)
+  } 
 
   async getGroupsFromUser(user_id: number){
     const response = await this.gs.get_groups_from_user(user_id);

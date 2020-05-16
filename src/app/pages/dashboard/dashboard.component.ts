@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit {
   public dataname: string = null;
   public datadescription: string = null;
   public dataformat: string = null;
+  public display_name: string = "";
 
   path = "";
   
@@ -292,10 +293,7 @@ export class DashboardComponent implements OnInit {
   async get_users_ckan(){
     const response = await this.ss.get_users_ckan();
     this.ckan_users = response['result'];
-  }
-
-  getUser(id: string){
-    return this.ckan_users.filter(x => (x.id == id))[0]['display_name'];    
+    this.display_name = this.ckan_users.filter(x => (x.apikey ==  this.user['user']['ckan_api_key'] ))[0]['display_name'];
   }
 
   getActivityName(type: string){

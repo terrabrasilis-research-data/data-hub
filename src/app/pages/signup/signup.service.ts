@@ -9,7 +9,7 @@ export class SignupService {
   
   }
   
-  public static API_KEY= 'd9ccbbb4-11cd-4565-9566-c239024eeedf';
+  public static API_KEY= '8cb7d36d-6d64-4051-94b1-330145b9ac65';
  
   public async user_create(name: string, email: string, password: string, full_name: string, time: string): Promise<any> {
     

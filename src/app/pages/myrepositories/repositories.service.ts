@@ -44,7 +44,7 @@ export class RepositorieService {
     CREATE ORGANIZATION CKAN
    */
   
-    const responseOrganizationCkan = await this.http.post(`http://localhost:5000/api/3/action/organization_create`, {'name': repourl, 'title': name, 'description': description}, {
+    const responseOrganizationCkan = await this.http.post(`http://localhost:5000/api/3/action/organization_create`, {'name': 'r_'+repourl, 'title': name, 'description': description}, {
         headers: new HttpHeaders ({
           Authorization: ckan_api_key
         })
