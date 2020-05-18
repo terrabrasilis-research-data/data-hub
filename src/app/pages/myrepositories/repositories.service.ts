@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CKAN_User } from '../newgroup/newgroup.component';
 
 @Injectable({ providedIn: 'root' })
 export class RepositorieService {
@@ -8,7 +9,7 @@ export class RepositorieService {
   constructor(private http: HttpClient) {
   }
 
-  public async repositorie_create(userToken: string, name: string, description: string, collaborators: number, maintainer: string, categorie: number, postgres: boolean, geoserver: boolean, geonetwork: boolean, terrama2: boolean, owncloud: boolean, created_on: string, ckan_api_key: string, repourl: string): Promise<any> {
+  public async repositorie_create(userToken: string, name: string, description: string, collaborators: number, maintainer: string, categorie: number, postgres: boolean, geoserver: boolean, geonetwork: boolean, terrama2: boolean, owncloud: boolean, created_on: string, ckan_api_key: string, repourl: string, users: CKAN_User[]): Promise<any> {
  
     let postgres_service_id
     let geoserver_service_id
@@ -43,8 +44,7 @@ export class RepositorieService {
     /*
     CREATE ORGANIZATION CKAN
    */
-  
-    const responseOrganizationCkan = await this.http.post(`http://localhost:5000/api/3/action/organization_create`, {'name': 'r_'+repourl, 'title': name, 'description': description}, {
+    const responseOrganizationCkan = await this.http.post(`http://localhost:5000/api/3/action/organization_create`, {'name': 'r_'+repourl, 'title': name, 'description': description, 'users': users}, {
         headers: new HttpHeaders ({
           Authorization: ckan_api_key
         })
