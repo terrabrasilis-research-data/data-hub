@@ -10,6 +10,12 @@ import { DatasetsService } from '../datasets/datasets.service';
 })
 export class HomeComponent implements OnInit
  {
+  
+  public query: string = "";
+
+  public searchBoxModelChange(str: string): void {
+    this.query = str;
+  }
 
   constructor(
     private snackBar: MatSnackBar, 
