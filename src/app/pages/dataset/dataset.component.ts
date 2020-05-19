@@ -138,6 +138,9 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
     return [day, monthNames[month], year].join(' ');
   }
+  CopyDataCite(){
+
+  }
 
   CopyBibTex(){
     this.snackBar.open("Copied to Clipboard", "", {

@@ -50,6 +50,8 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataMapComponent } from './ui/data-map/data-map.component';
 import { FileComponent } from './ui/file/file.component';
+import { EdituserComponent } from './pages/edituser/edituser.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { FileComponent } from './ui/file/file.component';
     NewgroupComponent,
     MygroupsComponent,
     DataMapComponent,
-    FileComponent
+    FileComponent,
+    EdituserComponent,
+    SearchComponent
   ],
   entryComponents: [ ],
   imports: [

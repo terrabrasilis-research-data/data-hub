@@ -34,6 +34,11 @@ export class GroupsService {
     return response;
   }
 
+  public async get_user(user_id: number): Promise<any> {
+    const response = await this.http.get(`http://localhost:8090/api/v1.0/users/`+user_id).toPromise();
+    return response;
+  }
+
   public async create_group(userToken: string, name: string, description: string, image: string, maintainer: string, language: string, users: CKAN_User[], created_on: string, groupurl: string, ckan_api_key: string): Promise<any> {
           
     /*

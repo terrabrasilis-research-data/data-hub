@@ -29,6 +29,7 @@ export class NewrepositorieComponent implements OnInit {
   public terrama2: boolean = true;
   public owncloud: boolean = true;
   public selectedFile: File;
+  public CKAN_Users = [];
 
   public nameModelChange(str: string): void {
     this.name = str;
@@ -44,6 +45,8 @@ export class NewrepositorieComponent implements OnInit {
 
   public collaboratorsModelChange(num: number): void {
     this.collaborators = num;
+    if (num)
+      this.getCKANUsersFromGroup(num);
   }
 
   public maintainerModelChange(str: string): void {
@@ -153,6 +156,20 @@ export class NewrepositorieComponent implements OnInit {
     });
 
   }
+  
+  async getCKANUsersFromGroup(group_id: number){
+  
+    let this_group = this.groups.filter(x => (x.group_id == group_id))[0];
+    
+    const response = await this.gs.get_users();
+
+    for (let index = 0; index < response['result'].length; index++) {
+      for (let index2 = 0; index2 < this_group['users'].length; index2++) {
+        if(response['result'][index]['display_name'] == this_group['users'][index2]['full_name'])
+          this.CKAN_Users.push(response['result'][index])
+      }
+    }
+  } 
 
   async getGroupsFromUser(user_id: number){
     const response = await this.gs.get_groups_from_user(user_id);
@@ -166,7 +183,7 @@ export class NewrepositorieComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.rs.repositorie_create(this.user['user']['access_token'], this.name, this.description, this.collaborators, this.maintainer, this.categorie, this.postgres, this.geoserver, this.geonetwork, this.terrama2, this.owncloud, this.todayISOString, this.user['user']['ckan_api_key'], this.repourl );
+      const response = await this.rs.repositorie_create(this.user['user']['access_token'], this.name, this.description, this.collaborators, this.maintainer, this.categorie, this.postgres, this.geoserver, this.geonetwork, this.terrama2, this.owncloud, this.todayISOString, this.user['user']['ckan_api_key'], this.repourl, this.CKAN_Users );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

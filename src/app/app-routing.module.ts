@@ -17,6 +17,8 @@ import { MygroupsComponent } from './pages/mygroups/mygroups.component';
 import { NewgroupComponent } from './pages/newgroup/newgroup.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { GroupComponent } from './pages/group/group.component';
+import { EdituserComponent } from './pages/edituser/edituser.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +30,7 @@ const routes: Routes = [
   { path: 'repositories/:id', component: RepositorieComponent },
   { path: 'datasets/:id', component: DatasetComponent },
   { path: 'groups/:id', component: GroupComponent },
+  { path: 'search/:query', component: SearchComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'create/dataset', component: NewdatasetComponent },
   { path: 'create/repositorie', component: NewrepositorieComponent },
@@ -36,6 +39,7 @@ const routes: Routes = [
   { path: 'view/datasets', component: MydatasetsComponent },
   { path: 'view/groups', component: MygroupsComponent },
   { path: 'view/services', component: MyservicesComponent },
+  { path: 'edit/user', component: EdituserComponent}
 ];
 
 @NgModule({

@@ -9,7 +9,7 @@ export class SignupService {
   
   }
   
-  public static API_KEY= 'd9ccbbb4-11cd-4565-9566-c239024eeedf';
+  public static API_KEY= '4b6df95f-911f-4ce4-8957-91a0bbc99a8e';
  
   public async user_create(name: string, email: string, password: string, full_name: string, time: string): Promise<any> {
     
@@ -24,6 +24,17 @@ export class SignupService {
     const response2 = await this.http.post(`http://localhost:8090/api/v1.0/users`, {'username': name, 'password': password, 'email': email, 'image': 'assets/images/img_avatar.png', 'created_on': time, 'last_login': time, 'full_name': full_name, 'ckan_api_key': apikey}).toPromise();
     
     return response2;
+  }
+
+  public async user_update(userToken: string, user_id: number, username: string, email: string, password: string, full_name: string, created_on: string, last_login:string, image: string, apikey: string): Promise<any> {
+    
+    const response = await this.http.put(`http://localhost:8090/api/v1.0/users/`+user_id, { 'username': username, 'password': password, 'email': email, 'image': 'http://localhost:8090/api/v1.0/uploads/'+image, 'created_on': created_on, 'last_login': last_login, 'full_name': full_name, 'ckan_api_key': apikey }, {
+      headers: new HttpHeaders ({
+          Authorization: 'Bearer ' + userToken
+      })
+      }).toPromise();
+
+    return response;
   }
 
   public async get_members(id: string): Promise<any> {

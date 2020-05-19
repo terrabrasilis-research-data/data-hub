@@ -12,21 +12,18 @@ import { CloseScrollStrategy } from '@angular/cdk/overlay';
 import { DatasetsService } from '../datasets/datasets.service';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
-  selector: 'app-group',
-  templateUrl: './group.component.html',
-  styleUrls: ['./group.component.scss']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class GroupComponent implements OnInit {
+export class SearchComponent implements OnInit {
   
-  id: number;
+  query: string;
   private sub: any;
-  title = "";
 
   DATASETS: RootObject[] = [];
-  groups: Group2[]; 
-  selected_group: Group2[]; 
+  groups: Group[]; 
   ckan_tags: string[];
 
   displayedColumns = ['dataset'];
@@ -115,8 +112,8 @@ export class GroupComponent implements OnInit {
      private snackBar: MatSnackBar, 
      public dialog: MatDialog, 
      private ds: DatasetsService,
-     private ss: SignupService,
      private route: ActivatedRoute,
+     private ss: SignupService,
      private gs: GroupsService
      ) {
        
@@ -130,11 +127,11 @@ export class GroupComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
-    });
 
+    this.sub = this.route.params.subscribe(params => {
+      this.query = params['query'];
+    });
+  
     document.getElementById("wrapper").className = "d-flex toggled";
 
     this.getDatasets();
@@ -180,18 +177,12 @@ export class GroupComponent implements OnInit {
     
     this.repositories.forEach(obj => {
       this.filterRepository[obj.name] = false
-      if (obj.name == this.selected_group[0].name){
-        this.filterRepository[obj.name] = true
-      }
     })
 
     this.filetypes.forEach(obj => {
       this.filterFiletypes[obj.name] = false
     });
 
-    this.dataSource.data = this.dataSource.data.filter(x => (x.groups.filter(g => (g.title == this.selected_group[0].name))).length);
-    this.size = this.dataSource.data.length;
-   
   }
 
   formatDate(date) {
@@ -273,12 +264,11 @@ export class GroupComponent implements OnInit {
   }
 
 
+
   async getGroups(){
 
     const response = await this.gs.get_groups();
     this.groups = response;
-    this.selected_group = this.groups.filter(x => (x.group_id == this.id))
-    this.title = this.selected_group[0].name
 
     var lookup = {};
     var count = 0;
@@ -292,7 +282,7 @@ export class GroupComponent implements OnInit {
         this.repositories.push({"id": count, "name":  this.groups[i].name})
         }
       }
-     
+
   }
   
   ckan_users = [];
@@ -392,14 +382,4 @@ export interface authors {
   name: string;
   group_name: string;
   id: string;
-}
-
-
-export interface Group2 {
-  group_id: number;
-  authors: Array < string >;
-  name: string;
-  year: number;
-  abstract: string;
-  image: string;
 }

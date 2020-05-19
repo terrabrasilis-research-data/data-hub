@@ -1,0 +1,90 @@
+<div class="main">
+  <div class="divBox">
+
+          <div class="card">
+                  <article class="card-body">
+                  <div routerLink="/dashboard" class="float-right btn button">Dashboard</div>
+                  <h4 class="card-title mb-4 mt-1">Account</h4>
+
+                  <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                      <label class="control-label">User name</label>
+                      <input type="text" class="form-control" formControlName="Username"  [ngModel]="username" (ngModelChange)="usernameModelChange($event)">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">Email</label>
+                      <input type="text" class="form-control" formControlName="Email" [ngModel]="email" (ngModelChange)="emailModelChange($event)">
+                    </div>
+
+                    <div class="form-group">
+
+                      <label class="control-label">Password</label>
+                      <input type="password" class="form-control" formControlName="OldPassword" [ngModel]="password" (ngModelChange)="oldpasswordModelChange($event)">
+                    </div>
+ 
+                    <a class="float-right textlink click" (click)="change_pass()">Change password</a>
+                                          
+                    <div class="form-group" *ngIf="change_password">
+
+                        <br>
+                        <hr class="style1">
+                        <br>
+
+                      <label class="control-label">New password</label>
+                      <input type="password" class="form-control" formControlName="NewPassword" [ngModel]="password" (ngModelChange)="newpasswordModelChange($event)">
+                    </div>
+                    
+                    <div class="form-group" *ngIf="change_password">
+                      <label class="control-label">Reenter new password</label>
+                      <input type="password" class="form-control" formControlName="ReNewPassword">
+
+
+                      <br>
+                      <hr class="style1">
+                      <br>
+
+                    </div>
+
+                    <div class="form-group">
+                            <label class="control-label">Full name</label>
+                            <input type="text" class="form-control" formControlName="Fullname" [ngModel]="fullname" (ngModelChange)="fullnameModelChange($event)">
+                    </div>
+
+                    <div class="form-group bottom">
+                            <label>Image</label> <br>
+                            
+                            <app-file
+                            
+                                (toggle)="getName($event)"
+                            
+                            >
+                            </app-file>
+                    </div>
+                        
+                              <button class="btn btn-outline-secondary" type="button" (click)="onReset()">Reset</button>
+      
+                              <button class="btn btn-primary pull-right button" type="submit" (click)="onSubmit()">Update</button>
+      
+                          </form>
+      
+
+                  </article>
+                  </div> 
+
+  </div>
+
+  <div class=""  *ngIf="showMsg" style="width: 50%; margin-left: 25%; margin-right: 25%">
+              <div class="col-xs-12">
+              <p class="alert alert-success">
+                  <strong>Successful update!</strong> Please log out to view the changes!
+      
+              </p>
+          </div>
+          </div>
+
+          <div style="margin-bottom: 95px">
+              </div>
+</div>
+  

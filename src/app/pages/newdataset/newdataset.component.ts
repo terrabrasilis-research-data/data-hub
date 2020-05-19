@@ -41,6 +41,7 @@ export class NewdatasetComponent implements OnInit {
   public dataname: string = null;
   public datadescription: string = null;
   public dataformat: string = null;
+  public repo_ckan_id: string = null;
 
   getDataURL(event) {
     this.file_url = event;
@@ -252,7 +253,7 @@ export class NewdatasetComponent implements OnInit {
 
   async getRepositorie(id: number){
     const response = await this.rs.get_repositorie(id);
-    this.repo_name = response['repositorie'][0].name;
+    this.repo_name = response['repositorie'][0].path;
   }
   
   async getRepositories(){
@@ -263,7 +264,7 @@ export class NewdatasetComponent implements OnInit {
   private async onSubmit() {
    
     try {
-      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repo_name, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, 'r_'+this.repo_name, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

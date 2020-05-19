@@ -1,0 +1,109 @@
+.main{
+    margin-top: 30px;
+    margin-left: 2%;
+    margin-right: 2%;
+    position: relative;
+}
+
+.divBox{ 
+    width:800px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.textlink{
+    color: #0F66A0; 
+
+}
+
+.textlink:hover{
+    text-decoration: underline;
+}
+
+.button{
+    background: #0F66A0; 
+    color: white;
+}
+.button:hover{
+    background:rgb(42, 138, 201);
+    cursor: pointer;
+}
+
+.sizeTextInput{
+    height: 100px;
+}
+
+.sizeDropdown{
+    height: 35px;
+    width: 150px;
+    border-radius: 0.5em;
+
+}
+
+.plusicon{
+
+    cursor: pointer;
+}
+
+.desc{
+    color: #6C7581;
+}
+
+.firstbox{ 
+    float:left;  
+    width: 50%;
+} 
+
+.secoundbox{ 
+    display: flex;
+    padding-left: 10px;
+} 
+
+.topMargin{
+    margin-top: 10px;
+}
+
+.image{
+    border-radius: 10%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.mat-form-field {
+    width: 250px !important; 
+
+}
+.people{
+    width: 250px;
+}
+
+.addBtn{
+    margin-left: 10px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.status{
+    font-weight: bold;
+    background:#5cb85c;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.statusOFF{
+    font-weight: bold;
+    background:#d9534f;
+    border-radius: 4pt;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.click{
+    cursor: pointer;
+}
