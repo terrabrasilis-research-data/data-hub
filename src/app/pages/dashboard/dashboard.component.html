@@ -247,7 +247,7 @@
                                                 </mat-expansion-panel-header>
 
                                                 <div *ngFor="let d of datasets; let j = index;">
-                                                        <a class="textlink itemLine" [routerLink]="['/dataset', d.id]">{{d.author.split(" ")[1]}} et al. ({{formatDateYear(d.metadata_created)}}):  &nbsp; <b>{{d.title}}</b> </a>
+                                                        <a class="textlink itemLine" [routerLink]="['/dataset', d.id]">{{d.author.split(" ")[1]}} et al. ({{formatDateYear(d.metadata_created)}}):  &nbsp; <b>{{d.title | slice:0:32}}</b> </a>
                                                 </div>
 
                                                 <br>

@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit
 
   async getGroupsMembers(id: string, name: string){
     const response = await this.ss.get_members(id);
+    this.groupsMembers = [];
     for (let index = 0; index < response['result'].length; index++) {
       this.groupsMembers.push({'group_name': name, 'id': response['result'][index][0], 'name': this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name']})
     }

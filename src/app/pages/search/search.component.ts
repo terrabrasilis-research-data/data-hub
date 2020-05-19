@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
 
   DATASETS: RootObject[] = [];
   groups: Group[]; 
+  ckan_tags: string[];
 
   displayedColumns = ['dataset'];
   dataSource = new MatTableDataSource<RootObject>(this.DATASETS);
@@ -135,7 +136,8 @@ export class SearchComponent implements OnInit {
 
     this.getDatasets();
     this.getGroups();
-    this.get_users_ckan();
+    this.get_users_ckan();;
+    this.get_ckan_tags();
   }
   
   private addCheckboxes() {
@@ -209,6 +211,12 @@ export class SearchComponent implements OnInit {
     this.ckan_users = response['result'];
   }
   
+  async get_ckan_tags(){
+    const response = await this.ds.get_ckan_tags();
+    this.ckan_tags = response['result'];
+    
+  }
+
   groupsMembers = [];
 
   async getGroupsMembers(id: string, name: string){
@@ -218,64 +226,43 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  removeDuplicatesBy(keyFn, array) {
+    var mySet = new Set();
+    return array.filter(function(x) {
+      var key = keyFn(x), isNew = !mySet.has(key);
+      if (isNew) mySet.add(key);
+      return isNew;
+    });
+  }
+
   async getDatasets(){
     const response = await this.ds.get_ckan_datasets();
     this.DATASETS = response['result']['results'];
     this.dataSource.data = this.DATASETS;
     this.size = this.DATASETS.length;
 
-    var lookup = {};
-    var count = 0;
-
     for (let i = 0; i < this.DATASETS.length; i++) {
 
       await this.getGroupsMembers(this.DATASETS[i].groups[0].id, this.DATASETS[i].groups[0].title);
       
       this.DATASETS[i].authors = this.groupsMembers.filter(x => (x.group_name == this.DATASETS[i].groups[0].title));
-     
-      for (let j = 0; j < 1; j++) {
-      var name = this.DATASETS[i].resources['format'];
-    
-      if (!(name in lookup)) {
-        lookup[name] = 1;
-        count = count + 1;
-        for (let index = 0; index < this.DATASETS[i].resources.length; index++) {
-          this.filetypes.push({"id": count, "name": this.DATASETS[i].resources[index].format})
-        }
-       
-        }
+      
+      for (let index = 0; index < this.DATASETS[i].resources.length; index++) {
+        this.filetypes.push({"id": (i*10)+index, "name": this.DATASETS[i].resources[index].format})
       }
+      this.years.push({"id": i, "name": this.formatDateYear(this.DATASETS[i].metadata_created) }) 
     }
-
-    lookup = {};
-    count = 0;
-
-    for (let i = 0; i < this.DATASETS.length; i++) {
-      var name = this.DATASETS[i].metadata_created.getFullYear;
     
-      if (!(name in lookup)) {
-        lookup[name] = 1;
-        count = count + 1;
-        this.years.push({"id": count, "name": this.formatDateYear(this.DATASETS[i].metadata_created) })
-        }
-      }
+    this.years = this.removeDuplicatesBy(x => x.name, this.years);
+    this.filetypes = this.removeDuplicatesBy(x => x.name, this.filetypes);
 
-    for (let i = 0; i < this.DATASETS.length; i++) {
-      for (let j = 0; j < this.DATASETS[i].tags.length; j++) {
-      var name = this.DATASETS[i].tags[j];
-    
-      if (!(name in lookup)) {
-        lookup[name] = 1;
-        count = count + 1;
-        for (let index = 0; index < this.DATASETS[i].tags.length; index++) {
-          this.categories.push({"id": count, "name": this.DATASETS[i].tags[index].display_name})
-          
-          }
-        }
-      }
+    for (let index = 0; index < this.ckan_tags.length; index++) {
+      this.categories.push({"id": index, "name": this.ckan_tags[index]})
     }
+    
     this.checkFalse();
   }
+
 
 
   async getGroups(){
