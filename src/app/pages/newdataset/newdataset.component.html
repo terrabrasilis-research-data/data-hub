@@ -31,7 +31,6 @@
                                           <select class="sizeDropdown sizeInput" formControlName="License" [ngModel]="license" (ngModelChange)="licenseModelChange($event)">
                                                 <option *ngFor="let lic of licences" value="{{lic.id}}">{{lic.title}}</option>
                                           </select>
-                                        
                                         </div>
 
                                         <div class="form-group">
@@ -57,6 +56,11 @@
                                         </div>
                                         
                                         <div class="form-group">
+                                                <label>Publication Year</label>
+                                                <input name="" class="form-control" formControlName="Year" [ngModel]="year" (ngModelChange)="yearModelChange($event)" placeholder="2020" type="text">
+                                        </div>
+
+                                        <div class="form-group">
                                             <label>Maintainer</label>
                                             <input name="" class="form-control" formControlName="Maintainer" [ngModel]="maintainer" (ngModelChange)="maintainerModelChange($event)" placeholder="Maintainer name" type="text">
                                         </div>
@@ -75,7 +79,7 @@
                                             <label>Author Email</label>
                                             <input name="" class="form-control" formControlName="AuthorEmail" [ngModel]="authoremail" (ngModelChange)="authorEmailModelChange($event)" placeholder="Email address" type="text">
                                         </div>
-                                        
+                                            
                                         <br>
                                         <hr class="style1">
                                         <br>

@@ -26,7 +26,7 @@ export class DatasetsService {
   }
 
   public async get_ckan_datasets_search(search: string): Promise<any> {
-    const response = await this.http.get(`http://localhost:5000/api/3/action/package_search`).toPromise();
+    const response = await this.http.get(`http://localhost:5000/api/3/action/package_search?q=`+search).toPromise();
     return response;
   }
 
@@ -40,7 +40,7 @@ export class DatasetsService {
     return response['result'];
   }
 
-  public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, file_url: string, dataname: string, datadescription: string, dataformat: string, tags: string[], key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, nameAlpha: string, ckan_api_key: string): Promise<any> {
+  public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, file_url: string, dataname: string, datadescription: string, dataformat: string, tags: string[], key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, year: number, nameAlpha: string, ckan_api_key: string): Promise<any> {
     
     let API_KEY= '4b6df95f-911f-4ce4-8957-91a0bbc99a8e';
     
@@ -51,6 +51,11 @@ export class DatasetsService {
     let key_list = [key1, key2, key3]
     let value_list = [value1, value2, value3]
     var extra = []; 
+    
+    extra.push({
+      value: 'Year',
+      key: year
+    });
 
     for (let index = 0; index < 3; index++) {
       if (key_list[index] && value_list[index])

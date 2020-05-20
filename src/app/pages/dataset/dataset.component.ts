@@ -42,6 +42,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   title = "";
   month = null;
   url = "";
+  year = null;
   purl = "http://purl.dpi.inpe.br/tbrd/H5JT7";
   users = [];
   abstract = [];
@@ -53,7 +54,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   extra = [];
   other_datasets = [];
   resource_url = "";
-  year = null;
+  pub_year = null;
   tags_list = [];
 
   constructor(
@@ -205,6 +206,11 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     this.maintainer = this.DATASETS['maintainer'];
     this.extra = this.DATASETS['extras'];
     
+    for (let index = 0; index < this.DATASETS['extras'].length; index++) {
+      if(this.DATASETS['extras'][index].key == 'Year')
+        this.pub_year = this.DATASETS['extras'][index].value
+    }
+
     this.getDatasets();
   }
 
@@ -233,7 +239,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
       this.groupsNames.push(this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name'])
     }
   }
-
+  
   ckan_users = [];
 
   DATASETS: RootObject[] = [];

@@ -32,6 +32,7 @@ export class NewdatasetComponent implements OnInit {
   public authoremail: string = "";
   public repo_id: number = null;
   public repo_name: string = "";
+  public year: number = null;
   public key1: string = null;
   public value1: string = null;
   public key2: string = null;
@@ -54,7 +55,11 @@ export class NewdatasetComponent implements OnInit {
   public descriptionModelChange(str: string): void {
     this.description = str;
   }
-  
+
+  public yearModelChange(num: number): void {
+    this.year = num;
+  }
+
   public tagsModelChange(str: string): void {
     this.tags = str;
   }
@@ -172,6 +177,12 @@ export class NewdatasetComponent implements OnInit {
         Validators.required
       ]),
 
+      Year: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(4)
+      ]),
+
       Visibility: new FormControl('', [
       ]),
 
@@ -264,7 +275,7 @@ export class NewdatasetComponent implements OnInit {
   private async onSubmit() {
    
     try {
-      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, 'r_'+this.repo_name, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, 'r_'+this.repo_name, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.year, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

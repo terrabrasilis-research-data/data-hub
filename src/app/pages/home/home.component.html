@@ -11,7 +11,7 @@
                             <div class="container">
                                 <div class="input-group">
                         
-                                    <input type="text" class="form-control" [ngModel]="searchBox" (ngModelChange)="searchBoxModelChange($event)" placeholder="Search by keywords, authors or data content">
+                                    <input type="text" class="form-control" (keydown)="onKeydown($event)" [ngModel]="searchBox" (ngModelChange)="searchBoxModelChange($event)" placeholder="Search by keywords, authors or year">
                                     
                                     <div class="input-group-append">
                                         <button class="btn button" type="button" [routerLink]="['/search/', query]">
@@ -22,7 +22,7 @@
                             </div>
                             <div class="boxRight">
                                 <!--  <div class="boxText">
-                                            <a class="nav-item nav-link textlink" [routerLink]="'/'">Advanced Search</a>
+                                            <a class="nav-item nav-link textlink" [routerLink]="'/'">Advanced Search</a> 
                                     </div>
                                 -->    
                                 </div>

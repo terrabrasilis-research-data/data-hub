@@ -67,6 +67,11 @@
                                                     </div>
                                                     
                                                     <div class="form-group">
+                                                            <label>Publication Year</label>
+                                                            <input name="" class="form-control" formControlName="Year" [ngModel]="year" (ngModelChange)="yearModelChange($event)" placeholder="2020" type="text">
+                                                    </div>
+
+                                                    <div class="form-group">
                                                         <label>Maintainer</label>
                                                         <input name="" class="form-control" formControlName="Maintainer" [ngModel]="maintainer" (ngModelChange)="maintainerModelChange($event)" placeholder="Maintainer name" type="text">
                                                     </div>
