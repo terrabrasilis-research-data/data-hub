@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
   public visibility: boolean = false;
   public maintainer: string = "";
   public authoremail: string = "";
+  public year: number = null;
   public repository: string = "";
   public dataname: string = null;
   public datadescription: string = null;
@@ -60,6 +61,10 @@ export class DashboardComponent implements OnInit {
 
   public licenseModelChange(str: string): void {
     this.license = str;
+  }  
+  
+  public yearModelChange(num: number): void {
+    this.year = num;
   }
 
   public collaboratorsModelChange(str: string): void {
@@ -152,6 +157,12 @@ export class DashboardComponent implements OnInit {
 
       Collaborators: new FormControl('', [
         Validators.required
+      ]),
+
+      Year: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(4)
       ]),
 
       Visibility: new FormControl('', [
@@ -260,7 +271,7 @@ export class DashboardComponent implements OnInit {
 
   private async onSubmit() {
     try {
-      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, this.repository, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), "", "", "", "", "", "", this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
+      const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, 'r_'+this.repository, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), "", "", "", "", "", "", this.year, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
         this.formGroup.reset();
         this.showMsg = true;

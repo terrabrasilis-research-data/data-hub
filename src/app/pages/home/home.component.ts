@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SignupService } from '../signup/signup.service';
 import { DatasetsService } from '../datasets/datasets.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +21,19 @@ export class HomeComponent implements OnInit
   constructor(
     private snackBar: MatSnackBar, 
     private ss: SignupService,
+    private router:Router,
     private ds: DatasetsService,) { }
 
   ngOnInit() {
     document.getElementById("wrapper").className = "d-flex toggled";
     this.getDatasets();
     this.get_users_ckan();
+  }
+  
+  onKeydown(event) {
+    if (event.key === "Enter") {
+      this.router.navigate(['/search/'+this.query]);
+    }
   }
 
   formatDate(date) {
@@ -80,6 +88,8 @@ export class HomeComponent implements OnInit
   ckan_users = [];
 
   DATASETS: RootObject[] = [];
+
+
 }
 
 export interface Resource {

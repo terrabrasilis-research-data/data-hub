@@ -73,7 +73,7 @@ export class DatasetsComponent implements OnInit {
 
     for (let i = 0; i < this.years.length; i++) {
       if (this.filterYear[this.years[i].name] != false) {
-        this.dataSource.data = this.dataSource.data.filter(x => (this.formatDateYear(x.metadata_created) == this.years[i].name) )
+        this.dataSource.data = this.dataSource.data.filter(x => (x.extras.filter(y => (y.key == 'Year'))[0].value == this.years[i].name ) )
         this.size = this.dataSource.data.length;
       } else {
       }
@@ -243,7 +243,10 @@ export class DatasetsComponent implements OnInit {
       for (let index = 0; index < this.DATASETS[i].resources.length; index++) {
         this.filetypes.push({"id": (i*10)+index, "name": this.DATASETS[i].resources[index].format})
       }
-      this.years.push({"id": i, "name": this.formatDateYear(this.DATASETS[i].metadata_created) }) 
+      for (let index = 0; index < this.DATASETS[i].extras.length; index++) {
+        if(this.DATASETS[i].extras[index].key == 'Year')
+          this.years.push({"id": i, "name": this.DATASETS[i].extras[index].value }) 
+      }
     }
     
     this.years = this.removeDuplicatesBy(x => x.name, this.years);
@@ -276,6 +279,14 @@ export class DatasetsComponent implements OnInit {
 
   }
   
+  get_year(id: string){
+    let selected_dataset = this.DATASETS.filter(x => (x.id == id))[0]
+    for (let index = 0; index < selected_dataset['extras'].length; index++) {
+      if(selected_dataset['extras'][index].key == 'Year')
+        return selected_dataset['extras'][index].value
+    }
+  }
+
   ckan_users = [];
 }
 
