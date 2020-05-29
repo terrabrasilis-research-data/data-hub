@@ -5,9 +5,15 @@ The Data Portal is responsible for organizing the entry of researchers and users
 
 Run `ng serve --host ip_da_maquina` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Docker
+
+Run `sudo docker build -t inpe/terrabrasilis-data-hub .`.
+Run `sudo docker run -it --rm -p 4200:4200 --name terrabrasilisrd_portal inpe/terrabrasilis-data-hub`.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+es -p 4201:4200 --name terrabrasilisrd_data-hub --rm inpe/terrabrasilis-data-hub`.
 
 ## Build
 
