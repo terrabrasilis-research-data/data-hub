@@ -42,7 +42,7 @@ export class DatasetsService {
 
   public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, file_url: string, dataname: string, datadescription: string, dataformat: string, tags: string[], key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, year: number, nameAlpha: string, ckan_api_key: string): Promise<any> {
     
-    let API_KEY= '4b6df95f-911f-4ce4-8957-91a0bbc99a8e';
+    let API_KEY= '4875ee2a-c90c-4a9c-8f61-342e2a9171e7';
     
     let tags_dict = tags.map(x => {
       return({'name': x.trim()});
