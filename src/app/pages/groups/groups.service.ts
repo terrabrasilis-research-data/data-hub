@@ -25,7 +25,7 @@ export class GroupsService {
   }
 
   public async get_users(): Promise<any> {
-    const response = await this.http.get(`http://localhost:5000/api/3/action/user_list`).toPromise();
+    const response = await this.http.get(`http://localhost:5001/api/3/action/user_list`).toPromise();
     return response;
   }
 
@@ -44,7 +44,7 @@ export class GroupsService {
     /*
     CREATE GROUP CKAN
     */
-    const responseGroupCkan = await this.http.post(`http://localhost:5000/api/3/action/group_create`, {'name': groupurl, 'title': name, 'description': description, 'state': 'active', 'users': users }, {
+    const responseGroupCkan = await this.http.post(`http://localhost:5001/api/3/action/group_create`, {'name': groupurl, 'title': name, 'description': description, 'state': 'active', 'users': users }, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
       })

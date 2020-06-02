@@ -13,7 +13,7 @@ export class SignupService {
  
   public async user_create(name: string, email: string, password: string, full_name: string, time: string): Promise<any> {
     
-    const response = await this.http.post(`http://localhost:5000/api/3/action/user_create`, {'name': name, 'email': email, 'password': password, 'fullname': full_name}, {
+    const response = await this.http.post(`http://localhost:5001/api/3/action/user_create`, {'name': name, 'email': email, 'password': password, 'fullname': full_name}, {
       headers: new HttpHeaders ({
         Authorization: SignupService.API_KEY
       })
@@ -38,7 +38,7 @@ export class SignupService {
   }
 
   public async get_members(id: string): Promise<any> {
-    const response = await this.http.post(`http://localhost:5000/api/3/action/member_list`, {'id': id, 'object_type': 'user'}, {
+    const response = await this.http.post(`http://localhost:5001/api/3/action/member_list`, {'id': id, 'object_type': 'user'}, {
       headers: new HttpHeaders ({
         Authorization: SignupService.API_KEY
       })
@@ -47,7 +47,7 @@ export class SignupService {
   }
 
   public async get_users_ckan(): Promise<any> {
-    const response = await this.http.get(`http://localhost:5000/api/3/action/user_list`, {
+    const response = await this.http.get(`http://localhost:5001/api/3/action/user_list`, {
       headers: new HttpHeaders ({
         Authorization: SignupService.API_KEY
       })
@@ -56,7 +56,7 @@ export class SignupService {
   }
   
   public async organization_show(id: string): Promise<any> {
-    const response = await this.http.post(`http://localhost:5000/api/3/action/organization_show`, {'id': id}, {
+    const response = await this.http.post(`http://localhost:5001/api/3/action/organization_show`, {'id': id}, {
       headers: new HttpHeaders ({
         Authorization: SignupService.API_KEY
       })
@@ -65,7 +65,7 @@ export class SignupService {
   }
 
   public async get_activity(ckan_api_key: string): Promise<any> {
-    const response = await this.http.post(`http://localhost:5000/api/3/action/dashboard_activity_list`, {'limit': 6}, {
+    const response = await this.http.post(`http://localhost:5001/api/3/action/dashboard_activity_list`, {'limit': 6}, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
       })
