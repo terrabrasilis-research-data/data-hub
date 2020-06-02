@@ -7,8 +7,9 @@ Run `ng serve --host ip_da_maquina` for a dev server. Navigate to `http://localh
 
 ## Docker
 
-Run `sudo docker build -t inpe/terrabrasilis-data-hub .`.
-Run `sudo docker run -it --rm -p 4200:4200 --name terrabrasilisrd_portal inpe/terrabrasilis-data-hub`.
+Run `sudo docker build -t inpe/terrabrasilis-data-hub .`
+
+Run `sudo docker run -d -p 4200:4200 --name terrabrasilisrd_portal inpe/terrabrasilis-data-hub`
 
 ## Code scaffolding
 
