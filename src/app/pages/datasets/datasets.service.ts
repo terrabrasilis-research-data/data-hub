@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CKAN_User } from '../newgroup/newgroup.component';
+import { SignupService } from '../signup/signup.service';
 
 @Injectable({ providedIn: 'root' })
 export class DatasetsService {
@@ -9,40 +10,35 @@ export class DatasetsService {
   constructor(private http: HttpClient) {
   }
 
-
-  public async get_datasets(): Promise<any> {
-    const response = await this.http.get(`http://127.0.0.1:8000/get_datasets.json`).toPromise();
-    return response;
-  }
-
+  CKAN_PORT = '5000';
+  TBRD_API_PORT = '8090';
+  
   public async get_ckan_datasets(): Promise<any> {
-    const response = await this.http.get(`http://localhost:5000/api/3/action/package_search`).toPromise();
+    const response = await this.http.get(`http://localhost:`+this.CKAN_PORT+`/api/3/action/package_search`).toPromise();
     return response;
   }
 
   public async get_ckan_tags(): Promise<any> {
-    const response = await this.http.get(`http://localhost:5000/api/3/action/tag_list`).toPromise();
+    const response = await this.http.get(`http://localhost:`+this.CKAN_PORT+`/api/3/action/tag_list`).toPromise();
     return response;
   }
 
   public async get_ckan_datasets_search(search: string): Promise<any> {
-    const response = await this.http.get(`http://localhost:5000/api/3/action/package_search?q=`+search).toPromise();
+    const response = await this.http.get(`http://localhost:`+this.CKAN_PORT+`/api/3/action/package_search?q=`+search).toPromise();
     return response;
   }
 
   public async get_ckan_dataset(id: string): Promise<any> {
-    const response = await this.http.post(`http://localhost:5000/api/3/action/package_show`,{'id': id}).toPromise();
+    const response = await this.http.post(`http://localhost:`+this.CKAN_PORT+`/api/3/action/package_show`,{'id': id}).toPromise();
     return response;
   }
 
   public async get_license_list(): Promise<any> {
-    const response = await this.http.get(`http://localhost:5000/api/3/action/license_list`).toPromise();
+    const response = await this.http.get(`http://localhost:`+this.CKAN_PORT+`/api/3/action/license_list`).toPromise();
     return response['result'];
   }
 
   public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, file_url: string, dataname: string, datadescription: string, dataformat: string, tags: string[], key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, year: number, nameAlpha: string, ckan_api_key: string): Promise<any> {
-    
-    let API_KEY= '4875ee2a-c90c-4a9c-8f61-342e2a9171e7';
     
     let tags_dict = tags.map(x => {
       return({'name': x.trim()});
@@ -65,17 +61,17 @@ export class DatasetsService {
       });
     }
     
-    const responseDataset = await this.http.post(`http://localhost:5000/api/3/action/package_create`, {'name': nameAlpha, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}], 'tags': tags_dict, "extras": extra }, {
+    const responseDataset = await this.http.post(`http://localhost:`+this.CKAN_PORT+`/api/3/action/package_create`, {'name': nameAlpha, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}], 'tags': tags_dict, "extras": extra }, {
       headers: new HttpHeaders ({
-        Authorization: API_KEY
+        Authorization: ckan_api_key
       })
     }).toPromise();
 
     let package_id = responseDataset['result']['id']
 
-    const responseResource = await this.http.post(`http://localhost:5000/api/3/action/resource_create`, {'package_id': package_id, 'name': dataname, 'url': 'http://localhost:8090/api/v1.0/uploads/'+file_url, 'description': datadescription, 'format': dataformat}, {
+    const responseResource = await this.http.post(`http://localhost:`+this.CKAN_PORT+`/api/3/action/resource_create`, {'package_id': package_id, 'name': dataname, 'url': 'http://localhost:'+this.TBRD_API_PORT+'/api/v1.0/uploads/'+file_url, 'description': datadescription, 'format': dataformat}, {
       headers: new HttpHeaders ({
-        Authorization: API_KEY
+        Authorization: ckan_api_key
       })
     }).toPromise();
 

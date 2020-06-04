@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SignupService } from '../signup/signup.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -8,8 +9,10 @@ export class LoginService {
   constructor(private http: HttpClient) {
   }
 
+  TBRD_API_PORT = '8090';
+
   public async user_login(username: string, password: string): Promise<any> {
-    const response = await this.http.post(`http://localhost:8090/api/v1.0/login`, {'username': username, 'password': password}).toPromise();
+    const response = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/login`, {'username': username, 'password': password}).toPromise();
     return response;
   }
 
