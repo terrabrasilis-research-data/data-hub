@@ -59,7 +59,7 @@ export class GroupsService {
     /*
     CREATE GROUP
     */
-    const reponseGroup = await this.http.post(`http://127.0.0.1:`+this.TBRD_API_PORT+`/api/v1.0/groups`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'language': language, 'ckan_group_id': ckan_group_id, 'image': 'http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/uploads/'+image}, {
+    const reponseGroup = await this.http.post(`http://127.0.0.1:`+this.TBRD_API_PORT+`/api/v1.0/groups`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'language': language, 'ckan_group_id': ckan_group_id, 'image': 'http://localhost:'+this.TBRD_API_PORT+'/api/v1.0/uploads/'+image}, {
       headers: new HttpHeaders ({
           Authorization: 'Bearer ' + userToken
       })

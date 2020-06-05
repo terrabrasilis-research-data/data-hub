@@ -49,8 +49,8 @@ export class DatasetsService {
     var extra = []; 
     
     extra.push({
-      value: 'Year',
-      key: year
+      value: year,
+      key:'Year'
     });
 
     for (let index = 0; index < 3; index++) {

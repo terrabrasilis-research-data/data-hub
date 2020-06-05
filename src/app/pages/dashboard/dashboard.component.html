@@ -157,19 +157,22 @@
                                           </mat-expansion-panel-header>
 
                                           <div *ngFor="let activitie of activities_list; let i = index">
+                                                <div *ngIf="i<4">
 
-                                            <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{display_name}}</a>
+                                                        <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{display_name}}</a>
 
-                                            {{getActivityName(activitie.activity_type)}}
-                                            
-                                            <a *ngIf="activitie.activity_type === 'new group'">
-                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.group.title}}</a>
-                                            </a>
-
-                                            <a *ngIf="activitie.activity_type === 'new package'">
-                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.package.title}}</a>
-                                            </a>
-                                            
+                                                        {{getActivityName(activitie.activity_type)}}
+                                                        
+                                                        <a *ngIf="activitie.activity_type === 'new group'">
+                                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.group.title}}</a>
+                                                        </a>
+                
+                                                        <a *ngIf="activitie.activity_type === 'new package'">
+                                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.package.title}}</a>
+                                                        </a>
+                                                        
+                                                </div>
+                                        
                                           </div>
 
                                         </mat-expansion-panel>

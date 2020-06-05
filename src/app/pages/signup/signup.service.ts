@@ -12,7 +12,7 @@ export class SignupService {
   
   }
   
-  API_KEY = '4875ee2a-c90c-4a9c-8f61-342e2a9171e7';
+  API_KEY = '459768f4-31cb-4329-8fc3-b6965ff93ca2';
   CKAN_PORT = '5000';
   TBRD_API_PORT = '8090';
 

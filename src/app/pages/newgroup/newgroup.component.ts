@@ -105,7 +105,7 @@ export class NewgroupComponent implements OnInit {
 
   async getUsers(){
     const responsedb = await this.gs.get_users_db();
-    this.userdb = responsedb.filter(x => (x.user_id > 10));
+    this.userdb = responsedb;
     const response = await this.gs.get_users();
     this.users = response['result'].filter(x => (x.sysadmin == false));
     for (let index = 0; index < this.users.length; index++) {
