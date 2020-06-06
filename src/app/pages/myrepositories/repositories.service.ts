@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CKAN_User } from '../newgroup/newgroup.component';
 import { SignupService } from '../signup/signup.service';
+import { ckan, api, portal } from 'conf/terrabrasilisrd_ṕortal.json';
+
 
 @Injectable({ providedIn: 'root' })
 export class RepositorieService {
@@ -10,8 +12,9 @@ export class RepositorieService {
   constructor(private http: HttpClient) {
   }
 
-  CKAN_PORT = '5000';
-  TBRD_API_PORT = '8090';
+  CKAN_PORT = ckan.port;
+  TBRD_API_PORT = api.port;
+  HOST = portal.host;
   
   public async repositorie_create(userToken: string, name: string, description: string, collaborators: number, maintainer: string, categorie: number, postgres: boolean, geoserver: boolean, geonetwork: boolean, terrama2: boolean, owncloud: boolean, created_on: string, ckan_api_key: string, repourl: string, users: CKAN_User[]): Promise<any> {
  
@@ -37,7 +40,7 @@ export class RepositorieService {
     /*
     CREATE REPOSITORIE
     */
-   const responseRepo = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/repositories`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'path': repourl, 'services': services_list}, {
+   const responseRepo = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/repositories`, {'name': name, 'abstract': description,  'maintainer': maintainer, 'created_on': created_on, 'path': repourl, 'services': services_list}, {
     headers: new HttpHeaders ({
         Authorization: 'Bearer ' + userToken
     })
@@ -48,7 +51,7 @@ export class RepositorieService {
     /*
     CREATE ORGANIZATION CKAN
    */
-    const responseOrganizationCkan = await this.http.post(`http://localhost:`+this.CKAN_PORT+`/api/3/action/organization_create`, {'name': 'r_'+repourl, 'title': name, 'description': description, 'users': users}, {
+    const responseOrganizationCkan = await this.http.post(this.HOST+`:`+this.CKAN_PORT+`/api/3/action/organization_create`, {'name': 'r_'+repourl, 'title': name, 'description': description, 'users': users}, {
         headers: new HttpHeaders ({
           Authorization: ckan_api_key
         })
@@ -57,7 +60,7 @@ export class RepositorieService {
     /*
     CREATE HOST
     
-    const responseHost = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/hosts`, {'name': name, 'address': 'http://localhost', 'created_on': created_on}, {
+    const responseHost = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/hosts`, {'name': name, 'address': this.HOST, 'created_on': created_on}, {
         headers: new HttpHeaders ({
             Authorization: 'Bearer ' + userToken
         })
@@ -70,7 +73,7 @@ export class RepositorieService {
         /*
         CREATE SERVICE - POSTGRES
         */
-        const responsePostgres = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'PostgreSQL', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
+        const responsePostgres = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'PostgreSQL', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -81,7 +84,7 @@ export class RepositorieService {
             /*
             CREATE SERVICE_PORT_REL - POSTGRES
             */
-            const responsePortServicePostgres = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 1, 'service_id': postgres_service_id}, {
+            const responsePortServicePostgres = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 1, 'service_id': postgres_service_id}, {
                 headers: new HttpHeaders ({
                     Authorization: 'Bearer ' + userToken
                 })
@@ -90,7 +93,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_HOST_REL - POSTGRES
            */
-           const responseHostServicePostgres = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': postgres_service_id}, {
+           const responseHostServicePostgres = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': postgres_service_id}, {
             headers: new HttpHeaders ({
                     Authorization: 'Bearer ' + userToken
                 })
@@ -99,7 +102,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_REPO_REL - POSTGRES
            */
-           const responseRepoServicePostgres = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': postgres_service_id}, {
+           const responseRepoServicePostgres = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': postgres_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -111,7 +114,7 @@ export class RepositorieService {
         /*
         CREATE SERVICE - GEOSERVER
         */
-        const responseGeoserver = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'Geoserver', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
+        const responseGeoserver = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'Geoserver', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -122,7 +125,7 @@ export class RepositorieService {
             /*
             CREATE SERVICE_PORT_REL - GEOSERVER
             */
-            const responsePortServiceGeoserver = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 2, 'service_id': geoserver_service_id}, {
+            const responsePortServiceGeoserver = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 2, 'service_id': geoserver_service_id}, {
                 headers: new HttpHeaders ({
                     Authorization: 'Bearer ' + userToken
                 })
@@ -131,7 +134,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_HOST_REL - GEOSERVER
            */
-           const responseHostServiceGeoserver = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': geoserver_service_id}, {
+           const responseHostServiceGeoserver = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': geoserver_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -140,7 +143,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_REPO_REL - GEOSERVER
            */
-           const responseRepoServiceGeoserver = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': geoserver_service_id}, {
+           const responseRepoServiceGeoserver = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': geoserver_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -152,7 +155,7 @@ export class RepositorieService {
         /*
         CREATE SERVICE - GEONETWORK
         */
-        const responseGeonetwork = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'Geonetwork', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
+        const responseGeonetwork = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'Geonetwork', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -163,7 +166,7 @@ export class RepositorieService {
             /*
             CREATE SERVICE_PORT_REL - GEONETWORK
             */
-            const responsePortServiceGeonetwork = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 2, 'service_id': geonetwork_service_id}, {
+            const responsePortServiceGeonetwork = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 2, 'service_id': geonetwork_service_id}, {
                 headers: new HttpHeaders ({
                     Authorization: 'Bearer ' + userToken
                 })
@@ -172,7 +175,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_HOST_REL - GEONETWORK
            */
-           const responseHostServiceGeonetwork = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': geonetwork_service_id}, {
+           const responseHostServiceGeonetwork = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': geonetwork_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -181,7 +184,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_REPO_REL - GEONETWORK
            */
-           const responseRepoServiceGeonetwork = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': geonetwork_service_id}, {
+           const responseRepoServiceGeonetwork = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': geonetwork_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -193,7 +196,7 @@ export class RepositorieService {
         /*
         CREATE SERVICE - TERRAMA2
         */
-        const responseTerraMA2 = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'TerraMA2', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
+        const responseTerraMA2 = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'TerraMA2', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -204,7 +207,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_PORT_REL - TERRAMA2
            */
-           const responsePortServiceTerraMA2 = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 2, 'service_id': terrama2_service_id}, {
+           const responsePortServiceTerraMA2 = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 2, 'service_id': terrama2_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -213,7 +216,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_HOST_REL - TERRAMA2
            */
-           const responseHostServiceTerraMA2 = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': terrama2_service_id}, {
+           const responseHostServiceTerraMA2 = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': terrama2_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -222,7 +225,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_REPO_REL - TERRAMA2
            */
-           const responseRepoServiceTerraMA2 = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': terrama2_service_id}, {
+           const responseRepoServiceTerraMA2 = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': terrama2_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -234,7 +237,7 @@ export class RepositorieService {
         /*
         CREATE SERVICE - OWNCLOUD
         */
-        const responseOwnCloud = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'OwnCloud', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
+        const responseOwnCloud = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/services`, {'name': 'OwnCloud', 'machine': 1, 'host_id': host_id, 'created_on': created_on}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -245,7 +248,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_PORT_REL - OWNCLOUD
            */
-           const responsePortServiceOwnCloud = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 2, 'service_id': owncloud_service_id}, {
+           const responsePortServiceOwnCloud = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_port_rel`, {'port_id': 2, 'service_id': owncloud_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -254,7 +257,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_HOST_REL - OWNCLOUD
            */
-           const responseHostServiceOwnCloud = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': owncloud_service_id}, {
+           const responseHostServiceOwnCloud = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_host_rel`, {'host_id': host_id, 'service_id': owncloud_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -263,7 +266,7 @@ export class RepositorieService {
            /*
            CREATE SERVICE_REPO_REL - OWNCLOUD
            */
-           const responseRepoServiceowncloud = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': owncloud_service_id}, {
+           const responseRepoServiceowncloud = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/service_repositorie_rel`, {'repo_id': repo_id, 'service_id': owncloud_service_id}, {
             headers: new HttpHeaders ({
                 Authorization: 'Bearer ' + userToken
             })
@@ -273,7 +276,7 @@ export class RepositorieService {
     /*
     CREATE CATEGORIE_REPOSITORIE
     */
-    const responseCategorieRepositorie = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/categorie_repositorie_rel`, {'repo_id': repo_id, 'categorie_id': categorie}, {
+    const responseCategorieRepositorie = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/categorie_repositorie_rel`, {'repo_id': repo_id, 'categorie_id': categorie}, {
     headers: new HttpHeaders ({
         Authorization: 'Bearer ' + userToken
     })
@@ -282,7 +285,7 @@ export class RepositorieService {
     /*
     CREATE GROUP_REPOSITORIE
     */
-   const responseGroupRepositorie = await this.http.post(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/group_repositorie_rel`, {'repo_id': repo_id, 'group_id': collaborators}, {
+   const responseGroupRepositorie = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/group_repositorie_rel`, {'repo_id': repo_id, 'group_id': collaborators}, {
     headers: new HttpHeaders ({
         Authorization: 'Bearer ' + userToken
     })
@@ -293,17 +296,17 @@ export class RepositorieService {
 }
 
 public async get_repositories(): Promise<any> {
-    const response = await this.http.get(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/repositories`).toPromise();
+    const response = await this.http.get(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/repositories`).toPromise();
     return response;
   }
 
 public async get_repositorie(id: number): Promise<any> {
-    const response = await this.http.get(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/repositories/`+id).toPromise();
+    const response = await this.http.get(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/repositories/`+id).toPromise();
     return response;
   }
 
 public async get_repositorie_from_users(id_user: number): Promise<any> {
-    const response = await this.http.get(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/repositories_from_user/`+id_user).toPromise();
+    const response = await this.http.get(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/repositories_from_user/`+id_user).toPromise();
     return response;
   }
 
@@ -312,7 +315,7 @@ public async get_members_repositorie(id: number, userToken: string): Promise<any
     /*
     GET GROUP_REPOSITORIE
     */
-   const responseGroupRepositorie = await this.http.get(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/group_repositorie_rel/`+id, {
+   const responseGroupRepositorie = await this.http.get(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/group_repositorie_rel/`+id, {
     headers: new HttpHeaders ({
         Authorization: 'Bearer ' + userToken
     })
@@ -320,7 +323,7 @@ public async get_members_repositorie(id: number, userToken: string): Promise<any
     
     let group_id = responseGroupRepositorie['group_id']
 
-    const response = await this.http.get(`http://localhost:`+this.TBRD_API_PORT+`/api/v1.0/groups/`+ group_id).toPromise();
+    const response = await this.http.get(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/groups/`+ group_id).toPromise();
     
     return response['groups'];
     

@@ -47,7 +47,7 @@
 
                                   <a class="dataTag" style="padding-left: 7px; color: white; padding-right: 7px;">{{formatDate(element.metadata_created)}}</a> <a class="openTag" style="color: white">Open Access</a> <a class="groupTag" style="padding-left: 7px; color: white">{{element.groups[0].title}}</a>
                                   
-                                  <h5 class="card-title textlink h5" style = "margin-top: 5px;" [routerLink]="['/datasets', element.id]">{{element.title | slice:0:32}}</h5>
+                                  <h5 class="card-title textlink h5" style = "margin-top: 5px;" [routerLink]="['/datasets', element.id]">{{element.title | slice:0:32}} [...]</h5>
                                   
                                   <h6 class="card-subtitle mb-2 text-muted">
 
