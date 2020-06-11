@@ -166,7 +166,7 @@ export class NewdatasetComponent implements OnInit {
 
       Description: new FormControl('', [
         Validators.required,
-        Validators.maxLength(500)
+        Validators.maxLength(1000)
       ]),
 
       Tags: new FormControl('', [
@@ -230,7 +230,7 @@ export class NewdatasetComponent implements OnInit {
 
       DataDescription: new FormControl('', [
         Validators.required,
-        Validators.maxLength(500)
+        Validators.maxLength(1000)
       ]),
 
       DataFormat: new FormControl('', [

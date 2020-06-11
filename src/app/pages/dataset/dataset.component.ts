@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, ɵConsole } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { latLng, tileLayer, Layer, geoJSON } from 'leaflet';
+import { latLng, geoJSON } from 'leaflet';
 import { CommentNode } from 'src/app/pages/dataset/comments/comment-tree.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -9,6 +9,8 @@ import { Clipboard } from 'ts-clipboard';
 import { DatasetsService } from '../datasets/datasets.service';
 import { SignupService } from '../signup/signup.service';
 import { GroupsService } from '../groups/groups.service';
+import { MapOptions, Map as MapLeaflet,
+  rectangle, tileLayer, Layer } from 'leaflet';
 
 @Component({
   selector: 'app-dataset',
@@ -41,6 +43,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   tags = [];
   title = "";
   month = null;
+  spatial = "";
   url = "";
   year = null;
   purl = "http://purl.dpi.inpe.br/tbrd/H5JT7";
@@ -67,6 +70,8 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   ) {}
 
   
+  public map: MapLeaflet;
+
   ngOnInit() {
 
     document.getElementById("wrapper").className = "d-flex toggled";
@@ -77,39 +82,38 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
         'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
       },
       overlays: { 
-        'Geo JSON Polygon': geoJSON(
-          ({
-            type: 'Polygon',
-    
-            coordinates: [[
-              [
-                -67.92626,
-                6.656333333333333
-              ],
-              [
-                -49.38799999999998,
-                6.656333333333333
-              ],
-              [
-                -49.38799999999998,
-                -3.89446
-              ],
-              [
-                -67.92626,
-                -3.89446
-              ],
-              [
-                -67.92626,
-                6.656333333333333
-              ]]
-            ]}) as any, { style: () => ({ color: '#ff7800' })})
       }
     }
     
     this.options = 	{ 
-      zoom: 4,
-      center: this.layersControl.overlays['Geo JSON Polygon'].getBounds().getCenter(),
-      layers: [ this.layersControl.baseLayers['Google Hybrid'], this.layersControl.overlays['Geo JSON Polygon'] ]
+      zoom: 3,
+      center: geoJSON( ({
+          type: 'Polygon',
+  
+          coordinates: [[
+            [
+              -73.9872354804,
+              -33.7683777809
+            ],
+            [
+                -34.7299934555,
+                -33.7683777809
+            ],
+            [
+                -34.7299934555,
+                5.24448639569
+            ],
+            [
+                -73.9872354804,
+                5.24448639569
+            ],
+            [
+                -73.9872354804,
+                -33.7683777809
+            ]]
+          ]})).getBounds().getCenter(),
+
+      layers: [ this.layersControl.baseLayers['Google Hybrid'] ]
     }
 
     this.sub = this.route.params.subscribe(params => {
@@ -211,6 +215,16 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
         this.pub_year = this.DATASETS['extras'][index].value
     }
 
+    for (let index = 0; index < this.DATASETS['extras'].length; index++) {
+      if(this.DATASETS['extras'][index].key == 'spatial')
+        this.spatial = this.DATASETS['extras'][index].value
+    }
+
+    if(this.spatial){
+      this.map.addLayer(geoJSON(JSON.parse(this.spatial) as any, { style: () => ({ color: '#ff7800' })}))
+      this.map.setView(geoJSON(JSON.parse(this.spatial) as any).getBounds().getCenter() )
+    }
+
     this.getDatasets();
   }
 
@@ -243,6 +257,11 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   ckan_users = [];
 
   DATASETS: RootObject[] = [];
+
+  onMapReady(map: MapLeaflet) {
+    this.map = map;
+   }
+
 }
 
 export interface Resource {
