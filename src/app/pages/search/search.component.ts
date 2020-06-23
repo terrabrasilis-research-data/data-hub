@@ -236,7 +236,15 @@ export class SearchComponent implements OnInit {
   }
 
   async getDatasets(query: string){
-    const response = await this.ds.get_ckan_datasets_search(query);
+    let response;
+    const string = "!bbox:";
+    if (query.includes(string)){
+      this.query = "[bbox search]"
+      response = await this.ds.get_ckan_datasets();
+      response = await this.ds.get_ckan_datasets_bbox_search(query.slice(6),response);
+    } else {
+      response = await this.ds.get_ckan_datasets_search(query);
+    }
     this.DATASETS = response['result']['results'];
     this.dataSource.data = this.DATASETS;
     this.size = this.DATASETS.length;

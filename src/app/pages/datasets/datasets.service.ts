@@ -30,6 +30,11 @@ export class DatasetsService {
     return response;
   }
 
+  public async get_ckan_datasets_bbox_search(bbox: string, datasets: any): Promise<any> {
+    const response = await this.http.post(this.HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/bbox_search/`+bbox, datasets).toPromise();
+    return response;
+  }
+
   public async get_ckan_dataset(id: string): Promise<any> {
     const response = await this.http.post(this.HOST+`:`+this.CKAN_PORT+`/api/3/action/package_show`,{'id': id}).toPromise();
     return response;
