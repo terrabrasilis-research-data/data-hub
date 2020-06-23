@@ -29,9 +29,19 @@ export class HomeComponent implements OnInit
     this.getDatasets();
     this.get_users_ckan();
   }
-  
+
+  removeNewlines(str: string) {
+    //remove line breaks from str
+    str = str.replace(/\s{2,}/g, '');
+    str = str.replace(/\t/g, '');
+    str = str.toString().trim().replace(/(\r\n|\n|\r)/g,"");
+    str = str.replace(" ", "")
+    return str
+  }
+
   onKeydown(event) {
     if (event.key === "Enter") {
+      this.query = this.removeNewlines(this.query);
       this.router.navigate(['/search/'+this.query]);
     }
   }
