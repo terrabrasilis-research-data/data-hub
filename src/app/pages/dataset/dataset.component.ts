@@ -19,21 +19,21 @@ import { MapOptions, Map as MapLeaflet,
 })
 
 export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
-  
+
   public layersControl: any;
 
   @Input()
   comments:CommentNode[] = [];
   text:string;
-  
+
   addComment(comment:CommentNode){
     this.comments.push(new CommentNode(this.text))
-    this.text="";    
+    this.text="";
   }
 
 	options = {
   };
-  
+
   id: string;
   id_proc = "";
   private sub: any;
@@ -61,35 +61,35 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   tags_list = [];
 
   constructor(
-    private route: ActivatedRoute, 
-    public dialog: MatDialog, 
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
     private ss: SignupService,
     private snackBar: MatSnackBar,
     private ds: DatasetsService,
     private gs: GroupsService,
   ) {}
 
-  
+
   public map: MapLeaflet;
 
   ngOnInit() {
 
     document.getElementById("wrapper").className = "d-flex toggled";
-    
+
     this.layersControl = {
       baseLayers: {
         'Google Hybrid':  tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}' , { enebled: true, maxZoom: 18, attribution: '...', subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] }),
         'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
       },
-      overlays: { 
+      overlays: {
       }
     }
-    
-    this.options = 	{ 
-      zoom: 3,
+
+    this.options = 	{
+      zoom: 8,
       center: geoJSON( ({
           type: 'Polygon',
-  
+
           coordinates: [[
             [
               -73.9872354804,
@@ -120,7 +120,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
        this.id = params['id']; // (+) converts string 'id' to a number
        // In a real app: dispatch action to load the details here.
     });
-    
+
     this.get_users_ckan();
     this.getDataset(this.id)
   }
@@ -138,7 +138,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (day.length < 2) 
+    if (day.length < 2)
         day = '0' + day;
 
     return [day, monthNames[month], year].join(' ');
@@ -177,7 +177,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (day.length < 2) 
+    if (day.length < 2)
         day = '0' + day;
 
     return monthNames[month];
@@ -187,9 +187,9 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
     const response = await this.ds.get_ckan_dataset(id);
     this.DATASETS = response['result'];
-    
+
     await this.getGroupsMembers( this.DATASETS['groups'][0].id,  this.DATASETS['groups'][0].title);
-    
+
     this.metadata_created = this.DATASETS['metadata_created'];
     this.year = this.formatDateYear(this.DATASETS['metadata_created']);
     this.month = this.formatDateMonth(this.DATASETS['metadata_created']);
@@ -209,7 +209,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     this.author_email = this.DATASETS['author_email'];
     this.maintainer = this.DATASETS['maintainer'];
     this.extra = this.DATASETS['extras'];
-    
+
     for (let index = 0; index < this.DATASETS['extras'].length; index++) {
       if(this.DATASETS['extras'][index].key == 'Year')
         this.pub_year = this.DATASETS['extras'][index].value
@@ -223,6 +223,8 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     if(this.spatial){
       this.map.addLayer(geoJSON(JSON.parse(this.spatial) as any, { style: () => ({ color: '#ff7800' })}))
       this.map.setView(geoJSON(JSON.parse(this.spatial) as any).getBounds().getCenter() )
+    } else {
+      this.map.setZoom(3)
     }
 
     this.getDatasets();
@@ -241,7 +243,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     const response = await this.ss.get_users_ckan();
     this.ckan_users = response['result'];
   }
-  
+
   groupsMembers = [];
   groupsNames = [];
 
@@ -253,7 +255,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
       this.groupsNames.push(this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name'])
     }
   }
-  
+
   ckan_users = [];
 
   DATASETS: RootObject[] = [];

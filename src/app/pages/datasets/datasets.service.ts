@@ -16,7 +16,7 @@ export class DatasetsService {
   HOST = portal.host;
 
   public async get_ckan_datasets(): Promise<any> {
-    const response = await this.http.get(this.HOST+`:`+this.CKAN_PORT+`/api/3/action/package_search`).toPromise();
+    const response = await this.http.get(this.HOST+`:`+this.CKAN_PORT+`/api/3/action/package_search?rows=1000`).toPromise();
     return response;
   }
 
@@ -46,15 +46,15 @@ export class DatasetsService {
   }
 
   public async create_datasets(name: string, description: string, visibility: boolean, author: string, author_email: string, maintainer: string, license_id: string, collaborators: string, owner_org: string, file_url: string, dataname: string, datadescription: string, dataformat: string, tags: string[], key1: string, value1: string, key2: string, value2: string, key3: string, value3: string, year: number, nameAlpha: string, ckan_api_key: string): Promise<any> {
-    
+
     let tags_dict = tags.map(x => {
       return({'name': x.trim()});
     });
 
     let key_list = [key1, key2, key3]
     let value_list = [value1, value2, value3]
-    var extra = []; 
-    
+    var extra = [];
+
     extra.push({
       value: year,
       key:'Year'
@@ -67,7 +67,7 @@ export class DatasetsService {
           key: value_list[index]
       });
     }
-    
+
     const responseDataset = await this.http.post(this.HOST+`:`+this.CKAN_PORT+`/api/3/action/package_create`, {'name': nameAlpha, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}], 'tags': tags_dict, "extras": extra }, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
