@@ -7,12 +7,12 @@
                     </div>
                     <div class="greybox">
                             <h1 class="text-heading">Dataset Search</h1>
-                        
+
                             <div class="container">
                                 <div class="input-group">
-                        
+
                                     <input type="text" class="form-control" (keydown)="onKeydown($event)" [ngModel]="searchBox" (ngModelChange)="searchBoxModelChange($event)" placeholder="Search by keywords, authors or year">
-                                    
+
                                     <div class="input-group-append">
                                         <button class="btn button" type="button" [routerLink]="['/search/', removeNewlines(query)]">
                                             <i class="fa fa-search"></i>
@@ -22,56 +22,56 @@
                             </div>
                             <div class="boxRight">
                                 <!--  <div class="boxText">
-                                            <a class="nav-item nav-link textlink" [routerLink]="'/'">Advanced Search</a> 
+                                            <a class="nav-item nav-link textlink" [routerLink]="'/'">Advanced Search</a>
                                     </div>
-                                -->    
+                                -->
                                 </div>
-                            
+
                     </div>
-                        
+
             </div>
 
 
         <div class="graybox2">
-        
+
             <div>
                 <a class="text-muted" style="padding-left: 5px">Latest Datasets:</a>
             </div>
-            
+
             <div class="container">
-                
+
                 <div class="box" *ngFor="let element of DATASETS; let i = index">
                     <div *ngIf="i<3">
                         <div class="card" style="width: 25rem; height: 265px; margin: 10px">
                                 <div class="card-body">
 
                                   <a class="dataTag" style="padding-left: 7px; color: white; padding-right: 7px;">{{formatDate(element.metadata_created)}}</a> <a class="openTag" style="color: white">Open Access</a> <a class="groupTag" style="padding-left: 7px; color: white">{{element.groups[0].title}}</a>
-                                  
-                                  <h5 class="card-title textlink h5" style = "margin-top: 5px;" [routerLink]="['/datasets', element.id]">{{element.title | slice:0:32}} [...]</h5>
-                                  
+
+                                  <h5 class="card-title textlink h5" style = "margin-top: 5px;" [routerLink]="['/datasets', element.id]">{{element.title | slice:0:31}} [...]</h5>
+
                                   <h6 class="card-subtitle mb-2 text-muted">
 
                                         <a *ngFor="let author of element.authors; let j = index">
                                             <a *ngIf="i<3">
-                                            <a class="spacetext">{{ author.name }}</a> 
-                                            <a *ngIf="j !=  element.authors.length-1 && j !=  element.authors.length-2 ">, </a> 
+                                            <a class="spacetext">{{ author.name }}</a>
+                                            <a *ngIf="j !=  element.authors.length-1 && j !=  element.authors.length-2 ">, </a>
                                             <a *ngIf="j ==  element.authors.length-2"> & </a>
                                             </a>
                                             <div *ngIf="j>3">
                                                 <a>... </a>
                                             </div>
-                                            
+
                                         </a>
 
                                     </h6>
 
-                                  <p class="card-text">{{element.notes | slice:0:130}} [...]</p>
+                                  <p class="card-text">{{element.notes | slice:0:128}} [...]</p>
                                   <a href="#" class="card-link textlink" [routerLink]="['/datasets', element.id]">Read more</a>
                                 </div>
                               </div>
 
                 </div>
-        
+
             </div>
          </div>
 

@@ -18,12 +18,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  
+
   query: string;
   private sub: any;
 
   DATASETS: RootObject[] = [];
-  groups: Group[]; 
+  groups: Group[];
   ckan_tags: string[];
 
   displayedColumns = ['dataset'];
@@ -33,16 +33,16 @@ export class SearchComponent implements OnInit {
   filterCategory = {}
   filterRepository = {}
   filterFiletypes = {}
- 
+
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  
+
   form: FormGroup;
 
    /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
    */
-  
+
    checkOpen(id: number){
     // if (id == 2){
     //     return false;
@@ -53,24 +53,24 @@ export class SearchComponent implements OnInit {
    }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;  
+    this.dataSource.paginator = this.paginator;
   }
 
    years = [];
 
    categories = [];
-   
+
    repositories = [];
 
    filetypes = [];
-   
+
    tipos = [];
 
    favorites = [
    ];
 
    filterChange() {
-  
+
     this.dataSource.data = this.DATASETS;
     this.size = this.dataSource.data.length;
 
@@ -108,22 +108,22 @@ export class SearchComponent implements OnInit {
 }
 
    constructor(
-     private formBuilder: FormBuilder, 
-     private snackBar: MatSnackBar, 
-     public dialog: MatDialog, 
+     private formBuilder: FormBuilder,
+     private snackBar: MatSnackBar,
+     public dialog: MatDialog,
      private ds: DatasetsService,
      private route: ActivatedRoute,
      private ss: SignupService,
      private gs: GroupsService
      ) {
-       
+
     this.form = this.formBuilder.group({
       years: new FormArray([]),
       categories: new FormArray([]),
       repositories: new FormArray([]),
       filetypes: new FormArray([]),
     });
-    
+
   }
 
   ngOnInit() {
@@ -131,7 +131,7 @@ export class SearchComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.query = params['query'];
     });
-  
+
     document.getElementById("wrapper").className = "d-flex toggled";
 
     this.getDatasets(this.query);
@@ -139,7 +139,7 @@ export class SearchComponent implements OnInit {
     this.get_users_ckan();;
     this.get_ckan_tags();
   }
-  
+
   private addCheckboxes() {
 
     this.categories.map((o, i) => {
@@ -170,11 +170,11 @@ export class SearchComponent implements OnInit {
     this.years.forEach(obj => {
       this.filterYear[obj.name] = false
     })
-    
+
     this.categories.forEach(obj => {
       this.filterCategory[obj.name] = false
     })
-    
+
     this.repositories.forEach(obj => {
       this.filterRepository[obj.name] = false
     })
@@ -194,7 +194,7 @@ export class SearchComponent implements OnInit {
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (day.length < 2) 
+    if (day.length < 2)
         day = '0' + day;
 
     return [day, monthNames[month], year].join(' ');
@@ -210,17 +210,18 @@ export class SearchComponent implements OnInit {
     const response = await this.ss.get_users_ckan();
     this.ckan_users = response['result'];
   }
-  
+
   async get_ckan_tags(){
     const response = await this.ds.get_ckan_tags();
     this.ckan_tags = response['result'];
-    
+
   }
 
   groupsMembers = [];
 
   async getGroupsMembers(id: string, name: string){
     const response = await this.ss.get_members(id);
+    this.groupsMembers = [];
     for (let index = 0; index < response['result'].length; index++) {
       this.groupsMembers.push({'group_name': name, 'id': response['result'][index][0], 'name': this.ckan_users.filter(x => (x.id == response['result'][index][0]))[0]['display_name']})
     }
@@ -252,25 +253,25 @@ export class SearchComponent implements OnInit {
     for (let i = 0; i < this.DATASETS.length; i++) {
 
       await this.getGroupsMembers(this.DATASETS[i].groups[0].id, this.DATASETS[i].groups[0].title);
-      
+
       this.DATASETS[i].authors = this.groupsMembers.filter(x => (x.group_name == this.DATASETS[i].groups[0].title));
-      
+
       for (let index = 0; index < this.DATASETS[i].resources.length; index++) {
         this.filetypes.push({"id": (i*10)+index, "name": this.DATASETS[i].resources[index].format})
       }
       for (let index = 0; index < this.DATASETS[i].extras.length; index++) {
         if(this.DATASETS[i].extras[index].key == 'Year')
-          this.years.push({"id": i, "name": this.DATASETS[i].extras[index].value }) 
+          this.years.push({"id": i, "name": this.DATASETS[i].extras[index].value })
       }
     }
-    
+
     this.years = this.removeDuplicatesBy(x => x.name, this.years);
     this.filetypes = this.removeDuplicatesBy(x => x.name, this.filetypes);
 
     for (let index = 0; index < this.ckan_tags.length; index++) {
       this.categories.push({"id": index, "name": this.ckan_tags[index]})
     }
-    
+
     this.checkFalse();
   }
 
@@ -283,10 +284,10 @@ export class SearchComponent implements OnInit {
 
     var lookup = {};
     var count = 0;
-  
+
     for (let i = 0; i < this.groups.length; i++) {
       var name = this.groups[i].name;
-    
+
       if (!(name in lookup)) {
         lookup[name] = 1;
         count = count + 1;
@@ -295,7 +296,7 @@ export class SearchComponent implements OnInit {
       }
 
   }
-  
+
   get_year(id: string){
     let selected_dataset = this.DATASETS.filter(x => (x.id == id))[0]
     for (let index = 0; index < selected_dataset['extras'].length; index++) {
