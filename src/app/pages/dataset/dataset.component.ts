@@ -86,7 +86,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     }
 
     this.options = 	{
-      zoom: 8,
+      zoom: 6,
       center: geoJSON( ({
           type: 'Polygon',
 

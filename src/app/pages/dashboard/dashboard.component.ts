@@ -221,6 +221,9 @@ export class DashboardComponent implements OnInit {
         Validators.maxLength(8),
       ]),
 
+      FileUrl: new FormControl('', [
+      ]),
+
     });
   }
 

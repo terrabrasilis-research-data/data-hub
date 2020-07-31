@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'groups', component: GroupsComponent },
   { path: 'datasets', component: DatasetsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'signup2', component: SignupComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'repositories/:id', component: RepositorieComponent },
   { path: 'datasets/:id', component: DatasetComponent },
   { path: 'groups/:id', component: GroupComponent },

@@ -98,20 +98,22 @@
 
                                                         <app-file
 
-                                                        (toggle)="getName($event)"
+                                                        (toggle)="getDataURL($event)"
+
                                                         [repo_id]="repo_id"
 
                                                         >
                                                         </app-file>
 
-                                                        <button (click)="changeLink()" class="btn btn-outline-secondary" type="button" (click)="onReset()">Link</button>
+                                                        <button (click)="changeLink()" class="btn btn-outline-secondary" type="button">Link</button>
                                                 </div>
 
                                                 <div *ngIf="showLink" class="form-group">
                                                         <label>URL</label>
                                                         <br>
-                                                        <input name="" class="form-control float-left sizetext2" formControlName="DataURL" [ngModel]="dataurl" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text"> <button (click)="changeUpload()" class="btn btn-outline-danger" style="margin-left: 10px;" type="button">Remove</button>
-                                                </div>
+                                                        <input name="" class="form-control float-left sizetext2" formControlName="FileUrl" [ngModel]="file_url" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text"> <button (click)="changeUpload()" class="btn btn-outline-danger" style="margin-left: 10px;" type="button">Remove</button>
+                                               </div>
+
 
                                                 <div class="form-group">
                                                         <label>Name</label>
