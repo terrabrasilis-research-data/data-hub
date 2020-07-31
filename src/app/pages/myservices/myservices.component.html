@@ -3,11 +3,11 @@
 
             <div class="card">
                     <article class="card-body">
-                    
+
                     <h4 class="card-title mb-4 mt-1">Services</h4>
-                    
+
                     <form>
-                           
+
                         <table class="table table-striped topMargin">
                                 <thead>
                                 <tr>
@@ -16,29 +16,28 @@
                                   <th scope="col">Created</th>
                                   <th scope="col">Address</th>
                                   <th scope="col">Published Ports</th>
-                                  <th scope="col">Ownership</th>  
+                                  <th scope="col">Ownership</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr *ngFor="let service of services; index as i">
                                   <td>{{service.name}}</td>
                                   <td>
-                                      
+
                                       <a class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</a>
                                       <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
-                                
+
                                  </td>
                                   <td>{{service.created_on | slice:0:16}}</td>
 
-                                 
                                   <div *ngIf="servicepath(services[i].name)"><td>{{service.address}}/{{paths[i]}} </td></div>
                                   <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address}}/{{paths[i]}}/{{service.name}} </td></div>
-                                  
+
                                   <td>
-                                        <div *ngIf="servicepath(services[i].name)"><a href="{{service.address}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
+                                        <div *ngIf="servicepath(services[i].name)"><a href="{{service.address}}:{{service.ports }}" class="btn">{{service.ports }} <i class="material-icons icon">open_in_new</i></a></div>
                                         <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><a href="{{service.address}}/{{service.name}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
                                   </td>
-                                  
+
                                   <td>{{maintainer[i]}}</td>
                                 </tr>
                                 </tbody>
@@ -47,9 +46,8 @@
                     </form>
 
                     </article>
-                    </div> 
+                    </div>
                     <div style="margin-bottom: 105px">
                     </div>
     </div>
 </div>
-    

@@ -16,10 +16,10 @@ export class MyservicesComponent implements OnInit {
   repositories = [];
 
   paths = [];
-  
+
   maintainer = [];
 
-  constructor( 
+  constructor(
     private rs:RepositorieService,
     private router: Router,
     private store: Store<fromLogin.AppState>,
@@ -31,9 +31,9 @@ export class MyservicesComponent implements OnInit {
   }
 
   public user: any = null;
-  
+
   ngOnInit() {
-         
+
     if(!this.user['user']){
       this.router.navigate(['/login']);
     }
@@ -56,11 +56,11 @@ export class MyservicesComponent implements OnInit {
     else
       return false
    }
-   
+
   async getRepositorieFromUsers(user_id: number){
     const response = await this.rs.get_repositorie_from_users(user_id);
     this.repositories = response['repositorie'];
-    
+
     for (let i = 0; i < this.repositories.length; i++) {
       for (let j = 0; j < this.repositories[i]['services'].length; j++) {
         this.services.push(this.repositories[i]['services'][j])
@@ -68,9 +68,7 @@ export class MyservicesComponent implements OnInit {
         this.maintainer.push(this.repositories[i]['maintainer'])
       }
     }
-    
    }
-
 }
 
 export interface Repositorie {

@@ -131,9 +131,9 @@ export class NewdatasetComponent implements OnInit {
   }
 
   constructor(
-    private gs:GroupsService, 
-    private rs:RepositorieService, 
-    private ds: DatasetsService, 
+    private gs:GroupsService,
+    private rs:RepositorieService,
+    private ds: DatasetsService,
     private router:Router,
     private store: Store<fromLogin.AppState>) {
     this.store.pipe(select('login')).subscribe(res => {
@@ -154,7 +154,7 @@ export class NewdatasetComponent implements OnInit {
 
     this.getLicense();
     this.getGroupsFromUser(this.user['user']['user_id']);
-    this.getRepositories();
+    this.getRepositoriesFromUser(this.user['user']['user_id']);
 
     this.formGroup = new FormGroup({
 
@@ -238,6 +238,9 @@ export class NewdatasetComponent implements OnInit {
         Validators.maxLength(8),
       ]),
 
+      FileUrl: new FormControl('', [
+      ]),
+
     });
 
   }
@@ -245,6 +248,7 @@ export class NewdatasetComponent implements OnInit {
   async changeLink(){
     this.showLink = true;
     this.showUpload = false;
+    this.file_url = "";
   }
 
   async changeUpload(){
@@ -255,7 +259,7 @@ export class NewdatasetComponent implements OnInit {
   async getGroupsFromUser(user_id: number){
     const response = await this.gs.get_groups_from_user(user_id);
     this.groups = response;
-  } 
+  }
 
   async getLicense(){
     const response = await this.ds.get_license_list();
@@ -266,14 +270,14 @@ export class NewdatasetComponent implements OnInit {
     const response = await this.rs.get_repositorie(id);
     this.repo_name = response['repositorie'][0].path;
   }
-  
-  async getRepositories(){
-    const response = await this.rs.get_repositories();
+
+  async getRepositoriesFromUser(user_id: number){
+    const response = await this.rs.get_repositorie_from_users(user_id);
     this.repositories = response['repositorie'];
   }
 
   private async onSubmit() {
-   
+
     try {
       const response = await this.ds.create_datasets(this.title, this.description, this.visibility, this.user['user']['full_name'], this.authoremail, this.maintainer, this.license, this.collaborators, 'r_'+this.repo_name, this.file_url, this.dataname, this.datadescription, this.dataformat, this.tags.split(','), this.key1, this.value1, this.key2, this.value2, this.key3, this.value3, this.year, this.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''), this.user['user']['ckan_api_key'] );
       if (response) {
@@ -290,7 +294,7 @@ export class NewdatasetComponent implements OnInit {
     this.formGroup.reset();
   }
 
-  groups: Group[]; 
+  groups: Group[];
   licences: License[];
   repositories = [];
 

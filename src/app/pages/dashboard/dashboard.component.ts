@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   public file_url: string = ""
 
   showMsg: boolean = false;
- 
+
   showLink: boolean = false;
   showUpload: boolean = true;
 
@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
   public display_name: string = "";
 
   path = "";
-  
+
   getDataURL(event) {
     this.file_url = event;
   }
@@ -54,15 +54,15 @@ export class DashboardComponent implements OnInit {
   public descriptionModelChange(str: string): void {
     this.description = str;
   }
-  
+
   public tagsModelChange(str: string): void {
     this.tags = str;
   }
 
   public licenseModelChange(str: string): void {
     this.license = str;
-  }  
-  
+  }
+
   public yearModelChange(num: number): void {
     this.year = num;
   }
@@ -102,7 +102,7 @@ export class DashboardComponent implements OnInit {
   public dataFormatModelChange(str: string): void {
     this.dataformat = str;
   }
-  
+
   constructor(
     private rs:RepositorieService,
     private gs:GroupsService,
@@ -137,7 +137,7 @@ export class DashboardComponent implements OnInit {
     this.getGroupsFromUser(this.user['user']['user_id']);
     this.getRepositorieFromUsers(this.user['user']['user_id']);
     document.getElementById("wrapper").className = "d-flex";
-    
+
     this.formGroup = new FormGroup({
 
       Title: new FormControl('', [
@@ -221,6 +221,9 @@ export class DashboardComponent implements OnInit {
         Validators.maxLength(8),
       ]),
 
+      FileUrl: new FormControl('', [
+      ]),
+
     });
   }
 
@@ -245,7 +248,7 @@ export class DashboardComponent implements OnInit {
     const response = await this.ds.get_license_list();
     this.licences = response;
   }
-  
+
   async getRepositorieFromUsers(user_id: number){
     const response = await this.rs.get_repositorie_from_users(user_id);
     this.repositories = response['repositorie'];
@@ -253,14 +256,14 @@ export class DashboardComponent implements OnInit {
       this.repositorie = this.repositories[0];
       this.services = this.repositorie['services'];
       this.path = this.repositorie['path'];
-  
-    }  
+
+    }
   }
 
   async getDatasets(){
     const response = await this.ds.get_ckan_datasets();
     this.all_datasets = response['result']['results'];
-    this.datasets = this.all_datasets.filter(x => ( this.user_groups_id.includes(x['groups'][0]['id']) ));
+    this.datasets = this.all_datasets.filter(x => (  this.user_groups_id.filter(y => y == x['groups'][0]['id'])   ));
   }
 
   formatDateYear(date) {
@@ -291,7 +294,7 @@ export class DashboardComponent implements OnInit {
     this.groups = response;
     if (this.groups){
     for (let index = 0; index < this.groups.length; index++) {
-      this.user_groups_id.push(this.groups[index]['ckan_group_id'])
+      this.user_groups_id.push(String(this.groups[index]['ckan_group_id']))
     }
     }
   }
@@ -314,22 +317,22 @@ export class DashboardComponent implements OnInit {
       return type
   }
 
-  groups: Group[]; 
+  groups: Group[];
 
   licences: License[];
 
   repositories = [];
 
   services = [];
-  
+
   repositorie = [{}];
-  
+
   organizations = [];
 
   activities_list = [];
 
   ckan_users = [];
-  
+
   activity_dict = [
     {"ckan_activity_type": "new organization", "activity_string": "created a repository"},
     {"ckan_activity_type": "new user", "activity_string": "signed up"},
@@ -339,7 +342,7 @@ export class DashboardComponent implements OnInit {
   ];
 
   datasets = [ ]
-  
+
   checkServiceStatus(id: number){
     return true;
    }
