@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GroupsService } from './groups.service';
 
@@ -8,6 +8,8 @@ import { GroupsService } from './groups.service';
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss']
 })
+
+@Injectable({ providedIn: 'root' })
 export class GroupsComponent implements OnInit {
 
   id_open: number;
@@ -19,10 +21,10 @@ export class GroupsComponent implements OnInit {
     document.getElementById("wrapper").className = "d-flex toggled";
     this.getGroups();
   }
-  
+
   async getGroups(){
     const response = await this.gs.get_groups();
-    this.groups = response;
+    this.groups = response['groups'];
   }
 
   favorites = [
@@ -35,7 +37,7 @@ export class GroupsComponent implements OnInit {
     } else {
       this.id_open = null;
     }
-    
+
   }
 
   check(id: number){
@@ -45,10 +47,10 @@ export class GroupsComponent implements OnInit {
       return false
     }
   }
-  
+
   isFavorite(id: number){
     return this.favorites.some(x => x.id === id)
-   } 
+   }
 
    SaveDataset(id: number){
      this.snackBar.open("Saved to Bookmarks", "", {
@@ -56,15 +58,15 @@ export class GroupsComponent implements OnInit {
     });
     this.favorites.push({id: id});
    }
-  
+
    RemoveDataset(ids: number){
     this.snackBar.open("Removed from Bookmarks", "", {
      duration: 2000,
    });
    this.favorites = this.favorites.filter(x => (x.id != ids));
   }
- 
-  groups: Group[]; 
+
+  groups: Group[] = [];
 }
 
 export interface Group {

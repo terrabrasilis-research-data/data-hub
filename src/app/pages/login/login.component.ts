@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { LoginService } from './login.service';
 import { Store } from '@ngrx/store';
@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
+@Injectable({ providedIn: 'root' })
 export class LoginComponent implements OnInit {
 
   formGroup: FormGroup;
-  
+
   public username: string = "";
   public password: string = "";
   showMsg: boolean = false;
@@ -34,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
-      
+
       Username: new FormControl('', [
         Validators.required
       ]),
@@ -55,10 +57,10 @@ export class LoginComponent implements OnInit {
         this.store.dispatch(addUserData({
           user: response
         }))
-        this.formGroup.reset(); 
+        this.formGroup.reset();
         this.router.navigate([`/dashboard`]);
       } else {
-        this.formGroup.reset(); 
+        this.formGroup.reset();
         this.showMsg = true;
       }
     } catch (err) {

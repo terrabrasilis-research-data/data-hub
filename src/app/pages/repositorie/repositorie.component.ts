@@ -37,25 +37,25 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
     {"dataset_id": 5, "name": "Sedimentary Fe speciation and Fe isotope compositions from SONNE cruise SO241", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2015},
     {"dataset_id": 6, "name": "Organic and inorganic geochemical data of sediment cores XC-03 and XC-01-2, Xingu River, Amazon Basin", "authors": ["Cornils Astrid"],"year": 2014},
     {"dataset_id": 7, "name": "Tephra data of sediment cores of the Black Sea covering MIS 6 (184-130 ka BP)", "authors": ["Astrid Cornils"],"year": 2019},
-    {"dataset_id": 8, "name": "High resolution in situ temperatures across coral reef slopes: Iriomote-jima, Japan and Gulf of Chiriquí, Panama", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2016},   
+    {"dataset_id": 8, "name": "High resolution in situ temperatures across coral reef slopes: Iriomote-jima, Japan and Gulf of Chiriquí, Panama", "authors": ["Guilherme Krahl", "Jairo Francisco","Cornils Astrid"],"year": 2016},
   ]
-  
+
   constructor(
-    private route: ActivatedRoute, 
-    private rs:RepositorieService, 
+    private route: ActivatedRoute,
+    private rs:RepositorieService,
     private router: Router,
     private store: Store<fromLogin.AppState>
-    ) { 
+    ) {
     this.store.pipe(select('login')).subscribe(res => {
     if(res){
       this.user = res;
     }
   }) }
-  
+
   public user: any = null;
 
-  ngOnInit() {  
-    
+  ngOnInit() {
+
     if(!this.user['user']){
       this.router.navigate(['/login']);
     }
@@ -67,11 +67,11 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
     this.getRepositorie(this.id);
     this.getMembers(this.id);
   }
-  
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-  
+
   checkServiceStatus(id: number){
    // if (id == 2){
    //     return false;
@@ -80,14 +80,14 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
    // }
   return true;
   }
-  
+
   servicepath(name: string){
     if (name == "PostgreSQL")
       return true
     else
       return false
    }
-   
+
   async getRepositorie(id){
 
     const response = await this.rs.get_repositorie(this.id);
@@ -100,11 +100,11 @@ export class RepositorieComponent implements OnInit, OnDestroy  {
     this.repo_id = this.repositorie[0].repo_id;
     this.maintainer = this.repositorie[0].maintainer;
     this.services = this.repositorie[0].services;
-  } 
+  }
 
   async getMembers(id){
     const response = await this.rs.get_members_repositorie(this.id, this.user['user']['access_token']);
-    this.users = response[0]['users'];
+    this.users = response['groups'][0]['users'];
     this.user_email = this.users[0].email;
   }
 

@@ -16,7 +16,7 @@ export class NewrepositorieComponent implements OnInit {
   formGroup: FormGroup;
 
   showMsg: boolean = false;
- 
+
   public name: string = "";
   public description: string = "";
   public collaborators: number = null;
@@ -72,7 +72,7 @@ export class NewrepositorieComponent implements OnInit {
   public terrama2ModelChange(bol: boolean): void {
     this.terrama2 = bol;
   }
-  
+
   public owncloudModelChange(bol: boolean): void {
     this.owncloud = bol;
   }
@@ -82,9 +82,9 @@ export class NewrepositorieComponent implements OnInit {
   }
 
   constructor(
-    private gs:GroupsService, 
+    private gs:GroupsService,
     private router:Router,
-    private rs:RepositorieService, 
+    private rs:RepositorieService,
     private store: Store<fromLogin.AppState>
     ) {
     this.store.pipe(select('login')).subscribe(res => {
@@ -102,7 +102,7 @@ export class NewrepositorieComponent implements OnInit {
     if(!this.user['user']){
       this.router.navigate(['/login']);
     }
-    
+
     this.getGroupsFromUser(this.user['user']['user_id']);
     this.getCategories();
 
@@ -149,18 +149,18 @@ export class NewrepositorieComponent implements OnInit {
       ]),
 
       TerraMA2: new FormControl('', [
-      ]),      
+      ]),
 
       OwnCloud: new FormControl('', [
       ]),
     });
 
   }
-  
+
   async getCKANUsersFromGroup(group_id: number){
-  
+
     let this_group = this.groups.filter(x => (x.group_id == group_id))[0];
-    
+
     const response = await this.gs.get_users();
 
     for (let index = 0; index < response['result'].length; index++) {
@@ -169,12 +169,14 @@ export class NewrepositorieComponent implements OnInit {
           this.CKAN_Users.push(response['result'][index])
       }
     }
-  } 
+  }
 
   async getGroupsFromUser(user_id: number){
     const response = await this.gs.get_groups_from_user(user_id);
-    this.groups = response;
-  } 
+    if(response['groups']){
+      this.groups = response['groups'];
+    }
+  }
 
   async getCategories(){
     const response = await this.gs.get_categories();
@@ -199,7 +201,7 @@ export class NewrepositorieComponent implements OnInit {
   }
 
 
-  groups: Group[]; 
+  groups: Group[];
   categories: Categorie[];
 
 }

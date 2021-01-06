@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { RepositorieService } from './repositories.service';
 import * as fromLogin from '../login/login.reducer';
 import { Store, select } from '@ngrx/store';
@@ -10,22 +10,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./myrepositories.component.scss']
 })
 
+@Injectable({ providedIn: 'root' })
 export class MyrepositoriesComponent implements OnInit {
-    
+
       constructor(
         private rs:RepositorieService,
         private router: Router,
         private store: Store<fromLogin.AppState>,
-        
+
         ) { this.store.pipe(select('login')).subscribe(res => {
           if(res){
             this.user = res;
           }
         })
       }
-    
+
       public user: any = null;
-  
+
       ngOnInit() {
 
         if(!this.user['user']){
@@ -34,7 +35,7 @@ export class MyrepositoriesComponent implements OnInit {
 
         this.getRepositorieFromUsers(this.user['user']['user_id']);
       }
-    
+
       checkServiceStatus(id: number){
        return true;
        }

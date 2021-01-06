@@ -291,7 +291,9 @@ export class DashboardComponent implements OnInit {
 
   async getGroupsFromUser(user_id: number){
     const response = await this.gs.get_groups_from_user(user_id);
-    this.groups = response;
+    if(response['groups']){
+      this.groups = response['groups'];
+    }
     if (this.groups){
     for (let index = 0; index < this.groups.length; index++) {
       this.user_groups_id.push(String(this.groups[index]['ckan_group_id']))

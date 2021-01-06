@@ -1,22 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table';  
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatListModule } from '@angular/material/list'; 
+import { MatListModule } from '@angular/material/list';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips'; 
+import { MatChipsModule } from '@angular/material/chips';
 
 import { StoreModule } from '@ngrx/store';
 import * as fromLogin from './pages/login/login.reducer';
@@ -52,6 +52,12 @@ import { DataMapComponent } from './ui/data-map/data-map.component';
 import { FileComponent } from './ui/file/file.component';
 import { EdituserComponent } from './pages/edituser/edituser.component';
 import { SearchComponent } from './pages/search/search.component';
+import { GroupsService } from './pages/groups/groups.service';
+import { FileService } from './ui/file/file.service';
+import { DatasetsService } from './pages/datasets/datasets.service';
+import { SignupService } from './pages/signup/signup.service';
+import { RepositorieService } from './pages/myrepositories/repositories.service';
+
 
 @NgModule({
   declarations: [
@@ -109,7 +115,13 @@ import { SearchComponent } from './pages/search/search.component';
     BrowserAnimationsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    GroupsService,
+    FileService,
+    DatasetsService,
+    SignupService,
+    RepositorieService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

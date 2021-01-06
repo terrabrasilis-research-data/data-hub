@@ -258,7 +258,9 @@ export class NewdatasetComponent implements OnInit {
 
   async getGroupsFromUser(user_id: number){
     const response = await this.gs.get_groups_from_user(user_id);
-    this.groups = response;
+    if(response['groups']){
+      this.groups = response['groups'];
+    }
   }
 
   async getLicense(){

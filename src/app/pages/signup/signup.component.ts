@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
 
   showMsg: boolean = false;
   showErrorMsg: boolean = false;
- 
+
   public username: string = "";
   public email: string = "";
   public password: string = "";
@@ -39,11 +39,11 @@ export class SignupComponent implements OnInit {
   constructor(
     private ss: SignupService,
   ) {
-    
+
   }
- 
-  ngOnInit() { 
-    
+
+  ngOnInit() {
+
     this.formGroup = new FormGroup({
 
       Username: new FormControl('', [
@@ -75,20 +75,18 @@ export class SignupComponent implements OnInit {
   }
 
 private async onSubmit() {
-    try {
+
         const response = await this.ss.user_create(this.username, this.email, this.password, this.fullname, this.todayISOString);
           if (response) {
               this.formGroup.reset();
               this.showMsg = true;
+          } else {
+              this.showErrorMsg = true;
           }
-    } catch (err) {
-        this.showErrorMsg = true;
-        console.log(err)
-    }
 }
 
   onReset() {
     this.formGroup.reset();
   }
-  
+
 }

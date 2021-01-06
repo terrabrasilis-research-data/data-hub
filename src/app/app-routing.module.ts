@@ -39,11 +39,11 @@ const routes: Routes = [
   { path: 'view/datasets', component: MydatasetsComponent },
   { path: 'view/groups', component: MygroupsComponent },
   { path: 'view/services', component: MyservicesComponent },
-  { path: 'edit/user', component: EdituserComponent}
+  { path: 'edit/user', component: EdituserComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }  
+export class AppRoutingModule { }

@@ -16,7 +16,7 @@ export class MygroupsComponent implements OnInit  {
   id_open: number;
 
   constructor(
-    private snackBar: MatSnackBar, 
+    private snackBar: MatSnackBar,
     private gs:GroupsService,
     private router: Router,
     private store: Store<fromLogin.AppState>,
@@ -28,9 +28,9 @@ export class MygroupsComponent implements OnInit  {
   }
 
    public user: any = null;
-  
+
    ngOnInit() {
-     
+
     if(!this.user['user']){
       this.router.navigate(['/login']);
     }
@@ -38,10 +38,12 @@ export class MygroupsComponent implements OnInit  {
     document.getElementById("wrapper").className = "d-flex toggled";
     this.getGroupsFromUser(this.user['user']['user_id']);
   }
-  
+
   async getGroupsFromUser(user_id: number){
     const response = await this.gs.get_groups_from_user(user_id);
-    this.groups = response;
+    if(response['groups']){
+      this.groups = response['groups'];
+    }
   }
 
   favorites = [
@@ -54,7 +56,7 @@ export class MygroupsComponent implements OnInit  {
     } else {
       this.id_open = null;
     }
-    
+
   }
 
   check(id: number){
@@ -64,10 +66,10 @@ export class MygroupsComponent implements OnInit  {
       return false
     }
   }
-  
+
   isFavorite(id: number){
     return this.favorites.some(x => x.id === id)
-   } 
+   }
 
    SaveDataset(id: number){
      this.snackBar.open("Saved to Bookmarks", "", {
@@ -75,15 +77,15 @@ export class MygroupsComponent implements OnInit  {
     });
     this.favorites.push({id: id});
    }
-  
+
    RemoveDataset(ids: number){
     this.snackBar.open("Removed from Bookmarks", "", {
      duration: 2000,
    });
    this.favorites = this.favorites.filter(x => (x.id != ids));
   }
- 
-  groups: Group[]; 
+
+  groups: Group[];
 }
 
 export interface Group {
