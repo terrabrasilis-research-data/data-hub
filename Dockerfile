@@ -20,5 +20,7 @@ RUN npm install -g @angular/cli@7.3.9
 # add app
 COPY . /app
 
+RUN chmod +x /app/run.sh
+
 # start app
-CMD npm start --disable-host-check
+ENTRYPOINT "/app/run.sh"
