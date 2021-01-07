@@ -8,4 +8,4 @@ echo ""
 echo "---=== Runing APP ===--- "
 echo ""
 
-npm start -- --deployUrl /portal/ --base-href /portal/
+npm start -- --deployUrl /dev/terrabrasilisrd/portal/ --base-href /dev/terrabrasilisrd/portal/
