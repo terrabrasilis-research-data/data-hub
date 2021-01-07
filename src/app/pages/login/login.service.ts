@@ -15,7 +15,7 @@ export class LoginService {
   API_HOST = api.host;
 
   public async user_login(username: string, password: string): Promise<any> {
-    const response = await this.http.post(this.API_HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/login`, {'username': username, 'password': password}).toPromise();
+    const response = await this.http.post(this.API_HOST+`/api/v1.0/login`, {'username': username, 'password': password}).toPromise();
     return response;
   }
 

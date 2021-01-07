@@ -17,7 +17,7 @@ export class FileService {
     const formData = new FormData();
     formData.append('file', file, file.name);
 
-    const response = await this.http.post(this.API_HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/file_upload/`+repo_id, formData).toPromise();
+    const response = await this.http.post(this.API_HOST+`/api/v1.0/file_upload/`+repo_id, formData).toPromise();
 
     return response[0]['data_url']
   }

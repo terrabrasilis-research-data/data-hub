@@ -17,32 +17,32 @@ export class DatasetsService {
   API_HOST = api.host;
 
   public async get_ckan_datasets(): Promise<any> {
-    const response = await this.http.get(this.CKAN_HOST+`:`+this.CKAN_PORT+`/api/3/action/package_search?rows=1000`).toPromise();
+    const response = await this.http.get(this.CKAN_HOST+`/api/3/action/package_search?rows=1000`).toPromise();
     return response;
   }
 
   public async get_ckan_tags(): Promise<any> {
-    const response = await this.http.get(this.CKAN_HOST+`:`+this.CKAN_PORT+`/api/3/action/tag_list`).toPromise();
+    const response = await this.http.get(this.CKAN_HOST+`/api/3/action/tag_list`).toPromise();
     return response;
   }
 
   public async get_ckan_datasets_search(search: string): Promise<any> {
-    const response = await this.http.get(this.CKAN_HOST+`:`+this.CKAN_PORT+`/api/3/action/package_search?q=`+search).toPromise();
+    const response = await this.http.get(this.CKAN_HOST+`/api/3/action/package_search?q=`+search).toPromise();
     return response;
   }
 
   public async get_ckan_datasets_bbox_search(bbox: string, datasets: any): Promise<any> {
-    const response = await this.http.post(this.CKAN_HOST+`:`+this.TBRD_API_PORT+`/api/v1.0/bbox_search/`+bbox, datasets).toPromise();
+    const response = await this.http.post(this.CKAN_HOST+`/api/v1.0/bbox_search/`+bbox, datasets).toPromise();
     return response;
   }
 
   public async get_ckan_dataset(id: string): Promise<any> {
-    const response = await this.http.post(this.CKAN_HOST+`:`+this.CKAN_PORT+`/api/3/action/package_show`,{'id': id}).toPromise();
+    const response = await this.http.post(this.CKAN_HOST+`/api/3/action/package_show`,{'id': id}).toPromise();
     return response;
   }
 
   public async get_license_list(): Promise<any> {
-    const response = await this.http.get(this.CKAN_HOST+`:`+this.CKAN_PORT+`/api/3/action/license_list`).toPromise();
+    const response = await this.http.get(this.CKAN_HOST+`/api/3/action/license_list`).toPromise();
     return response['result'];
   }
 
@@ -69,7 +69,7 @@ export class DatasetsService {
       });
     }
 
-    const responseDataset = await this.http.post(this.CKAN_HOST+`:`+this.CKAN_PORT+`/api/3/action/package_create`, {'name': nameAlpha, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}], 'tags': tags_dict, "extras": extra }, {
+    const responseDataset = await this.http.post(this.CKAN_HOST+`/api/3/action/package_create`, {'name': nameAlpha, 'title': name, 'notes': description, 'private': visibility, 'author': author, 'author_email': author_email, 'maintainer': maintainer, 'license_id': license_id, 'owner_org': owner_org, 'groups': [{"id": collaborators}], 'tags': tags_dict, "extras": extra }, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
       })
@@ -77,7 +77,7 @@ export class DatasetsService {
 
     let package_id = responseDataset['result']['id']
 
-    const responseResource = await this.http.post(this.CKAN_HOST+`:`+this.CKAN_PORT+`/api/3/action/resource_create`, {'package_id': package_id, 'name': dataname, 'url': this.API_HOST+':'+this.TBRD_API_PORT+'/api/v1.0/uploads/'+file_url, 'description': datadescription, 'format': dataformat}, {
+    const responseResource = await this.http.post(this.CKAN_HOST+`/api/3/action/resource_create`, {'package_id': package_id, 'name': dataname, 'url': this.API_HOST+':'+this.TBRD_API_PORT+'/api/v1.0/uploads/'+file_url, 'description': datadescription, 'format': dataformat}, {
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
       })
