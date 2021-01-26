@@ -14,16 +14,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label>URL</label> 
+                            <label>URL</label>
                             <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                       <span class="input-group-text" id="basic-addon3">http://0.0.0.0/</span>
                                     </div>
                                     <input name="" class="form-control" formControlName="RepoURL" [ngModel]="repourl" (ngModelChange)="repourlModelChange($event)" placeholder="Repositorie URL" type="text">
                                   </div>
-                            
+
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Description</label>
                             <textarea name="" class="form-control" formControlName="Description" [ngModel]="description" (ngModelChange)="descriptionModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
@@ -46,7 +46,7 @@
                             <label>Maintainer</label>
                             <input name="" class="form-control" formControlName="Maintainer" [ngModel]="maintainer" (ngModelChange)="maintainerModelChange($event)" placeholder="Maintainer name" type="text">
                         </div>
- 
+
                         <div class="form-group">
                             <label>Categorie</label>
                             <div style="width: 15px"></div>
@@ -72,7 +72,7 @@
                                 checked>
                         <label for="postgres">PostgreSQL</label>
                         </div>
-                        
+
                         <div>
                             <input class="checkPad" formControlName="GeoServer" type="checkbox" id="scales" name="scales" [ngModel]="geoserver" (ngModelChange)="geoserverModelChange($event)"
                             checked>
@@ -112,8 +112,8 @@
                 <div class=""  *ngIf="showMsg" style="width: 50%; margin-left: 25%; margin-right: 25%">
                         <div class="col-xs-12">
                         <p class="alert alert-success">
-                            <strong>Successful creation!</strong> Please click <a routerLink="/view/repositories">here</a> to view!
-                
+                            <strong>Successful creation!</strong> Please click <span routerLink="/view/repositories">here</span>  to view!
+
                         </p>
                     </div>
                     </div>

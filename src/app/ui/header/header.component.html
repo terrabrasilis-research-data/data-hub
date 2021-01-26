@@ -5,25 +5,25 @@
                     </div>
                 </div>
 
-                <a class="navbar-brand" routerLink="/">
+                <span class="navbar-brand" routerLink="/">
                     <span class="verde textlogo">Terra</span><span class="amarelo textlogo">Brasilis</span> <span class="azul textlogo"> Research Data</span>
-                </a>
+                </span>
                 <div class="navbar-expand mr-auto">
 
                     <div class="navbar-nav">
-                        <a routerLink="/groups" class="textbar">Groups</a>
-                        <a routerLink="/datasets" class="textbar" style="margin-left: 10px">Datasets</a>
+                        <span routerLink="/groups" class="textbar">Groups</span>
+                        <span routerLink="/datasets" class="textbar" style="margin-left: 10px">Datasets</span>
                     </div>
 
                 </div>
                 <div class="navbar-expand ml-auto navbar-nav">
 
                     <div class="navbar-nav">
-                        
+
                         <span *ngIf="!isLogged()">
-                            <div class="textbar" routerLink="/login" >Log in</div> 
+                            <div class="textbar" routerLink="/login" >Log in</div>
                         </span>
-                        
+
                         <span *ngIf="isLogged()">
                             <div>
                                 <div class="middlebox6"> <div style="color:white">{{user.full_name.split(" ")[0]}} {{user.full_name.split(" ")[1]}}</div></div>
@@ -31,7 +31,7 @@
                             </div>
                         </span>
 
-                        
+
                     </div>
 
                 </div>

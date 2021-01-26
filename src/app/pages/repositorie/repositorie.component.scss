@@ -57,10 +57,11 @@
 }
 
 .textlink{
-    color: #0F66A0; 
+    color: #0F66A0;
 }
 
 .textlink:hover{
+    cursor: pointer;
     text-decoration: underline;
 
 }
@@ -162,8 +163,8 @@ img{
 }
 
 .rightboxSide{
-    float:right; 
-    padding-left: 2px; 
+    float:right;
+    padding-left: 2px;
     width: 90%;
     text-align: left;
     border:solid;
@@ -171,13 +172,13 @@ img{
 
 }
 
-.middleboxSide{ 
-    float:left;  
-    width: 10%; 
+.middleboxSide{
+    float:left;
+    width: 10%;
     text-align: right;
     border:solid;
     border-color: green;
-} 
+}
 
 .sizeline{
     align-items: center;
@@ -213,7 +214,7 @@ img{
     background-color:#e4e4e4;
     margin-right: 10px;
   }
-  
+
   .chip img {
     float: left;
     margin: 0 10px 0 -25px;
@@ -221,14 +222,14 @@ img{
     width: 30px;
     border-radius: 50%;
   }
-  
+
   .btn{
     font-size: 11pt;
     color:rgb(42, 138, 201)
 }
 
 .btn:hover{
-    color: #0F66A0; 
+    color: #0F66A0;
     cursor: pointer;
     text-decoration: underline;
 

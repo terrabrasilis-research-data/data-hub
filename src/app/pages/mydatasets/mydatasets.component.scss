@@ -82,13 +82,14 @@ p {
     padding-left: 3%;
     border:solid;
 }
-  
+
 .bntHover{
     color: #3c4043;
 
   }
 
 .bntHover:hover {
+    cursor: pointer;
     color: #4285f4;
   }
 
@@ -104,6 +105,7 @@ p {
 }
 
 .bntHover2:hover {
+    cursor: pointer;
     color: #4285f4;
     text-decoration: underline;
   }
@@ -117,18 +119,18 @@ p {
     padding:30px;
 }
 
-.middlebox{ 
-    float:left;  
+.middlebox{
+    float:left;
     width: 97%;
     padding-top: 14px;
 
     padding-bottom: 7px;
-} 
+}
 
-.rightbox{ 
+.rightbox{
     padding-top: 14px;
     align-self: flex-start;
-} 
+}
 
 .center {
     text-align: center;
@@ -150,7 +152,7 @@ p {
 }
 
 .button{
-    background: #0F66A0; 
+    background: #0F66A0;
     color: white;
     vertical-align: middle;
 }
@@ -173,14 +175,14 @@ p {
     flex-wrap: wrap;
 }
 
-@media screen and (max-width: 767px) {   
+@media screen and (max-width: 767px) {
 
 }
 
-@media (min-width: 1470px) {    
+@media (min-width: 1470px) {
     .east{
         margin-right: 10px;
-   } 
+   }
 }
 
 .pageHeader{

@@ -12,7 +12,7 @@
                                     <label>Name</label>
                                     <input name="" class="form-control" formControlName="Name" [ngModel]="name" (ngModelChange)="nameModelChange($event)" placeholder="A descriptive name" type="text">
                                 </div>
-         
+
                                 <div class="form-group">
                                     <label>Description</label>
                                     <textarea name="" class="form-control" formControlName="Description" [ngModel]="description" (ngModelChange)="descriptionModelChange($event)" rows="3" placeholder="Some useful notes about the group" type="text"></textarea>
@@ -20,27 +20,27 @@
 
                                 <div class="form-group bottom">
                                         <label>Image</label> <br>
-                                        
+
                                         <app-file
-                                        
+
                                             (toggle)="getName($event)"
-                                        
+
                                         >
                                         </app-file>
                                 </div>
 
-        
+
                                 <div class="form-group">
                                     <label>Maintainer</label>
                                     <input name="" class="form-control" formControlName="Maintainer" [ngModel]="maintainer" (ngModelChange)="maintainerModelChange($event)" placeholder="Maintainer name" type="text">
                                 </div>
 
-                
+
                                 <div class="form-group">
                                         <label>Language</label>
                                         <input name="" class="form-control" formControlName="Language" [ngModel]="language" (ngModelChange)="languageModelChange($event)" placeholder="Language of the datasets" type="text">
                                 </div>
-        
+
                                 <br>
                                 <hr class="style1">
                                 <br>
@@ -49,11 +49,11 @@
 
                                 <div>
 
-                                    <div> 
-                                
+                                    <div>
+
                                         <mat-form-field appearance="fill" class="people">
                                                 <mat-label class="textMenu">Select in users...</mat-label>
-                                                <mat-select [(value)]="selected" class="textMenu" multiple> 
+                                                <mat-select [(value)]="selected" class="textMenu" multiple>
                                                 <mat-option *ngFor="let user of users_no_logged" [value]="user">
                                                 {{user.fullname}}
                                                 </mat-option>
@@ -65,7 +65,7 @@
                                     </div>
 
                                 </div>
-                        
+
                                 <table class="table table-striped topMargin vertical">
                                     <thead>
                                     <tr>
@@ -77,25 +77,25 @@
                                     </thead>
                                     <tbody>
                                     <tr *ngFor="let user of users_selected; index as i">
-                                    
-                                    <td> 
+
+                                    <td>
                                     <div>
-                                            
+
                                             <img src={{user.image}} class="image" alt="Avatar">
-                                                {{user.fullname}} 
+                                                {{user.fullname}}
                                     </div>
                                     <td>
-                                            <a class="status" style="color: white" *ngIf="checkuserStatus(user.state)">active</a>
-                                            <a class="statusOFF" style="color: white" *ngIf="!checkuserStatus(user.state)">deleted</a>
-                                      
+                                            <span class="status" style="color: white" *ngIf="checkuserStatus(user.state)">active</span>
+                                            <span class="statusOFF" style="color: white" *ngIf="!checkuserStatus(user.state)">deleted</span>
+
                                     </td>
                                     <td>
                                             {{user.created | slice:0:16}}
-                                            
+
                                     </td>
                                     <td>
                                             <div *ngIf="isUser(user.fullname)" class="btn button" (click)="removeUser(user.id)">Remove</div>
-                                            
+
                                     </td>
                                     </tr>
                                     </tbody>
@@ -104,24 +104,24 @@
                                     <br>
                                     <hr class="style1">
                                     <br>
-                                    
+
                                 <button class="btn btn-outline-secondary" type="button" (click)="onReset()">Reset</button>
-        
+
                                 <button class="btn btn-primary pull-right button" type="submit">Create group</button>
-        
+
                             </form>
-        
+
 
                     </article>
-                    </div> 
+                    </div>
 
     </div>
 
     <div class=""  *ngIf="showMsg" style="width: 50%; margin-left: 25%; margin-right: 25%">
                 <div class="col-xs-12">
                 <p class="alert alert-success">
-                    <strong>Successful creation!</strong> Please click <a routerLink="/view/groups">here</a> to view!
-        
+                    <strong>Successful creation!</strong> Please click <span routerLink="/view/groups">here</span>  to view!
+
                 </p>
             </div>
             </div>
@@ -129,4 +129,3 @@
             <div style="margin-bottom: 95px">
                 </div>
 </div>
-    

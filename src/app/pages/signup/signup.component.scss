@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.loginBox{ 
+.loginBox{
     width:420px;
     margin: 0 auto;
     padding: 10px;
@@ -13,16 +13,17 @@
 }
 
 .textlink{
-    color: #0F66A0; 
+    color: #0F66A0;
 
 }
 
 .textlink:hover{
+    cursor: pointer;
     text-decoration: underline;
 }
 
 .button{
-    background: #0F66A0; 
+    background: #0F66A0;
     color: white;
 }
 .button:hover{

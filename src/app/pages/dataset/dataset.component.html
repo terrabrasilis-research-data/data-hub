@@ -16,7 +16,7 @@
         <div class="greybox-left marginBottom textBox">
                 <div class="topicHead">Dataset metric</div>
                 <div style="height: 40px">
-                    <a>... </a>
+                    <span> ... </span>
                 </div>
             </div>
 -->
@@ -26,7 +26,7 @@
 
                     <div *ngFor="let dataset of other_datasets; let i = index">
                             <div *ngIf="i<8">
-                            <a class="textlink itemLine" [routerLink]="['/dataset', dataset.id]">{{dataset.author.split(" ")[0]}} et al. ({{formatDateYear(dataset.metadata_created)}}): {{dataset.title | slice:0:18}}... </a>
+                            <span class="textlink itemLine" [routerLink]="['/dataset', dataset.id]">{{dataset.author.split(" ")[dataset.author.split(" ").length-1]}} et al. ({{formatDateYear(dataset.metadata_created)}}): {{dataset.title | slice:0:18}}... </span>
                         </div>
                     </div>
 
@@ -36,11 +36,11 @@
                     <div class="topicHead">Cite as</div>
 
                     <div class="textCite">
-                        <a *ngFor="let user of users; let i = index">
-                                <a class="spacetext">{{users[i].name}}</a>
-                                <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a>
-                                <a *ngIf="i == users.length-2">; </a>
-                        </a>
+                        <span *ngFor="let user of users; let i = index">
+                                <span class="spacetext">{{ formatName(users[i].name) }}</span>
+                                <span *ngIf="i != users.length-1 && i != users.length-2 ">; </span>
+                                <span *ngIf="i == users.length-2"> </span>
+                        </span>
                                 ({{year}}): {{title}}. Terrabrasilis Research Data. {{purl}}
                     </div>
 
@@ -49,17 +49,17 @@
                 <div class="greybox-left marginBottom textBox exportBox">
                     <div class="topicHead">Export</div>
 
-                    <a class="textlink spacetext2" (click)="CopyBibTex()">BibTeX</a>
+                    <span class="textlink spacetext2" (click)="CopyBibTex()">BibTeX</span>
                     <!--
-                    <a class="textlink spacetext2" (click)="CopyDataCite()">DataCite</a>
-                    <a class="textlink spacetext2" href="#">CSL</a>
-                    <a class="textlink spacetext2" href="#">Dublin</a>
-                    <a class="textlink spacetext2" href="#">Core</a>
-                    <a class="textlink spacetext2" href="#">JSON</a>
-                    <a class="textlink spacetext2" href="#">JSON-LD</a>
-                    <a class="textlink spacetext2" href="#">GeoJSON</a>
-                    <a class="textlink spacetext2" href="#">MARCXML</a>
-                    <a class="textlink spacetext2" href="#">Mendeley</a>
+                    <span class="textlink spacetext2" (click)="CopyDataCite()">DataCite</span>
+                    <span class="textlink spacetext2" href="#">CSL</span>
+                    <span class="textlink spacetext2" href="#">Dublin</span>
+                    <span class="textlink spacetext2" href="#">Core</span>
+                    <span class="textlink spacetext2" href="#">JSON</span>
+                    <span class="textlink spacetext2" href="#">JSON-LD</span>
+                    <span class="textlink spacetext2" href="#">GeoJSON</span>
+                    <span class="textlink spacetext2" href="#">MARCXML</span>
+                    <span class="textlink spacetext2" href="#">Mendeley</span>
                     -->
                 </div>
 
@@ -70,24 +70,24 @@
 
             <div class="publishIn">Published: {{formatDate(metadata_created)}} |
 
-                <a class="textlink" href="#">{{tag}}</a>
+                <span class="textlink" href="#">{{tag}}</span>
 
             </div>
 
             <div class="title">{{title}} ({{pub_year}})</div>
 
                 <div class="author">
-                    <a *ngFor="let user of users; let i = index">
-                        <a class="chipsBox">
+                    <span *ngFor="let user of users; let i = index">
+                        <span class="chipsBox">
                                 <div class="chip">
                                         <img src="{{users[i].img}}" width="16" height="16">
                                         {{users[i].name}}
                                 </div>
 
-                            </a>
-                        <a *ngIf="i != users.length-1 && i != users.length-2 "></a>
-                        <a *ngIf="i == users.length-2"></a>
-                    </a>
+                            </span>
+                        <span *ngIf="i != users.length-1 && i != users.length-2 "></span>
+                        <span *ngIf="i == users.length-2"></span>
+                    </span>
                 </div>
 
             <div class="abstract">
@@ -136,7 +136,8 @@
                                           <td><div style="margin-top: 9px;">{{data.format}}</div></td>
                                           <td><div style="margin-top: 9px;">{{formatDate(data.created)}}</div></td>
                                           <td>
-                                                <a href="{{data.url}}" class="btn button">Download</a>
+                                                <a *ngIf="isService(data.format)" href="{{data.url}}" class="btn button">Download</a>
+                                                <a *ngIf="!isService(data.format)" target="_blank"  href="{{data.url}}" class="btn button">Access</a>
 
                                           </td>
                                         </tr>
@@ -154,41 +155,41 @@
                                     </mat-panel-description>
                                   </mat-expansion-panel-header>
 
-                                  <div class="ftextMetadata"> <a class="metadataTopic">Dataset ID:</a> {{id}}</div>
+                                  <div class="ftextMetadata"> <span class="metadataTopic">Dataset ID:</span>  {{id}}</div>
 
-                                  <div class="textMetadata"> <a class="metadataTopic">Publication Date:</a> {{formatDate(metadata_created)}}</div>
+                                  <div class="textMetadata"> <span class="metadataTopic">Publication Date:</span>  {{formatDate(metadata_created)}}</div>
 
-                                  <div class="textMetadata"> <a class="metadataTopic">Title: </a> {{title}}</div>
+                                  <div class="textMetadata"> <span class="metadataTopic">Title: </span>  {{title}}</div>
 
-                                  <div class="textMetadata"> <a class="metadataTopic">Author(s): </a>
+                                  <div class="textMetadata"> <span class="metadataTopic">Author(s): </span>
 
-                                        <a *ngFor="let user of users; let i = index">
-                                            <a class="spacetext">{{users[i].name}}</a>
-                                            <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a>
-                                            <a *ngIf="i == users.length-2"> & </a>
-                                        </a>
+                                        <span *ngFor="let user of users; let i = index">
+                                            <span class="spacetext">{{users[i].name}}</span>
+                                            <span *ngIf="i != users.length-1 && i != users.length-2 ">, </span>
+                                            <span *ngIf="i == users.length-2"> & </span>
+                                        </span>
                                   </div>
 
-                                  <div class="textMetadata"> <a class="metadataTopic">License: </a> {{license}}</div>
+                                  <div class="textMetadata"> <span class="metadataTopic">License: </span>  {{license}}</div>
 
-                                  <div class="textMetadata"> <a class="metadataTopic">Author email: </a> {{author_email}}</div>
+                                  <div class="textMetadata"> <span class="metadataTopic">Author email: </span>  {{author_email}}</div>
 
-                                  <div class="textMetadata"> <a class="metadataTopic">Tags: </a>
+                                  <div class="textMetadata"> <span class="metadataTopic">Tags: </span>
 
-                                    <a *ngFor="let t of tags; let i = index">
-                                            <a class="spacetext">{{t.name}}</a>
-                                            <a *ngIf="i != tags.length-1 && i != tags.length-2 ">, </a>
-                                            <a *ngIf="i == tags.length-2"> & </a>
-                                        </a>
+                                    <span *ngFor="let t of tags; let i = index">
+                                            <span class="spacetext">{{t.name}}</span>
+                                            <span *ngIf="i != tags.length-1 && i != tags.length-2 ">, </span>
+                                            <span *ngIf="i == tags.length-2"> & </span>
+                                        </span>
                                  </div>
 
-                                 <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{maintainer}}</div>
+                                 <div class="textMetadata"> <span class="metadataTopic">Maintainer: </span>  {{maintainer}}</div>
 
-                                 <a *ngFor="let item of extra; let i = index">
+                                 <span *ngFor="let item of extra; let i = index">
 
-                                    <div class="textMetadata"> <a class="metadataTopic">{{item.key}}: </a> {{item.value}}</div>
+                                    <div *ngIf="item.key != 'spatial'" class="textMetadata"> <span class="metadataTopic">{{item.key}}: </span>  {{item.value}}</div>
 
-                                 </a>
+                                 </span>
 
                                 </mat-expansion-panel>
     <!--
@@ -228,8 +229,8 @@
             <comment-tree [comments]="comments">
             </comment-tree>
 
-        -->
-    <div style="margin-bottom: 105px">
+-->
+    <div style="margin-bottom: 50px">
     </div>
 
 </div>

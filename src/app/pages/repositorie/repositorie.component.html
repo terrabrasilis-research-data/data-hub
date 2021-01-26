@@ -1,21 +1,21 @@
 <div class="main">
 
     <div class="left" >
-        
+
         <div class="greybox-left marginBottom textBox">
              Collaborators
              <div>
-                <a *ngFor="let user of users; let i = index">
+                <span *ngFor="let user of users; let i = index">
                     <img src={{users[i].image}} alt="Avatar">
-                </a>
+                </span>
              </div>
-             
+
         </div>
 
         <div class="greybox-left textBox">
                 Datasets
                 <div *ngFor="let dataset of datasets; let i = index">
-                    <a class="textlink itemLine" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].authors[0].split(" ")[1]}} et al. ({{datasets[i].year}}): {{datasets[i].name | slice:0:18}}... </a>
+                    <span class="textlink itemLine" [routerLink]="['/datasets', datasets[i].dataset_id]">{{datasets[i].authors[0].split(" ")[1]}} et al. ({{datasets[i].year}}): {{datasets[i].name | slice:0:18}}... </span>
             </div>
 
         </div>
@@ -25,31 +25,31 @@
 
         <div class="greybox-right">
 
-            <div class="publishIn">Published: {{ created_on | slice:5:17}} | 
-                <a *ngFor="let categorie of categories; let i = index">
-                    <a class="textlink" href="#">{{categories}}</a>
-                </a>
-            </div> 
+            <div class="publishIn">Published: {{ created_on | slice:5:17}} |
+                <span *ngFor="let categorie of categories; let i = index">
+                    <span class="textlink" href="#">{{categories}}</span>
+                </span>
+            </div>
 
-            <div class="title">{{repo_name}}</div> 
+            <div class="title">{{repo_name}}</div>
 
-            <div class="author"> 
-                    <a *ngFor="let user of users; let i = index">
-                        <a class="chipsBox"> 
+            <div class="author">
+                    <span *ngFor="let user of users; let i = index">
+                        <span class="chipsBox">
                                 <div class="chip">
                                         <img src="{{users[i].image}}" width="16" height="16">
                                         {{users[i].full_name}}
                                 </div>
-                                      
-                            </a> 
-                        <a *ngIf="i != users.length-1 && i != users.length-2 "></a> 
-                        <a *ngIf="i == users.length-2"></a>
-                    </a>
+
+                            </span>
+                        <span *ngIf="i != users.length-1 && i != users.length-2 "></span>
+                        <span *ngIf="i == users.length-2"></span>
+                    </span>
                 </div>
 
             <div class="abstract">
                 <div class="header"> Abstract </div>
-                <div class="textAbstract"> 
+                <div class="textAbstract">
                         {{repo_abstract}}
                 </div>
             </div>
@@ -73,28 +73,28 @@
                                       <th scope="col">Created</th>
                                       <th scope="col">Address</th>
                                       <th scope="col">Published Ports</th>
-                                      <th scope="col">Ownership</th>  
+                                      <th scope="col">Ownership</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr *ngFor="let service of services; index as i">
                                       <td>{{service.name}}</td>
                                       <td>
-                                          
-                                          <a class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</a>
-                                          <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
-                                    
+
+                                          <span class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</span>
+                                          <span class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</span>
+
                                      </td>
                                       <td>{{service.created_on | slice:0:25}}</td>
-                                      
+
                                       <div *ngIf="servicepath(services[i].name)"><td>{{service.address}}/{{path}} </td></div>
                                       <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><td>{{service.address}}/{{path}}/{{service.name}} </td></div>
-                                      
+
                                       <td>
-                                            <div *ngIf="servicepath(services[i].name)"><a href="{{service.address}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
-                                            <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><a href="{{service.address}}/{{service.name}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a></div>
+                                            <div *ngIf="servicepath(services[i].name)"><a href="{{service.address}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a> </div>
+                                            <div *ngIf="!servicepath(services[i].name)" style="text-transform: lowercase;"><a href="{{service.address}}/{{service.name}}:{{service.ports}}" class="btn">{{service.ports}} <i class="material-icons icon">open_in_new</i></a> </div>
                                       </td>
-                                            
+
                                       <td>{{maintainer}}</td>
                                     </tr>
                                     </tbody>
@@ -111,34 +111,34 @@
                                 </mat-panel-description>
                               </mat-expansion-panel-header>
 
-                              <div class="ftextMetadata"> <a class="metadataTopic">Repositorie ID:</a> {{repo_id}}</div> 
-                              
-                              <div class="textMetadata"> <a class="metadataTopic">Publication Date:</a> {{created_on | slice:5:17}}</div> 
-                              
-                              <div class="textMetadata"> <a class="metadataTopic">Title: </a> {{repo_name}}</div> 
+                              <div class="ftextMetadata"> <span class="metadataTopic">Repositorie ID:</span>  {{repo_id}}</div>
 
-                              <div class="textMetadata"> <a class="metadataTopic">Author(s): </a> 
+                              <div class="textMetadata"> <span class="metadataTopic">Publication Date:</span>  {{created_on | slice:5:17}}</div>
 
-                                    <a *ngFor="let user of users; let i = index">
-                                        <a class="spacetext">{{users[i].full_name}}</a> 
-                                        <a *ngIf="i != users.length-1 && i != users.length-2 ">, </a> 
-                                        <a *ngIf="i == users.length-2"> & </a>
-                                    </a>
-                              </div> 
+                              <div class="textMetadata"> <span class="metadataTopic">Title: </span>  {{repo_name}}</div>
 
-                              <div class="textMetadata"> <a class="metadataTopic">Contact: </a> {{user_email}}</div> 
+                              <div class="textMetadata"> <span class="metadataTopic">Author(s): </span>
 
-                              <div class="textMetadata"> <a class="metadataTopic">Categorie: </a> 
-                                <a *ngFor="let categorie of categories; let i = index">
-                                    <a>{{categories}}</a>
-                                </a>
-                             </div> 
+                                    <span *ngFor="let user of users; let i = index">
+                                        <span class="spacetext">{{users[i].full_name}}</span>
+                                        <span *ngIf="i != users.length-1 && i != users.length-2 ">, </span>
+                                        <span *ngIf="i == users.length-2"> & </span>
+                                    </span>
+                              </div>
 
-                             <div class="textMetadata"> <a class="metadataTopic">Maintainer: </a> {{maintainer}}</div> 
-                             
-                            
+                              <div class="textMetadata"> <span class="metadataTopic">Contact: </span>  {{user_email}}</div>
+
+                              <div class="textMetadata"> <span class="metadataTopic">Categorie: </span>
+                                <span *ngFor="let categorie of categories; let i = index">
+                                    <span> {{categories}}</span>
+                                </span>
+                             </div>
+
+                             <div class="textMetadata"> <span class="metadataTopic">Maintainer: </span>  {{maintainer}}</div>
+
+
                             </mat-expansion-panel>
-                            
+
                           </mat-accordion>
             </div>
 

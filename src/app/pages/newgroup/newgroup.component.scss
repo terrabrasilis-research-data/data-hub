@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.divBox{ 
+.divBox{
     width:800px;
     margin: 0 auto;
     padding: 10px;
@@ -13,16 +13,17 @@
 }
 
 .textlink{
-    color: #0F66A0; 
+    color: #0F66A0;
 
 }
 
 .textlink:hover{
+    cursor: pointer;
     text-decoration: underline;
 }
 
 .button{
-    background: #0F66A0; 
+    background: #0F66A0;
     color: white;
 }
 .button:hover{
@@ -50,15 +51,15 @@
     color: #6C7581;
 }
 
-.firstbox{ 
-    float:left;  
+.firstbox{
+    float:left;
     width: 50%;
-} 
+}
 
-.secoundbox{ 
+.secoundbox{
     display: flex;
     padding-left: 10px;
-} 
+}
 
 .topMargin{
     margin-top: 10px;
@@ -71,7 +72,7 @@
     margin-right: 10px;
 }
 .mat-form-field {
-    width: 250px !important; 
+    width: 250px !important;
 
 }
 .people{

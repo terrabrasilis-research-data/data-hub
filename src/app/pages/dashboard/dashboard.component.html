@@ -161,17 +161,17 @@
                                           <div *ngFor="let activitie of activities_list; let i = index">
                                                 <div *ngIf="i<4">
 
-                                                        <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{display_name}}</a>
+                                                        <span style="text-decoration: underline; color:rgb(42, 138, 201)">{{display_name}}</span>
 
                                                         {{getActivityName(activitie.activity_type)}}
 
-                                                        <a *ngIf="activitie.activity_type === 'new group'">
-                                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.group.title}}</a>
-                                                        </a>
+                                                        <span *ngIf="activitie.activity_type === 'new group'">
+                                                                <span style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.group.title}}</span>
+                                                        </span>
 
-                                                        <a *ngIf="activitie.activity_type === 'new package'">
-                                                                <a style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.package.title}}</a>
-                                                        </a>
+                                                        <span *ngIf="activitie.activity_type === 'new package'">
+                                                                <span style="text-decoration: underline; color:rgb(42, 138, 201)">{{activitie.data.package.title}}</span>
+                                                        </span>
 
                                                 </div>
 
@@ -205,8 +205,8 @@
                                                   <td>{{service.name}}</td>
                                                   <td>
 
-                                                        <a class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</a>
-                                                        <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</a>
+                                                        <span class="status" style="color: white" *ngIf="checkServiceStatus(service.id)">running</span>
+                                                        <span class="statusOFF" style="color: white" *ngIf="!checkServiceStatus(service.id)">stopped</span>
 
                                                    </td>
                                                    <td>
@@ -217,7 +217,7 @@
                                                 </tbody>
                                         </table>
 
-                                        <a routerLink="/view/services" class="btn button">My Services</a>
+                                        <span routerLink="/view/services" class="btn button">My Services</span>
                                         </mat-expansion-panel>
                                     </mat-accordion>
                                 </div>
@@ -234,13 +234,13 @@
                                                 </mat-expansion-panel-header>
 
                                                     <div *ngFor="let group of groups; let j = index;">
-                                                            <a class="textlink itemLine" *ngIf="j<6" [routerLink]="['/groups', groups[j].group_id]">{{groups[j].users[0].full_name.split(" ")[1]}} et al. ({{groups[j].created_on | slice:12:16}}): &nbsp; <b>{{groups[j].name}}</b> </a>
+                                                            <span class="textlink itemLine" *ngIf="j<6" [routerLink]="['/groups', groups[j].group_id]">{{groups[j].users[0].full_name.split(" ")[groups[j].users[0].full_name.split(" ").length-1] }} et al. ({{groups[j].created_on | slice:12:16}}): &nbsp; <b>{{groups[j].name}}</b> </span>
                                                     </div>
 
                                                 <br>
 
-                                                <a routerLink="/create/group" class="btn button">New Group</a>
-                                                <a routerLink="/view/groups" class="btn button leftmargin">My Groups</a>
+                                                <span routerLink="/create/group" class="btn button">New Group</span>
+                                                <span routerLink="/view/groups" class="btn button leftmargin">My Groups</span>
 
                                                 </mat-expansion-panel>
                                         </mat-accordion>
@@ -257,13 +257,13 @@
                                                 </mat-expansion-panel-header>
 
                                                 <div *ngFor="let d of datasets; let j = index;">
-                                                        <a class="textlink itemLine" [routerLink]="['/dataset', d.id]">{{d.author.split(" ")[1]}} et al. ({{formatDateYear(d.metadata_created)}}):  &nbsp; <b>{{d.title | slice:0:32}}</b> </a>
+                                                        <span class="textlink itemLine" [routerLink]="['/dataset', d.id]">{{d.author.split(" ")[d.author.split(" ").length-1]}} et al. ({{formatDateYear(d.metadata_created)}}):  &nbsp; <b>{{d.title | slice:0:32}}...</b> </span>
                                                 </div>
 
                                                 <br>
 
-                                                <a routerLink="/create/dataset" class="btn button">New Dataset</a>
-                                                <a routerLink="/view/datasets" class="btn button leftmargin">My Datasets</a>
+                                                <span routerLink="/create/dataset" class="btn button">New Dataset</span>
+                                                <span routerLink="/view/datasets" class="btn button leftmargin">My Datasets</span>
 
                                                 </mat-expansion-panel>
                                         </mat-accordion>

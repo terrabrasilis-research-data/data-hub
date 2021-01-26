@@ -1,13 +1,13 @@
 <div class="main">
         <div class="divBox">
-    
+
                 <div class="card">
                         <article class="card-body">
-                        
+
                         <h4 class="card-title mb-4 mt-1">Repositories</h4>
 
                         <form>
-                               
+
                                <table class="table table-striped topMargin">
                                 <thead>
                                 <tr>
@@ -18,28 +18,27 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let repositorie of repositories; index as i" class="line" [routerLink]="['/repositories', repositorie.repo_id]"> 
+                                <tr *ngFor="let repositorie of repositories; index as i" class="line" [routerLink]="['/repositories', repositorie.repo_id]">
                                   <td><b>{{repositorie.name}}</b></td>
 
                                   <td class="abstract">{{repositorie.abstract | slice:0:180}}</td>
-  
+
                                   <td>{{repositorie.created_on | slice:0:25}}</td>
 
                                   <td>
-                                      
-                                    <a class="status" style="color: white" *ngIf="checkServiceStatus()">running</a>
-                                    <a class="statusOFF" style="color: white" *ngIf="!checkServiceStatus()">stopped</a>
-                              
+
+                                    <span class="status" style="color: white" *ngIf="checkServiceStatus()">running</span>
+                                    <span class="statusOFF" style="color: white" *ngIf="!checkServiceStatus()">stopped</span>
+
                                   </td>
                                 </tr>
                                 </tbody>
                               </table>
-    
+
                         </form>
                         </article>
-                        </div> 
+                        </div>
                         <div style="margin-bottom: 105px">
                           </div>
         </div>
     </div>
-        

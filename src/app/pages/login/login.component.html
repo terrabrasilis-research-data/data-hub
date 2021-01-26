@@ -3,7 +3,7 @@
 
             <div class="card">
                     <article class="card-body">
-                     <button routerLink="/signup" class="btn btn-primary float-right button">Sign up</button>
+                     <button class="btn btn-primary float-right button">Sign up</button> <!--routerLink="/signup"-->
                     <h4 class="card-title mb-4 mt-1">Log in</h4>
                     <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
 
@@ -15,19 +15,19 @@
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" class="form-control" formControlName="Password" [ngModel]="password" (ngModelChange)="passwordModelChange($event)">
-                        </div> <!-- form-group// --> 
+                        </div> <!-- form-group// -->
 
 
                         <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block button">Login</button>
-                        </div> <!-- form-group// -->          
+                        </div> <!-- form-group// -->
 
-                        <a class="float-right textlink" href="#">Forgot password?</a>
-                                                                   
+                        <span class="float-right textlink" href="#">Forgot password?</span>
+
                     </form>
                     </article>
-                    </div> 
-                   
+                    </div>
+
 
     </div>
     <div class=""  *ngIf="showMsg" style="width: 50%; margin-left: 25%; margin-right: 25%; margin-top: 30px">
@@ -38,4 +38,3 @@
     </div>
 </div>
 </div>
-    

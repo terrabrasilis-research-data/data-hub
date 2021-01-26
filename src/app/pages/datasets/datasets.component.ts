@@ -133,6 +133,11 @@ export class DatasetsComponent implements OnInit {
     this.get_ckan_tags();
   }
 
+  formatName(name: string){
+    let name_list = name.split(" ")
+    return name_list[0]+" "+name_list[name_list.length - 1]
+  }
+
   private addCheckboxes() {
 
     this.categories.map((o, i) => {

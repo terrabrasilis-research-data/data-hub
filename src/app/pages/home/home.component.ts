@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit
  {
-  
+
   public query: string = "";
 
   public searchBoxModelChange(str: string): void {
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit
   }
 
   constructor(
-    private snackBar: MatSnackBar, 
+    private snackBar: MatSnackBar,
     private ss: SignupService,
     private router:Router,
     private ds: DatasetsService,) { }
@@ -46,6 +46,11 @@ export class HomeComponent implements OnInit
     }
   }
 
+  formatName(name: string){
+    let name_list = name.split(" ")
+    return name_list[0]+" "+name_list[name_list.length - 1]
+  }
+
   formatDate(date) {
 
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc", "Nov", "Dec"];
@@ -55,7 +60,7 @@ export class HomeComponent implements OnInit
         day = '' + d.getDate(),
         year = d.getFullYear();
 
-    if (day.length < 2) 
+    if (day.length < 2)
         day = '0' + day;
 
     return [day, monthNames[month], year].join(' ');
@@ -74,9 +79,9 @@ export class HomeComponent implements OnInit
     for (let i = 0; i < this.DATASETS.length; i++) {
 
       await this.getGroupsMembers(this.DATASETS[i].groups[0].id, this.DATASETS[i].groups[0].title);
-      
+
       this.DATASETS[i].authors = this.groupsMembers.filter(x => (x.group_name == this.DATASETS[i].groups[0].title));
-     
+
     }
   }
 
@@ -84,7 +89,7 @@ export class HomeComponent implements OnInit
     const response = await this.ss.get_users_ckan();
     this.ckan_users = response['result'];
   }
-  
+
   groupsMembers = [];
 
   async getGroupsMembers(id: string, name: string){

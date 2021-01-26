@@ -8,21 +8,21 @@
   <div class="left" >
 
       <div class="greybox-left">
-        
+
           <p class="text-muted">Filters:</p>
-          
+
           <div class='divfilter'>
-  
+
               <p class="text-muted">Publication Year:</p>
               <div class="border3">
 
-              
+
               <form [formGroup]="form" (ngSubmit)="years()" >
                       <div formArrayName="years" *ngFor="let year of form.controls.years.controls; let k = index">
                         <input type="checkbox" [formControlName]="k" [(ngModel)]="filterYear[years[k].name]"  (change)="filterChange()">
                         {{years[k].name}}
                       </div>
-                  
+
               </form>
             </div>
           </div>
@@ -37,7 +37,7 @@
                             <input type="checkbox" [formControlName]="l" [(ngModel)]="filterRepository[repositories[l].name]"  (change)="filterChange()">
                             {{repositories[l].name}}
                           </div>
-                      
+
                   </form>
                 </div>
           </div>
@@ -53,9 +53,9 @@
                             <input type="checkbox" [formControlName]="i" [(ngModel)]="filterCategory[categories[i].name]"  (change)="filterChange()">
                             {{categories[i].name}}
                           </div>
-                      
+
                   </form>
-                                        
+
                 </div>
           </div>
 
@@ -69,7 +69,7 @@
                             <input type="checkbox" [formControlName]="m" [(ngModel)]="filterFiletypes[filetypes[m].name]"  (change)="filterChange()">
                             {{filetypes[m].name}}
                           </div>
-                      
+
                   </form>
                 </div>
           </div>
@@ -84,7 +84,7 @@
               <div class="example-container mat-elevation-z8">
 
                   <mat-table #table [dataSource]="dataSource">
-  
+
                       <!-- dataset Column -->
                       <ng-container matColumnDef="dataset">
                           <mat-header-cell *matHeaderCellDef>
@@ -93,42 +93,42 @@
                           <mat-cell *matCellDef="let element" style="display: flex">
 
                               <div class="middlebox ">
-                                  
-                                  <a class="dataTag" style="padding-left: 7px; color: white; padding-right: 7px;">{{formatDate(element.metadata_created)}}</a> <a class="openTag" style="color: white" *ngIf="checkOpen(element.id)">Open Access</a>  <a class="groupTag" style="padding-left: 7px; color: white">{{element.groups[0].title}}</a>
 
-                                  <a style="font-weight: bold; padding-left: 7px" class="nav-item nav-link bntHover fontsize" [routerLink]="['/datasets', element.id]"> {{element.title}} ({{get_year(element.id)}})</a>
-                                  
+                                  <span class="dataTag" style="padding-left: 7px; color: white; padding-right: 7px;">{{formatDate(element.metadata_created)}}</span>  <span class="openTag" style="color: white" *ngIf="checkOpen(element.id)">Open Access</span>   <span class="groupTag" style="padding-left: 7px; color: white">{{element.groups[0].title}}</span>
+
+                                  <span style="font-weight: bold; padding-left: 7px" class="nav-item nav-link bntHover fontsize" [routerLink]="['/datasets', element.id]"> {{element.title}} ({{get_year(element.id)}})</span>
+
                                   <h6 style="padding-left: 7px" class="card-subtitle mb-2 text-muted">
 
-                                      <a *ngFor="let author of element.authors; let j = index">
-                                          <a class="spacetext">{{ author.name }}</a> 
-                                          <a *ngIf="j !=  element.authors.length-1 && j !=  element.authors.length-2 ">, </a> 
-                                          <a *ngIf="j ==  element.authors.length-2"> & </a>
-                                      </a>
+                                      <span *ngFor="let author of element.authors; let j = index">
+                                          <span class="spacetext">{{author.name }}</span>
+                                          <span *ngIf="j !=  element.authors.length-1 && j !=  element.authors.length-2 ">, </span>
+                                          <span *ngIf="j ==  element.authors.length-2"> & </span>
+                                      </span>
                                   </h6>
                                   <div style="padding-left: 7px; padding-top: 5px; flex-wrap: wrap; padding-bottom: 5px">
-                                      <a> {{element.notes}} </a>
-                                  </div> 
-                                  <a style="padding-left: 7px; flex-wrap: wrap;" >Size: {{element.num_resources}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.url}}</a></a>
+                                      <span>  {{element.notes}} </span>
+                                  </div>
+                                  <span style="padding-left: 7px; flex-wrap: wrap;" >Size: {{element.num_resources}} datasets; <a class="bntHover2" href="{{element.DOI}}">{{element.url}}</a> </span>
                               </div>
 
                               <div class="rightbox">
-                                
+
                                   <button type="button" class="btn btn-outline-secondary"  [routerLink]="['/datasets', element.id]">View</button>
 
                               </div>
-                              
+
                           </mat-cell>
                       </ng-container>
-  
+
                       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                   </mat-table>
-  
+
                   <mat-paginator #paginator [pageSize]="12" [pageSizeOptions]="[6, 12, 24]">
                   </mat-paginator>
               </div>
-  
+
           </div>
       </div>
       <div style="margin-bottom: 105px">

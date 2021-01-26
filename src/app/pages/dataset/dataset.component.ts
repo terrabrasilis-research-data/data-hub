@@ -11,6 +11,7 @@ import { SignupService } from '../signup/signup.service';
 import { GroupsService } from '../groups/groups.service';
 import { MapOptions, Map as MapLeaflet,
   rectangle, tileLayer, Layer } from 'leaflet';
+import { portal } from 'conf/terrabrasilisrd_portal.json';
 
 @Component({
   selector: 'app-dataset',
@@ -71,6 +72,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
 
   public map: MapLeaflet;
+  PORTAL_HOST = portal.host;
 
   ngOnInit() {
 
@@ -143,8 +145,10 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
     return [day, monthNames[month], year].join(' ');
   }
-  CopyDataCite(){
 
+  formatName(name: string){
+    let name_list = name.split(" ")
+    return name_list[name_list.length - 1]+", "+name_list[0]
   }
 
   CopyBibTex(){
@@ -202,7 +206,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
     this.title = this.DATASETS['title'];
     this.users = this.groupsMembers.filter(x => (x.group_name == this.DATASETS['groups'][0].title));
-    this.url = "http://terrabrasilisrd.dpi.inpe.br/"+"datasets/"+this.id
+    this.url = this.PORTAL_HOST +"datasets/"+this.id
     this.abstract = this.DATASETS['notes'];
     this.resources = this.DATASETS['resources'];
     this.license = this.DATASETS['license_title'];
@@ -263,6 +267,15 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
   onMapReady(map: MapLeaflet) {
     this.map = map;
    }
+
+  isService(type: string){
+    const services = ['WMS', 'WFS', 'CSW', 'WCS', 'STAC', 'API']
+    if(type in services){
+      return true
+    } else {
+      return false
+    }
+  }
 
 }
 

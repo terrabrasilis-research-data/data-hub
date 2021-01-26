@@ -5,8 +5,8 @@
 
 .left {
     float: right;
-    width: 28%;
     margin: 0px;
+    margin-right: 5%;
 }
 
 .right {
@@ -57,7 +57,7 @@
 }
 
 .textlink{
-    color: #0F66A0; 
+    color: #0F66A0;
 }
 
 .textlink:hover{
@@ -194,8 +194,8 @@ img{
 }
 
 .rightboxSide{
-    float:right; 
-    padding-left: 2px; 
+    float:right;
+    padding-left: 2px;
     width: 90%;
     text-align: left;
     border:solid;
@@ -203,13 +203,13 @@ img{
 
 }
 
-.middleboxSide{ 
-    float:left;  
-    width: 10%; 
+.middleboxSide{
+    float:left;
+    width: 10%;
     text-align: right;
     border:solid;
     border-color: green;
-} 
+}
 
 .sizeline{
     align-items: center;
@@ -229,7 +229,7 @@ img{
 }
 
 .button{
-    background: #0F66A0; 
+    background: #0F66A0;
     color: white;
 }
 
@@ -265,7 +265,7 @@ img{
 
 .topicHead{
     margin-bottom: 15px;
-    
+
 }
 
 .spacetext2{
@@ -293,7 +293,7 @@ img{
     background-color:#e4e4e4;
     margin-right: 10px;
   }
-  
+
   .chip img {
     float: left;
     margin: 0 10px 0 -25px;
