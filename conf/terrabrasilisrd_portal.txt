@@ -1,0 +1,11 @@
+{
+    "ckan":{
+      "host": "",
+      "api_key": "",
+      "port": ""
+    },
+    "api":{
+      "host": "",
+      "port": ""
+    }
+  }
