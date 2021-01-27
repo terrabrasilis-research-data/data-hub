@@ -206,7 +206,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
     this.title = this.DATASETS['title'];
     this.users = this.groupsMembers.filter(x => (x.group_name == this.DATASETS['groups'][0].title));
-    this.url = this.PORTAL_HOST +"datasets/"+this.id
+    this.url = this.PORTAL_HOST +"/datasets/"+this.id
     this.abstract = this.DATASETS['notes'];
     this.resources = this.DATASETS['resources'];
     this.license = this.DATASETS['license_title'];

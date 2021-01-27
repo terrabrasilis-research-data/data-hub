@@ -52,17 +52,13 @@
                                   <h6 class="card-subtitle mb-2 text-muted">
 
                                         <span *ngFor="let author of element.authors; let j = index">
-                                            <span *ngIf="i<3">
+                                            <span *ngIf="j<5">
                                             <span class="spacetext">{{ formatName(author.name) }}</span>
-                                            <span *ngIf="j !=  element.authors.length-1 && j !=  element.authors.length-2 ">, </span>
+                                            <span *ngIf="j !=  element.authors.length-1 && j<4 ">, </span>
                                             <span *ngIf="j ==  element.authors.length-2"> & </span>
                                             </span>
-                                            <div *ngIf="j>3">
-                                                <span> ... </span>
-                                            </div>
-
                                         </span>
-
+                                        <span>... </span>
                                     </h6>
 
                                   <p class="card-text">{{element.notes | slice:0:128}} [...]</p>
