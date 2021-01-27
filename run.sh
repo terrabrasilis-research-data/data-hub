@@ -8,4 +8,4 @@ echo ""
 echo "---=== Runing APP ===--- "
 echo ""
 
-npm start -- --deployUrl /dev/terrabrasilisrd/portal/ --base-href /dev/terrabrasilisrd/portal/ --disableHostCheck
+npm start -- --deployUrl /terrabrasilisrd/portal/ --base-href /terrabrasilisrd/portal/ --host 0.0.0.0 --disableHostCheck
