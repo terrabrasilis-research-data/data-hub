@@ -270,10 +270,10 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
 
   isService(type: string){
     const services = ['WMS', 'WFS', 'CSW', 'WCS', 'STAC', 'API']
-    if(type in services){
-      return true
-    } else {
+    if(services.indexOf(type) >= 0){
       return false
+    } else {
+      return true
     }
   }
 
