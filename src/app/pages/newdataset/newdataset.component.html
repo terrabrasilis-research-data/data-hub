@@ -162,7 +162,7 @@
                                                         <label>Data</label>
 
                                                         <br>
-
+                                                        <!--
                                                         <app-file
 
                                                         (toggle)="getDataURL($event)"
@@ -173,9 +173,11 @@
                                                         </app-file>
 
                                                         <button (click)="changeLink()" class="btn btn-outline-secondary" type="button">Link</button>
+
+                                                        -->
                                                 </div>
 
-                                                <div *ngIf="showLink" class="form-group">
+                                                <div class="form-group"> <!-- *ngIf="showLink" -->
                                                         <label>URL</label>
                                                         <br>
                                                         <input name="" class="form-control float-left sizetext" formControlName="FileUrl" [ngModel]="file_url" (ngModelChange)="urlModelChange($event)" placeholder="http://exemple.com/external-data.csv"  type="text"> <button (click)="changeUpload()" class="btn btn-outline-danger" style="margin-left: 15px;" type="button">Remove</button>

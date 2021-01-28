@@ -77,7 +77,7 @@ export class DatasetsService {
 
     let package_id = responseDataset['result']['id']
 
-    const responseResource = await this.http.post(this.CKAN_HOST+`/api/3/action/resource_create`, {'package_id': package_id, 'name': dataname, 'url': this.API_HOST+':'+this.TBRD_API_PORT+'/api/v1.0/uploads/'+file_url, 'description': datadescription, 'format': dataformat}, {
+    const responseResource = await this.http.post(this.CKAN_HOST+`/api/3/action/resource_create`, {'package_id': package_id, 'name': dataname, 'url': file_url, 'description': datadescription, 'format': dataformat}, { // this.API_HOST+':'+this.TBRD_API_PORT+'/api/v1.0/uploads/'+
       headers: new HttpHeaders ({
         Authorization: ckan_api_key
       })
