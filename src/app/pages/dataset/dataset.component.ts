@@ -151,6 +151,13 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     return name_list[name_list.length - 1]+", "+name_list[0]
   }
 
+  CopyService(link: string){
+    this.snackBar.open("Copied to Clipboard", "", {
+      duration: 2000,
+    });
+    Clipboard.copy(link);
+  }
+
   CopyBibTex(){
     this.snackBar.open("Copied to Clipboard", "", {
       duration: 2000,

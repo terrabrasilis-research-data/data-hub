@@ -104,7 +104,7 @@
                                 <mat-expansion-panel [expanded]="true">
                                   <mat-expansion-panel-header>
                                     <mat-panel-title>
-                                    Files
+                                     Resources
                                     </mat-panel-title>
                                     <mat-panel-description>
                                     </mat-panel-description>
@@ -137,7 +137,7 @@
                                           <td><div style="margin-top: 9px;">{{formatDate(data.created)}}</div></td>
                                           <td>
                                                 <a *ngIf="isService(data.format)" href="{{data.url}}" class="btn button">Download</a>
-                                                <a *ngIf="!isService(data.format)" target="_blank"  href="{{data.url}}" class="btn button">Access</a>
+                                                <a *ngIf="!isService(data.format)" (click)="CopyService(data.url)" class="btn button">{{data.format}}</a>
 
                                           </td>
                                         </tr>
