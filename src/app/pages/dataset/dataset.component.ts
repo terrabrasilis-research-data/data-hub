@@ -284,6 +284,10 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     }
   }
 
+  isURL(type: string){
+    if(type == 'URL'){ return true}
+  }
+
 }
 
 export interface Resource {

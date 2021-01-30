@@ -136,8 +136,9 @@
                                           <td><div style="margin-top: 9px;">{{data.format}}</div></td>
                                           <td><div style="margin-top: 9px;">{{formatDate(data.created)}}</div></td>
                                           <td>
-                                                <a *ngIf="isService(data.format)" href="{{data.url}}" class="btn button">Download</a>
-                                                <a *ngIf="!isService(data.format)" (click)="CopyService(data.url)" class="btn button">{{data.format}}</a>
+                                                <a *ngIf="isService(data.format) && !isURL(data.format)" href="{{data.url}}" class="btn button">Download</a>
+                                                <a *ngIf="!isService(data.format) && !isURL(data.format)" (click)="CopyService(data.url)" class="btn button">{{data.format}}</a>
+                                                <a *ngIf="isURL(data.format)" target="_blank"  href="{{data.url}}"  class="btn button">Access</a>
 
                                           </td>
                                         </tr>
