@@ -69,41 +69,60 @@ export class DatasetsComponent implements OnInit {
 
    filterChange() {
 
-    this.dataSource.data = this.DATASETS;
+    let originlDataSource = this.DATASETS;
+    let ongoingfilterDataSource = this.DATASETS;
+    this.dataSource.data = originlDataSource;
     this.size = this.dataSource.data.length;
+
+    let yearsFiltered = [];
+    let categoriesFiltered = [];
+    let repositoriesFiltered = [];
+    let filetypesFiltered = [];
 
     for (let i = 0; i < this.years.length; i++) {
       if (this.filterYear[this.years[i].name] != false) {
-        this.dataSource.data = this.dataSource.data.filter(x => (x.extras.filter(y => (y.key == 'Year'))[0].value == this.years[i].name ) )
-        this.size = this.dataSource.data.length;
-      } else {
+        originlDataSource.filter(x => (x.extras.filter(y => (y.key == 'Year'))[0].value == this.years[i].name)).forEach(element => {
+          yearsFiltered.push(element)
+        });
+        this.size = yearsFiltered.length;
+        ongoingfilterDataSource = yearsFiltered
       }
     }
 
     for (let i = 0; i < this.categories.length; i++) {
         if (this.filterCategory[this.categories[i].name] != false) {
-            this.dataSource.data = this.dataSource.data.filter(x => (x.tags.filter(t => (t.name == this.categories[i].name))).length);
-            this.size = this.dataSource.data.length;
-        } else {
+          ongoingfilterDataSource.filter(x => (x.tags.filter(t => (t.name == this.categories[i].name))).length).forEach(element => {
+            categoriesFiltered.push(element)
+          });
+          this.size = categoriesFiltered.length;
+          ongoingfilterDataSource = categoriesFiltered
         }
-      }
+    }
 
     for (let i = 0; i < this.repositories.length; i++) {
         if (this.filterRepository[this.repositories[i].name] != false) {
-          this.dataSource.data = this.dataSource.data.filter(x => (x.groups.filter(g => (g.title == this.repositories[i].name))).length);
-            this.size = this.dataSource.data.length;
-        } else {
+          ongoingfilterDataSource.filter(x => (x.groups.filter(g => (g.title == this.repositories[i].name))).length).forEach(element => {
+            repositoriesFiltered.push(element)
+          });
+          this.size = repositoriesFiltered.length;
+          ongoingfilterDataSource = repositoriesFiltered
         }
-      }
+    }
 
     for (let i = 0; i < this.filetypes.length; i++) {
         if (this.filterFiletypes[this.filetypes[i].name] != false) {
-            this.dataSource.data = this.dataSource.data.filter(x => (x.resources.filter (r => (r.format == this.filetypes[i].name))).length);
-            this.size = this.dataSource.data.length;
-        } else  {
+          ongoingfilterDataSource.filter(x => (x.resources.filter (r => (r.format == this.filetypes[i].name))).length).forEach(element => {
+            filetypesFiltered.push(element)
+          });
+          this.size = filetypesFiltered.length;
+          ongoingfilterDataSource = filetypesFiltered
         }
       }
-}
+
+    this.dataSource.data = ongoingfilterDataSource.reduce((x, y) => x.includes(y) ? x : [...x, y], [])
+    this.size = this.dataSource.data.length;
+
+    }
 
    constructor(
      private formBuilder: FormBuilder,

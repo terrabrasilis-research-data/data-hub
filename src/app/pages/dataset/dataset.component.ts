@@ -158,6 +158,24 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     Clipboard.copy(link);
   }
 
+  CopyABNT(){
+    let ABNTCite = "";
+    for (let user of this.users){
+      ABNTCite = ABNTCite + this.formatName(user.name)
+      if(user != this.users[this.users.length-1] && user != this.users[this.users.length-2]){
+        ABNTCite = ABNTCite + "; "
+      }
+      if(user == this.users[this.users.length-2]){
+        ABNTCite = ABNTCite + " "
+      }
+    };
+    ABNTCite = ABNTCite + " ("+this.year+"): "+ this.title+". Terrabrasilis Research Data. " + this.purl
+    this.snackBar.open("Copied to Clipboard", "", {
+      duration: 2000,
+    });
+    Clipboard.copy(ABNTCite);
+  }
+
   CopyBibTex(){
     this.snackBar.open("Copied to Clipboard", "", {
       duration: 2000,

@@ -1,6 +1,7 @@
 .main{
     margin-left: 0.5%;
     margin-right: 0.5%;
+    min-height: 1000px !important;
 }
 
 .left {
@@ -109,6 +110,7 @@ nks{
 }
 
 .repoContent{
+    margin-bottom: 100px;
     width: 80%;
 }
 
@@ -301,4 +303,17 @@ img{
     height: 30px;
     width: 30px;
     border-radius: 50%;
+  }
+
+  .right-div{
+    margin-left: 310px;
+  }
+
+  .icon-color{
+    color:#A0A0A0;
+  }
+
+  .icon-color:hover{
+    cursor: pointer;
+    color:#505050;
   }
