@@ -1,0 +1,17 @@
+version: "3.3"
+services: 
+
+  tbrd_data-hub:
+    restart: unless-stopped
+    container_name: tbrd_data-hub
+    build:
+        context: .
+        dockerfile: Dockerfile
+    networks: 
+        - tbrd_network
+    ports: 
+        - "4200:4200"
+
+networks: 
+    tbrd_network:
+        external: true
