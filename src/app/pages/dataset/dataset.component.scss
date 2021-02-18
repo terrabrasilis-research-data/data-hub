@@ -15,6 +15,20 @@
     width: 85%;
 }
 
+.bdcBtn{
+    width: 98%;
+    line-height: 1.42857;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+    display: inline-block;
+    height: auto;
+}
+
+.bdcBtn:hover{
+    cursor: pointer;
+}
+
 .greybox-left {
     padding-top: 6%;
     padding-right: 6%;

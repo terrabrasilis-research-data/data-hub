@@ -21,7 +21,14 @@
             </div>
 -->
 
-        <div class="greybox-left marginBottom textBox">
+            <div *ngIf="bdc_url" class="greybox-left marginBottom textBox">
+                <div class="topicHead">Available in</div>
+                <div>
+                    <a target="_blank" href="{{bdc_url}}"><img class="bdcBtn"  src="./assets/images/bdc.png"></a>
+                </div>
+            </div>
+
+            <div class="greybox-left marginBottom textBox">
                 <div class="topicHead">Other datasets with same tags</div>
 
                     <div *ngFor="let dataset of other_datasets; let i = index">
@@ -30,7 +37,7 @@
                         </div>
                     </div>
 
-                </div>
+            </div>
 
             <div class="greybox-left marginBottom textBox">
                     <div class="topicHead">Cite as</div>
@@ -190,7 +197,7 @@
 
                                  <span *ngFor="let item of extra; let i = index">
 
-                                    <div *ngIf="item.key != 'spatial'" class="textMetadata"> <span class="metadataTopic">{{item.key}}: </span>  {{item.value}}</div>
+                                    <div *ngIf="item.key != 'spatial' && item.key != 'bdc_url'" class="textMetadata"> <span class="metadataTopic">{{item.key}}: </span>  {{item.value}}</div>
 
                                  </span>
 
