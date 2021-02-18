@@ -6,4 +6,4 @@ echo ""
 
 VERSION=$(cat package.json | grep -oP '(?<="version": ")[^"]*')
 
-docker build -t inpe/terrabrasilis-data-hub .
+docker build -t terrabrasilisrd/data-hub .
