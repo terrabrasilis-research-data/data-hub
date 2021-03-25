@@ -241,7 +241,7 @@ export class DatasetComponent implements OnInit, OnDestroy, LeafletModule {
     this.extra = this.DATASETS['extras'];
 
     if(this.DATASETS['url'])
-      this.bdc_url = this.DATASETS['url']
+      this.bdc_url = this.DATASETS['url_bdc']
 
     for (let index = 0; index < this.DATASETS['extras'].length; index++) {
       if(this.DATASETS['extras'][index].key == 'Year')
